@@ -69,6 +69,18 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="model\Client.cs" />
+    <Compile Include="model\Departure.cs" />
+    <Compile Include="model\Line.cs" />
+    <Compile Include="model\Manager.cs" />
+    <Compile Include="model\Point.cs" />
+    <Compile Include="model\Reservation.cs" />
+    <Compile Include="model\Seat.cs" />
+    <Compile Include="model\Station.cs" />
+    <Compile Include="model\Ticket.cs" />
+    <Compile Include="model\Train.cs" />
+    <Compile Include="model\User.cs" />
+    <Compile Include="model\Wagon.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -93,6 +105,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="repository\" />
+    <Folder Include="resources\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
