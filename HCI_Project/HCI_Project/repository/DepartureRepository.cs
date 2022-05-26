@@ -4,7 +4,7 @@ namespace HCI_Project.repository
 {
     public class DepartureRepository : GenericRepository<Departure>
     {
-        DepartureRepository()
+        public DepartureRepository()
         {
             path = "../../resources/departures.xml";
             Load();

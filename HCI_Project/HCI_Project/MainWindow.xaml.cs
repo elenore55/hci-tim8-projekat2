@@ -1,4 +1,6 @@
-﻿using System;
+﻿using HCI_Project.model;
+using HCI_Project.repository;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +25,19 @@ namespace HCI_Project
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Clicked");
+            Client c = new Client()
+            {
+                Name = "Milica"
+            };
+            ClientRepository cr = new ClientRepository();
+            cr.Add(c);
+            DepartureRepository dr = new DepartureRepository();
+            WagonRepository wr = new WagonRepository();
         }
     }
 }

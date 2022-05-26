@@ -15,21 +15,23 @@ namespace HCI_Project.repository
         public GenericRepository() 
         {
             generator = 0;
+            objects = new List<T>();
         }
 
         public void Add(T obj)
         {
             objects.Add(obj);
-            Load();
             SaveAll();
         }
 
         public void Load()
         {
             XmlSerializer x = new XmlSerializer(objects.GetType());
-            StreamReader reader = new StreamReader(path);
-            objects = (List<T>)x.Deserialize(reader);
-            GetLastId();
+            using (StreamReader reader = new StreamReader(path))
+            {
+                objects = (List<T>)x.Deserialize(reader);
+                GetLastId();
+            }
         }
 
         public void Delete(long id)
@@ -46,8 +48,10 @@ namespace HCI_Project.repository
         public void SaveAll()
         {
             XmlSerializer x = new XmlSerializer(objects.GetType());
-            StreamWriter writer = new StreamWriter(path);
-            x.Serialize(writer, objects);
+            using (StreamWriter writer = new StreamWriter(path))
+            {
+                x.Serialize(writer, objects);
+            }
         }
 
         public long GetNextId()
