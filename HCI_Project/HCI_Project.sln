@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31019.35
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HCI_Project", "HCI_Project\HCI_Project.csproj", "{F10E009B-DB26-45B2-8140-5B17612DCACD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F10E009B-DB26-45B2-8140-5B17612DCACD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F10E009B-DB26-45B2-8140-5B17612DCACD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F10E009B-DB26-45B2-8140-5B17612DCACD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F10E009B-DB26-45B2-8140-5B17612DCACD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C42D2B21-1DB6-48C4-826E-0376023B80DC}
+	EndGlobalSection
+EndGlobal
