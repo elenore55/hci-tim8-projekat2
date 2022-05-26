@@ -11,7 +11,7 @@ namespace HCI_Project.model
         Start, Middle, End
     }
 
-    public class Station
+    public class Station : Serializable
     {
         public string Name { get; set; }
         public Point Coords { get; set; }

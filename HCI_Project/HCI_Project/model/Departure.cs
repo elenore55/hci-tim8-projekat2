@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace HCI_Project.model
 {
-    public class Departure
+    public class Departure : Serializable
     {
-        public long Id { get; set; }
         public DateTime StartDateTime { get; set; }
         public long LineId { get; set; }
         public List<Ticket> Tickets { get; set; }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HCI_Project.model
 {
-    public class User
+    public class User : Serializable
     {
         public string Username { get; set; }
         public string Password { get; set; }

@@ -11,9 +11,8 @@ namespace HCI_Project.model
         First, Second
     }
 
-    public class Wagon
+    public class Wagon : Serializable
     {
-        public long Id;
         public WagonClass Class { get; set; }
         public int Ordinal { get; set; }
         public int Rows { get; set; }

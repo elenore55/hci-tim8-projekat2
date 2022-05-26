@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace HCI_Project.model
 {
-    public class Train : Serializable
+    public abstract class Serializable
     {
-        public List<Wagon> Wagons { get; set; }
+        public long Id { get; set; }
     }
 }

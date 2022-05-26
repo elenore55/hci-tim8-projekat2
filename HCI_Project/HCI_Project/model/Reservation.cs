@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace HCI_Project.model
 {
-    public class Reservation
+    public class Reservation : Serializable
     {
-        public long Id { get; set; }
         public DateTime ReservationDateTime { get; set; }
         public bool IsActive { get; set; }
         public string ClientEmail { get; set; }

@@ -11,9 +11,8 @@ namespace HCI_Project.model
         Free, Reserved, Taken
     }
 
-    public class Seat
+    public class Seat : Serializable
     {
-        public long Id { get; set; }
         public SeatStatus Status { get; set; }
         public int Row { get; set; }
         public int Column { get; set; }

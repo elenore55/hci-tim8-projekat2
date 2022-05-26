@@ -55,6 +55,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="model\Serializable.cs" />
+    <Compile Include="repository\ClientRepository.cs" />
+    <Compile Include="repository\DepartureRepository.cs" />
+    <Compile Include="repository\GenericRepository.cs" />
+    <Compile Include="repository\LineRepository.cs" />
+    <Compile Include="repository\ManagerRepository.cs" />
+    <Compile Include="repository\ReservationRepository.cs" />
+    <Compile Include="repository\SeatRepository.cs" />
+    <Compile Include="repository\StationRepository.cs" />
+    <Compile Include="repository\TicketRepository.cs" />
+    <Compile Include="repository\TrainRepository.cs" />
+    <Compile Include="repository\WagonRepository.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -107,8 +119,34 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="repository\" />
-    <Folder Include="resources\" />
+    <Resource Include="resources\reservations.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="resources\clients.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="resources\managers.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="resources\lines.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="resources\departures.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="resources\seats.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="resources\stations.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="resources\tickets.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="resources\trains.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="resources\wagons.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
