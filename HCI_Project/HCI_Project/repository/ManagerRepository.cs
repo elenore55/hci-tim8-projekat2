@@ -18,5 +18,14 @@ namespace HCI_Project.repository
             }
             return null;
         }
+
+        public Manager GetByUsername(string username)
+        {
+            foreach (Manager manager in objects)
+            {
+                if (manager.Username == username) return manager;
+            }
+            return null;
+        }
     }
 }

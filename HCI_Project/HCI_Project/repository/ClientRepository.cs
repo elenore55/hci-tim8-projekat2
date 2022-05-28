@@ -18,5 +18,14 @@ namespace HCI_Project.repository
             }
             return null;
         }
+
+        public Client GetByUsername(string username)
+        {
+            foreach (Client client in objects)
+            {
+                if (client.Username == username) return client;
+            }
+            return null;
+        }
     }
 }
