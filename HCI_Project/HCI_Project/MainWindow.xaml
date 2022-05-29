@@ -5,8 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HCI_Project"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+        xmlns:content="clr-namespace:System.Windows.Controls;assembly=DotNetProjects.Input.Toolkit"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal" 
+        TextOptions.TextRenderingMode="Auto"        
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        WindowStartupLocation="CenterScreen"
+        Title="MainWindow" Height="800" Width="1300"
+        Closing="Window_Closing">
     <Grid>
-        <Button Click="Button_Click">Button</Button>
+        <StackPanel>
+            <Button Click="Button_Click">Page</Button>
+        </StackPanel>
+        <Frame x:Name="Main"></Frame>
     </Grid>
 </Window>

@@ -1,0 +1,97 @@
+﻿<Page x:Class="HCI_Project.view.TicketPurchase"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:HCI_Project.view"
+      xmlns:sys="clr-namespace:System;assembly=mscorlib"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+      xmlns:content="clr-namespace:System.Windows.Controls;assembly=DotNetProjects.Input.Toolkit"
+      TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+      TextElement.FontWeight="Regular"
+      TextElement.FontSize="13"
+      TextOptions.TextFormattingMode="Ideal" 
+      TextOptions.TextRenderingMode="Auto"        
+      Background="{DynamicResource MaterialDesignPaper}"
+      FontFamily="{DynamicResource MaterialDesignFont}"
+      mc:Ignorable="d" 
+      d:DesignHeight="800" d:DesignWidth="1500"
+      Title="TicketPurchase">
+
+    <Page.Resources>
+        <Style x:Key="AutoCompleteBoxStyle" TargetType="{x:Type content:AutoCompleteBox}">
+            <Style.Resources>
+                <Style TargetType="{x:Type ListBox}">
+                    <Setter Property="MaxHeight" Value="200" />
+                </Style>
+            </Style.Resources>
+        </Style>
+    </Page.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <materialDesign:ColorZone Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="4" Grid.RowSpan="2" Background="#61bdf2" Padding="2" VerticalAlignment="Stretch"></materialDesign:ColorZone>
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Label Margin="30 7 30 1" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Bottom">Start destination</Label>
+            <Label Margin="30 7 30 1" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom">End destination</Label>
+            <Label Margin="30 7 30 1" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Bottom">Date of departure</Label>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <materialDesign:ColorZone x:Name="tb1_border" Grid.Column="0" VerticalAlignment="Top" Mode="Standard" Padding="8 4 8 4" CornerRadius="8" Margin="30 5 30 10" materialDesign:ShadowAssist.ShadowDepth="Depth2">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Button Style="{StaticResource MaterialDesignToolButton}" Grid.Column="0" VerticalAlignment="Center">
+                        <materialDesign:PackIcon
+                            Kind="Search"
+                            Opacity=".56"/>
+                    </Button>
+                    <content:AutoCompleteBox Grid.Column="1" VerticalAlignment="Center" x:Name="tb1" FilterMode="Contains" Background="{Binding Path=Background, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Page}}}" Style="{StaticResource AutoCompleteBoxStyle}" BorderThickness="1" Placeholder="Search destination.." />
+                </Grid>
+            </materialDesign:ColorZone>
+            <materialDesign:ColorZone x:Name="tb2_border" Grid.Column="1" VerticalAlignment="Top" Mode="Standard" Padding="8 4 8 4" CornerRadius="8" Margin="30 5 30 10" materialDesign:ShadowAssist.ShadowDepth="Depth2">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Button Style="{StaticResource MaterialDesignToolButton}" Grid.Column="0" VerticalAlignment="Top">
+                        <materialDesign:PackIcon
+                                Kind="Search"
+                                Opacity=".56"/>
+                    </Button>
+                    <content:AutoCompleteBox Grid.Column="1" VerticalAlignment="Center" x:Name="tb2" FilterMode="Contains" Background="{Binding Path=Background, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Page}}}" Style="{StaticResource AutoCompleteBoxStyle}" BorderThickness="1" Placeholder="Search destination.." />
+                </Grid>
+            </materialDesign:ColorZone>
+            <DatePicker Margin="30 5 30 10" x:Name="DepartureDate" Grid.Column="2" VerticalAlignment="Top"
+                    materialDesign:HintAssist.Hint="Pick Date of departure"
+                    materialDesign:TextFieldAssist.HasClearButton="True"
+                    DisplayDateEnd="{x:Static sys:DateTime.Now}"
+                    Style="{StaticResource MaterialDesignFloatingHintDatePicker}"  Visibility="Visible" />
+            <Button Grid.Column="3" VerticalAlignment="Top" Background="Purple" Margin="30 5 30 10">Show</Button>
+        </Grid>
+    </Grid>
+</Page>

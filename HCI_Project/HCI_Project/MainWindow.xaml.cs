@@ -1,5 +1,6 @@
 ﻿using HCI_Project.model;
 using HCI_Project.repository;
+using HCI_Project.view;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,15 +30,20 @@ namespace HCI_Project
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Clicked");
-            Client c = new Client()
+            /*Client c = new Client()
             {
                 Name = "Milica"
             };
             ClientRepository cr = new ClientRepository();
             cr.Add(c);
             DepartureRepository dr = new DepartureRepository();
-            WagonRepository wr = new WagonRepository();
+            WagonRepository wr = new WagonRepository();*/
+            Main.Content = new TicketPurchase();
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Application.Current.Shutdown();
         }
     }
 }
