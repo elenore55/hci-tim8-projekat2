@@ -18,6 +18,11 @@ namespace HCI_Project.repository
             objects = new List<T>();
         }
 
+        public List<T> GetAll()
+        {
+            return objects;
+        }
+
         public void Add(T obj)
         {
             objects.Add(obj);

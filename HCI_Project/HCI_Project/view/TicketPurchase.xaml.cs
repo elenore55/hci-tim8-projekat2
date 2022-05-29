@@ -1,4 +1,6 @@
-﻿using System;
+﻿using HCI_Project.model;
+using HCI_Project.repository;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +22,15 @@ namespace HCI_Project.view
     /// </summary>
     public partial class TicketPurchase : Page
     {
+        public List<string> StationNames { get; set; }
         public TicketPurchase()
         {
             InitializeComponent();
+            StationRepository sr = new StationRepository();
+            List<Station> stations = sr.GetAll();
+            StationNames = (from s in stations select s.Name).ToList();
+            tbFrom.ItemsSource = StationNames;
+            tbTo.ItemsSource = StationNames;
         }
     }
 }

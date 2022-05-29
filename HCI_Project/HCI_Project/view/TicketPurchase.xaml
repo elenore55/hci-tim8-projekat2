@@ -56,7 +56,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <materialDesign:ColorZone x:Name="tb1_border" Grid.Column="0" VerticalAlignment="Top" Mode="Standard" Padding="8 4 8 4" CornerRadius="8" Margin="30 5 30 10" materialDesign:ShadowAssist.ShadowDepth="Depth2">
+            <materialDesign:ColorZone x:Name="tbFromBorder" Grid.Column="0" VerticalAlignment="Top" Mode="Standard" Padding="8 4 8 4" CornerRadius="8" Margin="30 5 30 10" materialDesign:ShadowAssist.ShadowDepth="Depth2">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
@@ -68,10 +68,10 @@
                             Kind="Search"
                             Opacity=".56"/>
                     </Button>
-                    <content:AutoCompleteBox Grid.Column="1" VerticalAlignment="Center" x:Name="tb1" FilterMode="Contains" Background="{Binding Path=Background, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Page}}}" Style="{StaticResource AutoCompleteBoxStyle}" BorderThickness="1" Placeholder="Search destination.." />
+                    <content:AutoCompleteBox Grid.Column="1" VerticalAlignment="Center" x:Name="tbFrom" FilterMode="Contains" Background="{Binding Path=Background, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Page}}}" Style="{StaticResource AutoCompleteBoxStyle}" BorderThickness="1" Placeholder="Search destination.." />
                 </Grid>
             </materialDesign:ColorZone>
-            <materialDesign:ColorZone x:Name="tb2_border" Grid.Column="1" VerticalAlignment="Top" Mode="Standard" Padding="8 4 8 4" CornerRadius="8" Margin="30 5 30 10" materialDesign:ShadowAssist.ShadowDepth="Depth2">
+            <materialDesign:ColorZone x:Name="tbToBorder" Grid.Column="1" VerticalAlignment="Top" Mode="Standard" Padding="8 4 8 4" CornerRadius="8" Margin="30 5 30 10" materialDesign:ShadowAssist.ShadowDepth="Depth2">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
@@ -83,7 +83,7 @@
                                 Kind="Search"
                                 Opacity=".56"/>
                     </Button>
-                    <content:AutoCompleteBox Grid.Column="1" VerticalAlignment="Center" x:Name="tb2" FilterMode="Contains" Background="{Binding Path=Background, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Page}}}" Style="{StaticResource AutoCompleteBoxStyle}" BorderThickness="1" Placeholder="Search destination.." />
+                    <content:AutoCompleteBox Grid.Column="1" VerticalAlignment="Center" x:Name="tbTo" FilterMode="Contains" Background="{Binding Path=Background, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Page}}}" Style="{StaticResource AutoCompleteBoxStyle}" BorderThickness="1" Placeholder="Search destination.." />
                 </Grid>
             </materialDesign:ColorZone>
             <DatePicker Margin="30 5 30 10" x:Name="DepartureDate" Grid.Column="2" VerticalAlignment="Top"

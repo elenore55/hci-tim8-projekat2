@@ -38,12 +38,42 @@ namespace HCI_Project
             cr.Add(c);
             DepartureRepository dr = new DepartureRepository();
             WagonRepository wr = new WagonRepository();*/
+            
             Main.Content = new TicketPurchase();
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             Application.Current.Shutdown();
+        }
+
+        private void AddStations()
+        {
+            StationRepository sr = new StationRepository();
+            Station s1 = new Station()
+            {
+                Id = sr.GetNextId(),
+                Name = "Stanica 1",
+                Coords = new model.Point() { X = 3, Y = 5 },
+                Type = StationType.Start
+            };
+            Station s2 = new Station()
+            {
+                Id = sr.GetNextId(),
+                Name = "Stanica 2",
+                Coords = new model.Point() { X = 5, Y = 5 },
+                Type = StationType.Middle
+            };
+            Station s3 = new Station()
+            {
+                Id = sr.GetNextId(),
+                Name = "Stanica 3",
+                Coords = new model.Point() { X = 10, Y = 10 },
+                Type = StationType.End
+            };
+            sr.Add(s1);
+            sr.Add(s2);
+            sr.Add(s3);
         }
     }
 }

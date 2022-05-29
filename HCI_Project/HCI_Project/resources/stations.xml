@@ -1,3 +1,63 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <ArrayOfStation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Station>
+    <Id>1</Id>
+    <Name>Stanica 1</Name>
+    <Coords>
+      <X>3</X>
+      <Y>5</Y>
+    </Coords>
+    <Type>Start</Type>
+    <LineId>0</LineId>
+  </Station>
+  <Station>
+    <Id>2</Id>
+    <Name>Stanica 2</Name>
+    <Coords>
+      <X>5</X>
+      <Y>5</Y>
+    </Coords>
+    <Type>Middle</Type>
+    <LineId>0</LineId>
+  </Station>
+  <Station>
+    <Id>3</Id>
+    <Name>Stanica 3</Name>
+    <Coords>
+      <X>10</X>
+      <Y>10</Y>
+    </Coords>
+    <Type>End</Type>
+    <LineId>0</LineId>
+  </Station>
+  <Station>
+    <Id>4</Id>
+    <Name>Stanica 4</Name>
+    <Coords>
+      <X>3</X>
+      <Y>5</Y>
+    </Coords>
+    <Type>Start</Type>
+    <LineId>0</LineId>
+  </Station>
+  <Station>
+    <Id>5</Id>
+    <Name>Stanica 5</Name>
+    <Coords>
+      <X>5</X>
+      <Y>5</Y>
+    </Coords>
+    <Type>Middle</Type>
+    <LineId>0</LineId>
+  </Station>
+  <Station>
+    <Id>6</Id>
+    <Name>Stanica 6</Name>
+    <Coords>
+      <X>10</X>
+      <Y>10</Y>
+    </Coords>
+    <Type>End</Type>
+    <LineId>0</LineId>
+  </Station>
 </ArrayOfStation>
