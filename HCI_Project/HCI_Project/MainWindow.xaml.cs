@@ -38,8 +38,10 @@ namespace HCI_Project
             cr.Add(c);
             DepartureRepository dr = new DepartureRepository();
             WagonRepository wr = new WagonRepository();*/
-            
-            Main.Content = new TicketPurchase();
+
+            StationRepository stationRepository = new StationRepository();
+            LineRepository lineRepository = new LineRepository();
+            Main.Content = new TicketPurchase(stationRepository, lineRepository);
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
