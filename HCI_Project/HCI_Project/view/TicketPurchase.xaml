@@ -75,6 +75,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <materialDesign:ColorZone Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="4" Grid.RowSpan="2" Background="#61bdf2" Padding="2" VerticalAlignment="Stretch"></materialDesign:ColorZone>
 
@@ -151,5 +152,7 @@
                 </DataTemplate>
             </DataGrid.RowDetailsTemplate>
         </DataGrid>
+
+        <Button Grid.Row="3" Content="Choose a seat" x:Name="btnChoose" Click="btnChoose_Click"></Button>
     </Grid>
 </Page>

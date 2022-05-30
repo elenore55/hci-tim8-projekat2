@@ -176,7 +176,7 @@ namespace HCI_Project
                 Departures = new List<Departure>() { d4, d5, d6 },
                 Stations = new List<Station>() { s4, s5, s7, s6 },
                 Price = 60,
-                OffsetsInMinutes = new List<int>() { 0, 45, 60 }
+                OffsetsInMinutes = new List<int>() { 0, 45, 60, 100 }
             };
             lr.Add(l1);
             lr.Add(l2);

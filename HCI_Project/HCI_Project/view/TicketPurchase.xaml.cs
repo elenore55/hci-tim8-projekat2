@@ -26,6 +26,7 @@ namespace HCI_Project.view
         private StationRepository stationRepository;
         private LineRepository lineRepository;
         public ObservableCollection<DepartureDTO> MyRows { get; set; }
+        public List<Departure> Departures { get; set; }
 
         public TicketPurchase(StationRepository stationRepository, LineRepository lineRepository)
         {
@@ -37,6 +38,7 @@ namespace HCI_Project.view
             tbFrom.ItemsSource = StationNames;
             tbTo.ItemsSource = StationNames;
             MyRows = new ObservableCollection<DepartureDTO>();
+            Departures = new List<Departure>();
             DataContext = this;
         }
 
@@ -51,19 +53,37 @@ namespace HCI_Project.view
             } 
             else
             {
-                DateTime departureDate = DepartureDate.SelectedDate.GetValueOrDefault();
                 List<Line> lines = lineRepository.FilterLines(from, to);
                 MyRows.Clear();
+                Departures.Clear();
                 foreach (Line line in lines)
                 {
+                    int startIndex = 0;
+                    int endIndex = line.Stations.Count - 1;
+                    for (int i = 0; i < line.Stations.Count; i++)
+                    {
+                        if (line.Stations[i].Name == from)
+                        {
+                            startIndex = i;
+                        }
+                        else if (line.Stations[i].Name == to)
+                        {
+                            endIndex = i;
+                            break;
+                        }
+                    }
+
                     foreach (Departure dpt in line.Departures)
                     {
                         DepartureDTO dto = new DepartureDTO()
                         {
+                            StartIndex = startIndex,
+                            EndIndex = endIndex,
                             DepartureTime = dpt.StartTime,
                             Line = line
                         };
                         MyRows.Add(dto);
+                        Departures.Add(dpt);
                     }
                 }
             }
@@ -134,31 +154,43 @@ namespace HCI_Project.view
             MarkDpRed();
         }
 
-        private void ListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void btnChoose_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Double clicked");
+            int rowIndex = dataGrid.SelectedIndex;
+            if (rowIndex == -1)
+            {
+                MessageBox.Show("Departure not selected", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            
         }
     }
 }
 
 public class DepartureDTO
 {
+    public int StartIndex { get; set; }
+    public int EndIndex { get; set; }
     public DateTime DepartureTime { get; set; }
     public Line Line { get; set; }
     public string DepartureTimeStr
     {
         get
         {
-            return DepartureTime.ToShortTimeString();
+            DateTime start = DepartureTime;
+            for (int i = 0; i <= StartIndex; i++)
+            {
+                start = start.AddMinutes(Line.OffsetsInMinutes[i]);
+            }
+            return start.ToShortTimeString();
         }
     }
     public string ArrivalTimeStr { 
         get 
         {
             DateTime start = DepartureTime;
-            foreach (int offset in Line.OffsetsInMinutes)
+            for (int i = 0; i <= EndIndex; i++)
             {
-                start = start.AddMinutes(offset);
+                start = start.AddMinutes(Line.OffsetsInMinutes[i]);
             }
             return start.ToShortTimeString();
         } 
@@ -169,16 +201,14 @@ public class DepartureDTO
         get
         {
             List<Station> stations = Line.Stations;
-            StringBuilder sb = new StringBuilder($"{"STATIONS",-50}{"ARRIVAL",-50}\n\n");
-            sb.Append($"{stations[0].Name,-55}{" ",-50}\n");
+            StringBuilder sb = new StringBuilder($"{"STATIONS",-50}{"DEPARTURE",-50}\n\n");
             DateTime prev = DepartureTime;
-            for (int i = 1; i < stations.Count - 1; i++)
+            for (int i = 0; i < stations.Count; i++)
             {
                 int offset = Line.OffsetsInMinutes[i];
                 prev = prev.AddMinutes(offset);
                 sb.Append($"{stations[i].Name,-55}{prev.ToShortTimeString(),-50}\n");
             }
-            sb.Append($"{stations[stations.Count - 1].Name,-55}{ArrivalTimeStr,-50}\n");
             return sb.ToString();
         }
     }
