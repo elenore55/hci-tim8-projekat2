@@ -54,34 +54,6 @@
             <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
         </Style>
 
-        <Style x:Key="CustomListViewItemStyle" TargetType="{x:Type ListViewItem}">
-            <Style.Triggers>
-                <Trigger Property="ItemsControl.AlternationIndex" Value="0">
-                    <Setter Property="Background" Value="#d0d4a7"></Setter>
-                    <Setter Property="Padding" Value="0,0,0,0"></Setter>
-                    <Setter Property="Margin" Value="0,0,0,0" />
-                    <Setter Property="BorderThickness" Value="0"></Setter>
-                    <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
-                    <Setter Property="HorizontalAlignment" Value="Center"></Setter>
-                    <Setter Property="VerticalContentAlignment" Value="Stretch"></Setter>
-                    <Setter Property="VerticalAlignment" Value="Stretch"></Setter>
-                    <Setter Property="BorderThickness" Value="1"></Setter>
-                    <Setter Property="FontSize" Value="20"></Setter>
-                </Trigger>
-                <Trigger Property="ItemsControl.AlternationIndex" Value="1">
-                    <Setter Property="Background" Value="#f2f5d0"></Setter>
-                    <Setter Property="Padding" Value="0,0,0,0"></Setter>
-                    <Setter Property="Margin" Value="0,0,0,0" />
-                    <Setter Property="BorderThickness" Value="0"></Setter>
-                    <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
-                    <Setter Property="HorizontalAlignment" Value="Center"></Setter>
-                    <Setter Property="VerticalContentAlignment" Value="Stretch"></Setter>
-                    <Setter Property="VerticalAlignment" Value="Stretch"></Setter>
-                    <Setter Property="BorderThickness" Value="1"></Setter>
-                    <Setter Property="FontSize" Value="20"></Setter>
-                </Trigger>
-            </Style.Triggers>
-        </Style>
         <Style x:Key="GridViewColumnHeaderStyle" TargetType="{x:Type GridViewColumnHeader}">
             <Setter Property="Template">
                 <Setter.Value>
@@ -166,12 +138,18 @@
         </Grid>
 
         <DataGrid Grid.Row="2" Name = "dataGrid" AlternatingRowBackground = "LightBlue" Margin="50 20 50 10" IsReadOnly="True"
-         AlternationCount = "2" AutoGenerateColumns = "False" ItemsSource="{Binding MyRows, RelativeSource={RelativeSource AncestorType=Page}}">
+         AlternationCount = "2" AutoGenerateColumns = "False" ItemsSource="{Binding MyRows, RelativeSource={RelativeSource AncestorType=Page}}"
+        RowDetailsVisibilityMode="VisibleWhenSelected" SelectionMode="Single">
             <DataGrid.Columns>
                 <DataGridTextColumn Header = "Departure time" Binding = "{Binding DepartureTimeStr}" Width="2*" />
                 <DataGridTextColumn Header = "Arrival time" Binding = "{Binding ArrivalTimeStr}" Width="2*" />
                 <DataGridTextColumn Header = "Price (EUR)" Binding = "{Binding Price}" Width="*"/>
             </DataGrid.Columns>
+            <DataGrid.RowDetailsTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Details}" Margin="10" />
+                </DataTemplate>
+            </DataGrid.RowDetailsTemplate>
         </DataGrid>
     </Grid>
 </Page>

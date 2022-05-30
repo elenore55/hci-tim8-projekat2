@@ -18,6 +18,13 @@ namespace HCI_Project.repository
             objects = new List<T>();
         }
 
+        public void ClearAll()
+        {
+            objects.Clear();
+            SaveAll();
+            generator = 0;
+        }
+
         public List<T> GetAll()
         {
             return objects;

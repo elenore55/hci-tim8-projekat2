@@ -37,7 +37,6 @@ namespace HCI_Project.view
             tbFrom.ItemsSource = StationNames;
             tbTo.ItemsSource = StationNames;
             MyRows = new ObservableCollection<DepartureDTO>();
-
             DataContext = this;
         }
 
@@ -61,9 +60,8 @@ namespace HCI_Project.view
                     {
                         DepartureDTO dto = new DepartureDTO()
                         {
-                            DepartureTimeStr = dpt.StartTime.ToShortTimeString(),
-                            ArrivalTimeStr = DateTime.Now.ToShortTimeString(),
-                            Price = lineRepository.GetById(dpt.LineId).Price
+                            DepartureTime = dpt.StartTime,
+                            Line = line
                         };
                         MyRows.Add(dto);
                     }
@@ -145,7 +143,43 @@ namespace HCI_Project.view
 
 public class DepartureDTO
 {
-    public string DepartureTimeStr { get; set; }
-    public string ArrivalTimeStr { get; set; }
-    public double Price { get; set; }
+    public DateTime DepartureTime { get; set; }
+    public Line Line { get; set; }
+    public string DepartureTimeStr
+    {
+        get
+        {
+            return DepartureTime.ToShortTimeString();
+        }
+    }
+    public string ArrivalTimeStr { 
+        get 
+        {
+            DateTime start = DepartureTime;
+            foreach (int offset in Line.OffsetsInMinutes)
+            {
+                start = start.AddMinutes(offset);
+            }
+            return start.ToShortTimeString();
+        } 
+    }
+    public double Price { get { return Line.Price; } }
+    public string Details
+    {
+        get
+        {
+            List<Station> stations = Line.Stations;
+            StringBuilder sb = new StringBuilder($"{"STATIONS",-50}{"ARRIVAL",-50}\n\n");
+            sb.Append($"{stations[0].Name,-55}{" ",-50}\n");
+            DateTime prev = DepartureTime;
+            for (int i = 1; i < stations.Count - 1; i++)
+            {
+                int offset = Line.OffsetsInMinutes[i];
+                prev = prev.AddMinutes(offset);
+                sb.Append($"{stations[i].Name,-55}{prev.ToShortTimeString(),-50}\n");
+            }
+            sb.Append($"{stations[stations.Count - 1].Name,-55}{ArrivalTimeStr,-50}\n");
+            return sb.ToString();
+        }
+    }
 }

@@ -41,7 +41,7 @@ namespace HCI_Project
             StationRepository stationRepository = new StationRepository();
             LineRepository lineRepository = new LineRepository();
             DepartureRepository departureRepository = new DepartureRepository();
-            // Populate(stationRepository, departureRepository, lineRepository);
+            Populate(stationRepository, departureRepository, lineRepository);
             Main.Content = new TicketPurchase(stationRepository, lineRepository);
         }
 
@@ -52,6 +52,9 @@ namespace HCI_Project
 
         private void Populate(StationRepository sr, DepartureRepository dr, LineRepository lr)
         {
+            sr.ClearAll();
+            dr.ClearAll();
+            lr.ClearAll();
             Station s1 = new Station()
             {
                 Id = sr.GetNextId(),
@@ -164,14 +167,16 @@ namespace HCI_Project
                 Id = lr.GetNextId(),
                 Departures = new List<Departure>() { d1, d2, d3 },
                 Stations = new List<Station>() { s1, s2, s3 },
-                Price =  50
+                Price =  50,
+                OffsetsInMinutes = new List<int>() { 0, 45, 60 }
             };
             Line l2 = new model.Line()
             {
                 Id = lr.GetNextId(),
                 Departures = new List<Departure>() { d4, d5, d6 },
                 Stations = new List<Station>() { s4, s5, s7, s6 },
-                Price = 60
+                Price = 60,
+                OffsetsInMinutes = new List<int>() { 0, 45, 60 }
             };
             lr.Add(l1);
             lr.Add(l2);

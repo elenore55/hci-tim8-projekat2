@@ -35,6 +35,11 @@
         <LineId>1</LineId>
       </Station>
     </Stations>
+    <OffsetsInMinutes>
+      <int>0</int>
+      <int>45</int>
+      <int>60</int>
+    </OffsetsInMinutes>
     <Departures>
       <Departure>
         <Id>1</Id>
@@ -98,6 +103,11 @@
         <LineId>2</LineId>
       </Station>
     </Stations>
+    <OffsetsInMinutes>
+      <int>0</int>
+      <int>45</int>
+      <int>60</int>
+    </OffsetsInMinutes>
     <Departures>
       <Departure>
         <Id>4</Id>
