@@ -2,6 +2,7 @@
 using HCI_Project.repository;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,6 +25,7 @@ namespace HCI_Project.view
         public List<string> StationNames { get; set; }
         private StationRepository stationRepository;
         private LineRepository lineRepository;
+        public ObservableCollection<DepartureDTO> MyRows { get; set; }
 
         public TicketPurchase(StationRepository stationRepository, LineRepository lineRepository)
         {
@@ -34,7 +36,9 @@ namespace HCI_Project.view
             StationNames = (from s in stations select s.Name).ToList();
             tbFrom.ItemsSource = StationNames;
             tbTo.ItemsSource = StationNames;
-            
+            MyRows = new ObservableCollection<DepartureDTO>();
+
+            DataContext = this;
         }
 
         private void btnShow_Click(object sender, RoutedEventArgs e)
@@ -45,19 +49,23 @@ namespace HCI_Project.view
             {
                 MessageBox.Show("You did not fill in the required information!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 MarkRed();
-            } else
+            } 
+            else
             {
                 DateTime departureDate = DepartureDate.SelectedDate.GetValueOrDefault();
                 List<Line> lines = lineRepository.FilterLines(from, to);
-                List<Departure> departures = new List<Departure>();
+                MyRows.Clear();
                 foreach (Line line in lines)
                 {
                     foreach (Departure dpt in line.Departures)
                     {
-                        if (dpt.StartDateTime.Date == departureDate.Date)
+                        DepartureDTO dto = new DepartureDTO()
                         {
-                            departures.Add(dpt);
-                        }
+                            DepartureTimeStr = dpt.StartTime.ToShortTimeString(),
+                            ArrivalTimeStr = DateTime.Now.ToShortTimeString(),
+                            Price = lineRepository.GetById(dpt.LineId).Price
+                        };
+                        MyRows.Add(dto);
                     }
                 }
             }
@@ -127,5 +135,17 @@ namespace HCI_Project.view
         {
             MarkDpRed();
         }
+
+        private void ListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            MessageBox.Show("Double clicked");
+        }
     }
+}
+
+public class DepartureDTO
+{
+    public string DepartureTimeStr { get; set; }
+    public string ArrivalTimeStr { get; set; }
+    public double Price { get; set; }
 }

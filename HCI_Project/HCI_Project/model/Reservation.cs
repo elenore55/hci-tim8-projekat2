@@ -9,6 +9,7 @@ namespace HCI_Project.model
     public class Reservation : Serializable
     {
         public DateTime ReservationDateTime { get; set; }
+        public DateTime DepartureDate { get; set; }
         public bool IsActive { get; set; }
         public string ClientEmail { get; set; }
         public long SeatId { get; set; }

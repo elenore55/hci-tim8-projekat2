@@ -8,7 +8,7 @@
       <Y>5</Y>
     </Coords>
     <Type>Start</Type>
-    <LineId>0</LineId>
+    <LineId>1</LineId>
   </Station>
   <Station>
     <Id>2</Id>
@@ -18,7 +18,7 @@
       <Y>5</Y>
     </Coords>
     <Type>Middle</Type>
-    <LineId>0</LineId>
+    <LineId>1</LineId>
   </Station>
   <Station>
     <Id>3</Id>
@@ -28,36 +28,46 @@
       <Y>10</Y>
     </Coords>
     <Type>End</Type>
-    <LineId>0</LineId>
+    <LineId>1</LineId>
   </Station>
   <Station>
     <Id>4</Id>
     <Name>Stanica 4</Name>
     <Coords>
-      <X>3</X>
+      <X>6</X>
       <Y>5</Y>
     </Coords>
     <Type>Start</Type>
-    <LineId>0</LineId>
+    <LineId>2</LineId>
   </Station>
   <Station>
     <Id>5</Id>
     <Name>Stanica 5</Name>
     <Coords>
-      <X>5</X>
+      <X>6</X>
       <Y>5</Y>
     </Coords>
     <Type>Middle</Type>
-    <LineId>0</LineId>
+    <LineId>2</LineId>
   </Station>
   <Station>
-    <Id>6</Id>
+    <Id>7</Id>
     <Name>Stanica 6</Name>
     <Coords>
-      <X>10</X>
+      <X>15</X>
       <Y>10</Y>
     </Coords>
     <Type>End</Type>
-    <LineId>0</LineId>
+    <LineId>2</LineId>
+  </Station>
+  <Station>
+    <Id>6</Id>
+    <Name>Stanica 7</Name>
+    <Coords>
+      <X>6</X>
+      <Y>55</Y>
+    </Coords>
+    <Type>Middle</Type>
+    <LineId>2</LineId>
   </Station>
 </ArrayOfStation>

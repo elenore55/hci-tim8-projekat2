@@ -1,3 +1,119 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <ArrayOfLine xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Line>
+    <Id>1</Id>
+    <Price>50</Price>
+    <Stations>
+      <Station>
+        <Id>1</Id>
+        <Name>Stanica 1</Name>
+        <Coords>
+          <X>3</X>
+          <Y>5</Y>
+        </Coords>
+        <Type>Start</Type>
+        <LineId>1</LineId>
+      </Station>
+      <Station>
+        <Id>2</Id>
+        <Name>Stanica 2</Name>
+        <Coords>
+          <X>5</X>
+          <Y>5</Y>
+        </Coords>
+        <Type>Middle</Type>
+        <LineId>1</LineId>
+      </Station>
+      <Station>
+        <Id>3</Id>
+        <Name>Stanica 3</Name>
+        <Coords>
+          <X>10</X>
+          <Y>10</Y>
+        </Coords>
+        <Type>End</Type>
+        <LineId>1</LineId>
+      </Station>
+    </Stations>
+    <Departures>
+      <Departure>
+        <Id>1</Id>
+        <StartTime>2022-06-01T13:00:00</StartTime>
+        <LineId>1</LineId>
+      </Departure>
+      <Departure>
+        <Id>2</Id>
+        <StartTime>2022-06-01T14:30:00</StartTime>
+        <LineId>1</LineId>
+      </Departure>
+      <Departure>
+        <Id>3</Id>
+        <StartTime>2022-06-01T18:00:00</StartTime>
+        <LineId>1</LineId>
+      </Departure>
+    </Departures>
+  </Line>
+  <Line>
+    <Id>2</Id>
+    <Price>60</Price>
+    <Stations>
+      <Station>
+        <Id>4</Id>
+        <Name>Stanica 4</Name>
+        <Coords>
+          <X>6</X>
+          <Y>5</Y>
+        </Coords>
+        <Type>Start</Type>
+        <LineId>2</LineId>
+      </Station>
+      <Station>
+        <Id>5</Id>
+        <Name>Stanica 5</Name>
+        <Coords>
+          <X>6</X>
+          <Y>5</Y>
+        </Coords>
+        <Type>Middle</Type>
+        <LineId>2</LineId>
+      </Station>
+      <Station>
+        <Id>6</Id>
+        <Name>Stanica 7</Name>
+        <Coords>
+          <X>6</X>
+          <Y>55</Y>
+        </Coords>
+        <Type>Middle</Type>
+        <LineId>2</LineId>
+      </Station>
+      <Station>
+        <Id>7</Id>
+        <Name>Stanica 6</Name>
+        <Coords>
+          <X>15</X>
+          <Y>10</Y>
+        </Coords>
+        <Type>End</Type>
+        <LineId>2</LineId>
+      </Station>
+    </Stations>
+    <Departures>
+      <Departure>
+        <Id>4</Id>
+        <StartTime>2022-06-01T11:00:00</StartTime>
+        <LineId>2</LineId>
+      </Departure>
+      <Departure>
+        <Id>5</Id>
+        <StartTime>2022-06-01T15:15:00</StartTime>
+        <LineId>2</LineId>
+      </Departure>
+      <Departure>
+        <Id>6</Id>
+        <StartTime>2022-06-01T20:20:00</StartTime>
+        <LineId>2</LineId>
+      </Departure>
+    </Departures>
+  </Line>
 </ArrayOfLine>

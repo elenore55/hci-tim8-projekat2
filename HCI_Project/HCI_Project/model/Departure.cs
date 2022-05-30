@@ -8,7 +8,7 @@ namespace HCI_Project.model
 {
     public class Departure : Serializable
     {
-        public DateTime StartDateTime { get; set; }
+        public DateTime StartTime { get; set; }
         public long LineId { get; set; }
         public List<Ticket> Tickets { get; set; }
         public List<Reservation> Reservations { get; set; }

@@ -1,3 +1,33 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <ArrayOfDeparture xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Departure>
+    <Id>1</Id>
+    <StartTime>2022-06-01T13:00:00</StartTime>
+    <LineId>1</LineId>
+  </Departure>
+  <Departure>
+    <Id>2</Id>
+    <StartTime>2022-06-01T14:30:00</StartTime>
+    <LineId>1</LineId>
+  </Departure>
+  <Departure>
+    <Id>3</Id>
+    <StartTime>2022-06-01T18:00:00</StartTime>
+    <LineId>1</LineId>
+  </Departure>
+  <Departure>
+    <Id>4</Id>
+    <StartTime>2022-06-01T11:00:00</StartTime>
+    <LineId>2</LineId>
+  </Departure>
+  <Departure>
+    <Id>5</Id>
+    <StartTime>2022-06-01T15:15:00</StartTime>
+    <LineId>2</LineId>
+  </Departure>
+  <Departure>
+    <Id>6</Id>
+    <StartTime>2022-06-01T20:20:00</StartTime>
+    <LineId>2</LineId>
+  </Departure>
 </ArrayOfDeparture>
