@@ -8,7 +8,7 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="SeatChoice">
 
-    <Grid x:Name="seatsGrid" >
-        
+    <Grid x:Name="seatsGrid" Margin="50 50 50 50" HorizontalAlignment="Center" VerticalAlignment="Center">
+
     </Grid>
 </Page>

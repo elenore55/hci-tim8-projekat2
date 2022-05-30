@@ -4,7 +4,7 @@ namespace HCI_Project.repository
 {
     public class ReservationRepository : GenericRepository<Reservation>
     {
-        ReservationRepository()
+        public ReservationRepository()
         {
             path = "../../resources/reservations.xml";
             Load();

@@ -25,14 +25,19 @@ namespace HCI_Project.view
         public List<string> StationNames { get; set; }
         private StationRepository stationRepository;
         private LineRepository lineRepository;
+        private ReservationRepository reservationRepository;
+        private TicketRepository ticketRepository;
         public ObservableCollection<DepartureDTO> MyRows { get; set; }
         public List<Departure> Departures { get; set; }
 
-        public TicketPurchase(StationRepository stationRepository, LineRepository lineRepository)
+        public TicketPurchase(StationRepository stationRepository, LineRepository lineRepository, TicketRepository ticketRepository, ReservationRepository reservationRepository)
         {
             InitializeComponent();
             this.stationRepository = stationRepository;
             this.lineRepository = lineRepository;
+            this.reservationRepository = reservationRepository;
+            this.ticketRepository = ticketRepository;
+
             List<Station> stations = stationRepository.GetAll();
             StationNames = (from s in stations select s.Name).ToList();
             tbFrom.ItemsSource = StationNames;
@@ -161,7 +166,7 @@ namespace HCI_Project.view
             {
                 MessageBox.Show("Departure not selected", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            
+            NavigationService.Navigate(new SeatChoice(Departures[rowIndex], DepartureDate.SelectedDate.Value, ticketRepository, reservationRepository));
         }
     }
 }

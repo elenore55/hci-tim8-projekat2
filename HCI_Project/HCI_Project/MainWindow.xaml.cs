@@ -41,8 +41,13 @@ namespace HCI_Project
             StationRepository stationRepository = new StationRepository();
             LineRepository lineRepository = new LineRepository();
             DepartureRepository departureRepository = new DepartureRepository();
-            Populate(stationRepository, departureRepository, lineRepository);
-            Main.Content = new TicketPurchase(stationRepository, lineRepository);
+            TrainRepository trainRepository = new TrainRepository();
+            WagonRepository wagonRepository = new WagonRepository();
+            SeatRepository seatRepository = new SeatRepository();
+            TicketRepository ticketRepository = new TicketRepository();
+            ReservationRepository reservationRepository = new ReservationRepository();
+            Populate(stationRepository, departureRepository, lineRepository, trainRepository, wagonRepository, seatRepository);
+            Main.Content = new TicketPurchase(stationRepository, lineRepository, ticketRepository, reservationRepository);
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -50,11 +55,14 @@ namespace HCI_Project
             Application.Current.Shutdown();
         }
 
-        private void Populate(StationRepository sr, DepartureRepository dr, LineRepository lr)
+        private void Populate(StationRepository sr, DepartureRepository dr, LineRepository lr, TrainRepository tr, WagonRepository wr, SeatRepository sr1)
         {
             sr.ClearAll();
             dr.ClearAll();
             lr.ClearAll();
+            tr.ClearAll();
+            wr.ClearAll();
+            sr1.ClearAll();
             Station s1 = new Station()
             {
                 Id = sr.GetNextId(),
@@ -119,41 +127,80 @@ namespace HCI_Project
             sr.Add(s6);
             sr.Add(s7);
 
+            for (int i = 0; i < 10; i++)
+            {
+                for (int j = 0; j < 4; j++)
+                {
+                    Seat seat = new Seat()
+                    {
+                        Id = sr1.GetNextId(),
+                        Row = i,
+                        Column = j,
+                        WagonId = 1
+                    };
+                    sr1.Add(seat);
+                }
+            }
+
+            Wagon wagon = new Wagon()
+            {
+                Id = wr.GetNextId(),
+                Ordinal = 0,
+                Class = WagonClass.First,
+                Rows = 10,
+                SeatsPerRow = 4,
+                Seats = sr1.GetAll()
+            };
+            wr.Add(wagon);
+
+            Train train = new Train()
+            {
+                Id = tr.GetNextId(),
+                Wagons = new List<Wagon>() { wagon }
+            };
+            tr.Add(train);
+
             Departure d1 = new Departure()
             {
                 Id = dr.GetNextId(),
                 StartTime = new DateTime(2022, 6, 1, 13, 0, 0),
-                LineId = 1
+                LineId = 1,
+                Train = train
             };
             Departure d2 = new Departure()
             {
                 Id = dr.GetNextId(),
                 StartTime = new DateTime(2022, 6, 1, 14, 30, 0),
-                LineId = 1
+                LineId = 1,
+                Train = train
             };
             Departure d3 = new Departure()
             {
                 Id = dr.GetNextId(),
                 StartTime = new DateTime(2022, 6, 1, 18, 0, 0),
-                LineId = 1
+                LineId = 1,
+                Train = train
             };
             Departure d4 = new Departure()
             {
                 Id = dr.GetNextId(),
                 StartTime = new DateTime(2022, 6, 1, 11, 0, 0),
-                LineId = 2
+                LineId = 2,
+                Train = train
             };
             Departure d5 = new Departure()
             {
                 Id = dr.GetNextId(),
                 StartTime = new DateTime(2022, 6, 1, 15, 15, 0),
-                LineId = 2
+                LineId = 2,
+                Train = train
             };
             Departure d6 = new Departure()
             {
                 Id = dr.GetNextId(),
                 StartTime = new DateTime(2022, 6, 1, 20, 20, 0),
-                LineId = 2
+                LineId = 2,
+                Train = train
             };
             dr.Add(d1);
             dr.Add(d2);
@@ -167,7 +214,7 @@ namespace HCI_Project
                 Id = lr.GetNextId(),
                 Departures = new List<Departure>() { d1, d2, d3 },
                 Stations = new List<Station>() { s1, s2, s3 },
-                Price =  50,
+                Price = 50,
                 OffsetsInMinutes = new List<int>() { 0, 45, 60 }
             };
             Line l2 = new model.Line()
