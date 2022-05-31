@@ -134,7 +134,7 @@ namespace HCI_Project
                     Seat seat = new Seat()
                     {
                         Id = sr1.GetNextId(),
-                        Row = i,
+                        Row = i % 5,
                         Column = j,
                         WagonId = 1
                     };
