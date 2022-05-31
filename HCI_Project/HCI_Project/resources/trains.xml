@@ -7,7 +7,7 @@
         <Id>1</Id>
         <Class>First</Class>
         <Ordinal>0</Ordinal>
-        <Rows>10</Rows>
+        <Rows>5</Rows>
         <SeatsPerRow>4</SeatsPerRow>
         <Seats>
           <Seat>
@@ -130,6 +130,15 @@
             <Column>3</Column>
             <WagonId>1</WagonId>
           </Seat>
+        </Seats>
+      </Wagon>
+      <Wagon>
+        <Id>2</Id>
+        <Class>Second</Class>
+        <Ordinal>1</Ordinal>
+        <Rows>5</Rows>
+        <SeatsPerRow>4</SeatsPerRow>
+        <Seats>
           <Seat>
             <Id>21</Id>
             <Row>5</Row>

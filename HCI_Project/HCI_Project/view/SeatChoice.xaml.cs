@@ -33,10 +33,11 @@ namespace HCI_Project.view
         private readonly string RESERVED = "#f5e189";
         private readonly string TAKEN = "#e38d8d";
         private readonly string SELECTED = "#4bab65";
-        private Button selectedButton;
+        private Button selectedSeat;
+        private Button selectedWagon;
 
-        private ReservationRepository reservationRepository;
-        private TicketRepository ticketRepository;
+        private readonly ReservationRepository reservationRepository;
+        private readonly TicketRepository ticketRepository;
 
         public SeatChoice(Departure departure, DateTime date, TicketRepository ticketRepository, ReservationRepository reservationRepository)
         {
@@ -47,6 +48,30 @@ namespace HCI_Project.view
             this.ticketRepository = ticketRepository;
 
             Train train = departure.Train;
+            wagonsGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
+            foreach (Wagon w in train.Wagons)
+            {
+                wagonsGrid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+            }
+            for (int i = 0; i < train.Wagons.Count; i++)
+            {
+                Button wagonBtn = new Button()
+                {
+                    Content = $"Wagon {i}",
+                    Background = (SolidColorBrush)new BrushConverter().ConvertFrom(GetWagonButtonColor(train.Wagons[i])),
+                    Foreground = Brushes.Black,
+                    RenderTransform = new RotateTransform(90, 0, 0),
+                    Margin = new Thickness(0, 35, 0, 35),
+                    MinHeight = 40
+                };
+                wagonBtn.Click += new RoutedEventHandler(wagonBtn_Click);
+                Grid.SetColumn(wagonBtn, 0);
+                Grid.SetRow(wagonBtn, i);
+                wagonsGrid.Children.Add(wagonBtn);
+            }
+
+
+
             Wagon wagon = train.Wagons[0];
             NumberOfRows = wagon.Rows;
             NumberOfColumns = wagon.SeatsPerRow;
@@ -76,10 +101,10 @@ namespace HCI_Project.view
                 Button seatBtn = new Button()
                 {
                     Content = $"Seat {++count}",
-                    Background = (SolidColorBrush)new BrushConverter().ConvertFrom(GetButtonColor(seat)),
+                    Background = (SolidColorBrush)new BrushConverter().ConvertFrom(GetSeatButtonColor(seat)),
                     Foreground = Brushes.Black,
                     Margin = GetMargin(seat.Column),
-                    IsEnabled = IsSeatFree(seat),
+                    IsEnabled = IsSeatFree(seat)
                 };
                 seatBtn.Click += new RoutedEventHandler(seatBtn_Click);
                 Grid.SetColumn(seatBtn, seat.Column);
@@ -91,7 +116,7 @@ namespace HCI_Project.view
         private void seatBtn_Click(object sender, RoutedEventArgs e)
         {
             Button btn = sender as Button;
-            if (btn != selectedButton) 
+            if (btn != selectedSeat) 
             {
                 foreach (Button child in seatsGrid.Children)
                 {
@@ -103,15 +128,21 @@ namespace HCI_Project.view
                 btn.Background = (SolidColorBrush)new BrushConverter().ConvertFrom(SELECTED);
                 btnReserve.IsEnabled = true;
                 btnPurchase.IsEnabled = true;
-                selectedButton = btn;
+                selectedSeat = btn;
             } 
             else
             {
                 btn.Background = (SolidColorBrush)new BrushConverter().ConvertFrom(FREE);
                 btnReserve.IsEnabled = false;
                 btnPurchase.IsEnabled = false;
-                selectedButton = null;
+                selectedSeat = null;
             }
+        }
+
+        private void wagonBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Button btn = sender as Button;
+            MessageBox.Show($"Wagon {Grid.GetRow(btn) + 1}");
         }
 
         private Thickness GetMargin(int j)
@@ -150,18 +181,24 @@ namespace HCI_Project.view
             return !IsSeatPurchased(seat) && !IsSeatReserved(seat);
         }
 
-        private string GetButtonColor(Seat seat)
+        private string GetSeatButtonColor(Seat seat)
         {
             if (IsSeatPurchased(seat)) return TAKEN;
             if (IsSeatReserved(seat)) return RESERVED;
             return FREE;
         }
 
+        private string GetWagonButtonColor(Wagon wagon)
+        {
+            if (wagon.Class == WagonClass.First) return "#fdff99";
+            return "#cee2eb";
+        }
+
         private void btnReserve_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("Ticked successfully reserved!");
-            selectedButton.Background = (SolidColorBrush)new BrushConverter().ConvertFrom(RESERVED);
-            selectedButton.IsEnabled = false;
+            selectedSeat.Background = (SolidColorBrush)new BrushConverter().ConvertFrom(RESERVED);
+            selectedSeat.IsEnabled = false;
             btnReserve.IsEnabled = false;
             btnPurchase.IsEnabled = false;
         }
@@ -169,8 +206,8 @@ namespace HCI_Project.view
         private void btnPurchase_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("Ticket successfully reserved!");
-            selectedButton.Background = (SolidColorBrush)new BrushConverter().ConvertFrom(TAKEN);
-            selectedButton.IsEnabled = false;
+            selectedSeat.Background = (SolidColorBrush)new BrushConverter().ConvertFrom(TAKEN);
+            selectedSeat.IsEnabled = false;
             btnReserve.IsEnabled = false;
             btnPurchase.IsEnabled = false;
         }

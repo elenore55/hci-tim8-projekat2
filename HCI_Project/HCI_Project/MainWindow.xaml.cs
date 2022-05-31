@@ -147,16 +147,26 @@ namespace HCI_Project
                 Id = wr.GetNextId(),
                 Ordinal = 0,
                 Class = WagonClass.First,
-                Rows = 10,
+                Rows = 5,
                 SeatsPerRow = 4,
-                Seats = sr1.GetAll()
+                Seats = sr1.GetAll().Where(x => x.Id <= 20).ToList()
+            };
+            Wagon wagon2 = new Wagon()
+            {
+                Id = wr.GetNextId(),
+                Ordinal = 1,
+                Class = WagonClass.Second,
+                Rows = 5,
+                SeatsPerRow = 4,
+                Seats = sr1.GetAll().Where(x => x.Id > 20).ToList()
             };
             wr.Add(wagon);
+            wr.Add(wagon2);
 
             Train train = new Train()
             {
                 Id = tr.GetNextId(),
-                Wagons = new List<Wagon>() { wagon }
+                Wagons = new List<Wagon>() { wagon, wagon2 }
             };
             tr.Add(train);
 
