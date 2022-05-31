@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using HCI_Project.repository;
+using WPFCustomMessageBox;
 
 namespace HCI_Project.view
 {
@@ -27,6 +28,12 @@ namespace HCI_Project.view
         public int NumberOfColumns { get; set; }
         public DateTime DepartureDate { get; set; }
         public Departure Departure { get; set; }
+
+        private readonly string FREE = "#c7e8b7";
+        private readonly string RESERVED = "#f5e189";
+        private readonly string TAKEN = "#e38d8d";
+        private readonly string SELECTED = "#4bab65";
+        private Button selectedButton;
 
         private ReservationRepository reservationRepository;
         private TicketRepository ticketRepository;
@@ -71,11 +78,39 @@ namespace HCI_Project.view
                     Content = $"Seat {++count}",
                     Background = (SolidColorBrush)new BrushConverter().ConvertFrom(GetButtonColor(seat)),
                     Foreground = Brushes.Black,
-                    Margin = GetMargin(seat.Column)
+                    Margin = GetMargin(seat.Column),
+                    IsEnabled = IsSeatFree(seat),
                 };
+                seatBtn.Click += new RoutedEventHandler(seatBtn_Click);
                 Grid.SetColumn(seatBtn, seat.Column);
                 Grid.SetRow(seatBtn, seat.Row);
                 seatsGrid.Children.Add(seatBtn);
+            }
+        }
+
+        private void seatBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Button btn = sender as Button;
+            if (btn != selectedButton) 
+            {
+                foreach (Button child in seatsGrid.Children)
+                {
+                    if (child.IsEnabled)
+                    {
+                        child.Background = (SolidColorBrush)new BrushConverter().ConvertFrom(FREE);
+                    }    
+                }
+                btn.Background = (SolidColorBrush)new BrushConverter().ConvertFrom(SELECTED);
+                btnReserve.IsEnabled = true;
+                btnPurchase.IsEnabled = true;
+                selectedButton = btn;
+            } 
+            else
+            {
+                btn.Background = (SolidColorBrush)new BrushConverter().ConvertFrom(FREE);
+                btnReserve.IsEnabled = false;
+                btnPurchase.IsEnabled = false;
+                selectedButton = null;
             }
         }
 
@@ -110,11 +145,34 @@ namespace HCI_Project.view
             return false;
         }
 
+        private bool IsSeatFree(Seat seat)
+        {
+            return !IsSeatPurchased(seat) && !IsSeatReserved(seat);
+        }
+
         private string GetButtonColor(Seat seat)
         {
-            if (IsSeatPurchased(seat)) return "#e38d8d";
-            if (IsSeatReserved(seat)) return "#f5e189";
-            return "#c7e8b7";
+            if (IsSeatPurchased(seat)) return TAKEN;
+            if (IsSeatReserved(seat)) return RESERVED;
+            return FREE;
+        }
+
+        private void btnReserve_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Ticked successfully reserved!");
+            selectedButton.Background = (SolidColorBrush)new BrushConverter().ConvertFrom(RESERVED);
+            selectedButton.IsEnabled = false;
+            btnReserve.IsEnabled = false;
+            btnPurchase.IsEnabled = false;
+        }
+
+        private void btnPurchase_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Ticket successfully reserved!");
+            selectedButton.Background = (SolidColorBrush)new BrushConverter().ConvertFrom(TAKEN);
+            selectedButton.IsEnabled = false;
+            btnReserve.IsEnabled = false;
+            btnPurchase.IsEnabled = false;
         }
     }
 }
