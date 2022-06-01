@@ -15,12 +15,12 @@
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"
         WindowStartupLocation="CenterScreen"
-        Title="MainWindow" Height="800" Width="1300"
+        Title="Railways Serbia" Height="800" Width="1300"
         Closing="Window_Closing">
     <Grid>
         <StackPanel>
             <Button Click="Button_Click">Page</Button>
         </StackPanel>
-        <Frame x:Name="Main"></Frame>
+        <Frame NavigationUIVisibility="Hidden" x:Name="Main"></Frame>
     </Grid>
 </Window>

@@ -168,6 +168,11 @@ namespace HCI_Project.view
             }
             NavigationService.Navigate(new SeatChoice(Departures[rowIndex], DepartureDate.SelectedDate.Value, ticketRepository, reservationRepository));
         }
+
+        private void dataGrid_Selected(object sender, RoutedEventArgs e)
+        {
+            btnChoose.IsEnabled = true;
+        }
     }
 }
 
@@ -206,13 +211,13 @@ public class DepartureDTO
         get
         {
             List<Station> stations = Line.Stations;
-            StringBuilder sb = new StringBuilder($"{"STATIONS",-50}{"DEPARTURE",-50}\n\n");
+            StringBuilder sb = new StringBuilder($"{"STATION",-50}DEPARTURE\n\n");
             DateTime prev = DepartureTime;
             for (int i = 0; i < stations.Count; i++)
             {
                 int offset = Line.OffsetsInMinutes[i];
                 prev = prev.AddMinutes(offset);
-                sb.Append($"{stations[i].Name,-55}{prev.ToShortTimeString(),-50}\n");
+                sb.Append($"{stations[i].Name,-56}{prev.ToShortTimeString()}\n");
             }
             return sb.ToString();
         }

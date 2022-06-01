@@ -10,29 +10,55 @@
 
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0" Margin="20,20,20,20">
+        
+        <Label Grid.Row="0" Margin="0,40,0,10" FontSize="22" FontWeight="Bold" HorizontalAlignment="Center">Please choose a seat</Label>
+        
+        <Grid Grid.Row="1" Margin="20,20,20,20">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="5"/>
                 <ColumnDefinition Width="3*"/>
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0" x:Name="wagonsGrid" Margin="150,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center">
 
             </Grid>
-            <Grid Grid.Column="1" x:Name="seatsGrid"  HorizontalAlignment="Center" VerticalAlignment="Center">
-                
+            <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch" />
+            <Grid Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Grid.Resources >
+                    <Style TargetType="Border" >
+                        <Setter Property="Padding" Value="7,7,7,7" />
+                    </Style>
+                </Grid.Resources>
+                <Border x:Name="trainBorder" Grid.Row="0" Grid.Column="0" BorderBrush="Black" BorderThickness="0" CornerRadius="10">
+                    <Grid x:Name="seatsGrid"  HorizontalAlignment="Center" VerticalAlignment="Center">
+                    </Grid>
+                </Border>
             </Grid>
         </Grid>
-        <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-                <ColumnDefinition Width="Auto"></ColumnDefinition>
-                <ColumnDefinition Width="Auto"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <Button Grid.Column="1" x:Name="btnReserve" Content="Reserve ticket" IsEnabled="False" Click="btnReserve_Click" HorizontalAlignment="Right" Margin="5,5,5,5"></Button>
-            <Button Grid.Column="2" x:Name="btnPurchase" Content="Purchase ticket" IsEnabled="False" Click="btnPurchase_Click" HorizontalAlignment="Right" Margin="5,5,5,5"></Button>
+        <Grid Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="10*" />
+            </Grid.RowDefinitions>
+
+            <!-- <Label Grid.Row="0" Margin="0,10,0,10" FontSize="20" HorizontalAlignment="Center">Please choose a seat</Label>
+
+            <ComboBox Grid.Row="1" Margin="0,10,0,10" FontSize="18" HorizontalAlignment="Center"></ComboBox> -->
+            
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="1" x:Name="btnReserve" Content="Reserve ticket" IsEnabled="False" Click="btnReserve_Click" HorizontalAlignment="Right" Margin="5,5,5,5"></Button>
+                <Button Grid.Column="2" x:Name="btnPurchase" Content="Purchase ticket" IsEnabled="False" Click="btnPurchase_Click" HorizontalAlignment="Right" Margin="5,5,5,5"></Button>
+            </Grid>
         </Grid>
     </Grid>
     

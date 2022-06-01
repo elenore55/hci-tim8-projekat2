@@ -130,7 +130,7 @@ namespace HCI_Project.view
                 }
             }
             selectedWagon = btn;
-
+            trainBorder.BorderThickness = new Thickness(2, 2, 2, 2);
             NumberOfRows = wagon.Rows;
             NumberOfColumns = wagon.SeatsPerRow;
             List<Seat> seats = wagon.Seats;
@@ -160,11 +160,12 @@ namespace HCI_Project.view
             {
                 Button seatBtn = new Button()
                 {
-                    Content = $"Seat {++count}",
+                    Content = $"    {seat.Row + 1}{Convert.ToChar(65 + seat.Column)}",
                     Background = (SolidColorBrush)new BrushConverter().ConvertFrom(GetSeatButtonColor(seat)),
                     Foreground = Brushes.Black,
-                    Margin = GetMargin(seat.Column),
-                    IsEnabled = IsSeatFree(seat)
+                    Margin = GetMargin(seat.Row, seat.Column),
+                    IsEnabled = IsSeatFree(seat),
+                    FontSize = 22
                 };
                 seatBtn.Click += new RoutedEventHandler(seatBtn_Click);
                 Grid.SetColumn(seatBtn, seat.Column);
@@ -173,11 +174,29 @@ namespace HCI_Project.view
             }
         }
 
-        private Thickness GetMargin(int j)
+        private Thickness GetMargin(int i, int j)
         {
-            if (j == NumberOfColumns / 2 - 1) return new Thickness(5, 5, 20, 5);
-            if (j == NumberOfColumns / 2) return new Thickness(20, 5, 5, 5);
-            return new Thickness(5, 5, 5, 5);
+            int top = 5;
+            int bottom = 5;
+            int left = 5;
+            int right = 5;
+            if (i % 2 == 0)
+            {
+                top = 15;
+            }
+            else
+            {
+                bottom = 15;
+            }
+            if (j == NumberOfColumns / 2 - 1)
+            {
+                right = 20;
+            }
+            if (j == NumberOfColumns / 2)
+            {
+                left = 20;
+            }
+            return new Thickness(left, top, right, bottom);
         }
 
         private bool IsSeatPurchased(Seat seat)
