@@ -166,7 +166,9 @@ namespace HCI_Project.view
             {
                 MessageBox.Show("Departure not selected", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            NavigationService.Navigate(new SeatChoice(Departures[rowIndex], DepartureDate.SelectedDate.Value, ticketRepository, reservationRepository));
+            Departure departure = Departures[rowIndex];
+            Line line = lineRepository.GetById(departure.LineId);
+            NavigationService.Navigate(new SeatChoice(tbFrom.Text, tbTo.Text, line.Price, Departures[rowIndex], DepartureDate.SelectedDate.Value, ticketRepository, reservationRepository));
         }
 
         private void dataGrid_Selected(object sender, RoutedEventArgs e)

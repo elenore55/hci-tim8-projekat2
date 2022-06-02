@@ -30,8 +30,8 @@ namespace HCI_Project.view
         public Departure Departure { get; set; }
 
         private readonly string FREE = "#c7e8b7";
-        private readonly string RESERVED = "#f5e189";
-        private readonly string TAKEN = "#e38d8d";
+        private readonly string RESERVED = "#f2d933";
+        private readonly string TAKEN = "#ed4d3b";
         private readonly string SELECTED = "#4bab65";
         private readonly string FIRST_CLASS = "#d1d19b";
         private readonly string SECOND_CLASS = "#8ba6b3";
@@ -40,18 +40,24 @@ namespace HCI_Project.view
 
         private Button selectedSeat;
         private Button selectedWagon;
+        private string selectedWagonClass = "";
+        private string from;
+        private string to;
+        private double price;
 
         private readonly ReservationRepository reservationRepository;
         private readonly TicketRepository ticketRepository;
 
-        public SeatChoice(Departure departure, DateTime date, TicketRepository ticketRepository, ReservationRepository reservationRepository)
+        public SeatChoice(string from, string to, double price, Departure departure, DateTime date, TicketRepository ticketRepository, ReservationRepository reservationRepository)
         {
             InitializeComponent();
             DataContext = this;
 
             this.reservationRepository = reservationRepository;
             this.ticketRepository = ticketRepository;
-
+            this.from = from;
+            this.to = to;
+            this.price = price;
             Train train = departure.Train;
             wagonsGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
             foreach (Wagon w in train.Wagons)
@@ -109,6 +115,7 @@ namespace HCI_Project.view
             Button btn = sender as Button;
             if (btn == selectedWagon) return;
             Wagon wagon = Departure.Train.Wagons[Grid.GetRow(btn)];
+            selectedWagonClass = wagon.Class.ToString();
             if (wagon.Class == WagonClass.First)
             {
                 btn.Background = (SolidColorBrush)new BrushConverter().ConvertFrom(FIRST_CLASS_SELECTED);
@@ -137,16 +144,10 @@ namespace HCI_Project.view
             seatsGrid.ColumnDefinitions.Clear();
             seatsGrid.RowDefinitions.Clear();
             seatsGrid.Children.Clear();
+            numerationGrid.ColumnDefinitions.Clear();
+            numerationGrid.RowDefinitions.Clear();
 
             for (int i = 0; i < NumberOfRows; i++)
-            {
-                var rowDef = new RowDefinition
-                {
-                    Height = GridLength.Auto
-                };
-                seatsGrid.RowDefinitions.Add(rowDef);
-            }
-            for (int i = 0; i < NumberOfColumns; i++)
             {
                 var colDef = new ColumnDefinition
                 {
@@ -154,48 +155,102 @@ namespace HCI_Project.view
                 };
                 seatsGrid.ColumnDefinitions.Add(colDef);
             }
-            int count = 0;
+            for (int i = 0; i < NumberOfColumns; i++)
+            {
+                var rowDef = new RowDefinition
+                {
+                    Height = GridLength.Auto
+                };
+                seatsGrid.RowDefinitions.Add(rowDef);
+            }
+
+            for (int i = 0; i <= NumberOfRows; i++)
+            {
+                var colDef = new ColumnDefinition
+                {
+                    Width = GridLength.Auto
+                };
+                numerationGrid.ColumnDefinitions.Add(colDef);
+            }
+            for (int i = 0; i <= NumberOfColumns; i++)
+            {
+                var rowDef = new RowDefinition
+                {
+                    Height = GridLength.Auto
+                };
+                numerationGrid.RowDefinitions.Add(rowDef);
+            }
 
             foreach (Seat seat in seats)
             {
                 Button seatBtn = new Button()
                 {
-                    Content = $"    {seat.Row + 1}{Convert.ToChar(65 + seat.Column)}",
+                    Content = $" {seat.Row + 1}{Convert.ToChar(65 + seat.Column)}",
                     Background = (SolidColorBrush)new BrushConverter().ConvertFrom(GetSeatButtonColor(seat)),
                     Foreground = Brushes.Black,
-                    Margin = GetMargin(seat.Row, seat.Column),
+                    Margin = GetMargin(seat.Column),
                     IsEnabled = IsSeatFree(seat),
-                    FontSize = 22
+                    FontSize = 22,
+                    VerticalAlignment = VerticalAlignment.Bottom
                 };
                 seatBtn.Click += new RoutedEventHandler(seatBtn_Click);
-                Grid.SetColumn(seatBtn, seat.Column);
-                Grid.SetRow(seatBtn, seat.Row);
+                Grid.SetColumn(seatBtn, seat.Row);
+                Grid.SetRow(seatBtn, seat.Column);
                 seatsGrid.Children.Add(seatBtn);
             }
+
+            for (int i = 0; i < NumberOfColumns; i++)
+            {
+                Label lbl = new Label()
+                {
+                    Content = Convert.ToChar(65 + i).ToString(),
+                    FontSize = 20,
+                    Margin = GetMargin(i),
+                    VerticalAlignment = VerticalAlignment.Bottom,
+                    Padding = new Thickness(0, 0, 0, 0)
+                };
+                Grid.SetRow(lbl, i + 1);
+                Grid.SetColumn(lbl, 0);
+                numerationGrid.Children.Add(lbl);
+            }
+            for (int i = 0; i < NumberOfRows; i++)
+            {
+                Label lbl = new Label()
+                {
+                    Content = (i + 1).ToString(),
+                    FontSize = 20,
+                    Margin = new Thickness(0, 0, 0, 7),
+                    VerticalAlignment = VerticalAlignment.Bottom,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    Padding = new Thickness(0, 0, 0, 0)
+                };
+                Grid.SetColumn(lbl, i + 1);
+                Grid.SetRow(lbl, 0);
+                numerationGrid.Children.Add(lbl);
+            }
+            Grid.SetColumnSpan(trainBorder, 5);
+            Grid.SetRowSpan(trainBorder, 4);
         }
 
-        private Thickness GetMargin(int i, int j)
+        private Thickness GetMargin(int j)
         {
             int top = 5;
             int bottom = 5;
             int left = 5;
             int right = 5;
-            if (i % 2 == 0)
-            {
-                top = 15;
-            }
-            else
-            {
-                bottom = 15;
-            }
-            if (j == NumberOfColumns / 2 - 1)
-            {
-                right = 20;
-            }
-            if (j == NumberOfColumns / 2)
-            {
-                left = 20;
-            }
+            if (j == NumberOfRows / 2 - 1) bottom = 20;
+            if (j == NumberOfRows / 2) top = 20;
+            return new Thickness(left, top, right, bottom);
+        }
+
+        private Thickness GetLabelMargin(int j)
+        {
+            int top = 5;
+            int bottom = 0;
+            int left = 0;
+            int right = 7;
+            if (j == 0) top = 12;
+            if (j == NumberOfRows / 2) top = 20;
             return new Thickness(left, top, right, bottom);
         }
 
@@ -252,7 +307,24 @@ namespace HCI_Project.view
 
         private void btnPurchase_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Ticket successfully reserved!");
+            TicketData td = new TicketData
+            {
+                From = from,
+                To = to,
+                DepartureDateTime = $"{DepartureDate.ToShortDateString()} {Departure.StartTime.ToShortTimeString()}",
+                ArrivalDateTime = "11/11/2011 23:20",
+                Wagon = $"Number {Grid.GetRow(selectedWagon) + 1}, {selectedWagonClass} class",
+                Seat = $"{Grid.GetColumn(selectedSeat)}{Convert.ToChar(65 + Grid.GetRow(selectedSeat))}",
+                Price = $"{price} EUR"
+            };
+            PurchaseConfirmation confirmation = new PurchaseConfirmation(td);
+            confirmation.OnConfirm += SavePurchase;
+            confirmation.ShowDialog();
+        }
+
+        public void SavePurchase(object sender, EventArgs e)
+        {
+            MessageBox.Show("Ticket successfully purchased!");
             selectedSeat.Background = (SolidColorBrush)new BrushConverter().ConvertFrom(TAKEN);
             selectedSeat.IsEnabled = false;
             btnReserve.IsEnabled = false;
