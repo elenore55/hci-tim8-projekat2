@@ -1,3 +1,48 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <ArrayOfReservation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Reservation>
+    <Id>1</Id>
+    <ReservationDateTime>2022-06-02T14:08:30.5912877+02:00</ReservationDateTime>
+    <DepartureDate>2022-06-03T00:00:00</DepartureDate>
+    <IsActive>true</IsActive>
+    <ClientEmail>milica@gmail.com</ClientEmail>
+    <SeatId>10</SeatId>
+    <DepartureId>1</DepartureId>
+  </Reservation>
+  <Reservation>
+    <Id>2</Id>
+    <ReservationDateTime>2022-06-02T14:09:46.1500737+02:00</ReservationDateTime>
+    <DepartureDate>2022-06-04T00:00:00</DepartureDate>
+    <IsActive>true</IsActive>
+    <ClientEmail>milica@gmail.com</ClientEmail>
+    <SeatId>7</SeatId>
+    <DepartureId>3</DepartureId>
+  </Reservation>
+  <Reservation>
+    <Id>3</Id>
+    <ReservationDateTime>2022-06-02T14:10:37.1731052+02:00</ReservationDateTime>
+    <DepartureDate>2022-06-04T00:00:00</DepartureDate>
+    <IsActive>true</IsActive>
+    <ClientEmail>milica@gmail.com</ClientEmail>
+    <SeatId>11</SeatId>
+    <DepartureId>3</DepartureId>
+  </Reservation>
+  <Reservation>
+    <Id>4</Id>
+    <ReservationDateTime>2022-06-02T14:10:58.3622016+02:00</ReservationDateTime>
+    <DepartureDate>2022-06-04T00:00:00</DepartureDate>
+    <IsActive>true</IsActive>
+    <ClientEmail>milica@gmail.com</ClientEmail>
+    <SeatId>20</SeatId>
+    <DepartureId>3</DepartureId>
+  </Reservation>
+  <Reservation>
+    <Id>5</Id>
+    <ReservationDateTime>2022-06-02T14:14:33.0346313+02:00</ReservationDateTime>
+    <DepartureDate>2022-06-04T00:00:00</DepartureDate>
+    <IsActive>true</IsActive>
+    <ClientEmail>milica@gmail.com</ClientEmail>
+    <SeatId>17</SeatId>
+    <DepartureId>3</DepartureId>
+  </Reservation>
 </ArrayOfReservation>

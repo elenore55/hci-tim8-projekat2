@@ -292,11 +292,20 @@ namespace HCI_Project.view
 
         private void btnReserve_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Ticked successfully reserved!");
-            selectedSeat.Background = (SolidColorBrush)new BrushConverter().ConvertFrom(RESERVED);
-            selectedSeat.IsEnabled = false;
-            btnReserve.IsEnabled = false;
-            btnPurchase.IsEnabled = false;
+            TicketData td = new TicketData
+            {
+                From = departureDTO.Line.Stations[departureDTO.StartIndex].Name,
+                To = departureDTO.Line.Stations[departureDTO.EndIndex].Name,
+                DepartureDateTime = $"{DepartureDate.ToShortDateString()} {departureDTO.DepartureTimeStr}",
+                ArrivalDateTime = $"{DepartureDate.ToShortDateString()} {departureDTO.ArrivalTimeStr}",
+                Wagon = $"Number {Grid.GetRow(selectedWagon) + 1}, {selectedWagonClass} class",
+                Seat = $"{Grid.GetColumn(selectedSeat)}{Convert.ToChar(65 + Grid.GetRow(selectedSeat))}",
+                Price = $"{departureDTO.Price} EUR",
+                IsReservation = true
+            };
+            PurchaseConfirmation confirmation = new PurchaseConfirmation(td);
+            confirmation.OnConfirm += SaveReservation;
+            confirmation.ShowDialog();
         }
 
         private void btnPurchase_Click(object sender, RoutedEventArgs e)
@@ -309,7 +318,8 @@ namespace HCI_Project.view
                 ArrivalDateTime = $"{DepartureDate.ToShortDateString()} {departureDTO.ArrivalTimeStr}",
                 Wagon = $"Number {Grid.GetRow(selectedWagon) + 1}, {selectedWagonClass} class",
                 Seat = $"{Grid.GetColumn(selectedSeat)}{Convert.ToChar(65 + Grid.GetRow(selectedSeat))}",
-                Price = $"{departureDTO.Price} EUR"
+                Price = $"{departureDTO.Price} EUR",
+                IsReservation = false
             };
             PurchaseConfirmation confirmation = new PurchaseConfirmation(td);
             confirmation.OnConfirm += SavePurchase;
@@ -320,6 +330,7 @@ namespace HCI_Project.view
         {
             MessageBox.Show("Ticket successfully purchased!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
             DisableSelectedSeat();
+            selectedSeat.Background = (SolidColorBrush)new BrushConverter().ConvertFrom(TAKEN);
             Ticket ticket = new Ticket() 
             { 
                 Id = rf.TicketRepository.GetNextId(),
@@ -332,9 +343,26 @@ namespace HCI_Project.view
             rf.TicketRepository.Add(ticket);
         }
 
+        public void SaveReservation(object sender, EventArgs e)
+        {
+            MessageBox.Show("Ticket successfully reserved!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+            DisableSelectedSeat();
+            selectedSeat.Background = (SolidColorBrush)new BrushConverter().ConvertFrom(RESERVED);
+            Reservation reservation = new Reservation()
+            {
+                Id = rf.ReservationRepository.GetNextId(),
+                ReservationDateTime = DateTime.Now,
+                DepartureDate = DepartureDate,
+                ClientEmail = "milica@gmail.com",
+                SeatId = long.Parse(selectedSeat.Name.Substring(4)),
+                DepartureId = departureDTO.Id,
+                IsActive = true
+            };
+            rf.ReservationRepository.Add(reservation);
+        }
+
         private void DisableSelectedSeat()
         {
-            selectedSeat.Background = (SolidColorBrush)new BrushConverter().ConvertFrom(TAKEN);
             selectedSeat.IsEnabled = false;
             btnReserve.IsEnabled = false;
             btnPurchase.IsEnabled = false;

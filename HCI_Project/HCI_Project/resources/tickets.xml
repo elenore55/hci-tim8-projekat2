@@ -5,7 +5,7 @@
     <PurchaseDateTime>2022-06-02T13:54:03.6578141+02:00</PurchaseDateTime>
     <DepartureDate>2022-06-03T00:00:00</DepartureDate>
     <ClientEmail>milica@gmail.com</ClientEmail>
-    <SeatId>-1</SeatId>
+    <SeatId>6</SeatId>
     <DepartureId>1</DepartureId>
   </Ticket>
   <Ticket>
@@ -22,6 +22,30 @@
     <DepartureDate>2022-06-04T00:00:00</DepartureDate>
     <ClientEmail>milica@gmail.com</ClientEmail>
     <SeatId>3</SeatId>
+    <DepartureId>3</DepartureId>
+  </Ticket>
+  <Ticket>
+    <Id>4</Id>
+    <PurchaseDateTime>2022-06-02T14:10:43.6020776+02:00</PurchaseDateTime>
+    <DepartureDate>2022-06-04T00:00:00</DepartureDate>
+    <ClientEmail>milica@gmail.com</ClientEmail>
+    <SeatId>10</SeatId>
+    <DepartureId>3</DepartureId>
+  </Ticket>
+  <Ticket>
+    <Id>5</Id>
+    <PurchaseDateTime>2022-06-02T14:10:51.6203302+02:00</PurchaseDateTime>
+    <DepartureDate>2022-06-04T00:00:00</DepartureDate>
+    <ClientEmail>milica@gmail.com</ClientEmail>
+    <SeatId>1</SeatId>
+    <DepartureId>3</DepartureId>
+  </Ticket>
+  <Ticket>
+    <Id>6</Id>
+    <PurchaseDateTime>2022-06-02T14:14:40.1902343+02:00</PurchaseDateTime>
+    <DepartureDate>2022-06-04T00:00:00</DepartureDate>
+    <ClientEmail>milica@gmail.com</ClientEmail>
+    <SeatId>18</SeatId>
     <DepartureId>3</DepartureId>
   </Ticket>
 </ArrayOfTicket>

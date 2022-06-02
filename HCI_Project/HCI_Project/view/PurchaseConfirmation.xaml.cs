@@ -27,6 +27,9 @@ namespace HCI_Project.view
             InitializeComponent();
             Data = data;
             DataContext = this;
+
+            if (Data.IsReservation) lblConfirm.Content = "Please confirm the reservation";
+            else lblConfirm.Content = "Please confirm the purchase";
         }
 
         private void btnConfirm_Click(object sender, RoutedEventArgs e)
@@ -51,4 +54,5 @@ public class TicketData
     public string Wagon { get; set; }
     public string Seat { get; set; }
     public string Price { get; set; }
+    public bool IsReservation { get; set; }
 }
