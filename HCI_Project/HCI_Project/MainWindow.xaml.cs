@@ -40,8 +40,8 @@ namespace HCI_Project
 
             RepositoryFactory rf = new RepositoryFactory();
             Populate(rf.StationRepository, rf.DepartureRepository, rf.LineRepository, rf.TrainRepository, rf.WagonRepository, rf.SeatRepository);
-            // Main.Content = new TicketPurchase(rf);
-            Main.Content = new ClientsTickets();
+            Main.Content = new TicketPurchase(rf);
+            //Main.Content = new ClientsTickets(rf);
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)

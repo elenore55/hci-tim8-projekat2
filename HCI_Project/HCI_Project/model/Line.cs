@@ -14,5 +14,23 @@ namespace HCI_Project.model
         // Offsets[0] = 0
         public List<int> OffsetsInMinutes { get; set; }  
         public List<Departure> Departures { get; set; }
+
+        public Station GetStartStation()
+        {
+            foreach (Station station in Stations)
+            {
+                if (station.Type == StationType.Start) return station;
+            }
+            return null;
+        }
+
+        public Station GetEndStation()
+        {
+            foreach (Station station in Stations)
+            {
+                if (station.Type == StationType.End) return station;
+            }
+            return null;
+        }
     }
 }
