@@ -27,7 +27,6 @@ namespace HCI_Project.view
         public int NumberOfRows { get; set; }
         public int NumberOfColumns { get; set; }
         public DateTime DepartureDate { get; set; }
-        public Departure Departure { get; set; }
 
         private readonly string FREE = "#c7e8b7";
         private readonly string RESERVED = "#f2d933";
@@ -41,22 +40,19 @@ namespace HCI_Project.view
         private Button selectedSeat;
         private Button selectedWagon;
         private string selectedWagonClass = "";
-        private string from;
-        private string to;
-        private double price;
+        private DepartureDTO departureDTO;
 
         private readonly RepositoryFactory rf;
 
-        public SeatChoice(string from, string to, double price, Departure departure, DateTime date, RepositoryFactory rf)
+        public SeatChoice(DepartureDTO departureDTO, DateTime date, RepositoryFactory rf)
         {
             InitializeComponent();
             DataContext = this;
 
             this.rf = rf;
-            this.from = from;
-            this.to = to;
-            this.price = price;
-            Train train = departure.Train;
+            this.departureDTO = departureDTO;
+
+            Train train = departureDTO.Train;
             wagonsGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
             foreach (Wagon w in train.Wagons)
             {
@@ -79,7 +75,6 @@ namespace HCI_Project.view
                 wagonsGrid.Children.Add(wagonBtn);
             }
             DepartureDate = date;
-            Departure = departure;
         }
 
         private void seatBtn_Click(object sender, RoutedEventArgs e)
@@ -112,7 +107,7 @@ namespace HCI_Project.view
         {
             Button btn = sender as Button;
             if (btn == selectedWagon) return;
-            Wagon wagon = Departure.Train.Wagons[Grid.GetRow(btn)];
+            Wagon wagon = departureDTO.Train.Wagons[Grid.GetRow(btn)];
             selectedWagonClass = wagon.Class.ToString();
             if (wagon.Class == WagonClass.First)
             {
@@ -124,7 +119,7 @@ namespace HCI_Project.view
             }
             if (selectedWagon != null)
             {
-                Wagon prev = Departure.Train.Wagons[Grid.GetRow(selectedWagon)];
+                Wagon prev = departureDTO.Train.Wagons[Grid.GetRow(selectedWagon)];
                 if (prev.Class == WagonClass.First)
                 {
                     selectedWagon.Background = (SolidColorBrush)new BrushConverter().ConvertFrom(FIRST_CLASS);
@@ -257,7 +252,7 @@ namespace HCI_Project.view
             List<Ticket> tickets = rf.TicketRepository.GetAll();
             foreach (Ticket ticket in tickets)
             {
-                if (ticket.SeatId == seat.Id && ticket.DepartureId == Departure.Id && ticket.DepartureDate == DepartureDate)
+                if (ticket.SeatId == seat.Id && ticket.DepartureId == departureDTO.Id && ticket.DepartureDate == DepartureDate)
                     return true;
             }
             return false;
@@ -268,7 +263,7 @@ namespace HCI_Project.view
             List<Reservation> reservations = rf.ReservationRepository.GetAll();
             foreach (Reservation res in reservations)
             {
-                if (res.IsActive && res.SeatId == seat.Id && res.DepartureId == Departure.Id && res.DepartureDate == DepartureDate)
+                if (res.IsActive && res.SeatId == seat.Id && res.DepartureId == departureDTO.Id && res.DepartureDate == DepartureDate)
                 {
                     return true;
                 }
@@ -307,13 +302,13 @@ namespace HCI_Project.view
         {
             TicketData td = new TicketData
             {
-                From = from,
-                To = to,
-                DepartureDateTime = $"{DepartureDate.ToShortDateString()} {Departure.StartTime.ToShortTimeString()}",
-                ArrivalDateTime = "11/11/2011 23:20",
+                From = departureDTO.Line.Stations[departureDTO.StartIndex].Name,
+                To = departureDTO.Line.Stations[departureDTO.EndIndex].Name,
+                DepartureDateTime = $"{DepartureDate.ToShortDateString()} {departureDTO.DepartureTimeStr}",
+                ArrivalDateTime = $"{DepartureDate.ToShortDateString()} {departureDTO.ArrivalTimeStr}",
                 Wagon = $"Number {Grid.GetRow(selectedWagon) + 1}, {selectedWagonClass} class",
                 Seat = $"{Grid.GetColumn(selectedSeat)}{Convert.ToChar(65 + Grid.GetRow(selectedSeat))}",
-                Price = $"{price} EUR"
+                Price = $"{departureDTO.Price} EUR"
             };
             PurchaseConfirmation confirmation = new PurchaseConfirmation(td);
             confirmation.OnConfirm += SavePurchase;

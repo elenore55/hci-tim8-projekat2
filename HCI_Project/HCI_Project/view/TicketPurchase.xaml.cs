@@ -23,7 +23,7 @@ namespace HCI_Project.view
     public partial class TicketPurchase : Page
     {
         public List<string> StationNames { get; set; }
-        private RepositoryFactory rf;
+        private readonly RepositoryFactory rf;
         public ObservableCollection<DepartureDTO> MyRows { get; set; }
         public List<Departure> Departures { get; set; }
 
@@ -31,6 +31,7 @@ namespace HCI_Project.view
         {
             InitializeComponent();
             this.rf = rf;
+            DataContext = this;
 
             List<Station> stations = rf.StationRepository.GetAll();
             StationNames = (from s in stations select s.Name).ToList();
@@ -38,7 +39,6 @@ namespace HCI_Project.view
             tbTo.ItemsSource = StationNames;
             MyRows = new ObservableCollection<DepartureDTO>();
             Departures = new List<Departure>();
-            DataContext = this;
         }
 
         private void btnShow_Click(object sender, RoutedEventArgs e)
@@ -71,15 +71,16 @@ namespace HCI_Project.view
                             break;
                         }
                     }
-
                     foreach (Departure dpt in line.Departures)
                     {
                         DepartureDTO dto = new DepartureDTO()
                         {
+                            Id = dpt.Id,
                             StartIndex = startIndex,
                             EndIndex = endIndex,
                             DepartureTime = dpt.StartTime,
-                            Line = line
+                            Line = line,
+                            Train = dpt.Train
                         };
                         MyRows.Add(dto);
                         Departures.Add(dpt);
@@ -162,7 +163,7 @@ namespace HCI_Project.view
             }
             Departure departure = Departures[rowIndex];
             Line line = rf.LineRepository.GetById(departure.LineId);
-            NavigationService.Navigate(new SeatChoice(tbFrom.Text, tbTo.Text, line.Price, Departures[rowIndex], DepartureDate.SelectedDate.Value, rf));
+            NavigationService.Navigate(new SeatChoice(MyRows[rowIndex], DepartureDate.SelectedDate.Value, rf));
         }
 
         private void dataGrid_Selected(object sender, RoutedEventArgs e)
@@ -174,10 +175,12 @@ namespace HCI_Project.view
 
 public class DepartureDTO
 {
+    public long Id { get; set; }
     public int StartIndex { get; set; }
     public int EndIndex { get; set; }
     public DateTime DepartureTime { get; set; }
     public Line Line { get; set; }
+    public Train Train { get; set; }
     public string DepartureTimeStr
     {
         get
