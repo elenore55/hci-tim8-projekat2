@@ -184,7 +184,8 @@ namespace HCI_Project.view
                     Margin = GetMargin(seat.Column),
                     IsEnabled = IsSeatFree(seat),
                     FontSize = 22,
-                    VerticalAlignment = VerticalAlignment.Bottom
+                    VerticalAlignment = VerticalAlignment.Bottom,
+                    Name = $"btn_{seat.Id}"
                 };
                 seatBtn.Click += new RoutedEventHandler(seatBtn_Click);
                 Grid.SetColumn(seatBtn, seat.Row);
@@ -317,7 +318,22 @@ namespace HCI_Project.view
 
         public void SavePurchase(object sender, EventArgs e)
         {
-            MessageBox.Show("Ticket successfully purchased!");
+            MessageBox.Show("Ticket successfully purchased!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+            DisableSelectedSeat();
+            Ticket ticket = new Ticket() 
+            { 
+                Id = rf.TicketRepository.GetNextId(),
+                PurchaseDateTime = DateTime.Now,
+                DepartureDate = DepartureDate,
+                ClientEmail = "milica@gmail.com",
+                SeatId = long.Parse(selectedSeat.Name.Substring(4)),
+                DepartureId = departureDTO.Id
+            };
+            rf.TicketRepository.Add(ticket);
+        }
+
+        private void DisableSelectedSeat()
+        {
             selectedSeat.Background = (SolidColorBrush)new BrushConverter().ConvertFrom(TAKEN);
             selectedSeat.IsEnabled = false;
             btnReserve.IsEnabled = false;

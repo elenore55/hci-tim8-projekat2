@@ -1,3 +1,27 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <ArrayOfTicket xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Ticket>
+    <Id>1</Id>
+    <PurchaseDateTime>2022-06-02T13:54:03.6578141+02:00</PurchaseDateTime>
+    <DepartureDate>2022-06-03T00:00:00</DepartureDate>
+    <ClientEmail>milica@gmail.com</ClientEmail>
+    <SeatId>-1</SeatId>
+    <DepartureId>1</DepartureId>
+  </Ticket>
+  <Ticket>
+    <Id>2</Id>
+    <PurchaseDateTime>2022-06-02T13:59:08.8753001+02:00</PurchaseDateTime>
+    <DepartureDate>2022-06-04T00:00:00</DepartureDate>
+    <ClientEmail>milica@gmail.com</ClientEmail>
+    <SeatId>5</SeatId>
+    <DepartureId>3</DepartureId>
+  </Ticket>
+  <Ticket>
+    <Id>3</Id>
+    <PurchaseDateTime>2022-06-02T13:59:15.5583808+02:00</PurchaseDateTime>
+    <DepartureDate>2022-06-04T00:00:00</DepartureDate>
+    <ClientEmail>milica@gmail.com</ClientEmail>
+    <SeatId>3</SeatId>
+    <DepartureId>3</DepartureId>
+  </Ticket>
 </ArrayOfTicket>
