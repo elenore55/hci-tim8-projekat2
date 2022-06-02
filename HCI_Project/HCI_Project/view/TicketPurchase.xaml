@@ -135,7 +135,7 @@
                     materialDesign:TextFieldAssist.HasClearButton="True" LostFocus="DepartureDate_LostFocus"
                     DisplayDateStart="{x:Static sys:DateTime.Now}" GotFocus="DepartureDate_GotFocus"
                     Style="{StaticResource MaterialDesignFloatingHintDatePicker}"  FontSize="16"/>
-            <Button x:Name="btnShow" Click="btnShow_Click" Grid.Column="3" VerticalAlignment="Top" Background="#3e236e" Margin="30 5 30 10">Show</Button>
+            <Button x:Name="btnShow" Click="btnShow_Click" Grid.Column="3" VerticalAlignment="Top" Background="#673ab7" Margin="30 5 30 10">Show</Button>
         </Grid>
 
         <DataGrid Grid.Row="2" Name = "dataGrid" AlternatingRowBackground = "LightBlue" Margin="50 20 50 10" IsReadOnly="True"

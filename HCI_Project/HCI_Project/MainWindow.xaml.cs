@@ -38,16 +38,9 @@ namespace HCI_Project
             DepartureRepository dr = new DepartureRepository();
             WagonRepository wr = new WagonRepository();*/
 
-            StationRepository stationRepository = new StationRepository();
-            LineRepository lineRepository = new LineRepository();
-            DepartureRepository departureRepository = new DepartureRepository();
-            TrainRepository trainRepository = new TrainRepository();
-            WagonRepository wagonRepository = new WagonRepository();
-            SeatRepository seatRepository = new SeatRepository();
-            TicketRepository ticketRepository = new TicketRepository();
-            ReservationRepository reservationRepository = new ReservationRepository();
-            Populate(stationRepository, departureRepository, lineRepository, trainRepository, wagonRepository, seatRepository);
-            Main.Content = new TicketPurchase(stationRepository, lineRepository, ticketRepository, reservationRepository);
+            RepositoryFactory rf = new RepositoryFactory();
+            Populate(rf.StationRepository, rf.DepartureRepository, rf.LineRepository, rf.TrainRepository, rf.WagonRepository, rf.SeatRepository);
+            Main.Content = new TicketPurchase(rf);
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)

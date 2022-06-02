@@ -76,6 +76,7 @@
     <Compile Include="repository\GenericRepository.cs" />
     <Compile Include="repository\LineRepository.cs" />
     <Compile Include="repository\ManagerRepository.cs" />
+    <Compile Include="repository\RepositoryFactory.cs" />
     <Compile Include="repository\ReservationRepository.cs" />
     <Compile Include="repository\SeatRepository.cs" />
     <Compile Include="repository\StationRepository.cs" />

@@ -45,16 +45,14 @@ namespace HCI_Project.view
         private string to;
         private double price;
 
-        private readonly ReservationRepository reservationRepository;
-        private readonly TicketRepository ticketRepository;
+        private readonly RepositoryFactory rf;
 
-        public SeatChoice(string from, string to, double price, Departure departure, DateTime date, TicketRepository ticketRepository, ReservationRepository reservationRepository)
+        public SeatChoice(string from, string to, double price, Departure departure, DateTime date, RepositoryFactory rf)
         {
             InitializeComponent();
             DataContext = this;
 
-            this.reservationRepository = reservationRepository;
-            this.ticketRepository = ticketRepository;
+            this.rf = rf;
             this.from = from;
             this.to = to;
             this.price = price;
@@ -256,7 +254,7 @@ namespace HCI_Project.view
 
         private bool IsSeatPurchased(Seat seat)
         {
-            List<Ticket> tickets = ticketRepository.GetAll();
+            List<Ticket> tickets = rf.TicketRepository.GetAll();
             foreach (Ticket ticket in tickets)
             {
                 if (ticket.SeatId == seat.Id && ticket.DepartureId == Departure.Id && ticket.DepartureDate == DepartureDate)
@@ -267,7 +265,7 @@ namespace HCI_Project.view
 
         private bool IsSeatReserved(Seat seat)
         {
-            List<Reservation> reservations = reservationRepository.GetAll();
+            List<Reservation> reservations = rf.ReservationRepository.GetAll();
             foreach (Reservation res in reservations)
             {
                 if (res.IsActive && res.SeatId == seat.Id && res.DepartureId == Departure.Id && res.DepartureDate == DepartureDate)
