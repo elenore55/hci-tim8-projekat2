@@ -72,4 +72,20 @@
     <SeatId>31</SeatId>
     <DepartureId>4</DepartureId>
   </Ticket>
+  <Ticket>
+    <Id>10</Id>
+    <PurchaseDateTime>2022-06-04T18:06:48.0102293+02:00</PurchaseDateTime>
+    <DepartureDate>2022-06-30T00:00:00</DepartureDate>
+    <ClientEmail>milica@gmail.com</ClientEmail>
+    <SeatId>21</SeatId>
+    <DepartureId>6</DepartureId>
+  </Ticket>
+  <Ticket>
+    <Id>11</Id>
+    <PurchaseDateTime>2022-06-04T18:18:59.732543+02:00</PurchaseDateTime>
+    <DepartureDate>2022-06-25T00:00:00</DepartureDate>
+    <ClientEmail>milica@gmail.com</ClientEmail>
+    <SeatId>15</SeatId>
+    <DepartureId>1</DepartureId>
+  </Ticket>
 </ArrayOfTicket>

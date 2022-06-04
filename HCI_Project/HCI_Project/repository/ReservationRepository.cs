@@ -14,7 +14,7 @@ namespace HCI_Project.repository
 
         public List<Reservation> GetByClient(string email)
         {
-            return (from reservation in objects where reservation.ClientEmail == email select reservation).ToList();
+            return (from reservation in objects where reservation.ClientEmail == email && reservation.IsActive select reservation).ToList();
         }
     }
 }

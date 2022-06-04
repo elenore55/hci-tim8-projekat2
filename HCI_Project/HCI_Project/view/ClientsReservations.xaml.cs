@@ -2,6 +2,7 @@
 using HCI_Project.repository;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,7 +22,7 @@ namespace HCI_Project.view
     /// </summary>
     public partial class ClientsReservations : Page
     {
-        public List<ReservationDTO> Rows { get; set; }
+        public ObservableCollection<ReservationDTO> Rows { get; set; }
         private readonly RepositoryFactory rf;
         private string email = "milica@gmail.com";
 
@@ -30,7 +31,7 @@ namespace HCI_Project.view
             InitializeComponent();
             this.rf = rf;
             DataContext = this;
-            Rows = new List<ReservationDTO>();
+            Rows = new ObservableCollection<ReservationDTO>();
             DisplayReservations();
         }
 
@@ -52,6 +53,7 @@ namespace HCI_Project.view
                 Wagon wagon = rf.WagonRepository.GetById(seat.WagonId);
                 ReservationDTO dto = new ReservationDTO()
                 {
+                    Id = r.Id,
                     DateTimeOfPurchaseStr = $"{r.ReservationDateTime}",
                     DateTimeOfDepartureStr = $"{r.DepartureDate.ToShortDateString()} {departure.StartTime.ToShortTimeString()}",
                     Destination = $"{line.GetStartStation().Name} - {line.GetEndStation().Name}",
@@ -64,29 +66,85 @@ namespace HCI_Project.view
             }
             if (Rows.Count > 0)
             {
-                ticketsGrid.Visibility = Visibility.Visible;
+                reservationsGrid.Visibility = Visibility.Visible;
                 lblNoResults.Visibility = Visibility.Hidden;
             }
             else
             {
-                ticketsGrid.Visibility = Visibility.Hidden;
+                reservationsGrid.Visibility = Visibility.Hidden;
                 lblNoResults.Visibility = Visibility.Visible;
             }
         }
 
         private void btnPurchase_Click(object sender, RoutedEventArgs e)
         {
+            int index = reservationsGrid.SelectedIndex;
+            if (index != -1)
+            {
+                ReservationDTO dto = Rows[index];
+                long id = dto.Id;
+                Reservation r = rf.ReservationRepository.GetById(id);
+                Departure d = rf.DepartureRepository.GetById(r.DepartureId);
+                Line line = rf.LineRepository.GetById(d.LineId);
+                TicketData td = new TicketData
+                {
+                    From = line.GetStartStation().Name,
+                    To = line.GetEndStation().Name,
+                    DepartureDateTime = dto.DateTimeOfDepartureStr,
+                    ArrivalDateTime = $"",
+                    Wagon = dto.WagonStr,
+                    Seat = dto.SeatStr,
+                    Price = $"{dto.Price} EUR",
+                    IsReservation = false
+                };
+                PurchaseConfirmation confirmation = new PurchaseConfirmation(td);
+                confirmation.OnConfirm += SavePurchase;
+                confirmation.ShowDialog();
+            }
+        }
 
+        public void SavePurchase(object sender, EventArgs e)
+        {
+            MessageBox.Show("Ticket successfully purchased!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+            ReservationDTO dto = Rows[reservationsGrid.SelectedIndex];
+            long id = dto.Id;
+            Reservation r = rf.ReservationRepository.GetById(id);
+            Ticket ticket = new Ticket()
+            {
+                Id = rf.TicketRepository.GetNextId(),
+                PurchaseDateTime = DateTime.Now,
+                DepartureDate = r.DepartureDate,
+                DepartureId = r.DepartureId,
+                ClientEmail = r.ClientEmail,
+                SeatId = r.SeatId
+            };
+            rf.TicketRepository.Add(ticket);
+            rf.ReservationRepository.Delete(r.Id);
+            DisplayReservations();
         }
 
         private void ticketsGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             btnPurchase.IsEnabled = true;
+            btnCancel.IsEnabled = true;
+        }
+
+        private void btnCancel_Click(object sender, RoutedEventArgs e)
+        {
+            var response = MessageBox.Show("Are you sure you want to cancel selected reservation", "Cancelling", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (response == MessageBoxResult.Yes)
+            {
+                int index = reservationsGrid.SelectedIndex;
+                if (index != -1)
+                    rf.ReservationRepository.Delete(Rows[index].Id);
+                DisplayReservations();
+            }
         }
     }
 
     public class ReservationDTO
     {
+        public long Id { get; set; }
         public string DateTimeOfPurchaseStr { get; set; }
         public string DateTimeOfDepartureStr { get; set; }
         public string Destination { get; set; }

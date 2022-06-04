@@ -2,6 +2,7 @@
 using HCI_Project.repository;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,13 +24,13 @@ namespace HCI_Project.view
         private readonly RepositoryFactory rf;
         private string email = "milica@gmail.com";
 
-        public List<TicketDTO> Rows { get; set; }
+        public ObservableCollection<TicketDTO> Rows { get; set; }
 
         public ClientsTickets(RepositoryFactory rf)
         {
             InitializeComponent();
             this.rf = rf;
-            Rows = new List<TicketDTO>();
+            Rows = new ObservableCollection<TicketDTO>();
             DataContext = this;
             DisplayTickets();
         }
