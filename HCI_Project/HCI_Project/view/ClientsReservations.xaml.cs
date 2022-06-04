@@ -54,12 +54,15 @@ namespace HCI_Project.view
                 ReservationDTO dto = new ReservationDTO()
                 {
                     Id = r.Id,
-                    DateTimeOfPurchaseStr = $"{r.ReservationDateTime}",
+                    Line = line,
+                    DateTimeOfPurchaseStr = $"{r.ReservationDateTime.ToShortDateString()} {r.ReservationDateTime.ToShortTimeString()}",
                     DateTimeOfDepartureStr = $"{r.DepartureDate.ToShortDateString()} {departure.StartTime.ToShortTimeString()}",
-                    Destination = $"{line.GetStartStation().Name} - {line.GetEndStation().Name}",
+                    DateTimeOfArrivalStr = $"{r.DepartureDate.ToShortDateString()} {CalculateDeparture(departure.StartTime, r.EndStation, line).ToShortTimeString()}",
+                    Destination = $"{r.StartStation} - {r.EndStation}",
                     Price = line.Price,
-                    SeatStr = $"Seat:        {seat.Row + 1}{Convert.ToChar(65 + seat.Column)}",
-                    WagonStr = $"Wagon:   Number {wagon.Ordinal + 1} ({wagon.Class} class)",
+                    SeatStr = $"{seat.Row + 1}{Convert.ToChar(65 + seat.Column)}",
+                    WagonStr = $"No. {wagon.Ordinal + 1} ({wagon.Class} class)",
+                    TrainName = departure.Train.Name,
                     ActiveUntilStr = $"{r.DepartureDate.AddDays(-3).ToShortDateString()}",
                 };
                 Rows.Add(dto);
@@ -76,6 +79,17 @@ namespace HCI_Project.view
             }
         }
 
+        private DateTime CalculateDeparture(DateTime start, string stationName, Line line)
+        {
+            DateTime result = start;
+            for (int i = 0; i < line.Stations.Count; i++)
+            {
+                result = result.AddMinutes(line.OffsetsInMinutes[i]);
+                if (line.Stations[i].Name == stationName) break;
+            }
+            return result;
+        }
+
         private void btnPurchase_Click(object sender, RoutedEventArgs e)
         {
             int index = reservationsGrid.SelectedIndex;
@@ -88,10 +102,10 @@ namespace HCI_Project.view
                 Line line = rf.LineRepository.GetById(d.LineId);
                 TicketData td = new TicketData
                 {
-                    From = line.GetStartStation().Name,
-                    To = line.GetEndStation().Name,
+                    From = r.StartStation,
+                    To = r.EndStation,
                     DepartureDateTime = dto.DateTimeOfDepartureStr,
-                    ArrivalDateTime = $"",
+                    ArrivalDateTime = dto.DateTimeOfArrivalStr,
                     Wagon = dto.WagonStr,
                     Seat = dto.SeatStr,
                     Price = $"{dto.Price} EUR",
@@ -116,7 +130,9 @@ namespace HCI_Project.view
                 DepartureDate = r.DepartureDate,
                 DepartureId = r.DepartureId,
                 ClientEmail = r.ClientEmail,
-                SeatId = r.SeatId
+                SeatId = r.SeatId,
+                StartStation = r.StartStation,
+                EndStation = r.EndStation
             };
             rf.TicketRepository.Add(ticket);
             rf.ReservationRepository.Delete(r.Id);
@@ -144,13 +160,16 @@ namespace HCI_Project.view
 
     public class ReservationDTO
     {
+        public Line Line { get; set; }
         public long Id { get; set; }
         public string DateTimeOfPurchaseStr { get; set; }
         public string DateTimeOfDepartureStr { get; set; }
+        public string DateTimeOfArrivalStr { get; set; }
         public string Destination { get; set; }
         public double Price { get; set; }
         public string SeatStr { get; set; }
         public string WagonStr { get; set; }
+        public string TrainName { get; set; }
         public string SeatDetails
         {
             get
@@ -159,5 +178,22 @@ namespace HCI_Project.view
             }
         }
         public string ActiveUntilStr { get; set; }
+        public string Details
+        {
+            get
+            {
+                List<Station> stations = Line.Stations;
+                StringBuilder sb = new StringBuilder($"Date of departure: {DateTimeOfDepartureStr.Substring(0, 10)}\n\n");
+                sb.Append($"{"STATION",-40}DEPARTURE\n\n");
+                DateTime prev = DateTime.Parse(DateTimeOfDepartureStr);
+                for (int i = 0; i < stations.Count; i++)
+                {
+                    int offset = Line.OffsetsInMinutes[i];
+                    prev = prev.AddMinutes(offset);
+                    sb.Append($"{stations[i].Name,-46}{prev.ToShortTimeString()}\n");
+                }
+                return sb.ToString();
+            }
+        }
     }
 }

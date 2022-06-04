@@ -2,6 +2,7 @@
 <ArrayOfTrain xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Train>
     <Id>1</Id>
+    <Name>Moj voz</Name>
     <Wagons>
       <Wagon>
         <Id>1</Id>

@@ -2,90 +2,32 @@
 <ArrayOfTicket xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Ticket>
     <Id>1</Id>
-    <PurchaseDateTime>2022-06-02T13:54:03.6578141+02:00</PurchaseDateTime>
-    <DepartureDate>2022-06-03T00:00:00</DepartureDate>
+    <PurchaseDateTime>2022-06-04T23:25:40.4810181+02:00</PurchaseDateTime>
+    <DepartureDate>2022-06-10T00:00:00</DepartureDate>
     <ClientEmail>milica@gmail.com</ClientEmail>
-    <SeatId>6</SeatId>
+    <SeatId>19</SeatId>
     <DepartureId>1</DepartureId>
+    <StartStation>Stanica 1</StartStation>
+    <EndStation>Stanica 3</EndStation>
   </Ticket>
   <Ticket>
     <Id>2</Id>
-    <PurchaseDateTime>2022-06-02T13:59:08.8753001+02:00</PurchaseDateTime>
-    <DepartureDate>2022-06-04T00:00:00</DepartureDate>
+    <PurchaseDateTime>2022-06-04T23:29:57.8561664+02:00</PurchaseDateTime>
+    <DepartureDate>2022-06-23T00:00:00</DepartureDate>
     <ClientEmail>milica@gmail.com</ClientEmail>
-    <SeatId>5</SeatId>
-    <DepartureId>3</DepartureId>
+    <SeatId>21</SeatId>
+    <DepartureId>2</DepartureId>
+    <StartStation>Stanica 1</StartStation>
+    <EndStation>Stanica 2</EndStation>
   </Ticket>
   <Ticket>
     <Id>3</Id>
-    <PurchaseDateTime>2022-06-02T13:59:15.5583808+02:00</PurchaseDateTime>
-    <DepartureDate>2022-06-04T00:00:00</DepartureDate>
+    <PurchaseDateTime>2022-06-05T00:05:44.3251888+02:00</PurchaseDateTime>
+    <DepartureDate>2022-06-10T00:00:00</DepartureDate>
     <ClientEmail>milica@gmail.com</ClientEmail>
-    <SeatId>3</SeatId>
-    <DepartureId>3</DepartureId>
-  </Ticket>
-  <Ticket>
-    <Id>4</Id>
-    <PurchaseDateTime>2022-06-02T14:10:43.6020776+02:00</PurchaseDateTime>
-    <DepartureDate>2022-06-04T00:00:00</DepartureDate>
-    <ClientEmail>milica@gmail.com</ClientEmail>
-    <SeatId>10</SeatId>
-    <DepartureId>3</DepartureId>
-  </Ticket>
-  <Ticket>
-    <Id>5</Id>
-    <PurchaseDateTime>2022-06-02T14:10:51.6203302+02:00</PurchaseDateTime>
-    <DepartureDate>2022-06-04T00:00:00</DepartureDate>
-    <ClientEmail>milica@gmail.com</ClientEmail>
-    <SeatId>1</SeatId>
-    <DepartureId>3</DepartureId>
-  </Ticket>
-  <Ticket>
-    <Id>6</Id>
-    <PurchaseDateTime>2022-06-02T14:14:40.1902343+02:00</PurchaseDateTime>
-    <DepartureDate>2022-06-04T00:00:00</DepartureDate>
-    <ClientEmail>milica@gmail.com</ClientEmail>
-    <SeatId>18</SeatId>
-    <DepartureId>3</DepartureId>
-  </Ticket>
-  <Ticket>
-    <Id>7</Id>
-    <PurchaseDateTime>2022-06-03T13:37:17.3576578+02:00</PurchaseDateTime>
-    <DepartureDate>2022-06-04T00:00:00</DepartureDate>
-    <ClientEmail>milica@gmail.com</ClientEmail>
-    <SeatId>13</SeatId>
-    <DepartureId>3</DepartureId>
-  </Ticket>
-  <Ticket>
-    <Id>8</Id>
-    <PurchaseDateTime>2022-06-04T13:07:03.2946588+02:00</PurchaseDateTime>
-    <DepartureDate>2022-06-05T00:00:00</DepartureDate>
-    <ClientEmail>milica@gmail.com</ClientEmail>
-    <SeatId>37</SeatId>
-    <DepartureId>2</DepartureId>
-  </Ticket>
-  <Ticket>
-    <Id>9</Id>
-    <PurchaseDateTime>2022-06-04T13:10:00.9433191+02:00</PurchaseDateTime>
-    <DepartureDate>2022-06-26T00:00:00</DepartureDate>
-    <ClientEmail>milica@gmail.com</ClientEmail>
-    <SeatId>31</SeatId>
-    <DepartureId>4</DepartureId>
-  </Ticket>
-  <Ticket>
-    <Id>10</Id>
-    <PurchaseDateTime>2022-06-04T18:06:48.0102293+02:00</PurchaseDateTime>
-    <DepartureDate>2022-06-30T00:00:00</DepartureDate>
-    <ClientEmail>milica@gmail.com</ClientEmail>
-    <SeatId>21</SeatId>
-    <DepartureId>6</DepartureId>
-  </Ticket>
-  <Ticket>
-    <Id>11</Id>
-    <PurchaseDateTime>2022-06-04T18:18:59.732543+02:00</PurchaseDateTime>
-    <DepartureDate>2022-06-25T00:00:00</DepartureDate>
-    <ClientEmail>milica@gmail.com</ClientEmail>
-    <SeatId>15</SeatId>
+    <SeatId>12</SeatId>
     <DepartureId>1</DepartureId>
+    <StartStation>Stanica 1</StartStation>
+    <EndStation>Stanica 3</EndStation>
   </Ticket>
 </ArrayOfTicket>

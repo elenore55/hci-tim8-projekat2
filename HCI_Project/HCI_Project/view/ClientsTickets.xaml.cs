@@ -52,12 +52,14 @@ namespace HCI_Project.view
                 Wagon wagon = rf.WagonRepository.GetById(seat.WagonId);
                 TicketDTO dto = new TicketDTO()
                 {
-                    DateTimeOfPurchaseStr = $"{t.PurchaseDateTime}",
+                    Line = line,
+                    DateTimeOfPurchaseStr = $"{t.PurchaseDateTime.ToShortDateString()} {t.PurchaseDateTime.ToShortTimeString()}",
                     DateTimeOfDepartureStr = $"{t.DepartureDate.ToShortDateString()} {departure.StartTime.ToShortTimeString()}",
-                    Destination = $"{line.GetStartStation().Name} - {line.GetEndStation().Name}",
+                    Destination = $"{t.StartStation} - {t.EndStation}",
                     Price = line.Price,
-                    SeatStr = $"Seat:        {seat.Row + 1}{Convert.ToChar(65 + seat.Column)}",
-                    WagonStr = $"Wagon:   Number {wagon.Ordinal + 1} ({wagon.Class} class)"
+                    SeatStr = $"{seat.Row + 1}{Convert.ToChar(65 + seat.Column)}",
+                    WagonStr = $"No. {wagon.Ordinal + 1} ({wagon.Class} class)",
+                    TrainName = departure.Train.Name
                 };
                 Rows.Add(dto);
             }
@@ -76,18 +78,37 @@ namespace HCI_Project.view
 
     public class TicketDTO
     {
+        public Line Line { get; set; }
         public string DateTimeOfPurchaseStr { get; set; }
         public string DateTimeOfDepartureStr { get; set; }
         public string Destination { get; set; }
         public double Price { get; set; }
         public string SeatStr { get; set; }
         public string WagonStr { get; set; }
+        public string TrainName { get; set; }
         public string SeatDetails 
         { 
             get
             {
                 return $"{WagonStr}\n{SeatStr}";
             } 
+        }
+        public string Details
+        {
+            get
+            {
+                List<Station> stations = Line.Stations;
+                StringBuilder sb = new StringBuilder($"Date of departure: {DateTimeOfDepartureStr.Substring(0, 10)}\n\n");
+                sb.Append($"{"STATION",-40}DEPARTURE\n\n");
+                DateTime prev = DateTime.Parse(DateTimeOfDepartureStr);
+                for (int i = 0; i < stations.Count; i++)
+                {
+                    int offset = Line.OffsetsInMinutes[i];
+                    prev = prev.AddMinutes(offset);
+                    sb.Append($"{stations[i].Name,-46}{prev.ToShortTimeString()}\n");
+                }
+                return sb.ToString();
+            }
         }
     }
 }

@@ -28,7 +28,7 @@ namespace HCI_Project
         {
             InitializeComponent();
             rf = new RepositoryFactory();
-            // Populate(rf.StationRepository, rf.DepartureRepository, rf.LineRepository, rf.TrainRepository, rf.WagonRepository, rf.SeatRepository);
+            Populate(rf.StationRepository, rf.DepartureRepository, rf.LineRepository, rf.TrainRepository, rf.WagonRepository, rf.SeatRepository);
             DeactivateOldReservations();
         }
 
@@ -169,6 +169,7 @@ namespace HCI_Project
             Train train = new Train()
             {
                 Id = tr.GetNextId(),
+                Name = "Moj voz",
                 Wagons = new List<Wagon>() { wagon, wagon2 }
             };
             tr.Add(train);

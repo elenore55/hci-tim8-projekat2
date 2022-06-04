@@ -172,8 +172,6 @@ namespace HCI_Project.view
             {
                 MessageBox.Show("Departure not selected", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            Departure departure = Departures[rowIndex];
-            Line line = rf.LineRepository.GetById(departure.LineId);
             NavigationService.Navigate(new SeatChoice(MyRows[rowIndex], DepartureDate.SelectedDate.Value, rf));
         }
 

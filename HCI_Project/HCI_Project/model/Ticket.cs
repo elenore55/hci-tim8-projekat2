@@ -13,5 +13,7 @@ namespace HCI_Project.model
         public string ClientEmail { get; set; }
         public long SeatId { get; set; }
         public long DepartureId { get; set; }
+        public string StartStation { get; set; }
+        public string EndStation { get; set; }
     }
 }

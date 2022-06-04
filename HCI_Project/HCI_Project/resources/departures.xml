@@ -6,6 +6,7 @@
     <LineId>1</LineId>
     <Train>
       <Id>1</Id>
+      <Name>Moj voz</Name>
       <Wagons>
         <Wagon>
           <Id>1</Id>
@@ -274,6 +275,7 @@
     <LineId>1</LineId>
     <Train>
       <Id>1</Id>
+      <Name>Moj voz</Name>
       <Wagons>
         <Wagon>
           <Id>1</Id>
@@ -542,6 +544,7 @@
     <LineId>1</LineId>
     <Train>
       <Id>1</Id>
+      <Name>Moj voz</Name>
       <Wagons>
         <Wagon>
           <Id>1</Id>
@@ -810,6 +813,7 @@
     <LineId>2</LineId>
     <Train>
       <Id>1</Id>
+      <Name>Moj voz</Name>
       <Wagons>
         <Wagon>
           <Id>1</Id>
@@ -1078,6 +1082,7 @@
     <LineId>2</LineId>
     <Train>
       <Id>1</Id>
+      <Name>Moj voz</Name>
       <Wagons>
         <Wagon>
           <Id>1</Id>
@@ -1346,6 +1351,7 @@
     <LineId>2</LineId>
     <Train>
       <Id>1</Id>
+      <Name>Moj voz</Name>
       <Wagons>
         <Wagon>
           <Id>1</Id>

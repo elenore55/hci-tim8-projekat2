@@ -165,6 +165,7 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Header = "Departure time" Binding = "{Binding DepartureTimeStr}" Width="2*" />
                 <DataGridTextColumn Header = "Arrival time" Binding = "{Binding ArrivalTimeStr}" Width="2*" />
+                <DataGridTextColumn Header = "Train" Binding = "{Binding Train.Name}" Width="2*" />
                 <DataGridTextColumn Header = "Price (EUR)" Binding = "{Binding Price}" Width="*"/>
             </DataGrid.Columns>
             <DataGrid.RowDetailsTemplate>

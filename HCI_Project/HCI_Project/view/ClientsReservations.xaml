@@ -45,7 +45,7 @@
             <Setter Property="Padding" Value="5"/>
             <Setter Property="ToolTip">
                 <Setter.Value>
-                    <TextBlock Text="Click to see seating details" />
+                    <TextBlock Text="Click to see departure details" />
                 </Setter.Value>
             </Setter>
             <Setter Property="Template">
@@ -90,15 +90,16 @@
             AlternationCount = "2" AutoGenerateColumns = "False" ItemsSource="{Binding Rows, RelativeSource={RelativeSource AncestorType=Page}}"
             RowDetailsVisibilityMode="VisibleWhenSelected" SelectionMode="Single" FontSize="16" Visibility="Hidden" SelectionChanged="ticketsGrid_SelectionChanged">
             <DataGrid.Columns>
-                <DataGridTextColumn Header = "Date of purchase" Binding = "{Binding DateTimeOfPurchaseStr}" Width="2*" />
-                <DataGridTextColumn Header = "Date of departure" Binding = "{Binding DateTimeOfDepartureStr}" Width="2*" />
                 <DataGridTextColumn Header = "Destination" Binding = "{Binding Destination}" Width="2*" />
+                <DataGridTextColumn Header = "Date of purchase" Binding = "{Binding DateTimeOfPurchaseStr}" Width="2*" />
+                <DataGridTextColumn Header = "Train" Binding = "{Binding TrainName}" Width="*" />
+                <DataGridTextColumn Header = "Wagon" Binding = "{Binding WagonStr}" Width="2*" />
+                <DataGridTextColumn Header = "Seat" Binding = "{Binding SeatStr}" Width="*" />
                 <DataGridTextColumn Header = "Price (EUR)" Binding = "{Binding Price}" Width="*"/>
-                <DataGridTextColumn Header = "Active until" Binding = "{Binding ActiveUntilStr}" Width="2*"/>
             </DataGrid.Columns>
             <DataGrid.RowDetailsTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding SeatDetails}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20" />
+                    <TextBlock Text="{Binding Details}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20" />
                 </DataTemplate>
             </DataGrid.RowDetailsTemplate>
         </DataGrid>

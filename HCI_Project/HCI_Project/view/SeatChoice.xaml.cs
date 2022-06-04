@@ -335,14 +335,18 @@ namespace HCI_Project.view
             MessageBox.Show("Ticket successfully purchased!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
             DisableSelectedSeat();
             selectedSeat.Background = (SolidColorBrush)new BrushConverter().ConvertFrom(TAKEN);
-            Ticket ticket = new Ticket() 
-            { 
+            Departure dpt = rf.DepartureRepository.GetById(departureDTO.Id);
+            Line line = rf.LineRepository.GetById(dpt.LineId);
+            Ticket ticket = new Ticket()
+            {
                 Id = rf.TicketRepository.GetNextId(),
                 PurchaseDateTime = DateTime.Now,
                 DepartureDate = DepartureDate,
                 ClientEmail = "milica@gmail.com",
                 SeatId = long.Parse(selectedSeat.Name.Substring(4)),
-                DepartureId = departureDTO.Id
+                DepartureId = departureDTO.Id,
+                StartStation = line.Stations[departureDTO.StartIndex].Name,
+                EndStation = line.Stations[departureDTO.EndIndex].Name
             };
             rf.TicketRepository.Add(ticket);
         }
@@ -352,6 +356,8 @@ namespace HCI_Project.view
             MessageBox.Show("Ticket successfully reserved!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
             DisableSelectedSeat();
             selectedSeat.Background = (SolidColorBrush)new BrushConverter().ConvertFrom(RESERVED);
+            Departure dpt = rf.DepartureRepository.GetById(departureDTO.Id);
+            Line line = rf.LineRepository.GetById(dpt.LineId);
             Reservation reservation = new Reservation()
             {
                 Id = rf.ReservationRepository.GetNextId(),
@@ -360,7 +366,9 @@ namespace HCI_Project.view
                 ClientEmail = "milica@gmail.com",
                 SeatId = long.Parse(selectedSeat.Name.Substring(4)),
                 DepartureId = departureDTO.Id,
-                IsActive = true
+                IsActive = true,
+                StartStation = line.Stations[departureDTO.StartIndex].Name,
+                EndStation = line.Stations[departureDTO.EndIndex].Name
             };
             rf.ReservationRepository.Add(reservation);
         }
