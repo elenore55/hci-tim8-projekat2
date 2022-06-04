@@ -4,7 +4,7 @@
     <Id>1</Id>
     <ReservationDateTime>2022-06-02T14:08:30.5912877+02:00</ReservationDateTime>
     <DepartureDate>2022-06-03T00:00:00</DepartureDate>
-    <IsActive>true</IsActive>
+    <IsActive>false</IsActive>
     <ClientEmail>milica@gmail.com</ClientEmail>
     <SeatId>10</SeatId>
     <DepartureId>1</DepartureId>
@@ -13,7 +13,7 @@
     <Id>2</Id>
     <ReservationDateTime>2022-06-02T14:09:46.1500737+02:00</ReservationDateTime>
     <DepartureDate>2022-06-04T00:00:00</DepartureDate>
-    <IsActive>true</IsActive>
+    <IsActive>false</IsActive>
     <ClientEmail>milica@gmail.com</ClientEmail>
     <SeatId>7</SeatId>
     <DepartureId>3</DepartureId>
@@ -22,7 +22,7 @@
     <Id>3</Id>
     <ReservationDateTime>2022-06-02T14:10:37.1731052+02:00</ReservationDateTime>
     <DepartureDate>2022-06-04T00:00:00</DepartureDate>
-    <IsActive>true</IsActive>
+    <IsActive>false</IsActive>
     <ClientEmail>milica@gmail.com</ClientEmail>
     <SeatId>11</SeatId>
     <DepartureId>3</DepartureId>
@@ -31,7 +31,7 @@
     <Id>4</Id>
     <ReservationDateTime>2022-06-02T14:10:58.3622016+02:00</ReservationDateTime>
     <DepartureDate>2022-06-04T00:00:00</DepartureDate>
-    <IsActive>true</IsActive>
+    <IsActive>false</IsActive>
     <ClientEmail>milica@gmail.com</ClientEmail>
     <SeatId>20</SeatId>
     <DepartureId>3</DepartureId>
@@ -40,7 +40,7 @@
     <Id>5</Id>
     <ReservationDateTime>2022-06-02T14:14:33.0346313+02:00</ReservationDateTime>
     <DepartureDate>2022-06-04T00:00:00</DepartureDate>
-    <IsActive>true</IsActive>
+    <IsActive>false</IsActive>
     <ClientEmail>milica@gmail.com</ClientEmail>
     <SeatId>17</SeatId>
     <DepartureId>3</DepartureId>
@@ -49,7 +49,7 @@
     <Id>6</Id>
     <ReservationDateTime>2022-06-03T13:37:25.8742098+02:00</ReservationDateTime>
     <DepartureDate>2022-06-04T00:00:00</DepartureDate>
-    <IsActive>true</IsActive>
+    <IsActive>false</IsActive>
     <ClientEmail>milica@gmail.com</ClientEmail>
     <SeatId>31</SeatId>
     <DepartureId>3</DepartureId>
@@ -58,7 +58,7 @@
     <Id>7</Id>
     <ReservationDateTime>2022-06-04T13:07:22.64654+02:00</ReservationDateTime>
     <DepartureDate>2022-06-05T00:00:00</DepartureDate>
-    <IsActive>true</IsActive>
+    <IsActive>false</IsActive>
     <ClientEmail>milica@gmail.com</ClientEmail>
     <SeatId>26</SeatId>
     <DepartureId>2</DepartureId>

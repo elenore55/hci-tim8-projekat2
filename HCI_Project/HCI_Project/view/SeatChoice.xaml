@@ -54,8 +54,10 @@
                     <ColumnDefinition Width="Auto"></ColumnDefinition>
                     <ColumnDefinition Width="Auto"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <Button Grid.Column="1" x:Name="btnReserve" Content="Reserve ticket" IsEnabled="False" Click="btnReserve_Click" HorizontalAlignment="Right" Margin="5,5,5,5"></Button>
-                <Button Grid.Column="2" x:Name="btnPurchase" Content="Purchase ticket" IsEnabled="False" Click="btnPurchase_Click" HorizontalAlignment="Right" Margin="5,5,5,5"></Button>
+                <Button Grid.Column="1" x:Name="btnReserve" Content="Reserve ticket" IsEnabled="False" Click="btnReserve_Click" 
+                        HorizontalAlignment="Right" Margin="5,5,15,20" ToolTip="Click to reserve ticket"></Button>
+                <Button Grid.Column="2" x:Name="btnPurchase" Content="Purchase ticket" IsEnabled="False" Click="btnPurchase_Click" 
+                        HorizontalAlignment="Right" Margin="5,5,20,20" ToolTip="Click to purchase ticket"></Button>
             </Grid>
         </Grid>
     </Grid>

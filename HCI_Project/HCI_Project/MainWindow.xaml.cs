@@ -28,7 +28,26 @@ namespace HCI_Project
         {
             InitializeComponent();
             rf = new RepositoryFactory();
-            Populate(rf.StationRepository, rf.DepartureRepository, rf.LineRepository, rf.TrainRepository, rf.WagonRepository, rf.SeatRepository);
+            // Populate(rf.StationRepository, rf.DepartureRepository, rf.LineRepository, rf.TrainRepository, rf.WagonRepository, rf.SeatRepository);
+            DeactivateOldReservations();
+        }
+
+        private void DeactivateOldReservations()
+        {
+            int days = 3;
+            List<Reservation> toDeactivate = new List<Reservation>();
+            foreach (Reservation r in rf.ReservationRepository.GetAll())
+            {
+                if ((DateTime.Now - r.DepartureDate).TotalDays < days)
+                {
+                    r.IsActive = false;
+                    toDeactivate.Add(r);
+                }
+            }
+            foreach (Reservation r in toDeactivate)
+            {
+                rf.ReservationRepository.Update(r);
+            }
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)

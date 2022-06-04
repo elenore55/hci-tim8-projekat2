@@ -66,7 +66,8 @@ namespace HCI_Project.view
                     Background = (SolidColorBrush)new BrushConverter().ConvertFrom(GetWagonButtonColor(train.Wagons[i])),
                     Foreground = Brushes.Black,
                     Margin = new Thickness(0, 10, 20, 10),
-                    MinHeight = 40
+                    MinHeight = 40,
+                    ToolTip = "Click to select the wagon"
                 };
                 wagonBtn.Click += new RoutedEventHandler(wagonBtn_Click);
                 Grid.SetColumn(wagonBtn, 0);
@@ -184,7 +185,8 @@ namespace HCI_Project.view
                     IsEnabled = IsSeatFree(seat),
                     FontSize = 22,
                     VerticalAlignment = VerticalAlignment.Bottom,
-                    Name = $"btn_{seat.Id}"
+                    Name = $"btn_{seat.Id}",
+                    ToolTip = "Click to select the seat"
                 };
                 seatBtn.Click += new RoutedEventHandler(seatBtn_Click);
                 Grid.SetColumn(seatBtn, seat.Row);

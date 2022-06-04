@@ -29,6 +29,7 @@
                     <MenuItem x:Name="tickets" Header="_My tickets" Click="tickets_Click"/>
                     <MenuItem x:Name="reservations" Header="_My reservations"/>
                 </MenuItem>
+                <MenuItem Header="Help"/>
             </Menu>
         </DockPanel>
         <Frame Grid.Row="1" NavigationUIVisibility="Hidden" x:Name="MainFrame"></Frame>

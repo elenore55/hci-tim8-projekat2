@@ -90,5 +90,12 @@ namespace HCI_Project.repository
                 }
             }
         }
+
+        public void Update(T obj)
+        {
+            int index = objects.FindIndex(x => x.Id == obj.Id);
+            if (index != -1) objects[index] = obj;
+            SaveAll();
+        }
     }
 }

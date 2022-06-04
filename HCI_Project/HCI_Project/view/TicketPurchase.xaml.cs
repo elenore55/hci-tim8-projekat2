@@ -39,6 +39,7 @@ namespace HCI_Project.view
             tbTo.ItemsSource = StationNames;
             MyRows = new ObservableCollection<DepartureDTO>();
             Departures = new List<Departure>();
+            blackoutRange.End = DateTime.Now.AddDays(-1);
         }
 
         private void btnShow_Click(object sender, RoutedEventArgs e)
