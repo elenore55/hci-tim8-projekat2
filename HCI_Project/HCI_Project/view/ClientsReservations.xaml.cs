@@ -12,51 +12,53 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 
 namespace HCI_Project.view
 {
     /// <summary>
-    /// Interaction logic for ClientsTickets.xaml
+    /// Interaction logic for ClientsReservations.xaml
     /// </summary>
-    public partial class ClientsTickets : Page
+    public partial class ClientsReservations : Page
     {
+        public List<ReservationDTO> Rows { get; set; }
         private readonly RepositoryFactory rf;
         private string email = "milica@gmail.com";
 
-        public List<TicketDTO> Rows { get; set; }
-
-        public ClientsTickets(RepositoryFactory rf)
+        public ClientsReservations(RepositoryFactory rf)
         {
             InitializeComponent();
             this.rf = rf;
-            Rows = new List<TicketDTO>();
             DataContext = this;
-            DisplayTickets();
+            Rows = new List<ReservationDTO>();
+            DisplayReservations();
         }
 
         private void btnFilter_Click(object sender, RoutedEventArgs e)
         {
-            DisplayTickets();
+            DisplayReservations();
         }
 
-        private void DisplayTickets()
+        private void DisplayReservations()
         {
-            List<Ticket> tickets = rf.TicketRepository.GetByClient(email);
+            List<Reservation> reservations = rf.ReservationRepository.GetByClient(email);
             Rows.Clear();
-            foreach (Ticket t in tickets)
+            foreach (Reservation r in reservations)
             {
-                Departure departure = rf.DepartureRepository.GetById(t.DepartureId);
+                if (!r.IsActive) continue;
+                Departure departure = rf.DepartureRepository.GetById(r.DepartureId);
                 Line line = rf.LineRepository.GetById(departure.LineId);
-                Seat seat = rf.SeatRepository.GetById(t.SeatId);
+                Seat seat = rf.SeatRepository.GetById(r.SeatId);
                 Wagon wagon = rf.WagonRepository.GetById(seat.WagonId);
-                TicketDTO dto = new TicketDTO()
+                ReservationDTO dto = new ReservationDTO()
                 {
-                    DateTimeOfPurchaseStr = $"{t.PurchaseDateTime}",
-                    DateTimeOfDepartureStr = $"{t.DepartureDate.ToShortDateString()} {departure.StartTime.ToShortTimeString()}",
+                    DateTimeOfPurchaseStr = $"{r.ReservationDateTime}",
+                    DateTimeOfDepartureStr = $"{r.DepartureDate.ToShortDateString()} {departure.StartTime.ToShortTimeString()}",
                     Destination = $"{line.GetStartStation().Name} - {line.GetEndStation().Name}",
                     Price = line.Price,
                     SeatStr = $"Seat:        {seat.Row + 1}{Convert.ToChar(65 + seat.Column)}",
-                    WagonStr = $"Wagon:   Number {wagon.Ordinal + 1} ({wagon.Class} class)"
+                    WagonStr = $"Wagon:   Number {wagon.Ordinal + 1} ({wagon.Class} class)",
+                    ActiveUntilStr = $"{r.DepartureDate.AddDays(-3).ToShortDateString()}",
                 };
                 Rows.Add(dto);
             }
@@ -71,9 +73,19 @@ namespace HCI_Project.view
                 lblNoResults.Visibility = Visibility.Visible;
             }
         }
+
+        private void btnPurchase_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ticketsGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            btnPurchase.IsEnabled = true;
+        }
     }
 
-    public class TicketDTO
+    public class ReservationDTO
     {
         public string DateTimeOfPurchaseStr { get; set; }
         public string DateTimeOfDepartureStr { get; set; }
@@ -81,12 +93,13 @@ namespace HCI_Project.view
         public double Price { get; set; }
         public string SeatStr { get; set; }
         public string WagonStr { get; set; }
-        public string SeatDetails 
-        { 
+        public string SeatDetails
+        {
             get
             {
                 return $"{WagonStr}\n{SeatStr}";
-            } 
+            }
         }
+        public string ActiveUntilStr { get; set; }
     }
 }

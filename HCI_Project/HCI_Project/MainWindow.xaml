@@ -23,11 +23,11 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <DockPanel Grid.Row="0">
-            <Menu DockPanel.Dock="Top" Background="#dcdcde" BorderThickness="1">
+            <Menu DockPanel.Dock="Top" Background="#4f5459" Foreground="White" BorderThickness="1">
                 <MenuItem Header="Tickets">
-                    <MenuItem x:Name="purchase" Header="_Reserve or purchase" Click="purchase_Click"/>
-                    <MenuItem x:Name="tickets" Header="_My tickets" Click="tickets_Click"/>
-                    <MenuItem x:Name="reservations" Header="_My reservations"/>
+                    <MenuItem x:Name="purchase" Header="_Reserve or purchase" Click="purchase_Click" Foreground="#4f5459"/>
+                    <MenuItem x:Name="tickets" Header="_My tickets" Click="tickets_Click" Foreground="#4f5459" />
+                    <MenuItem x:Name="reservations" Header="_My reservations" Click="reservations_Click" Foreground="#4f5459"/>
                 </MenuItem>
                 <MenuItem Header="Help"/>
             </Menu>

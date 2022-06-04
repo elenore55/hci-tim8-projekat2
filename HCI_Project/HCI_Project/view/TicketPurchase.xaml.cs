@@ -87,6 +87,16 @@ namespace HCI_Project.view
                         Departures.Add(dpt);
                     }
                 }
+                if (MyRows.Count > 0)
+                {
+                    dataGrid.Visibility = Visibility.Visible;
+                    lblNoResults.Visibility = Visibility.Hidden;
+                }
+                else
+                {
+                    dataGrid.Visibility = Visibility.Hidden;
+                    lblNoResults.Visibility = Visibility.Visible;
+                }
             }
         }
 

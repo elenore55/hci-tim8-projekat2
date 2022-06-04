@@ -1,13 +1,13 @@
-﻿<Page x:Class="HCI_Project.view.ClientsTickets"
+﻿<Page x:Class="HCI_Project.view.ClientsReservations"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:HCI_Project.view"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+      xmlns:local="clr-namespace:HCI_Project.view"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="ClientsTickets">
+      Title="ClientsReservations">
     <Page.Resources>
         <Style x:Key="LabelStyle" TargetType="{x:Type Label}">
             <Style.Setters>
@@ -59,11 +59,11 @@
             </Setter>
         </Style>
     </Page.Resources>
-
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <materialDesign:ColorZone Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Grid.RowSpan="1" Background="#ffd740" Padding="2" VerticalAlignment="Stretch"></materialDesign:ColorZone>
         <Grid Grid.Row="0" Margin="0,10,0,0">
@@ -82,15 +82,16 @@
             <Button x:Name="btnFilter" Grid.Column="3" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="40,5,30,20" 
                     Background="#3f51b5" Click="btnFilter_Click" FontSize="16">Filter</Button>
         </Grid>
-        <Label Grid.Row="1" x:Name="lblNoResults" FontSize="24" HorizontalAlignment="Center" Visibility="Hidden" Margin="40,20,40,10">You have not purchased any tickets yet</Label>
+        <Label Grid.Row="1" x:Name="lblNoResults" FontSize="24" HorizontalAlignment="Center" Visibility="Hidden" Margin="40,20,40,10">You have no active reservations</Label>
         <DataGrid Grid.Row="1" Name = "ticketsGrid" AlternatingRowBackground = "#c5cae9" Margin="40,20,40,10" IsReadOnly="True"
             AlternationCount = "2" AutoGenerateColumns = "False" ItemsSource="{Binding Rows, RelativeSource={RelativeSource AncestorType=Page}}"
-            RowDetailsVisibilityMode="VisibleWhenSelected" SelectionMode="Single" FontSize="16" Visibility="Hidden">
+            RowDetailsVisibilityMode="VisibleWhenSelected" SelectionMode="Single" FontSize="16" Visibility="Hidden" SelectionChanged="ticketsGrid_SelectionChanged">
             <DataGrid.Columns>
                 <DataGridTextColumn Header = "Date of purchase" Binding = "{Binding DateTimeOfPurchaseStr}" Width="2*" />
                 <DataGridTextColumn Header = "Date of departure" Binding = "{Binding DateTimeOfDepartureStr}" Width="2*" />
                 <DataGridTextColumn Header = "Destination" Binding = "{Binding Destination}" Width="2*" />
                 <DataGridTextColumn Header = "Price (EUR)" Binding = "{Binding Price}" Width="*"/>
+                <DataGridTextColumn Header = "Active until" Binding = "{Binding ActiveUntilStr}" Width="2*"/>
             </DataGrid.Columns>
             <DataGrid.RowDetailsTemplate>
                 <DataTemplate>
@@ -98,5 +99,7 @@
                 </DataTemplate>
             </DataGrid.RowDetailsTemplate>
         </DataGrid>
+        <Button Grid.Row="2" HorizontalAlignment="Right" Content="Purchase ticket" x:Name="btnPurchase" Click="btnPurchase_Click" 
+                Margin="15,15,20,20" IsEnabled="False" FontSize="18" ToolTip="Click to purchase reserved ticket" MinHeight="40"></Button>
     </Grid>
 </Page>

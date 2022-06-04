@@ -252,5 +252,10 @@ namespace HCI_Project
         {
             MainFrame.Content = new ClientsTickets(rf);
         }
+
+        private void reservations_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Content = new ClientsReservations(rf);
+        }
     }
 }

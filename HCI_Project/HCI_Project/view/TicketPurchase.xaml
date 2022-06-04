@@ -155,10 +155,10 @@
             <Button x:Name="btnShow" Click="btnShow_Click" Grid.Column="3" VerticalAlignment="Top" Background="#3f51b5" 
                     Margin="40,7,40,10" ToolTip="Click to show available departures" FontSize="18" MinHeight="40">Show</Button>
         </Grid>
-
-        <DataGrid Grid.Row="2" Name = "dataGrid" AlternatingRowBackground = "#c5cae9" Margin="50 20 50 10" IsReadOnly="True"
+        <Label Grid.Row="2" x:Name="lblNoResults" FontSize="24" HorizontalAlignment="Center" Visibility="Hidden" Margin="40,20,40,10">Selected stations are not connected</Label>
+        <DataGrid Grid.Row="2" Name = "dataGrid" AlternatingRowBackground = "#c5cae9" Margin="50,20,50,10" IsReadOnly="True"
          AlternationCount = "2" AutoGenerateColumns = "False" ItemsSource="{Binding MyRows, RelativeSource={RelativeSource AncestorType=Page}}"
-        RowDetailsVisibilityMode="VisibleWhenSelected" SelectionMode="Single" SelectionChanged="dataGrid_Selected">
+        RowDetailsVisibilityMode="VisibleWhenSelected" SelectionMode="Single" SelectionChanged="dataGrid_Selected" Visibility="Hidden">
             <DataGrid.Columns>
                 <DataGridTextColumn Header = "Departure time" Binding = "{Binding DepartureTimeStr}" Width="2*" />
                 <DataGridTextColumn Header = "Arrival time" Binding = "{Binding ArrivalTimeStr}" Width="2*" />

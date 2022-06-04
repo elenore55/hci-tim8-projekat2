@@ -1,4 +1,6 @@
 ﻿using HCI_Project.model;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace HCI_Project.repository
 {
@@ -8,6 +10,11 @@ namespace HCI_Project.repository
         {
             path = "../../resources/reservations.xml";
             Load();
+        }
+
+        public List<Reservation> GetByClient(string email)
+        {
+            return (from reservation in objects where reservation.ClientEmail == email select reservation).ToList();
         }
     }
 }
