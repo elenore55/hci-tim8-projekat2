@@ -42,6 +42,11 @@
         <Style TargetType="{x:Type DataGridCell}">
             <Setter Property="TextBlock.TextAlignment" Value="Center"/>
             <Setter Property="Padding" Value="5"/>
+            <Setter Property="ToolTip">
+                <Setter.Value>
+                    <TextBlock Text="Click to see seating details" />
+                </Setter.Value>
+            </Setter>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type DataGridCell}">
@@ -83,9 +88,13 @@
                 <DataGridTextColumn Header = "Date of purchase" Binding = "{Binding DateTimeOfPurchaseStr}" Width="2*" />
                 <DataGridTextColumn Header = "Date of departure" Binding = "{Binding DateTimeOfDepartureStr}" Width="2*" />
                 <DataGridTextColumn Header = "Destination" Binding = "{Binding Destination}" Width="2*" />
-                <DataGridTextColumn Header = "Seat" Binding = "{Binding SeatStr}" Width="*" />
                 <DataGridTextColumn Header = "Price (EUR)" Binding = "{Binding Price}" Width="*"/>
             </DataGrid.Columns>
+            <DataGrid.RowDetailsTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding SeatDetails}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20" />
+                </DataTemplate>
+            </DataGrid.RowDetailsTemplate>
         </DataGrid>
     </Grid>
 </Page>

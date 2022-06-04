@@ -138,11 +138,13 @@
                                              BorderThickness="0" GotFocus="tbTo_GotFocus" LostFocus="tbTo_LostFocus" Placeholder="Search destination.." FontSize="16" />
                 </Grid>
             </materialDesign:ColorZone>
-            <DatePicker Margin="30 5 30 10" x:Name="DepartureDate" Grid.Column="2" VerticalAlignment="Top"
-                    materialDesign:HintAssist.Hint="Pick Date of departure"
-                    materialDesign:TextFieldAssist.HasClearButton="True" LostFocus="DepartureDate_LostFocus"
-                    DisplayDateStart="{x:Static sys:DateTime.Now}" GotFocus="DepartureDate_GotFocus"
-                    Style="{StaticResource MaterialDesignFloatingHintDatePicker}"  FontSize="16"/>
+            <DatePicker Margin="30 5 30 10" x:Name="DepartureDate" Grid.Column="2" VerticalAlignment="Top" materialDesign:HintAssist.Hint="Pick Date of departure"
+                        materialDesign:TextFieldAssist.HasClearButton="True" LostFocus="DepartureDate_LostFocus" GotFocus="DepartureDate_GotFocus" 
+                        Style="{StaticResource MaterialDesignFloatingHintDatePicker}"  FontSize="16">
+                <DatePicker.BlackoutDates>
+                    <CalendarDateRange Start="{x:Static sys:DateTime.MinValue}" End="{x:Static sys:DateTime.Now}" />
+                </DatePicker.BlackoutDates>
+            </DatePicker>
             <Button x:Name="btnShow" Click="btnShow_Click" Grid.Column="3" VerticalAlignment="Top" Background="#673ab7" Margin="30 5 30 10">Show</Button>
         </Grid>
 

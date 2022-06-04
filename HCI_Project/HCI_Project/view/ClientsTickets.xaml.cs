@@ -55,7 +55,8 @@ namespace HCI_Project.view
                     DateTimeOfDepartureStr = $"{t.DepartureDate.ToShortDateString()} {departure.StartTime.ToShortTimeString()}",
                     Destination = $"{line.GetStartStation().Name} - {line.GetEndStation().Name}",
                     Price = line.Price,
-                    SeatStr = $"{seat.Row + 1}{Convert.ToChar(65 + seat.Column)} ({wagon.Class} class)",
+                    SeatStr = $"Seat:        {seat.Row + 1}{Convert.ToChar(65 + seat.Column)}",
+                    WagonStr = $"Wagon:   Number {wagon.Ordinal + 1} ({wagon.Class} class)"
                 };
                 Rows.Add(dto);
             }
@@ -70,5 +71,12 @@ namespace HCI_Project.view
         public double Price { get; set; }
         public string SeatStr { get; set; }
         public string WagonStr { get; set; }
+        public string SeatDetails 
+        { 
+            get
+            {
+                return $"{WagonStr}\n{SeatStr}";
+            } 
+        }
     }
 }

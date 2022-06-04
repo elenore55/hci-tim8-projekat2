@@ -298,7 +298,7 @@ namespace HCI_Project.view
                 DepartureDateTime = $"{DepartureDate.ToShortDateString()} {departureDTO.DepartureTimeStr}",
                 ArrivalDateTime = $"{DepartureDate.ToShortDateString()} {departureDTO.ArrivalTimeStr}",
                 Wagon = $"Number {Grid.GetRow(selectedWagon) + 1}, {selectedWagonClass} class",
-                Seat = $"{Grid.GetColumn(selectedSeat)}{Convert.ToChar(65 + Grid.GetRow(selectedSeat))}",
+                Seat = $"{Grid.GetColumn(selectedSeat) + 1}{Convert.ToChar(65 + Grid.GetRow(selectedSeat))}",
                 Price = $"{departureDTO.Price} EUR",
                 IsReservation = true
             };
@@ -316,7 +316,7 @@ namespace HCI_Project.view
                 DepartureDateTime = $"{DepartureDate.ToShortDateString()} {departureDTO.DepartureTimeStr}",
                 ArrivalDateTime = $"{DepartureDate.ToShortDateString()} {departureDTO.ArrivalTimeStr}",
                 Wagon = $"Number {Grid.GetRow(selectedWagon) + 1}, {selectedWagonClass} class",
-                Seat = $"{Grid.GetColumn(selectedSeat)}{Convert.ToChar(65 + Grid.GetRow(selectedSeat))}",
+                Seat = $"{Grid.GetColumn(selectedSeat) + 1}{Convert.ToChar(65 + Grid.GetRow(selectedSeat))}",
                 Price = $"{departureDTO.Price} EUR",
                 IsReservation = false
             };

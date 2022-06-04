@@ -28,7 +28,7 @@ namespace HCI_Project
         {
             InitializeComponent();
             rf = new RepositoryFactory();
-            // Populate(rf.StationRepository, rf.DepartureRepository, rf.LineRepository, rf.TrainRepository, rf.WagonRepository, rf.SeatRepository);
+            Populate(rf.StationRepository, rf.DepartureRepository, rf.LineRepository, rf.TrainRepository, rf.WagonRepository, rf.SeatRepository);
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -112,12 +112,15 @@ namespace HCI_Project
             {
                 for (int j = 0; j < 4; j++)
                 {
+                    long id = sr1.GetNextId();
+                    int wagonId = 1;
+                    if (id > 20) wagonId = 2;
                     Seat seat = new Seat()
                     {
-                        Id = sr1.GetNextId(),
+                        Id = id,
                         Row = i % 5,
                         Column = j,
-                        WagonId = 1
+                        WagonId = wagonId
                     };
                     sr1.Add(seat);
                 }

@@ -54,4 +54,13 @@
     <SeatId>31</SeatId>
     <DepartureId>3</DepartureId>
   </Reservation>
+  <Reservation>
+    <Id>7</Id>
+    <ReservationDateTime>2022-06-04T13:07:22.64654+02:00</ReservationDateTime>
+    <DepartureDate>2022-06-05T00:00:00</DepartureDate>
+    <IsActive>true</IsActive>
+    <ClientEmail>milica@gmail.com</ClientEmail>
+    <SeatId>26</SeatId>
+    <DepartureId>2</DepartureId>
+  </Reservation>
 </ArrayOfReservation>
