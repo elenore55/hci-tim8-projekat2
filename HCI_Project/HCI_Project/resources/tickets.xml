@@ -48,4 +48,12 @@
     <SeatId>18</SeatId>
     <DepartureId>3</DepartureId>
   </Ticket>
+  <Ticket>
+    <Id>7</Id>
+    <PurchaseDateTime>2022-06-03T13:37:17.3576578+02:00</PurchaseDateTime>
+    <DepartureDate>2022-06-04T00:00:00</DepartureDate>
+    <ClientEmail>milica@gmail.com</ClientEmail>
+    <SeatId>13</SeatId>
+    <DepartureId>3</DepartureId>
+  </Ticket>
 </ArrayOfTicket>

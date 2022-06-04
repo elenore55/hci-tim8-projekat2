@@ -22,26 +22,13 @@ namespace HCI_Project
     /// </summary>
     public partial class MainWindow : Window
     {
+        private RepositoryFactory rf;
+
         public MainWindow()
         {
             InitializeComponent();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            /*Client c = new Client()
-            {
-                Name = "Milica"
-            };
-            ClientRepository cr = new ClientRepository();
-            cr.Add(c);
-            DepartureRepository dr = new DepartureRepository();
-            WagonRepository wr = new WagonRepository();*/
-
-            RepositoryFactory rf = new RepositoryFactory();
-            Populate(rf.StationRepository, rf.DepartureRepository, rf.LineRepository, rf.TrainRepository, rf.WagonRepository, rf.SeatRepository);
-            Main.Content = new TicketPurchase(rf);
-            //Main.Content = new ClientsTickets(rf);
+            rf = new RepositoryFactory();
+            // Populate(rf.StationRepository, rf.DepartureRepository, rf.LineRepository, rf.TrainRepository, rf.WagonRepository, rf.SeatRepository);
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -231,6 +218,17 @@ namespace HCI_Project
             };
             lr.Add(l1);
             lr.Add(l2);
+        }
+
+
+        private void purchase_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Content = new TicketPurchase(rf);
+        }
+
+        private void tickets_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Content = new ClientsTickets(rf);
         }
     }
 }

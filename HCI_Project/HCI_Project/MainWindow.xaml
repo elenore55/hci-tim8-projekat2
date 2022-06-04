@@ -18,9 +18,19 @@
         Title="Railways Serbia" Height="800" Width="1300"
         Closing="Window_Closing">
     <Grid>
-        <StackPanel>
-            <Button Click="Button_Click">Page</Button>
-        </StackPanel>
-        <Frame NavigationUIVisibility="Hidden" x:Name="Main"></Frame>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <DockPanel Grid.Row="0">
+            <Menu DockPanel.Dock="Top" Background="#dcdcde" BorderThickness="1">
+                <MenuItem Header="Tickets">
+                    <MenuItem x:Name="purchase" Header="_Reserve or purchase" Click="purchase_Click"/>
+                    <MenuItem x:Name="tickets" Header="_My tickets" Click="tickets_Click"/>
+                    <MenuItem x:Name="reservations" Header="_My reservations"/>
+                </MenuItem>
+            </Menu>
+        </DockPanel>
+        <Frame Grid.Row="1" NavigationUIVisibility="Hidden" x:Name="MainFrame"></Frame>
     </Grid>
 </Window>

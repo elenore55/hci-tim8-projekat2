@@ -65,8 +65,7 @@ namespace HCI_Project.view
                     Content = $"Wagon {i}",
                     Background = (SolidColorBrush)new BrushConverter().ConvertFrom(GetWagonButtonColor(train.Wagons[i])),
                     Foreground = Brushes.Black,
-                    RenderTransform = new RotateTransform(90, 0, 0),
-                    Margin = new Thickness(0, 35, 0, 35),
+                    Margin = new Thickness(0, 10, 20, 10),
                     MinHeight = 40
                 };
                 wagonBtn.Click += new RoutedEventHandler(wagonBtn_Click);

@@ -31,9 +31,15 @@ namespace HCI_Project.view
             this.rf = rf;
             Rows = new List<TicketDTO>();
             DataContext = this;
+            DisplayTickets();
         }
 
         private void btnFilter_Click(object sender, RoutedEventArgs e)
+        {
+            DisplayTickets();
+        }
+
+        private void DisplayTickets()
         {
             List<Ticket> tickets = rf.TicketRepository.GetByClient(email);
             Rows.Clear();
@@ -43,8 +49,8 @@ namespace HCI_Project.view
                 Line line = rf.LineRepository.GetById(departure.LineId);
                 Seat seat = rf.SeatRepository.GetById(t.SeatId);
                 Wagon wagon = rf.WagonRepository.GetById(seat.WagonId);
-                TicketDTO dto = new TicketDTO() 
-                { 
+                TicketDTO dto = new TicketDTO()
+                {
                     DateTimeOfPurchaseStr = $"{t.PurchaseDateTime}",
                     DateTimeOfDepartureStr = $"{t.DepartureDate.ToShortDateString()} {departure.StartTime.ToShortTimeString()}",
                     Destination = $"{line.GetStartStation().Name} - {line.GetEndStation().Name}",
