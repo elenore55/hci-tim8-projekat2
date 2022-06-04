@@ -38,7 +38,7 @@ namespace HCI_Project
             List<Reservation> toDeactivate = new List<Reservation>();
             foreach (Reservation r in rf.ReservationRepository.GetAll())
             {
-                if ((DateTime.Now - r.DepartureDate).TotalDays < days)
+                if (r.IsActive && (r.DepartureDate - DateTime.Now).TotalDays < days)
                 {
                     r.IsActive = false;
                     toDeactivate.Add(r);

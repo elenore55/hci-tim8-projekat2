@@ -79,9 +79,9 @@
                     materialDesign:HintAssist.Hint="Pick end date" materialDesign:TextFieldAssist.HasClearButton="True"
                     Style="{StaticResource MaterialDesignFloatingHintDatePicker}"  FontSize="16"/>
             <Button x:Name="btnFilter" Grid.Column="3" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="40,5,30,20" 
-                    Background="#673ab7" Click="btnFilter_Click" FontSize="16">Filter</Button>
+                    Background="#3f51b5" Click="btnFilter_Click" FontSize="16">Filter</Button>
         </Grid>
-        <DataGrid Grid.Row="1" Name = "ticketsGrid" AlternatingRowBackground = "LightBlue" Margin="40 20 40 10" IsReadOnly="True"
+        <DataGrid Grid.Row="1" Name = "ticketsGrid" AlternatingRowBackground = "#c5cae9" Margin="40 20 40 10" IsReadOnly="True"
             AlternationCount = "2" AutoGenerateColumns = "False" ItemsSource="{Binding Rows, RelativeSource={RelativeSource AncestorType=Page}}"
             RowDetailsVisibilityMode="VisibleWhenSelected" SelectionMode="Single" FontSize="16">
             <DataGrid.Columns>

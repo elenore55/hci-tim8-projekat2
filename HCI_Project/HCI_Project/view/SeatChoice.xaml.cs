@@ -41,6 +41,7 @@ namespace HCI_Project.view
         private Button selectedWagon;
         private string selectedWagonClass = "";
         private DepartureDTO departureDTO;
+        private bool isReservationPossible;
 
         private readonly RepositoryFactory rf;
 
@@ -51,6 +52,8 @@ namespace HCI_Project.view
 
             this.rf = rf;
             this.departureDTO = departureDTO;
+
+            isReservationPossible = (date - DateTime.Now).TotalDays >= 3;
 
             Train train = departureDTO.Train;
             wagonsGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
@@ -90,7 +93,7 @@ namespace HCI_Project.view
                     }    
                 }
                 btn.Background = (SolidColorBrush)new BrushConverter().ConvertFrom(SELECTED);
-                btnReserve.IsEnabled = true;
+                btnReserve.IsEnabled = isReservationPossible;
                 btnPurchase.IsEnabled = true;
                 selectedSeat = btn;
             } 
