@@ -44,13 +44,18 @@ namespace HCI_Project.view
 
         private void btnShow_Click(object sender, RoutedEventArgs e)
         {
+            Display();
+        }
+
+        public void Display()
+        {
             string from = tbFrom.Text;
             string to = tbTo.Text;
             if (from == "" || to == "" || DepartureDate.SelectedDate == null)
             {
                 MessageBox.Show("You did not fill in the required information!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 MarkRed();
-            } 
+            }
             else
             {
                 List<Line> lines = rf.LineRepository.FilterLines(from, to);
@@ -172,7 +177,8 @@ namespace HCI_Project.view
             {
                 MessageBox.Show("Departure not selected", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            NavigationService.Navigate(new SeatChoice(MyRows[rowIndex], DepartureDate.SelectedDate.Value, rf));
+            SeatChoice sc = new SeatChoice(MyRows[rowIndex], DepartureDate.SelectedDate.Value, rf);
+            NavigationService.Navigate(sc);
         }
 
         private void dataGrid_Selected(object sender, RoutedEventArgs e)

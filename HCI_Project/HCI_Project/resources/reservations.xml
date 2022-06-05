@@ -11,4 +11,59 @@
     <StartStation>Stanica 1</StartStation>
     <EndStation>Stanica 3</EndStation>
   </Reservation>
+  <Reservation>
+    <Id>2</Id>
+    <ReservationDateTime>2022-06-05T19:03:42.8169879+02:00</ReservationDateTime>
+    <DepartureDate>2022-06-23T00:00:00</DepartureDate>
+    <IsActive>true</IsActive>
+    <ClientEmail>milica@gmail.com</ClientEmail>
+    <SeatId>29</SeatId>
+    <DepartureId>3</DepartureId>
+    <StartStation>Stanica 1</StartStation>
+    <EndStation>Stanica 2</EndStation>
+  </Reservation>
+  <Reservation>
+    <Id>3</Id>
+    <ReservationDateTime>2022-06-05T19:58:23.8741989+02:00</ReservationDateTime>
+    <DepartureDate>2022-06-24T00:00:00</DepartureDate>
+    <IsActive>true</IsActive>
+    <ClientEmail>milica@gmail.com</ClientEmail>
+    <SeatId>6</SeatId>
+    <DepartureId>3</DepartureId>
+    <StartStation>Stanica 1</StartStation>
+    <EndStation>Stanica 2</EndStation>
+  </Reservation>
+  <Reservation>
+    <Id>4</Id>
+    <ReservationDateTime>2022-06-05T20:02:42.2700888+02:00</ReservationDateTime>
+    <DepartureDate>2022-06-17T00:00:00</DepartureDate>
+    <IsActive>true</IsActive>
+    <ClientEmail>milica@gmail.com</ClientEmail>
+    <SeatId>25</SeatId>
+    <DepartureId>3</DepartureId>
+    <StartStation>Stanica 1</StartStation>
+    <EndStation>Stanica 2</EndStation>
+  </Reservation>
+  <Reservation>
+    <Id>5</Id>
+    <ReservationDateTime>2022-06-05T20:18:15.5139098+02:00</ReservationDateTime>
+    <DepartureDate>2022-06-19T00:00:00</DepartureDate>
+    <IsActive>true</IsActive>
+    <ClientEmail>milica@gmail.com</ClientEmail>
+    <SeatId>9</SeatId>
+    <DepartureId>2</DepartureId>
+    <StartStation>Stanica 1</StartStation>
+    <EndStation>Stanica 3</EndStation>
+  </Reservation>
+  <Reservation>
+    <Id>6</Id>
+    <ReservationDateTime>2022-06-05T20:18:24.4551469+02:00</ReservationDateTime>
+    <DepartureDate>2022-06-19T00:00:00</DepartureDate>
+    <IsActive>true</IsActive>
+    <ClientEmail>milica@gmail.com</ClientEmail>
+    <SeatId>22</SeatId>
+    <DepartureId>2</DepartureId>
+    <StartStation>Stanica 1</StartStation>
+    <EndStation>Stanica 3</EndStation>
+  </Reservation>
 </ArrayOfReservation>

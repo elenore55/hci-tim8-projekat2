@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using HCI_Project.repository;
 using WPFCustomMessageBox;
+using MaterialDesignThemes.Wpf;
 
 namespace HCI_Project.view
 {
@@ -40,9 +41,8 @@ namespace HCI_Project.view
         private Button selectedSeat;
         private Button selectedWagon;
         private string selectedWagonClass = "";
-        private DepartureDTO departureDTO;
-        private bool isReservationPossible;
-
+        private readonly DepartureDTO departureDTO;
+        private readonly bool isReservationPossible;
         private readonly RepositoryFactory rf;
 
         public SeatChoice(DepartureDTO departureDTO, DateTime date, RepositoryFactory rf)
@@ -52,32 +52,69 @@ namespace HCI_Project.view
 
             this.rf = rf;
             this.departureDTO = departureDTO;
-
             isReservationPossible = (date - DateTime.Now).TotalDays >= 3;
+            DepartureDate = date;
+            lblTrain.Content = departureDTO.Train.Name;
 
+            PopulateWagonsGrid();
+        }
+
+        private void PopulateWagonsGrid()
+        {
             Train train = departureDTO.Train;
             wagonsGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
-            foreach (Wagon w in train.Wagons)
+            for (int i = 0; i < train.Wagons.Count; i++)
             {
                 wagonsGrid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
             }
             for (int i = 0; i < train.Wagons.Count; i++)
             {
-                Button wagonBtn = new Button()
-                {
-                    Content = $"Wagon {i}",
-                    Background = (SolidColorBrush)new BrushConverter().ConvertFrom(GetWagonButtonColor(train.Wagons[i])),
-                    Foreground = Brushes.Black,
-                    Margin = new Thickness(0, 10, 20, 10),
-                    MinHeight = 40,
-                    ToolTip = "Click to select the wagon"
-                };
-                wagonBtn.Click += new RoutedEventHandler(wagonBtn_Click);
-                Grid.SetColumn(wagonBtn, 0);
-                Grid.SetRow(wagonBtn, i);
-                wagonsGrid.Children.Add(wagonBtn);
+                AddWagonButton(train, i);
             }
-            DepartureDate = date;
+        }
+
+        private void AddWagonButton(Train train, int i)
+        {
+            Button wagonBtn = new Button()
+            {
+                Background = (SolidColorBrush)new BrushConverter().ConvertFrom(GetWagonButtonColor(train.Wagons[i])),
+                Foreground = Brushes.Black,
+                Margin = new Thickness(0, 10, 20, 10),
+                MinHeight = 40,
+                ToolTip = "Click to select the wagon"
+            };
+            PackIcon icon = CreateStarIcon(train.Wagons[i]);
+            TextBlock content = new TextBlock() { Text = $"Wagon {i + 1}" };
+            Grid grid = CreateWagonButtonGrid(icon, content);
+            wagonBtn.Content = grid;
+            wagonBtn.Click += new RoutedEventHandler(wagonBtn_Click);
+            Grid.SetColumn(wagonBtn, 0);
+            Grid.SetRow(wagonBtn, i);
+            wagonsGrid.Children.Add(wagonBtn);
+        }
+
+        private PackIcon CreateStarIcon(Wagon wagon)
+        {
+            PackIcon icon = new PackIcon()
+            {
+                Kind = PackIconKind.Star,
+                VerticalAlignment = VerticalAlignment.Center,
+                Margin = new Thickness(-3, 0, 4, 0)
+            };
+            if (wagon.Class == WagonClass.Second) icon.Visibility = Visibility.Hidden;
+            return icon;
+        }
+
+        private Grid CreateWagonButtonGrid(PackIcon icon, TextBlock content)
+        {
+            Grid grid = new Grid();
+            grid.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
+            grid.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
+            Grid.SetColumn(icon, 0);
+            grid.Children.Add(icon);
+            Grid.SetColumn(content, 1);
+            grid.Children.Add(content);
+            return grid;
         }
 
         private void seatBtn_Click(object sender, RoutedEventArgs e)
@@ -92,18 +129,28 @@ namespace HCI_Project.view
                         child.Background = (SolidColorBrush)new BrushConverter().ConvertFrom(FREE);
                     }    
                 }
-                btn.Background = (SolidColorBrush)new BrushConverter().ConvertFrom(SELECTED);
-                btnReserve.IsEnabled = isReservationPossible;
-                btnPurchase.IsEnabled = true;
-                selectedSeat = btn;
+                SelectSeatButton(btn);
             } 
             else
             {
-                btn.Background = (SolidColorBrush)new BrushConverter().ConvertFrom(FREE);
-                btnReserve.IsEnabled = false;
-                btnPurchase.IsEnabled = false;
-                selectedSeat = null;
+                UnselectSeatButton(btn);
             }
+        }
+
+        private void SelectSeatButton(Button btn)
+        {
+            btn.Background = (SolidColorBrush)new BrushConverter().ConvertFrom(SELECTED);
+            btnReserve.IsEnabled = isReservationPossible;
+            btnPurchase.IsEnabled = true;
+            selectedSeat = btn;
+        }
+
+        private void UnselectSeatButton(Button btn)
+        {
+            btn.Background = (SolidColorBrush)new BrushConverter().ConvertFrom(FREE);
+            btnReserve.IsEnabled = false;
+            btnPurchase.IsEnabled = false;
+            selectedSeat = null;
         }
 
         private void wagonBtn_Click(object sender, RoutedEventArgs e)
@@ -111,6 +158,28 @@ namespace HCI_Project.view
             Button btn = sender as Button;
             if (btn == selectedWagon) return;
             Wagon wagon = departureDTO.Train.Wagons[Grid.GetRow(btn)];
+            MarkWagonSelected(wagon, btn);
+            UnselectPreviousWagon();
+
+            selectedWagon = btn;
+            trainBorder.BorderThickness = new Thickness(2, 2, 2, 2);
+            NumberOfRows = wagon.Rows;
+            NumberOfColumns = wagon.SeatsPerRow;
+
+            UpdateSeatsGrid();
+            UpdateNumerationsGrid();
+            AddSeatButtons(wagon);
+            AddNumerations();
+
+            Grid.SetColumnSpan(trainBorder, NumberOfRows);
+            Grid.SetRowSpan(trainBorder, NumberOfColumns);
+        }
+
+        private void MarkWagonSelected(Wagon wagon, Button btn)
+        {   
+            lblWagonName.Content = $"Wagon {wagon.Ordinal + 1} - {wagon.Class} class";
+            lblWagonName.Visibility = Visibility.Visible;
+            lblSeatChoice.Visibility = Visibility.Visible;
             selectedWagonClass = wagon.Class.ToString();
             if (wagon.Class == WagonClass.First)
             {
@@ -120,6 +189,10 @@ namespace HCI_Project.view
             {
                 btn.Background = (SolidColorBrush)new BrushConverter().ConvertFrom(SECOND_CLASS_SELECTED);
             }
+        }
+
+        private void UnselectPreviousWagon()
+        {
             if (selectedWagon != null)
             {
                 Wagon prev = departureDTO.Train.Wagons[Grid.GetRow(selectedWagon)];
@@ -132,17 +205,13 @@ namespace HCI_Project.view
                     selectedWagon.Background = (SolidColorBrush)new BrushConverter().ConvertFrom(SECOND_CLASS);
                 }
             }
-            selectedWagon = btn;
-            trainBorder.BorderThickness = new Thickness(2, 2, 2, 2);
-            NumberOfRows = wagon.Rows;
-            NumberOfColumns = wagon.SeatsPerRow;
-            List<Seat> seats = wagon.Seats;
+        }
+
+        private void UpdateSeatsGrid()
+        {
             seatsGrid.ColumnDefinitions.Clear();
             seatsGrid.RowDefinitions.Clear();
             seatsGrid.Children.Clear();
-            numerationGrid.ColumnDefinitions.Clear();
-            numerationGrid.RowDefinitions.Clear();
-
             for (int i = 0; i < NumberOfRows; i++)
             {
                 var colDef = new ColumnDefinition
@@ -159,7 +228,12 @@ namespace HCI_Project.view
                 };
                 seatsGrid.RowDefinitions.Add(rowDef);
             }
+        }
 
+        private void UpdateNumerationsGrid()
+        {
+            numerationGrid.ColumnDefinitions.Clear();
+            numerationGrid.RowDefinitions.Clear();
             for (int i = 0; i <= NumberOfRows; i++)
             {
                 var colDef = new ColumnDefinition
@@ -176,8 +250,11 @@ namespace HCI_Project.view
                 };
                 numerationGrid.RowDefinitions.Add(rowDef);
             }
+        }
 
-            foreach (Seat seat in seats)
+        private void AddSeatButtons(Wagon wagon)
+        {
+            foreach (Seat seat in wagon.Seats)
             {
                 Button seatBtn = new Button()
                 {
@@ -196,14 +273,23 @@ namespace HCI_Project.view
                 Grid.SetRow(seatBtn, seat.Column);
                 seatsGrid.Children.Add(seatBtn);
             }
+        }
 
+        private void AddNumerations()
+        {
+            AddVerticalNumerations();
+            AddHorizontalNumerations();
+        }
+
+        private void AddVerticalNumerations()
+        {
             for (int i = 0; i < NumberOfColumns; i++)
             {
                 Label lbl = new Label()
                 {
                     Content = Convert.ToChar(65 + i).ToString(),
                     FontSize = 20,
-                    Margin = GetMargin(i),
+                    Margin = GetLabelMargin(i),
                     VerticalAlignment = VerticalAlignment.Bottom,
                     Padding = new Thickness(0, 0, 0, 0)
                 };
@@ -211,6 +297,10 @@ namespace HCI_Project.view
                 Grid.SetColumn(lbl, 0);
                 numerationGrid.Children.Add(lbl);
             }
+        }
+
+        private void AddHorizontalNumerations()
+        {
             for (int i = 0; i < NumberOfRows; i++)
             {
                 Label lbl = new Label()
@@ -226,8 +316,6 @@ namespace HCI_Project.view
                 Grid.SetRow(lbl, 0);
                 numerationGrid.Children.Add(lbl);
             }
-            Grid.SetColumnSpan(trainBorder, 5);
-            Grid.SetRowSpan(trainBorder, 4);
         }
 
         private Thickness GetMargin(int j)
@@ -236,19 +324,21 @@ namespace HCI_Project.view
             int bottom = 5;
             int left = 5;
             int right = 5;
-            if (j == NumberOfRows / 2 - 1) bottom = 20;
-            if (j == NumberOfRows / 2) top = 20;
+            if (j == NumberOfColumns / 2 - 1) bottom = 20;
+            if (j == NumberOfColumns / 2) top = 20;
             return new Thickness(left, top, right, bottom);
         }
 
         private Thickness GetLabelMargin(int j)
         {
-            int top = 5;
-            int bottom = 0;
-            int left = 0;
+            int top = 2;
+            int bottom = 2;
+            int left = 5;
             int right = 7;
-            if (j == 0) top = 12;
-            if (j == NumberOfRows / 2) top = 20;
+            if (j == 0) top = 5;
+            if (j == NumberOfColumns / 2 - 1) bottom = 35;
+            if (j == NumberOfColumns / 2) top = 0;
+            if (j == NumberOfColumns - 1) bottom = 17;
             return new Thickness(left, top, right, bottom);
         }
 
@@ -378,6 +468,18 @@ namespace HCI_Project.view
             selectedSeat.IsEnabled = false;
             btnReserve.IsEnabled = false;
             btnPurchase.IsEnabled = false;
+        }
+
+        private void btnBack_Click(object sender, RoutedEventArgs e)
+        {
+            string start = departureDTO.Line.Stations[departureDTO.StartIndex].Name;
+            string end = departureDTO.Line.Stations[departureDTO.EndIndex].Name;
+            TicketPurchase tp = new TicketPurchase(rf);
+            tp.tbFrom.Text = start;
+            tp.tbTo.Text = end;
+            tp.DepartureDate.SelectedDate = DepartureDate;
+            tp.Display();
+            NavigationService.Navigate(tp);
         }
     }
 }

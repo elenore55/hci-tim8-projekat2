@@ -42,7 +42,11 @@ namespace HCI_Project.view
 
         private void DisplayReservations()
         {
-            List<Reservation> reservations = rf.ReservationRepository.GetByClient(email);
+            DateTime start = DateTime.MinValue;
+            DateTime end = DateTime.MaxValue;
+            if (startDatePick.SelectedDate != null) start = startDatePick.SelectedDate.Value;
+            if (endDatePick.SelectedDate != null) end = endDatePick.SelectedDate.Value;
+            List<Reservation> reservations = rf.ReservationRepository.GetByClient(email, start, end);
             Rows.Clear();
             foreach (Reservation r in reservations)
             {

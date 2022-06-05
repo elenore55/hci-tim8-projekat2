@@ -3,7 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:HCI_Project.view;assembly=HCI_Project"
+      xmlns:local="clr-namespace:HCI_Project.view;assembly=HCI_Project" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="SeatChoice">
@@ -11,37 +11,65 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
+
+        <Button Grid.Row="0" HorizontalAlignment="Left" x:Name="btnBack" Click="btnBack_Click" Margin="3,3,0,0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <materialDesign:PackIcon  Grid.Column="0" VerticalAlignment="Center" Kind="ArrowLeft" Margin="-3,0,0,0"/>
+                <TextBlock Grid.Column="1" Margin="5,0,0,0">Back to search</TextBlock>
+            </Grid>
+        </Button>
+
+        <Label x:Name="lblTrain" Grid.Row="1" Margin="0,0,0,20" FontSize="23" FontWeight="Bold" HorizontalAlignment="Center"></Label>
         
-        <Label Grid.Row="0" Margin="0,40,0,10" FontSize="22" FontWeight="Bold" HorizontalAlignment="Center">Please choose a seat</Label>
-        
-        <Grid Grid.Row="1" Margin="20,20,20,20">
+        <Grid Grid.Row="2" Margin="20,20,20,20">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="5"/>
                 <ColumnDefinition Width="3*"/>
             </Grid.ColumnDefinitions>
-            <Grid Grid.Column="0" x:Name="wagonsGrid" Margin="150,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Grid Grid.Column="0" HorizontalAlignment="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Label FontSize="22" HorizontalAlignment="Center">Choose a wagon</Label>
+                <Grid Grid.Row="1" x:Name="wagonsGrid" Margin="20,30,0,0" HorizontalAlignment="Center" VerticalAlignment="Top">
 
+                </Grid>
             </Grid>
             <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch" />
-            <Grid Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Grid.Resources >
-                    <Style TargetType="Border" >
-                        <Setter Property="Padding" Value="7,7,7,7" />
-                    </Style>
-                </Grid.Resources>
-                <Grid x:Name="numerationGrid" Grid.Row="0" Grid.Column="0">
-                    <Border x:Name="trainBorder" Grid.Row="1" Grid.Column="1" BorderBrush="#343440" BorderThickness="0" CornerRadius="10">
-                        <Grid x:Name="seatsGrid"  HorizontalAlignment="Center" VerticalAlignment="Center">
-                        </Grid>
-                    </Border>
+            <Grid Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" x:Name="lblWagonName" FontSize="22" FontWeight="Bold" Visibility="Hidden" HorizontalAlignment="Center" Margin="0,0,0,20"></Label>
+                <Label Grid.Row="1" x:Name="lblSeatChoice" FontSize="22" Visibility="Hidden" HorizontalAlignment="Center">Choose a seat</Label>
+                <Grid Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Grid.Resources >
+                        <Style TargetType="Border" >
+                            <Setter Property="Padding" Value="7,7,7,7" />
+                        </Style>
+                    </Grid.Resources>
+                    <Grid x:Name="numerationGrid" Grid.Row="0" Grid.Column="0" Margin="0,-40,0,0">
+                        <Border x:Name="trainBorder" Grid.Row="1" Grid.Column="1" BorderBrush="#343440" BorderThickness="0" CornerRadius="10">
+                            <Grid x:Name="seatsGrid"  HorizontalAlignment="Center" VerticalAlignment="Center">
+                            </Grid>
+                        </Border>
+                    </Grid>
                 </Grid>
             </Grid>
         </Grid>
-        <Grid Grid.Row="2">
+        <Grid Grid.Row="3">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />

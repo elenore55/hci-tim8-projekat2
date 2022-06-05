@@ -30,4 +30,34 @@
     <StartStation>Stanica 1</StartStation>
     <EndStation>Stanica 3</EndStation>
   </Ticket>
+  <Ticket>
+    <Id>4</Id>
+    <PurchaseDateTime>2022-06-05T19:04:02.4685821+02:00</PurchaseDateTime>
+    <DepartureDate>2022-06-23T00:00:00</DepartureDate>
+    <ClientEmail>milica@gmail.com</ClientEmail>
+    <SeatId>39</SeatId>
+    <DepartureId>3</DepartureId>
+    <StartStation>Stanica 1</StartStation>
+    <EndStation>Stanica 2</EndStation>
+  </Ticket>
+  <Ticket>
+    <Id>5</Id>
+    <PurchaseDateTime>2022-06-05T20:02:46.0652635+02:00</PurchaseDateTime>
+    <DepartureDate>2022-06-17T00:00:00</DepartureDate>
+    <ClientEmail>milica@gmail.com</ClientEmail>
+    <SeatId>34</SeatId>
+    <DepartureId>3</DepartureId>
+    <StartStation>Stanica 1</StartStation>
+    <EndStation>Stanica 2</EndStation>
+  </Ticket>
+  <Ticket>
+    <Id>6</Id>
+    <PurchaseDateTime>2022-06-05T20:18:18.6060912+02:00</PurchaseDateTime>
+    <DepartureDate>2022-06-19T00:00:00</DepartureDate>
+    <ClientEmail>milica@gmail.com</ClientEmail>
+    <SeatId>19</SeatId>
+    <DepartureId>2</DepartureId>
+    <StartStation>Stanica 1</StartStation>
+    <EndStation>Stanica 3</EndStation>
+  </Ticket>
 </ArrayOfTicket>

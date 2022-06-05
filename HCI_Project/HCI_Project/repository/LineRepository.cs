@@ -23,7 +23,8 @@ namespace HCI_Project.repository
                     if (s.Name == from)
                     {
                         startFound = true;
-                    } else if (s.Name == to && startFound)
+                    }
+                    else if (s.Name == to && startFound)
                     {
                         endFound = true;
                         break;

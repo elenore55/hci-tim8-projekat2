@@ -105,12 +105,13 @@
         </DataGrid>
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" HorizontalAlignment="Right" Content="Purchase ticket" x:Name="btnPurchase" Click="btnPurchase_Click" 
-                Margin="15,15,20,20" IsEnabled="False" FontSize="18" ToolTip="Click to purchase reserved ticket" MinHeight="40"></Button>
-            <Button Grid.Column="1" HorizontalAlignment="Right" Content="Cancel reservation" x:Name="btnCancel" Click="btnCancel_Click" 
+            <Button Grid.Column="1" HorizontalAlignment="Right" Content="Purchase ticket" x:Name="btnPurchase" Click="btnPurchase_Click" 
+                Margin="15,15,5,20" IsEnabled="False" FontSize="18" ToolTip="Click to purchase reserved ticket" MinHeight="40"></Button>
+            <Button Grid.Column="2" HorizontalAlignment="Right" Content="Cancel reservation" x:Name="btnCancel" Click="btnCancel_Click" 
                 Margin="15,15,20,20" IsEnabled="False" FontSize="18" ToolTip="Click to cancel reservation" MinHeight="40"></Button>
         </Grid>
     </Grid>

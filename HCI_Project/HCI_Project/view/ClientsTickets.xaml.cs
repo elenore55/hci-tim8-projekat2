@@ -42,7 +42,11 @@ namespace HCI_Project.view
 
         private void DisplayTickets()
         {
-            List<Ticket> tickets = rf.TicketRepository.GetByClient(email);
+            DateTime start = DateTime.MinValue;
+            DateTime end = DateTime.MaxValue;
+            if (startDatePick.SelectedDate != null) start = startDatePick.SelectedDate.Value;
+            if (endDatePick.SelectedDate != null) end = endDatePick.SelectedDate.Value;
+            List<Ticket> tickets = rf.TicketRepository.GetByClient(email, start, end);
             Rows.Clear();
             foreach (Ticket t in tickets)
             {
