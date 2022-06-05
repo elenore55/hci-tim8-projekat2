@@ -49,8 +49,10 @@ namespace HCI_Project.view
 
         public void Display()
         {
+            ValidateStationInputs();
             string from = tbFrom.Text;
             string to = tbTo.Text;
+
             if (from == "" || to == "" || DepartureDate.SelectedDate == null)
             {
                 MessageBox.Show("You did not fill in the required information!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -92,16 +94,34 @@ namespace HCI_Project.view
                         Departures.Add(dpt);
                     }
                 }
-                if (MyRows.Count > 0)
-                {
-                    dataGrid.Visibility = Visibility.Visible;
-                    lblNoResults.Visibility = Visibility.Hidden;
-                }
-                else
-                {
-                    dataGrid.Visibility = Visibility.Hidden;
-                    lblNoResults.Visibility = Visibility.Visible;
-                }
+                SetDataGridVisibility();
+            }
+        }
+
+        private void ValidateStationInputs()
+        {
+            bool isValidStart = false;
+            bool isValidEnd = false;
+            foreach (Station s in rf.StationRepository.GetAll())
+            {
+                if (s.Name == tbFrom.Text) isValidStart = true;
+                else if (s.Name == tbTo.Text) isValidEnd = true;
+            }
+            if (!isValidStart) tbFrom.Text = "";
+            if (!isValidEnd) tbTo.Text = "";
+        }
+
+        private void SetDataGridVisibility()
+        {
+            if (MyRows.Count > 0)
+            {
+                dataGrid.Visibility = Visibility.Visible;
+                lblNoResults.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                dataGrid.Visibility = Visibility.Hidden;
+                lblNoResults.Visibility = Visibility.Visible;
             }
         }
 

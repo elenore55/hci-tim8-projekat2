@@ -117,45 +117,37 @@
             </Grid.ColumnDefinitions>
 
             <materialDesign:ColorZone x:Name="tbFromBorder" Grid.Column="0" VerticalAlignment="Top" Mode="Standard" Padding="8 4 8 4" CornerRadius="8" Margin="30 5 30 10" materialDesign:ShadowAssist.ShadowDepth="Depth2">
-                <Grid>
+                <Grid MinHeight="30">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <Button Style="{StaticResource MaterialDesignToolButton}" Grid.Column="0" VerticalAlignment="Center">
-                        <materialDesign:PackIcon
-                            Kind="Search"
-                            Opacity=".56"/>
-                    </Button>
+                    <materialDesign:PackIcon  Grid.Column="0" Kind="Search" Opacity=".56" VerticalAlignment="Center" Margin="2,0,5,0"/>
                     <content:AutoCompleteBox Grid.Column="1" VerticalAlignment="Center" x:Name="tbFrom" FilterMode="Contains" ToolTip="Type to search for the starting destination"
                                              Background="{Binding Path=Background, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Page}}}" Style="{StaticResource AutoCompleteBoxStyle}" 
-                                             BorderThickness="0" Placeholder="Search destination.." GotFocus="tbFrom_GotFocus" LostFocus="tbFrom_LostFocus" FontSize="16" />
+                                             BorderThickness="0" Placeholder="Search destination.." GotFocus="tbFrom_GotFocus" LostFocus="tbFrom_LostFocus" FontSize="16"/>
                 </Grid>
             </materialDesign:ColorZone>
             <materialDesign:ColorZone x:Name="tbToBorder" Grid.Column="1" VerticalAlignment="Top" Mode="Standard" Padding="8 4 8 4" CornerRadius="8" Margin="30 5 30 10" materialDesign:ShadowAssist.ShadowDepth="Depth2">
-                <Grid>
+                <Grid MinHeight="30">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <Button Style="{StaticResource MaterialDesignToolButton}" Grid.Column="0" VerticalAlignment="Top">
-                        <materialDesign:PackIcon
-                                Kind="Search"
-                                Opacity=".56"/>
-                    </Button>
+                    <materialDesign:PackIcon Grid.Column="0" VerticalAlignment="Center" Kind="Search" Opacity=".56" Margin="2,0,5,0"/>
                     <content:AutoCompleteBox Grid.Column="1" VerticalAlignment="Center" x:Name="tbTo" FilterMode="Contains" ToolTip="Type to search for the final destination"
                                              Background="{Binding Path=Background, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Page}}}" Style="{StaticResource AutoCompleteBoxStyle}" 
-                                             BorderThickness="0" GotFocus="tbTo_GotFocus" LostFocus="tbTo_LostFocus" Placeholder="Search destination.." FontSize="16" />
+                                             BorderThickness="0" GotFocus="tbTo_GotFocus" LostFocus="tbTo_LostFocus" Placeholder="Search destination.." FontSize="16"/>
                 </Grid>
             </materialDesign:ColorZone>
             <DatePicker Margin="30 5 30 10" x:Name="DepartureDate" Grid.Column="2" VerticalAlignment="Top" materialDesign:HintAssist.Hint="Pick Date of departure"
-                        materialDesign:TextFieldAssist.HasClearButton="True" LostFocus="DepartureDate_LostFocus" GotFocus="DepartureDate_GotFocus" 
+                        materialDesign:TextFieldAssist.HasClearButton="True" LostFocus="DepartureDate_LostFocus" GotFocus="DepartureDate_GotFocus"
                         Style="{StaticResource MaterialDesignFloatingHintDatePicker}" FontSize="16" ToolTip="Click the icon to pick date of departure">
                 <DatePicker.BlackoutDates>
                     <CalendarDateRange x:Name="blackoutRange" Start="{x:Static sys:DateTime.MinValue}" />
                 </DatePicker.BlackoutDates>
             </DatePicker>
-            <Button x:Name="btnShow" Click="btnShow_Click" Grid.Column="3" VerticalAlignment="Top" Background="#3f51b5" 
+            <Button x:Name="btnShow" Click="btnShow_Click" Grid.Column="3" VerticalAlignment="Top" Background="#3f51b5"
                     Margin="40,7,40,10" ToolTip="Click to show available departures" FontSize="18" MinHeight="40">Show</Button>
         </Grid>
         <Label Grid.Row="2" x:Name="lblNoResults" FontSize="24" HorizontalAlignment="Center" Visibility="Hidden" Margin="40,20,40,10">Selected stations are not connected</Label>
