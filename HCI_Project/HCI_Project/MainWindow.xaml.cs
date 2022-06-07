@@ -1,6 +1,8 @@
 ﻿using HCI_Project.model;
 using HCI_Project.repository;
+using HCI_Project.utils;
 using HCI_Project.view;
+using Microsoft.Maps.MapControl.WPF;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +24,7 @@ namespace HCI_Project
     /// </summary>
     public partial class MainWindow : Window
     {
+        private string BingMapsKey = "AinQ9hRJn7QhWLbnmUvC6OJ9RvqMuOWGDRkvSqOf5MUgrvbkmFHxHNg6aIjno0CM";
         public MainWindow()
         {
             InitializeComponent();
@@ -42,7 +45,7 @@ namespace HCI_Project
             LineRepository lineRepository = new LineRepository();
             DepartureRepository departureRepository = new DepartureRepository();
             // Populate(stationRepository, departureRepository, lineRepository);
-            Main.Content = new TicketPurchase(stationRepository, lineRepository);
+            Main.Content = new TrainLineCreation();
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -56,57 +59,43 @@ namespace HCI_Project
             {
                 Id = sr.GetNextId(),
                 Name = "Stanica 1",
-                Coords = new model.Point() { X = 3, Y = 5 },
-                Type = StationType.Start,
-                LineId = 1
+                Coords = new System.Windows.Point { X = 3, Y = 5 }
             };
             Station s2 = new Station()
             {
                 Id = sr.GetNextId(),
                 Name = "Stanica 2",
-                Coords = new model.Point() { X = 5, Y = 5 },
-                Type = StationType.Middle,
-                LineId = 1
+                Coords = new System.Windows.Point { X = 5, Y = 5 }
             };
             Station s3 = new Station()
             {
                 Id = sr.GetNextId(),
                 Name = "Stanica 3",
-                Coords = new model.Point() { X = 10, Y = 10 },
-                Type = StationType.End,
-                LineId = 1
+                Coords = new System.Windows.Point { X = 10, Y = 10 }
             };
             Station s4 = new Station()
             {
                 Id = sr.GetNextId(),
                 Name = "Stanica 4",
-                Coords = new model.Point() { X = 6, Y = 5 },
-                Type = StationType.Start,
-                LineId = 2
+                Coords = new System.Windows.Point { X = 6, Y = 5 }
             };
             Station s5 = new Station()
             {
                 Id = sr.GetNextId(),
                 Name = "Stanica 5",
-                Coords = new model.Point() { X = 6, Y = 5 },
-                Type = StationType.Middle,
-                LineId = 2
+                Coords = new System.Windows.Point { X = 6, Y = 5 }
             };
             Station s7 = new Station()
             {
                 Id = sr.GetNextId(),
                 Name = "Stanica 7",
-                Coords = new model.Point() { X = 6, Y = 55 },
-                Type = StationType.Middle,
-                LineId = 2
+                Coords = new System.Windows.Point { X = 6, Y = 55 }
             };
             Station s6 = new Station()
             {
                 Id = sr.GetNextId(),
                 Name = "Stanica 6",
-                Coords = new model.Point() { X = 15, Y = 10 },
-                Type = StationType.End,
-                LineId = 2
+                Coords = new System.Windows.Point { X = 15, Y = 10 }
             };
             sr.Add(s1);
             sr.Add(s2);

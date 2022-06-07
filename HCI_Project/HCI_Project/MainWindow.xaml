@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
         xmlns:local="clr-namespace:HCI_Project"
         mc:Ignorable="d"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
@@ -16,11 +17,25 @@
         FontFamily="{DynamicResource MaterialDesignFont}"
         WindowStartupLocation="CenterScreen"
         Title="MainWindow" Height="800" Width="1300"
-        Closing="Window_Closing">
+        Closing="Window_Closing"
+        DataContext="{Binding RelativeSource={RelativeSource Self}}">
+
+    <Window.Resources>
+        <ControlTemplate x:Key="CustomPushpinTemplate" TargetType="m:Pushpin">
+            <Rectangle Height="18">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource= "/HCI_Project;component/train.png">
+                    </ImageBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+        </ControlTemplate>
+    </Window.Resources>
     <Grid>
-        <StackPanel>
-            <Button Click="Button_Click">Page</Button>
-        </StackPanel>
+        <DockPanel>
+            <StackPanel DockPanel.Dock="Top">
+                <Button Click="Button_Click">Page</Button>
+            </StackPanel>
+        </DockPanel>
         <Frame x:Name="Main"></Frame>
     </Grid>
 </Window>
