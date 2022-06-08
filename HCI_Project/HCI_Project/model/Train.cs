@@ -8,6 +8,7 @@ namespace HCI_Project.model
 {
     public class Train : Serializable
     {
+        public string Name { get; set; }
         public List<Wagon> Wagons { get; set; }
     }
 }

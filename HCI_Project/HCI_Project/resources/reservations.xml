@@ -1,3 +1,91 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <ArrayOfReservation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Reservation>
+    <Id>1</Id>
+    <ReservationDateTime>2022-06-04T23:25:34.5929472+02:00</ReservationDateTime>
+    <DepartureDate>2022-06-10T00:00:00</DepartureDate>
+    <IsActive>false</IsActive>
+    <ClientEmail>milica@gmail.com</ClientEmail>
+    <SeatId>14</SeatId>
+    <DepartureId>1</DepartureId>
+    <StartStation>Stanica 1</StartStation>
+    <EndStation>Stanica 3</EndStation>
+  </Reservation>
+  <Reservation>
+    <Id>2</Id>
+    <ReservationDateTime>2022-06-05T19:03:42.8169879+02:00</ReservationDateTime>
+    <DepartureDate>2022-06-23T00:00:00</DepartureDate>
+    <IsActive>true</IsActive>
+    <ClientEmail>milica@gmail.com</ClientEmail>
+    <SeatId>29</SeatId>
+    <DepartureId>3</DepartureId>
+    <StartStation>Stanica 1</StartStation>
+    <EndStation>Stanica 2</EndStation>
+  </Reservation>
+  <Reservation>
+    <Id>3</Id>
+    <ReservationDateTime>2022-06-05T19:58:23.8741989+02:00</ReservationDateTime>
+    <DepartureDate>2022-06-24T00:00:00</DepartureDate>
+    <IsActive>true</IsActive>
+    <ClientEmail>milica@gmail.com</ClientEmail>
+    <SeatId>6</SeatId>
+    <DepartureId>3</DepartureId>
+    <StartStation>Stanica 1</StartStation>
+    <EndStation>Stanica 2</EndStation>
+  </Reservation>
+  <Reservation>
+    <Id>5</Id>
+    <ReservationDateTime>2022-06-05T20:18:15.5139098+02:00</ReservationDateTime>
+    <DepartureDate>2022-06-19T00:00:00</DepartureDate>
+    <IsActive>true</IsActive>
+    <ClientEmail>milica@gmail.com</ClientEmail>
+    <SeatId>9</SeatId>
+    <DepartureId>2</DepartureId>
+    <StartStation>Stanica 1</StartStation>
+    <EndStation>Stanica 3</EndStation>
+  </Reservation>
+  <Reservation>
+    <Id>6</Id>
+    <ReservationDateTime>2022-06-05T20:18:24.4551469+02:00</ReservationDateTime>
+    <DepartureDate>2022-06-19T00:00:00</DepartureDate>
+    <IsActive>true</IsActive>
+    <ClientEmail>milica@gmail.com</ClientEmail>
+    <SeatId>22</SeatId>
+    <DepartureId>2</DepartureId>
+    <StartStation>Stanica 1</StartStation>
+    <EndStation>Stanica 3</EndStation>
+  </Reservation>
+  <Reservation>
+    <Id>7</Id>
+    <ReservationDateTime>2022-06-07T11:19:22.1529028+02:00</ReservationDateTime>
+    <DepartureDate>2022-06-17T00:00:00</DepartureDate>
+    <IsActive>true</IsActive>
+    <ClientEmail>milica@gmail.com</ClientEmail>
+    <SeatId>2</SeatId>
+    <DepartureId>3</DepartureId>
+    <StartStation>Stanica 1</StartStation>
+    <EndStation>Stanica 3</EndStation>
+  </Reservation>
+  <Reservation>
+    <Id>8</Id>
+    <ReservationDateTime>2022-06-08T08:19:06.6859202+02:00</ReservationDateTime>
+    <DepartureDate>2022-06-16T00:00:00</DepartureDate>
+    <IsActive>true</IsActive>
+    <ClientEmail>milica@gmail.com</ClientEmail>
+    <SeatId>46</SeatId>
+    <DepartureId>3</DepartureId>
+    <StartStation>Stanica 1</StartStation>
+    <EndStation>Stanica 3</EndStation>
+  </Reservation>
+  <Reservation>
+    <Id>9</Id>
+    <ReservationDateTime>2022-06-08T10:17:54.5068768+02:00</ReservationDateTime>
+    <DepartureDate>2022-06-30T00:00:00</DepartureDate>
+    <IsActive>true</IsActive>
+    <ClientEmail>milica@gmail.com</ClientEmail>
+    <SeatId>7</SeatId>
+    <DepartureId>3</DepartureId>
+    <StartStation>Stanica 1</StartStation>
+    <EndStation>Stanica 2</EndStation>
+  </Reservation>
 </ArrayOfReservation>

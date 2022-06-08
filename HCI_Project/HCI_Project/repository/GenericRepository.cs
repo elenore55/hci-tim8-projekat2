@@ -18,6 +18,13 @@ namespace HCI_Project.repository
             objects = new List<T>();
         }
 
+        public void ClearAll()
+        {
+            objects.Clear();
+            SaveAll();
+            generator = 0;
+        }
+
         public List<T> GetAll()
         {
             return objects;
@@ -82,6 +89,13 @@ namespace HCI_Project.repository
                     generator = obj.Id;
                 }
             }
+        }
+
+        public void Update(T obj)
+        {
+            int index = objects.FindIndex(x => x.Id == obj.Id);
+            if (index != -1) objects[index] = obj;
+            SaveAll();
         }
     }
 }

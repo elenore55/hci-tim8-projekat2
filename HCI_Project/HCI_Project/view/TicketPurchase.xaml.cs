@@ -23,51 +23,105 @@ namespace HCI_Project.view
     public partial class TicketPurchase : Page
     {
         public List<string> StationNames { get; set; }
-        private StationRepository stationRepository;
-        private LineRepository lineRepository;
+        private readonly RepositoryFactory rf;
         public ObservableCollection<DepartureDTO> MyRows { get; set; }
+        public List<Departure> Departures { get; set; }
 
-        public TicketPurchase(StationRepository stationRepository, LineRepository lineRepository)
+        public TicketPurchase(RepositoryFactory rf)
         {
             InitializeComponent();
-            this.stationRepository = stationRepository;
-            this.lineRepository = lineRepository;
-            List<Station> stations = stationRepository.GetAll();
+            this.rf = rf;
+            DataContext = this;
+
+            List<Station> stations = rf.StationRepository.GetAll();
             StationNames = (from s in stations select s.Name).ToList();
             tbFrom.ItemsSource = StationNames;
             tbTo.ItemsSource = StationNames;
             MyRows = new ObservableCollection<DepartureDTO>();
-
-            DataContext = this;
+            Departures = new List<Departure>();
+            blackoutRange.End = DateTime.Now.AddDays(-1);
         }
 
         private void btnShow_Click(object sender, RoutedEventArgs e)
         {
+            Display();
+        }
+
+        public void Display()
+        {
+            ValidateStationInputs();
             string from = tbFrom.Text;
             string to = tbTo.Text;
+
             if (from == "" || to == "" || DepartureDate.SelectedDate == null)
             {
                 MessageBox.Show("You did not fill in the required information!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 MarkRed();
-            } 
+            }
             else
             {
-                DateTime departureDate = DepartureDate.SelectedDate.GetValueOrDefault();
-                List<Line> lines = lineRepository.FilterLines(from, to);
+                List<Line> lines = rf.LineRepository.FilterLines(from, to);
                 MyRows.Clear();
+                Departures.Clear();
                 foreach (Line line in lines)
                 {
+                    int startIndex = 0;
+                    int endIndex = line.Stations.Count - 1;
+                    for (int i = 0; i < line.Stations.Count; i++)
+                    {
+                        if (line.Stations[i].Name == from)
+                        {
+                            startIndex = i;
+                        }
+                        else if (line.Stations[i].Name == to)
+                        {
+                            endIndex = i;
+                            break;
+                        }
+                    }
                     foreach (Departure dpt in line.Departures)
                     {
                         DepartureDTO dto = new DepartureDTO()
                         {
-                            DepartureTimeStr = dpt.StartTime.ToShortTimeString(),
-                            ArrivalTimeStr = DateTime.Now.ToShortTimeString(),
-                            Price = lineRepository.GetById(dpt.LineId).Price
+                            Id = dpt.Id,
+                            StartIndex = startIndex,
+                            EndIndex = endIndex,
+                            DepartureTime = dpt.StartTime,
+                            Line = line,
+                            Train = dpt.Train
                         };
                         MyRows.Add(dto);
+                        Departures.Add(dpt);
                     }
                 }
+                SetDataGridVisibility();
+            }
+        }
+
+        private void ValidateStationInputs()
+        {
+            bool isValidStart = false;
+            bool isValidEnd = false;
+            foreach (Station s in rf.StationRepository.GetAll())
+            {
+                if (s.Name == tbFrom.Text) isValidStart = true;
+                else if (s.Name == tbTo.Text) isValidEnd = true;
+            }
+            if (!isValidStart) tbFrom.Text = "";
+            if (!isValidEnd) tbTo.Text = "";
+        }
+
+        private void SetDataGridVisibility()
+        {
+            if (MyRows.Count > 0)
+            {
+                dataGrid.Visibility = Visibility.Visible;
+                lblNoResults.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                dataGrid.Visibility = Visibility.Hidden;
+                lblNoResults.Visibility = Visibility.Visible;
             }
         }
 
@@ -136,16 +190,70 @@ namespace HCI_Project.view
             MarkDpRed();
         }
 
-        private void ListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void btnChoose_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Double clicked");
+            int rowIndex = dataGrid.SelectedIndex;
+            if (rowIndex == -1)
+            {
+                MessageBox.Show("Departure not selected", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            SeatChoice sc = new SeatChoice(MyRows[rowIndex], DepartureDate.SelectedDate.Value, rf);
+            NavigationService.Navigate(sc);
+        }
+
+        private void dataGrid_Selected(object sender, RoutedEventArgs e)
+        {
+            btnChoose.IsEnabled = true;
         }
     }
 }
 
 public class DepartureDTO
 {
-    public string DepartureTimeStr { get; set; }
-    public string ArrivalTimeStr { get; set; }
-    public double Price { get; set; }
+    public long Id { get; set; }
+    public int StartIndex { get; set; }
+    public int EndIndex { get; set; }
+    public DateTime DepartureTime { get; set; }
+    public Line Line { get; set; }
+    public Train Train { get; set; }
+    public string DepartureTimeStr
+    {
+        get
+        {
+            DateTime start = DepartureTime;
+            for (int i = 0; i <= StartIndex; i++)
+            {
+                start = start.AddMinutes(Line.OffsetsInMinutes[i]);
+            }
+            return start.ToShortTimeString();
+        }
+    }
+    public string ArrivalTimeStr { 
+        get 
+        {
+            DateTime start = DepartureTime;
+            for (int i = 0; i <= EndIndex; i++)
+            {
+                start = start.AddMinutes(Line.OffsetsInMinutes[i]);
+            }
+            return start.ToShortTimeString();
+        } 
+    }
+    public double Price { get { return Line.Price; } }
+    public string Details
+    {
+        get
+        {
+            List<Station> stations = Line.Stations;
+            StringBuilder sb = new StringBuilder($"{"STATION",-50}DEPARTURE\n\n");
+            DateTime prev = DepartureTime;
+            for (int i = 0; i < stations.Count; i++)
+            {
+                int offset = Line.OffsetsInMinutes[i];
+                prev = prev.AddMinutes(offset);
+                sb.Append($"{stations[i].Name,-56}{prev.ToShortTimeString()}\n");
+            }
+            return sb.ToString();
+        }
+    }
 }

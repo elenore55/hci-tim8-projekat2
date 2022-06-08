@@ -14,5 +14,17 @@ namespace HCI_Project.model
         // Offsets[0] = 0
         public List<int> OffsetsInMinutes { get; set; }  
         public List<Departure> Departures { get; set; }
+
+        public Station GetStartStation()
+        {
+            if (Stations == null || Stations.Count == 0) return null;
+            return Stations[0];
+        }
+
+        public Station GetEndStation()
+        {
+            if (Stations == null || Stations.Count == 0) return null;
+            return Stations[Stations.Count - 1];
+        }
     }
 }

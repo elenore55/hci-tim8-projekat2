@@ -16,26 +16,27 @@
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"
         WindowStartupLocation="CenterScreen"
-        Title="MainWindow" Height="800" Width="1300"
-        Closing="Window_Closing"
-        DataContext="{Binding RelativeSource={RelativeSource Self}}">
-
-    <Window.Resources>
-        <ControlTemplate x:Key="CustomPushpinTemplate" TargetType="m:Pushpin">
-            <Rectangle Height="18">
-                <Rectangle.Fill>
-                    <ImageBrush ImageSource= "/HCI_Project;component/train.png">
-                    </ImageBrush>
-                </Rectangle.Fill>
-            </Rectangle>
-        </ControlTemplate>
-    </Window.Resources>
+        Height="850" Width="1200"
+        Title="Railways Serbia" 
+        Closing="Window_Closing">
+    <Window.CommandBindings>
+        <CommandBinding Command="ApplicationCommands.Help" Executed="CommandBinding_Executed"/>
+    </Window.CommandBindings>
     <Grid>
-        <DockPanel>
-            <StackPanel DockPanel.Dock="Top">
-                <Button Click="Button_Click">Page</Button>
-            </StackPanel>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <DockPanel Grid.Row="0">
+            <Menu DockPanel.Dock="Top" Background="#4f5459" Foreground="White" BorderThickness="1">
+                <MenuItem Header="Tickets">
+                    <MenuItem x:Name="purchase" Header="_Reserve or purchase" Click="purchase_Click" Foreground="#4f5459"/>
+                    <MenuItem x:Name="tickets" Header="_My tickets" Click="tickets_Click" Foreground="#4f5459" />
+                    <MenuItem x:Name="reservations" Header="_My reservations" Click="reservations_Click" Foreground="#4f5459"/>
+                </MenuItem>
+                <MenuItem Header="Help"/>
+            </Menu>
         </DockPanel>
-        <Frame x:Name="Main"></Frame>
+        <Frame Grid.Row="1" NavigationUIVisibility="Hidden" x:Name="MainFrame"></Frame>
     </Grid>
 </Window>
