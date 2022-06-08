@@ -22,10 +22,10 @@ namespace HCI_Project.view
     /// </summary>
     public partial class StationCreation : Page
     {
-        private string BingMapsKey = "AinQ9hRJn7QhWLbnmUvC6OJ9RvqMuOWGDRkvSqOf5MUgrvbkmFHxHNg6aIjno0CM";
         private System.Windows.Point StartPoint;
         private bool stationPicked = false;
         private bool newPoint = true;
+        private Pushpin pinSelected;
         public StationCreation()
         {
             InitializeComponent();
@@ -92,6 +92,7 @@ namespace HCI_Project.view
             pin.MouseDoubleClick += new MouseButtonEventHandler(Pin_Click);
             MyMap.Children.Clear();
             MyMap.Children.Add(pin);
+            pinSelected = pin;
             stationPicked = true;
             stationPin.Cursor = Cursors.No;
             stationPin.MouseMove -= new MouseEventHandler(Pushpin_MouseMove);
@@ -105,10 +106,26 @@ namespace HCI_Project.view
             stationPicked = false;
             stationPin.MouseMove += new MouseEventHandler(Pushpin_MouseMove);
             stationPin.Cursor = Cursors.Hand;
+            pinSelected = null;
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
+            if (stationPicked)
+            {
+                if (stationName.Text.Trim().Length != 0)
+                {
+                    Station s = new Station(new System.Windows.Point(pinSelected.Location.Latitude, pinSelected.Location.Longitude), stationName.Text.Trim());
+                    Console.WriteLine(s);
+                }
+                else
+                {
+                    MessageBox.Show("Enter station's name", "Need data");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Pick station's location!", "Need data");
+            }
         }
     }
 }
