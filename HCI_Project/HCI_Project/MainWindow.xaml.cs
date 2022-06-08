@@ -127,19 +127,31 @@ namespace HCI_Project
             sr.Add(s6);
             sr.Add(s7);
 
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 5; i++)
             {
                 for (int j = 0; j < 4; j++)
                 {
-                    long id = sr1.GetNextId();
-                    int wagonId = 1;
-                    if (id > 20) wagonId = 2;
                     Seat seat = new Seat()
                     {
-                        Id = id,
-                        Row = i % 5,
+                        Id = sr1.GetNextId(),
+                        Row = i,
                         Column = j,
-                        WagonId = wagonId
+                        WagonId = 1
+                    };
+                    sr1.Add(seat);
+                }
+            }
+
+            for (int i = 0; i < 6; i++)
+            {
+                for (int j = 0; j < 5; j++)
+                {
+                    Seat seat = new Seat()
+                    {
+                        Id = sr1.GetNextId(),
+                        Row = i,
+                        Column = j,
+                        WagonId = 2
                     };
                     sr1.Add(seat);
                 }
@@ -159,8 +171,8 @@ namespace HCI_Project
                 Id = wr.GetNextId(),
                 Ordinal = 1,
                 Class = WagonClass.Second,
-                Rows = 5,
-                SeatsPerRow = 4,
+                Rows = 6,
+                SeatsPerRow = 5,
                 Seats = sr1.GetAll().Where(x => x.Id > 20).ToList()
             };
             wr.Add(wagon);

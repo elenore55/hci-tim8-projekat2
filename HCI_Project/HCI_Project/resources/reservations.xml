@@ -4,7 +4,7 @@
     <Id>1</Id>
     <ReservationDateTime>2022-06-04T23:25:34.5929472+02:00</ReservationDateTime>
     <DepartureDate>2022-06-10T00:00:00</DepartureDate>
-    <IsActive>true</IsActive>
+    <IsActive>false</IsActive>
     <ClientEmail>milica@gmail.com</ClientEmail>
     <SeatId>14</SeatId>
     <DepartureId>1</DepartureId>
@@ -34,17 +34,6 @@
     <EndStation>Stanica 2</EndStation>
   </Reservation>
   <Reservation>
-    <Id>4</Id>
-    <ReservationDateTime>2022-06-05T20:02:42.2700888+02:00</ReservationDateTime>
-    <DepartureDate>2022-06-17T00:00:00</DepartureDate>
-    <IsActive>true</IsActive>
-    <ClientEmail>milica@gmail.com</ClientEmail>
-    <SeatId>25</SeatId>
-    <DepartureId>3</DepartureId>
-    <StartStation>Stanica 1</StartStation>
-    <EndStation>Stanica 2</EndStation>
-  </Reservation>
-  <Reservation>
     <Id>5</Id>
     <ReservationDateTime>2022-06-05T20:18:15.5139098+02:00</ReservationDateTime>
     <DepartureDate>2022-06-19T00:00:00</DepartureDate>
@@ -63,6 +52,28 @@
     <ClientEmail>milica@gmail.com</ClientEmail>
     <SeatId>22</SeatId>
     <DepartureId>2</DepartureId>
+    <StartStation>Stanica 1</StartStation>
+    <EndStation>Stanica 3</EndStation>
+  </Reservation>
+  <Reservation>
+    <Id>7</Id>
+    <ReservationDateTime>2022-06-07T11:19:22.1529028+02:00</ReservationDateTime>
+    <DepartureDate>2022-06-17T00:00:00</DepartureDate>
+    <IsActive>true</IsActive>
+    <ClientEmail>milica@gmail.com</ClientEmail>
+    <SeatId>2</SeatId>
+    <DepartureId>3</DepartureId>
+    <StartStation>Stanica 1</StartStation>
+    <EndStation>Stanica 3</EndStation>
+  </Reservation>
+  <Reservation>
+    <Id>8</Id>
+    <ReservationDateTime>2022-06-08T08:19:06.6859202+02:00</ReservationDateTime>
+    <DepartureDate>2022-06-16T00:00:00</DepartureDate>
+    <IsActive>true</IsActive>
+    <ClientEmail>milica@gmail.com</ClientEmail>
+    <SeatId>46</SeatId>
+    <DepartureId>3</DepartureId>
     <StartStation>Stanica 1</StartStation>
     <EndStation>Stanica 3</EndStation>
   </Reservation>

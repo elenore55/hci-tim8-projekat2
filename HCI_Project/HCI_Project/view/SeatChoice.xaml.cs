@@ -234,6 +234,7 @@ namespace HCI_Project.view
         {
             numerationGrid.ColumnDefinitions.Clear();
             numerationGrid.RowDefinitions.Clear();
+            numerationGrid.Children.RemoveRange(1, numerationGrid.Children.Count - 1);
             for (int i = 0; i <= NumberOfRows; i++)
             {
                 var colDef = new ColumnDefinition

@@ -15,7 +15,8 @@
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"
         WindowStartupLocation="CenterScreen"
-        Title="Railways Serbia" Height="800" Width="1300"
+        Height="500" Width="900"
+        Title="Railways Serbia" 
         Closing="Window_Closing">
     <Grid>
         <Grid.RowDefinitions>
