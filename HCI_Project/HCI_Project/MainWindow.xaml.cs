@@ -72,7 +72,7 @@ namespace HCI_Project
             Station s1 = new Station()
             {
                 Id = sr.GetNextId(),
-                Name = "Stanica 1",
+                Name = "Subotica",
                 Coords = new model.Point() { X = 3, Y = 5 },
                 Type = StationType.Start,
                 LineId = 1
@@ -80,7 +80,7 @@ namespace HCI_Project
             Station s2 = new Station()
             {
                 Id = sr.GetNextId(),
-                Name = "Stanica 2",
+                Name = "Novi Sad",
                 Coords = new model.Point() { X = 5, Y = 5 },
                 Type = StationType.Middle,
                 LineId = 1
@@ -88,7 +88,7 @@ namespace HCI_Project
             Station s3 = new Station()
             {
                 Id = sr.GetNextId(),
-                Name = "Stanica 3",
+                Name = "Beograd",
                 Coords = new model.Point() { X = 10, Y = 10 },
                 Type = StationType.End,
                 LineId = 1
@@ -96,7 +96,7 @@ namespace HCI_Project
             Station s4 = new Station()
             {
                 Id = sr.GetNextId(),
-                Name = "Stanica 4",
+                Name = "Kragujevac",
                 Coords = new model.Point() { X = 6, Y = 5 },
                 Type = StationType.Start,
                 LineId = 2
@@ -104,7 +104,7 @@ namespace HCI_Project
             Station s5 = new Station()
             {
                 Id = sr.GetNextId(),
-                Name = "Stanica 5",
+                Name = "Kruševac",
                 Coords = new model.Point() { X = 6, Y = 5 },
                 Type = StationType.Middle,
                 LineId = 2
@@ -112,7 +112,7 @@ namespace HCI_Project
             Station s7 = new Station()
             {
                 Id = sr.GetNextId(),
-                Name = "Stanica 6",
+                Name = "Niš",
                 Coords = new model.Point() { X = 6, Y = 55 },
                 Type = StationType.Middle,
                 LineId = 2
@@ -120,7 +120,7 @@ namespace HCI_Project
             Station s6 = new Station()
             {
                 Id = sr.GetNextId(),
-                Name = "Stanica 7",
+                Name = "Leskovac",
                 Coords = new model.Point() { X = 15, Y = 10 },
                 Type = StationType.End,
                 LineId = 2

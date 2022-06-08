@@ -214,12 +214,17 @@
   <ItemGroup>
     <Content Include="help\ClientsReservations.html" />
     <Content Include="help\ClientsTickets.html" />
-    <Resource Include="help\purchaseButton.png" />
-    <Resource Include="help\reserveButton.png" />
+    <Resource Include="help\img\ticketPurchase\departureDate.png" />
+    <Resource Include="help\img\ticketPurchase\btnShow.png" />
+    <Resource Include="help\img\ticketPurchase\departures.png" />
+    <Resource Include="help\img\ticketPurchase\destinations.png" />
+    <Resource Include="help\img\ticketPurchase\chooseSeat.png" />
+    <Resource Include="help\img\seatChoice\purchaseButton.png" />
+    <Resource Include="help\img\seatChoice\reserveButton.png" />
     <Content Include="help\SeatChoice.html" />
-    <Resource Include="help\seatChoice.png" />
+    <Resource Include="help\img\seatChoice\seatChoice.png" />
     <Content Include="help\TicketPurchase.html" />
-    <Resource Include="help\wagonChoice.png" />
+    <Resource Include="help\img\seatChoice\wagonChoice.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.4.6.0-ci191\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.6.0-ci191\build\MaterialDesignThemes.targets')" />

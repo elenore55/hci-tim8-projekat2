@@ -6,7 +6,7 @@
     <Stations>
       <Station>
         <Id>1</Id>
-        <Name>Stanica 1</Name>
+        <Name>Subotica</Name>
         <Coords>
           <X>3</X>
           <Y>5</Y>
@@ -16,7 +16,7 @@
       </Station>
       <Station>
         <Id>2</Id>
-        <Name>Stanica 2</Name>
+        <Name>Novi Sad</Name>
         <Coords>
           <X>5</X>
           <Y>5</Y>
@@ -26,7 +26,7 @@
       </Station>
       <Station>
         <Id>3</Id>
-        <Name>Stanica 3</Name>
+        <Name>Beograd</Name>
         <Coords>
           <X>10</X>
           <Y>10</Y>
@@ -1036,7 +1036,7 @@
     <Stations>
       <Station>
         <Id>4</Id>
-        <Name>Stanica 4</Name>
+        <Name>Kragujevac</Name>
         <Coords>
           <X>6</X>
           <Y>5</Y>
@@ -1046,7 +1046,7 @@
       </Station>
       <Station>
         <Id>5</Id>
-        <Name>Stanica 5</Name>
+        <Name>Kruševac</Name>
         <Coords>
           <X>6</X>
           <Y>5</Y>
@@ -1056,7 +1056,7 @@
       </Station>
       <Station>
         <Id>6</Id>
-        <Name>Stanica 6</Name>
+        <Name>Niš</Name>
         <Coords>
           <X>6</X>
           <Y>55</Y>
@@ -1066,7 +1066,7 @@
       </Station>
       <Station>
         <Id>7</Id>
-        <Name>Stanica 7</Name>
+        <Name>Leskovac</Name>
         <Coords>
           <X>15</X>
           <Y>10</Y>
