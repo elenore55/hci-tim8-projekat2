@@ -1,4 +1,5 @@
 ﻿using HCI_Project.model;
+using HCI_Project.repository;
 using Microsoft.Maps.MapControl.WPF;
 using System;
 using System.Collections.Generic;
@@ -26,8 +27,10 @@ namespace HCI_Project.view
         private bool stationPicked = false;
         private bool newPoint = true;
         private Pushpin pinSelected;
-        public StationCreation()
+        private RepositoryFactory rf;
+        public StationCreation(RepositoryFactory rf)
         {
+            this.rf = rf;
             InitializeComponent();
             MyMap.MouseDoubleClick += MyMap_MouseDoubleClick1;
         }
@@ -114,17 +117,50 @@ namespace HCI_Project.view
             {
                 if (stationName.Text.Trim().Length != 0)
                 {
-                    Station s = new Station(new System.Windows.Point(pinSelected.Location.Latitude, pinSelected.Location.Longitude), stationName.Text.Trim());
-                    Console.WriteLine(s);
+                    foreach(Station s in rf.StationRepository.GetAll())
+                    {
+                        if (s.Coords.X == pinSelected.Location.Latitude && s.Coords.Y == pinSelected.Location.Longitude)
+                        {
+                            PinMissing.MessageQueue.Enqueue($"Station '{s.Name}' has same coordinates!", null, null, null, false, true, TimeSpan.FromSeconds(3));
+                            return;
+                        }
+                        if (s.Name == stationName.Text.Trim())
+                        {
+                            NameMissing.MessageQueue.Enqueue($"Station with same name exists!", null, null, null, false, true, TimeSpan.FromSeconds(3));
+                            return;
+                        }
+                    }
+                    Station station = new Station(new System.Windows.Point(pinSelected.Location.Latitude, pinSelected.Location.Longitude), stationName.Text.Trim());
+                    rf.StationRepository.Add(station);
+                    AddingInfo.MessageQueue.Enqueue($"Station '{stationName.Text.Trim()}' succesfuly added!", null, null, null, false, true, TimeSpan.FromSeconds(3));
                 }
                 else
                 {
-                    MessageBox.Show("Enter station's name", "Need data");
+                    MakeStationTxtRed();
+                    NameMissing.MessageQueue.Enqueue($"Enter station name!", null, null, null, false, true, TimeSpan.FromSeconds(3));
                 }
             }
             else
             {
-                MessageBox.Show("Pick station's location!", "Need data");
+                PinMissing.MessageQueue.Enqueue($"Place pin on the map!", null, null, null, false, true, TimeSpan.FromSeconds(3));
+            }
+        }
+
+        private void tbFrom_GotFocus(object sender, RoutedEventArgs e)
+        {
+            stationName.BorderBrush = Brushes.Gray;
+        }
+
+        private void tbFrom_LostFocus(object sender, RoutedEventArgs e)
+        {
+            MakeStationTxtRed();
+        }
+
+        private void MakeStationTxtRed()
+        {
+            if (stationName.Text.Trim() == "")
+            {
+                stationName.BorderBrush = Brushes.Red;
             }
         }
     }

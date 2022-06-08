@@ -8,7 +8,6 @@ namespace HCI_Project.model
 {
     public class Station : Serializable
     {
-        public long Id { get; set; }
         public string Name { get; set; }
         public System.Windows.Point Coords { get; set; }
 

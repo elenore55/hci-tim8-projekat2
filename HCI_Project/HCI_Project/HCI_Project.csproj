@@ -233,7 +233,6 @@
     <Resource Include="train.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="HCI.txt" />
     <Folder Include="images\" />
   </ItemGroup>
   <ItemGroup>
