@@ -88,6 +88,9 @@
     <Compile Include="view\SeatChoice.xaml.cs">
       <DependentUpon>SeatChoice.xaml</DependentUpon>
     </Compile>
+    <Compile Include="view\StationCreation.xaml.cs">
+      <DependentUpon>StationCreation.xaml</DependentUpon>
+    </Compile>
     <Compile Include="view\TicketPurchase.xaml.cs">
       <DependentUpon>TicketPurchase.xaml</DependentUpon>
     </Compile>
@@ -107,6 +110,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="view\SeatChoice.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\StationCreation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -193,9 +200,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="HCI.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="train2.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.4.6.0-ci191\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.6.0-ci191\build\MaterialDesignThemes.targets')" />
