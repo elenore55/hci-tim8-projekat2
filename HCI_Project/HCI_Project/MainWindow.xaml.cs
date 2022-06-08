@@ -32,6 +32,12 @@ namespace HCI_Project
             DeactivateOldReservations();
         }
 
+        private void CommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            var p = MainFrame.Content as Page;
+            HelpProvider.ShowHelp(p.Title, this);
+        }
+
         private void DeactivateOldReservations()
         {
             int days = 3;
