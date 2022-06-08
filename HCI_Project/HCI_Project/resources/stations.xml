@@ -52,7 +52,7 @@
   </Station>
   <Station>
     <Id>7</Id>
-    <Name>Stanica 6</Name>
+    <Name>Stanica 7</Name>
     <Coords>
       <X>15</X>
       <Y>10</Y>
@@ -62,7 +62,7 @@
   </Station>
   <Station>
     <Id>6</Id>
-    <Name>Stanica 7</Name>
+    <Name>Stanica 6</Name>
     <Coords>
       <X>6</X>
       <Y>55</Y>

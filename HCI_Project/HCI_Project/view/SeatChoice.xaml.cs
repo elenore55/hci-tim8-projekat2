@@ -31,7 +31,7 @@ namespace HCI_Project.view
 
         private readonly string FREE = "#c7e8b7";
         private readonly string RESERVED = "#f2d933";
-        private readonly string TAKEN = "#ed4d3b";
+        private readonly string TAKEN = "#7d7b7a";
         private readonly string SELECTED = "#4bab65";
         private readonly string FIRST_CLASS = "#d1d19b";
         private readonly string SECOND_CLASS = "#8ba6b3";
@@ -165,6 +165,7 @@ namespace HCI_Project.view
             trainBorder.BorderThickness = new Thickness(2, 2, 2, 2);
             NumberOfRows = wagon.Rows;
             NumberOfColumns = wagon.SeatsPerRow;
+            colorsLegendGrid.Visibility = Visibility.Visible;
 
             UpdateSeatsGrid();
             UpdateNumerationsGrid();

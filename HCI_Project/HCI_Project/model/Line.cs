@@ -17,20 +17,14 @@ namespace HCI_Project.model
 
         public Station GetStartStation()
         {
-            foreach (Station station in Stations)
-            {
-                if (station.Type == StationType.Start) return station;
-            }
-            return null;
+            if (Stations == null || Stations.Count == 0) return null;
+            return Stations[0];
         }
 
         public Station GetEndStation()
         {
-            foreach (Station station in Stations)
-            {
-                if (station.Type == StationType.End) return station;
-            }
-            return null;
+            if (Stations == null || Stations.Count == 0) return null;
+            return Stations[Stations.Count - 1];
         }
     }
 }

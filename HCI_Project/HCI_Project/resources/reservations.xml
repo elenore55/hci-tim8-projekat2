@@ -77,4 +77,15 @@
     <StartStation>Stanica 1</StartStation>
     <EndStation>Stanica 3</EndStation>
   </Reservation>
+  <Reservation>
+    <Id>9</Id>
+    <ReservationDateTime>2022-06-08T10:17:54.5068768+02:00</ReservationDateTime>
+    <DepartureDate>2022-06-30T00:00:00</DepartureDate>
+    <IsActive>true</IsActive>
+    <ClientEmail>milica@gmail.com</ClientEmail>
+    <SeatId>7</SeatId>
+    <DepartureId>3</DepartureId>
+    <StartStation>Stanica 1</StartStation>
+    <EndStation>Stanica 2</EndStation>
+  </Reservation>
 </ArrayOfReservation>
