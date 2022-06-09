@@ -21,18 +21,48 @@ namespace HCI_Project.view
     /// <summary>
     /// Interaction logic for StationCreation.xaml
     /// </summary>
-    public partial class StationCreation : Page
+    public partial class StationCreation : Window
     {
+        private string BingMapsKey = "AinQ9hRJn7QhWLbnmUvC6OJ9RvqMuOWGDRkvSqOf5MUgrvbkmFHxHNg6aIjno0CM";
+        public delegate void DataChangedEventHandler(object sender, EventArgs e);
+        public event DataChangedEventHandler DataChangedEvent;
         private System.Windows.Point StartPoint;
         private bool stationPicked = false;
         private bool newPoint = true;
         private Pushpin pinSelected;
         private RepositoryFactory rf;
-        public StationCreation(RepositoryFactory rf)
+        private bool isEdit = false;
+        private Station editedStation;
+        public StationCreation(RepositoryFactory rf, Station s = null)
         {
             this.rf = rf;
+            if (s != null)
+            { 
+                isEdit = true;
+                editedStation = s;
+                Location pinLocation = new Location();
+                pinLocation.Latitude = s.Coords.X;
+                pinLocation.Longitude = s.Coords.Y;
+                Pushpin pin = new Pushpin
+                {
+                    Location = pinLocation
+                };
+                pin.MouseDoubleClick += new MouseButtonEventHandler(Pin_Click);
+                pinSelected = pin;
+                stationPicked = true;
+            }
             InitializeComponent();
+            MyMap.CredentialsProvider = new ApplicationIdCredentialsProvider(BingMapsKey);
             MyMap.MouseDoubleClick += MyMap_MouseDoubleClick1;
+            if (isEdit)
+            {
+                stationName.Text = editedStation.Name;
+                MyMap.Children.Add(pinSelected);
+                MyMap.Center = pinSelected.Location;
+                stationPin.Cursor = Cursors.No;
+                Create_save.Content = "Save";
+                MyMap.UpdateLayout();
+            }
         }
 
         private void MyMap_MouseDoubleClick1(object sender, MouseButtonEventArgs e)
@@ -121,18 +151,50 @@ namespace HCI_Project.view
                     {
                         if (s.Coords.X == pinSelected.Location.Latitude && s.Coords.Y == pinSelected.Location.Longitude)
                         {
+                            if (isEdit) 
+                            {
+                                if (editedStation.Coords.X == pinSelected.Location.Latitude && editedStation.Coords.Y == pinSelected.Location.Longitude)
+                                {
+                                    break;
+                                }
+                            }
                             PinMissing.MessageQueue.Enqueue($"Station '{s.Name}' has same coordinates!", null, null, null, false, true, TimeSpan.FromSeconds(3));
                             return;
+                            
                         }
                         if (s.Name == stationName.Text.Trim())
                         {
+                            if (isEdit)
+                            {
+                                if (editedStation.Name == stationName.Text.Trim())
+                                {
+                                    break;
+                                }
+                            }
                             NameMissing.MessageQueue.Enqueue($"Station with same name exists!", null, null, null, false, true, TimeSpan.FromSeconds(3));
                             return;
                         }
                     }
-                    Station station = new Station(new System.Windows.Point(pinSelected.Location.Latitude, pinSelected.Location.Longitude), stationName.Text.Trim());
+                    Station station;
+                    if (isEdit)
+                    {
+                        rf.StationRepository.Delete(editedStation.Id);
+                        station = editedStation;
+                        station.Name = stationName.Text.Trim();
+                        station.Coords = new System.Windows.Point(pinSelected.Location.Latitude, pinSelected.Location.Longitude);
+                    } else
+                    {
+                        station = new Station(new System.Windows.Point(pinSelected.Location.Latitude, pinSelected.Location.Longitude), stationName.Text.Trim());
+                        station.Id = rf.StationRepository.GetNextId();
+                    }
                     rf.StationRepository.Add(station);
-                    AddingInfo.MessageQueue.Enqueue($"Station '{stationName.Text.Trim()}' succesfuly added!", null, null, null, false, true, TimeSpan.FromSeconds(3));
+                    DataChangedEventHandler handler = DataChangedEvent;
+                    if (handler != null)
+                    {
+                        handler(this, new EventArgs());
+                    }
+                    if (isEdit) AddingInfo.MessageQueue.Enqueue($"Station '{stationName.Text.Trim()}' succesfuly updated!", null, null, null, false, true, TimeSpan.FromSeconds(3));
+                    else AddingInfo.MessageQueue.Enqueue($"Station '{stationName.Text.Trim()}' succesfuly added!", null, null, null, false, true, TimeSpan.FromSeconds(3));
                 }
                 else
                 {

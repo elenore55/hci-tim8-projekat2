@@ -26,5 +26,20 @@ namespace HCI_Project.model
             if (Stations == null || Stations.Count == 0) return null;
             return Stations[Stations.Count - 1];
         }
+
+        public bool CanBeDeleted()
+        {
+            foreach(Departure d in Departures)
+            {
+                if (d.StartTime > DateTime.Now)
+                {
+                    if (d.Tickets.Count > 0)
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
     }
 }

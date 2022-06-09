@@ -55,6 +55,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -100,6 +101,9 @@
     <Compile Include="view\ClientsTickets.xaml.cs">
       <DependentUpon>ClientsTickets.xaml</DependentUpon>
     </Compile>
+    <Compile Include="view\LoadingWindow.xaml.cs">
+      <DependentUpon>LoadingWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="view\PurchaseConfirmation.xaml.cs">
       <DependentUpon>PurchaseConfirmation.xaml</DependentUpon>
     </Compile>
@@ -109,11 +113,17 @@
     <Compile Include="view\StationCreation.xaml.cs">
       <DependentUpon>StationCreation.xaml</DependentUpon>
     </Compile>
+    <Compile Include="view\StationCRUD.xaml.cs">
+      <DependentUpon>StationCRUD.xaml</DependentUpon>
+    </Compile>
     <Compile Include="view\TicketPurchase.xaml.cs">
       <DependentUpon>TicketPurchase.xaml</DependentUpon>
     </Compile>
     <Compile Include="view\TrainLineCreation.xaml.cs">
       <DependentUpon>TrainLineCreation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\TrainLinesCRUD.xaml.cs">
+      <DependentUpon>TrainLinesCRUD.xaml</DependentUpon>
     </Compile>
     <Page Include="HelpViewer.xaml">
       <SubType>Designer</SubType>
@@ -139,6 +149,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="view\LoadingWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="view\PurchaseConfirmation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -151,11 +165,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="view\StationCRUD.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="view\TicketPurchase.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="view\TrainLineCreation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\TrainLinesCRUD.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

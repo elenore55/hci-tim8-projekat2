@@ -25,9 +25,11 @@ namespace HCI_Project.view
     /// <summary>
     /// Interaction logic for TrainLineCreation.xaml
     /// </summary>
-    public partial class TrainLineCreation : Page
+    public partial class TrainLineCreation : Window
     {
         private string BingMapsKey = "AinQ9hRJn7QhWLbnmUvC6OJ9RvqMuOWGDRkvSqOf5MUgrvbkmFHxHNg6aIjno0CM";
+        public delegate void DataChangedEventHandler(object sender, EventArgs e);
+        public event DataChangedEventHandler DataChangedEvent;
         private System.Windows.Point StartPoint;
         private List<Pushpin> StopPins = new List<Pushpin>();
         private List<Station> StopStations = new List<Station>();
@@ -36,10 +38,36 @@ namespace HCI_Project.view
         private List<Pushpin> StationPins = new List<Pushpin>();
         private List<Station> Stations = new List<Station>();
         private RepositoryFactory rf;
-        public TrainLineCreation(RepositoryFactory rf)
+        private bool isEdit = false;
+        private model.Line editedLine;
+        public TrainLineCreation(RepositoryFactory rf, model.Line l = null)
         {
             this.rf = rf;
+            if(l != null)
+            {
+                editedLine = l;
+                isEdit = true;
+                StopStations = l.Stations;
+                IsFirstStation = false;
+                foreach (Station s in StopStations)
+                {
+                    Location pinLocation = new Location();
+                    pinLocation.Latitude = s.Coords.X;
+                    pinLocation.Longitude = s.Coords.Y;
+                    Pushpin pin = new Pushpin
+                    {
+                        Location = pinLocation
+                    };
+                    pin.MouseDoubleClick += new MouseButtonEventHandler(Pin_Click);
+                    StopPins.Add(pin);
+                }
+            }
             InitializeComponent();
+            if(isEdit)
+            {
+                Create_Save.Content = "Save";
+                priceTxt.Text = editedLine.Price.ToString();
+            }
             Stations = rf.StationRepository.GetAll();
             MyMap.CredentialsProvider = new ApplicationIdCredentialsProvider(BingMapsKey);
             MyMap.MouseDoubleClick += MyMap_MouseDoubleClick1;
@@ -105,6 +133,15 @@ namespace HCI_Project.view
             System.Windows.Point pinPoint = e.GetPosition(MyMap);
             Location pinLocation = MyMap.ViewportPointToLocation(pinPoint);
             Station s = findClosest(pinLocation);
+            foreach(Station stat in StopStations)
+            {
+                if (stat.Coords.X == s.Coords.X && stat.Coords.Y == s.Coords.Y)
+                {
+                    NoStops.MessageQueue.Enqueue($"This '{stat.Name}' stop is already in line!", null, null, null, false, true, TimeSpan.FromSeconds(3));
+                    UpdateMap();
+                    return;
+                }
+            }
             pinLocation.Latitude = s.Coords.X;
             pinLocation.Longitude = s.Coords.Y;
             Pushpin pin = new Pushpin
@@ -163,12 +200,16 @@ namespace HCI_Project.view
         private void UpdateMap()
         {
             MyMap.Children.Clear();
-            List<SimpleWaypoint> waypoints = new List<BingMapsRESTToolkit.SimpleWaypoint>();
+            List<SimpleWaypoint> waypoints = new List<SimpleWaypoint>();
             foreach (Station s in StopStations)
             {
                 waypoints.Add(new SimpleWaypoint(s.Coords.X, s.Coords.Y));
             }
             BingMapRESTServices.SendRequest(MyMap, waypoints);
+            for (int i = 0; i < StopPins.Count; i++)
+            {
+                StopPins[i].Content = i + 1;
+            }
             StopPins.ForEach(x => MyMap.Children.Add(x));
             StationPins.ForEach(x => MyMap.Children.Add(x));
             LBStations.Items.Refresh();
@@ -264,16 +305,36 @@ namespace HCI_Project.view
                         Offsets.Add(last + current);
                         last = current;
                     }
-                    model.Line l = new model.Line();
+                    model.Line l;
+                    if (isEdit)
+                    {
+                        l = editedLine;
+                        rf.LineRepository.Delete(l.Id);
+                    }
+                    else 
+                    {
+                        l = new model.Line();
+                        l.Id = rf.LineRepository.GetNextId();
+                    }
                     l.Stations = StopStations;
-                    l.OffsetsInMinutes = Offsets.GetRange(0, Offsets.Count-1);
+                    l.OffsetsInMinutes = Offsets.GetRange(0, Offsets.Count - 1);
                     l.Price = price;
-                    l.Id = rf.LineRepository.GetNextId();
-                    LineAdded.MessageQueue.Enqueue($"Line '{l.Id}' succesfuly added!", null, null, null, false, true, TimeSpan.FromSeconds(3));
+                    rf.LineRepository.Add(l);
+                    DataChangedEventHandler handler = DataChangedEvent;
+                    if (handler != null)
+                    {
+                        handler(this, new EventArgs());
+                    }
+                    if (isEdit) LineAdded.MessageQueue.Enqueue($"Line '{l.Id}' edited!", null, null, null, false, true, TimeSpan.FromSeconds(3));
+                    else LineAdded.MessageQueue.Enqueue($"Line '{l.Id}' succesfuly added!", null, null, null, false, true, TimeSpan.FromSeconds(3));
+                } else
+                {
+                    NoPrice.MessageQueue.Enqueue($"Price must be entered!", null, null, null, false, true, TimeSpan.FromSeconds(3));
+                    MarkPriceTxtToRed();
                 }
             } else
             {
-                NoStops.IsActive = true;
+                NoStops.MessageQueue.Enqueue($"Add 2 or more stops!", null, null, null, false, true, TimeSpan.FromSeconds(3));
             }
         }
     }

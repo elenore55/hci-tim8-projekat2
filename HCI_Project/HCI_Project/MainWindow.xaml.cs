@@ -31,7 +31,7 @@ namespace HCI_Project
             rf = new RepositoryFactory();
             Populate(rf.StationRepository, rf.DepartureRepository, rf.LineRepository, rf.TrainRepository, rf.WagonRepository, rf.SeatRepository);
             DeactivateOldReservations();
-            MainFrame.Content = new StationCreation(rf);
+            MainFrame.Content = new StationCRUD(rf);
         }
 
         private void CommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
@@ -77,7 +77,7 @@ namespace HCI_Project
             sr1.ClearAll();
             sr.Add(new Station(new System.Windows.Point(45.7737908329366, 19.1170693111155), "Sombor") {Id = sr.GetNextId() });
             sr.Add(new Station(new System.Windows.Point(43.3168743676544, 21.8930174489589), "Nis") { Id = sr.GetNextId() });
-            sr.Add(new Station(new System.Windows.Point(43.3168743676544, 21.8930174489589), "Lapovo") { Id = sr.GetNextId() });
+            sr.Add(new Station(new System.Windows.Point(44.1845546497502, 21.1054707255333), "Lapovo") { Id = sr.GetNextId() });
             sr.Add(new Station(new System.Windows.Point(44.2737853394934, 19.8837362826773), "Valjevo") { Id = sr.GetNextId() });
             sr.Add(new Station(new System.Windows.Point(43.8468213035184, 20.0354259952504), "Pozega") { Id = sr.GetNextId() });
             sr.Add(new Station(new System.Windows.Point(43.8560751522863, 19.8432587298032), "Uzice") { Id = sr.GetNextId() });
@@ -215,7 +215,7 @@ namespace HCI_Project
             {
                 Id = lr.GetNextId(),
                 Departures = new List<Departure>() { d4, d5, d6 },
-                Stations = new List<Station>() { sr.GetById(4), sr.GetById(5), sr.GetById(6), sr.GetById(6) },
+                Stations = new List<Station>() { sr.GetById(4), sr.GetById(5), sr.GetById(6), sr.GetById(7) },
                 Price = 60,
                 OffsetsInMinutes = new List<int>() { 0, 45, 60, 100 }
             };
