@@ -12,7 +12,7 @@
       DataContext="{Binding RelativeSource={RelativeSource Self}}">
 
     <Page.Resources>
-        <ControlTemplate x:Key="CustomPushpinTemplate" TargetType="m:Pushpin">
+       <ControlTemplate x:Key="CustomPushpinTemplate" TargetType="m:Pushpin">
             <Rectangle Height="18">
                 <Rectangle.Fill>
                     <ImageBrush ImageSource= "/HCI_Project;component/train.png">
@@ -51,7 +51,7 @@
                         <TextBlock VerticalAlignment="Center" Text="  Start: " />
                         <TextBlock VerticalAlignment="Center" Text="{Binding Stations[0].Name}" Width="120" FontWeight="Bold"/>
                         <TextBlock VerticalAlignment="Center" Text="  End: " />
-                        <TextBlock VerticalAlignment="Center" Text="{Binding Stations[1].Name}" Width="120" FontWeight="Bold"/>
+                        <TextBlock VerticalAlignment="Center" Text="{Binding LastStation}" Width="120" FontWeight="Bold"/>
                         <TextBlock VerticalAlignment="Center" Text="Price: " />
                         <TextBlock VerticalAlignment="Center" Text="{Binding Price}" Width="50" FontWeight="Bold"/>
                         <Button Margin="15 0 0 0" VerticalContentAlignment="Top" Height="25" Content="{materialDesign:PackIcon Pencil}" ToolTip="Edit" Click="Edit_Line"></Button>

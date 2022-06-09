@@ -12,8 +12,9 @@ namespace HCI_Project.model
         public List<Station> Stations { get; set; }
         // Koliko vremena voz putuje od stanice i - 1 do stanice i
         // Offsets[0] = 0
-        public List<int> OffsetsInMinutes { get; set; }  
+        public List<int> OffsetsInMinutes { get; set; }
         public List<Departure> Departures { get; set; }
+        public string LastStation { get; set; }
 
         public Station GetStartStation()
         {
@@ -27,6 +28,11 @@ namespace HCI_Project.model
             return Stations[Stations.Count - 1];
         }
 
+        public string GetLastStationName()
+        {
+            Station s = GetEndStation();
+            return s.Name;
+        }
         public bool CanBeDeleted()
         {
             foreach(Departure d in Departures)

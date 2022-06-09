@@ -31,7 +31,7 @@ namespace HCI_Project
             rf = new RepositoryFactory();
             Populate(rf.StationRepository, rf.DepartureRepository, rf.LineRepository, rf.TrainRepository, rf.WagonRepository, rf.SeatRepository);
             DeactivateOldReservations();
-            MainFrame.Content = new StationCRUD(rf);
+            MainFrame.Content = new ClintLineNetwork(rf);
         }
 
         private void CommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
@@ -209,7 +209,8 @@ namespace HCI_Project
                 Departures = new List<Departure>() { d1, d2, d3 },
                 Stations = new List<Station>() { sr.GetById(1), sr.GetById(2), sr.GetById(3) },
                 Price = 50,
-                OffsetsInMinutes = new List<int>() { 0, 45, 60 }
+                OffsetsInMinutes = new List<int>() { 0, 45, 60 },
+                LastStation = sr.GetById(3).Name
             };
             Line l2 = new model.Line()
             {
@@ -217,7 +218,8 @@ namespace HCI_Project
                 Departures = new List<Departure>() { d4, d5, d6 },
                 Stations = new List<Station>() { sr.GetById(4), sr.GetById(5), sr.GetById(6), sr.GetById(7) },
                 Price = 60,
-                OffsetsInMinutes = new List<int>() { 0, 45, 60, 100 }
+                OffsetsInMinutes = new List<int>() { 0, 45, 60, 100 },
+                LastStation = sr.GetById(7).Name
             };
             lr.Add(l1);
             lr.Add(l2);

@@ -101,6 +101,9 @@
     <Compile Include="view\ClientsTickets.xaml.cs">
       <DependentUpon>ClientsTickets.xaml</DependentUpon>
     </Compile>
+    <Compile Include="view\ClintLineNetwork.xaml.cs">
+      <DependentUpon>ClintLineNetwork.xaml</DependentUpon>
+    </Compile>
     <Compile Include="view\LoadingWindow.xaml.cs">
       <DependentUpon>LoadingWindow.xaml</DependentUpon>
     </Compile>
@@ -146,6 +149,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="view\ClientsTickets.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\ClintLineNetwork.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

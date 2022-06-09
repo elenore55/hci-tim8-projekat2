@@ -319,6 +319,7 @@ namespace HCI_Project.view
                     l.Stations = StopStations;
                     l.OffsetsInMinutes = Offsets.GetRange(0, Offsets.Count - 1);
                     l.Price = price;
+                    l.LastStation = StopStations[StopStations.Count - 1].Name;
                     rf.LineRepository.Add(l);
                     DataChangedEventHandler handler = DataChangedEvent;
                     if (handler != null)
