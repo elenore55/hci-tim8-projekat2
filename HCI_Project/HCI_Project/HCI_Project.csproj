@@ -214,6 +214,10 @@
   <ItemGroup>
     <Content Include="help\ClientsReservations.html" />
     <Content Include="help\ClientsTickets.html" />
+    <Resource Include="help\img\clientsTickets\removeFilter.png" />
+    <Resource Include="help\img\clientsTickets\purchasedTickets.png" />
+    <Resource Include="help\img\clientsTickets\btnFilter.png" />
+    <Resource Include="help\img\clientsTickets\optionalDatesPick.png" />
     <Resource Include="help\img\ticketPurchase\departureDate.png" />
     <Resource Include="help\img\ticketPurchase\btnShow.png" />
     <Resource Include="help\img\ticketPurchase\departures.png" />
