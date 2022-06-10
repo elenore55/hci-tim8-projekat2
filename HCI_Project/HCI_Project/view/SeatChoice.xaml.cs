@@ -86,6 +86,7 @@ namespace HCI_Project.view
             PackIcon icon = CreateStarIcon(train.Wagons[i]);
             TextBlock content = new TextBlock() { Text = $"Wagon {i + 1}" };
             Grid grid = CreateWagonButtonGrid(icon, content);
+            // sadrzaj vagona je ikonica + text
             wagonBtn.Content = grid;
             wagonBtn.Click += new RoutedEventHandler(wagonBtn_Click);
             Grid.SetColumn(wagonBtn, 0);

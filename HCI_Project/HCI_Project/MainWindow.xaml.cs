@@ -1,6 +1,7 @@
 ﻿using HCI_Project.model;
 using HCI_Project.repository;
 using HCI_Project.view;
+using HCI_Project.view.LinesHandling;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,6 +31,8 @@ namespace HCI_Project
             rf = new RepositoryFactory();
             Populate(rf.StationRepository, rf.DepartureRepository, rf.LineRepository, rf.TrainRepository, rf.WagonRepository, rf.SeatRepository);
             DeactivateOldReservations();
+            //this.Content = new LinesView(rf);
+            this.Content = new TrainsView(rf);
         }
 
         private void CommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)

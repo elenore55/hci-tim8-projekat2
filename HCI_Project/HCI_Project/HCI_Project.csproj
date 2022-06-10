@@ -93,6 +93,15 @@
     <Compile Include="view\ClientsTickets.xaml.cs">
       <DependentUpon>ClientsTickets.xaml</DependentUpon>
     </Compile>
+    <Compile Include="view\DepartureHandling\DeparturesEdit.xaml.cs">
+      <DependentUpon>DeparturesEdit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\DepartureHandling\LinesView.xaml.cs">
+      <DependentUpon>LinesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\Login.xaml.cs">
+      <DependentUpon>Login.xaml</DependentUpon>
+    </Compile>
     <Compile Include="view\PurchaseConfirmation.xaml.cs">
       <DependentUpon>PurchaseConfirmation.xaml</DependentUpon>
     </Compile>
@@ -101,6 +110,21 @@
     </Compile>
     <Compile Include="view\TicketPurchase.xaml.cs">
       <DependentUpon>TicketPurchase.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\TrainHandling\AddTrain.xaml.cs">
+      <DependentUpon>AddTrain.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\TrainHandling\DeleteTrainConfirmation.xaml.cs">
+      <DependentUpon>DeleteTrainConfirmation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\TrainHandling\TrainDeleted.xaml.cs">
+      <DependentUpon>TrainDeleted.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\TrainHandling\TrainEdit.xaml.cs">
+      <DependentUpon>TrainEdit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\TrainHandling\TrainsView.xaml.cs">
+      <DependentUpon>TrainsView.xaml</DependentUpon>
     </Compile>
     <Page Include="HelpViewer.xaml">
       <SubType>Designer</SubType>
@@ -126,6 +150,18 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="view\DepartureHandling\DeparturesEdit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\DepartureHandling\LinesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\Login.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="view\PurchaseConfirmation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -135,6 +171,26 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="view\TicketPurchase.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\TrainHandling\AddTrain.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\TrainHandling\DeleteTrainConfirmation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\TrainHandling\TrainDeleted.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\TrainHandling\TrainEdit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\TrainHandling\TrainsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
