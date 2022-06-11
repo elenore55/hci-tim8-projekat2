@@ -1,4 +1,5 @@
 ﻿using HCI_Project.model;
+using System;
 using System.Collections.Generic;
 
 namespace HCI_Project.repository
@@ -31,6 +32,19 @@ namespace HCI_Project.repository
                     }
                 }
                 if (endFound)
+                {
+                    result.Add(line);
+                }
+            }
+            return result;
+        }
+
+        internal List<Line> FilterLinesEndpoints(string from, string to)
+        {
+            List<Line> result = new List<Line>();
+            foreach (Line line in objects)
+            {
+                if (line.Stations[0].Name.Equals(from) && line.Stations[line.Stations.Count - 1].Name.Equals(to))
                 {
                     result.Add(line);
                 }

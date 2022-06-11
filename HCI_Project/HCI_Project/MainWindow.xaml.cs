@@ -2,10 +2,12 @@
 using HCI_Project.repository;
 using HCI_Project.view;
 using HCI_Project.view.LinesHandling;
+using HCI_Project.view.Reports;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -32,9 +34,13 @@ namespace HCI_Project
             Populate(rf.StationRepository, rf.DepartureRepository, rf.LineRepository, rf.TrainRepository, rf.WagonRepository, rf.SeatRepository);
             DeactivateOldReservations();
             //this.Content = new LinesView(rf);
-            this.Content = new TrainsView(rf);
+            //this.Content = new TrainsView(rf);
+            //this.Content = new MonthlyReport(rf);
+            //this.Content = new DepartureReport(rf);
+            //demoFunc();
         }
 
+        
         private void CommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             var p = MainFrame.Content as Page;
@@ -279,5 +285,24 @@ namespace HCI_Project
         {
             MainFrame.Content = new ClientsReservations(rf);
         }
+
+
+        private void btnDemo_Click(object sender, RoutedEventArgs e)
+        {
+            demoFunc();
+        }
+
+        private void demoFunc()
+        {
+            LinesView lv = new LinesView(rf, true);
+            this.Content = lv;
+            //Thread.Sleep(2000);
+            lv.demoFunc();
+
+        }
+
+
+
+
     }
 }

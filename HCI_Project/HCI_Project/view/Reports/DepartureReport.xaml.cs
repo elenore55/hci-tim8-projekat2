@@ -1,15 +1,13 @@
 ﻿using HCI_Project.model;
 using HCI_Project.repository;
-using HCI_Project.view.DepartureHandling;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
-using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -17,59 +15,31 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 
-namespace HCI_Project.view.LinesHandling
+namespace HCI_Project.view.Reports
 {
     /// <summary>
-    /// Interaction logic for LinesView.xaml
+    /// Interaction logic for DepartureReport.xaml
     /// </summary>
-    public partial class LinesView : Page
+    public partial class DepartureReport : Page
     {
         public List<string> StationNames { get; set; }
         private readonly RepositoryFactory rf;
-        public ObservableCollection<LineDTO> MyRows { get; set; }
-        //public List<Departure> Departures { get; set; }
-
-        public LinesView(RepositoryFactory rf, bool demoMode)
-        {   
-            this.rf = rf;
-            MyRows = findAllRows();
+        public ObservableCollection<DepartureDTO> MyRows { get; set; }
+        public List<Departure> Departures { get; set; }
+        public DepartureReport(RepositoryFactory rf)
+        {
             InitializeComponent();
-
+            this.rf = rf;
             DataContext = this;
 
             List<Station> stations = rf.StationRepository.GetAll();
             StationNames = (from s in stations select s.Name).ToList();
             tbFrom.ItemsSource = StationNames;
             tbTo.ItemsSource = StationNames;
-            SetDataGridVisibility();
-
-
-        }
-
-        public void demoFunc()
-        {
-            //Thread.Sleep(2000);
-            tbFrom.Text = "Novi Sad";
-            Thread.Sleep(2000);
-            tbTo.Text = "Beograd";
-            Thread.Sleep(2000);
-            btnShow.RaiseEvent(new RoutedEventArgs(ButtonBase.ClickEvent));
-
-        }
-
-        private ObservableCollection<LineDTO> findAllRows()
-        {
-            ObservableCollection<LineDTO> retVal = new ObservableCollection<LineDTO>();
+            MyRows = new ObservableCollection<DepartureDTO>();
+            Departures = new List<Departure>();
             
-            foreach (Line line in rf.LineRepository.GetAll())
-            {
-                LineDTO l = new LineDTO(line);
-                retVal.Add(l);
-            }
-            Console.WriteLine("Ukupna duzina svih redova je " + retVal.Count);
-            return retVal;
         }
-
         private void btnShow_Click(object sender, RoutedEventArgs e)
         {
             Display();
@@ -81,23 +51,19 @@ namespace HCI_Project.view.LinesHandling
             string from = tbFrom.Text;
             string to = tbTo.Text;
 
-            if (from == "" || to == "")
+            if (from == "" || to == "" || DepartureDate.SelectedDate == null)
             {
                 MessageBox.Show("You did not fill in the required information!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 MarkRed();
             }
             else
             {
-                List<Line> lines = rf.LineRepository.FilterLines(from, to);
+                List<Line> lines = rf.LineRepository.FilterLinesEndpoints(from, to);
                 MyRows.Clear();
-                //Departures.Clear();
+                Departures.Clear();
                 foreach (Line line in lines)
                 {
-                    LineDTO l = new LineDTO(line);
-                    MyRows.Add(l);
-                    // za svaku pronadjenu liniju treba da dodam LineDTO
-
-                    /*int startIndex = 0;
+                    int startIndex = 0;
                     int endIndex = line.Stations.Count - 1;
                     for (int i = 0; i < line.Stations.Count; i++)
                     {
@@ -110,8 +76,8 @@ namespace HCI_Project.view.LinesHandling
                             endIndex = i;
                             break;
                         }
-                    }*/
-                    /*foreach (Departure dpt in line.Departures)
+                    }
+                    foreach (Departure dpt in line.Departures)
                     {
                         DepartureDTO dto = new DepartureDTO()
                         {
@@ -124,7 +90,7 @@ namespace HCI_Project.view.LinesHandling
                         };
                         MyRows.Add(dto);
                         Departures.Add(dpt);
-                    */
+                    }
                 }
                 SetDataGridVisibility();
             }
@@ -161,6 +127,7 @@ namespace HCI_Project.view.LinesHandling
         {
             MarkTbFromRed();
             MarkTbToRed();
+            MarkDpRed();
         }
 
         private void MarkTbFromRed()
@@ -178,6 +145,15 @@ namespace HCI_Project.view.LinesHandling
             {
                 tbToBorder.BorderThickness = new Thickness(0, 0, 0, 2);
                 tbToBorder.BorderBrush = Brushes.Red;
+            }
+        }
+
+        private void MarkDpRed()
+        {
+            if (DepartureDate.SelectedDate == null)
+            {
+                DepartureDate.BorderThickness = new Thickness(0, 0, 0, 2);
+                DepartureDate.BorderBrush = Brushes.Red;
             }
         }
 
@@ -201,52 +177,29 @@ namespace HCI_Project.view.LinesHandling
             MarkTbFromRed();
         }
 
-     
-        private void btnEdit_Click(object sender, RoutedEventArgs e)
+        private void DepartureDate_GotFocus(object sender, RoutedEventArgs e)
         {
-            
-            LineDTO selected = dataGrid.SelectedItem as LineDTO;
-            long lineId = selected.Id;
-            Console.WriteLine("Id odabrane linije je " + lineId);
+            DepartureDate.BorderThickness = new Thickness(0, 0, 0, 0);
+            DepartureDate.BorderBrush = Brushes.Black;
+        }
 
-            DeparturesEdit de = new DeparturesEdit(rf, lineId);
-            //NavigationService.Navigate(de);
+        private void DepartureDate_LostFocus(object sender, RoutedEventArgs e)
+        {
+            MarkDpRed();
+        }
+
+       
+        private void btnReport_Click(object sender, RoutedEventArgs e)
+        {
+            DepartureDTO selected = dataGrid.SelectedItem as DepartureDTO;
             Window wnd = Window.GetWindow(this);
-            wnd.Content = de;
+            Console.WriteLine("Ono sto je odabrano je " + DepartureDate.SelectedDate);
+            wnd.Content = new DepartureTickets(rf, selected, (DateTime)DepartureDate.SelectedDate);
         }
-    }
-}
 
-public class LineDTO
-{
-    public long Id { get { return Line.Id; } set { Id = value; } }
-    public Line Line { get; set; }
-
-    public String FirstStation { get { return Line.Stations[0].Name; } set { FirstStation = value; } }
-    public String LastStation { get { return Line.Stations[Line.Stations.Count - 1].Name; } set { LastStation = value; } }
-
-    public double Price { get { return Line.Price; } set { Price = value; } }
-
-    public LineDTO(Line line)
-    {
-        Line = line;
-    }
-    public string Details
-    {
-        get
+        private void dataGrid_Selected(object sender, RoutedEventArgs e)
         {
-            List<Station> stations = Line.Stations;
-            StringBuilder sb = new StringBuilder($"{"STATIONS"}\n\n");
-            //DateTime prev = DepartureTime;
-            for (int i = 0; i < stations.Count; i++)
-            {
-                //int offset = Line.OffsetsInMinutes[i];
-                //prev = prev.AddMinutes(offset);
-                sb.Append($"{stations[i].Name}\n");
-            }
-            return sb.ToString();
+            // nista se ne desi
         }
     }
-
 }
-
