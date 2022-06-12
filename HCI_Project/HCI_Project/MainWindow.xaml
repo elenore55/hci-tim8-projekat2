@@ -41,6 +41,8 @@
             <MenuItem x:Name="help" Grid.Column="1" Header="Help" Click="help_Click" HorizontalAlignment="Right"/>
         </Menu>
 
-        <Frame Grid.Row="1" NavigationUIVisibility="Hidden" x:Name="MainFrame"></Frame>
+        <Frame Grid.Row="1" NavigationUIVisibility="Hidden" x:Name="MainFrame">
+            
+        </Frame>
     </Grid>
 </Window>

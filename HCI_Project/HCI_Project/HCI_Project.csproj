@@ -102,6 +102,9 @@
     <Compile Include="view\TicketPurchase.xaml.cs">
       <DependentUpon>TicketPurchase.xaml</DependentUpon>
     </Compile>
+    <Compile Include="view\WelcomePage.xaml.cs">
+      <DependentUpon>WelcomePage.xaml</DependentUpon>
+    </Compile>
     <Page Include="HelpViewer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -135,6 +138,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="view\TicketPurchase.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\WelcomePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -208,12 +215,12 @@
   <ItemGroup>
     <Resource Include="resources\wagons.xml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="images\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="help\ClientsReservations.html" />
     <Content Include="help\ClientsTickets.html" />
+    <Content Include="help\WelcomePage.html" />
+    <Resource Include="images\background.jpg" />
     <Resource Include="help\img\clientsReservations\cancelReservationBtn.png" />
     <Resource Include="help\img\clientsReservations\purchaseTicketBtn.png" />
     <Resource Include="help\img\clientsTickets\removeFilter.png" />

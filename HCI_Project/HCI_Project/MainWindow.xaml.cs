@@ -27,6 +27,7 @@ namespace HCI_Project
         public MainWindow()
         {
             InitializeComponent();
+            MainFrame.Content = new WelcomePage();
             rf = new RepositoryFactory();
             Populate(rf.StationRepository, rf.DepartureRepository, rf.LineRepository, rf.TrainRepository, rf.WagonRepository, rf.SeatRepository);
             DeactivateOldReservations();
