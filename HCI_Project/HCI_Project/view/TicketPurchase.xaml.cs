@@ -32,6 +32,9 @@ namespace HCI_Project.view
         public TicketPurchase(string email, RepositoryFactory rf)
         {
             InitializeComponent();
+#if DEBUG
+            System.Diagnostics.PresentationTraceSources.DataBindingSource.Switch.Level = System.Diagnostics.SourceLevels.Critical;
+#endif
             this.rf = rf;
             this.email = email;
             DataContext = this;

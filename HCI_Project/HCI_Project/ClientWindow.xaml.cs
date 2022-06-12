@@ -21,8 +21,8 @@ namespace HCI_Project
     /// </summary>
     public partial class ClientWindow : Window
     {
-        private RepositoryFactory rf;
-        private string email;
+        private readonly RepositoryFactory rf;
+        private readonly string email;
 
         public ClientWindow(string email)
         {
@@ -30,7 +30,7 @@ namespace HCI_Project
             this.email = email;
             rf = new RepositoryFactory();
             MainFrame.Content = new WelcomePage();
-            Populate(rf.StationRepository, rf.DepartureRepository, rf.LineRepository, rf.TrainRepository, rf.WagonRepository, rf.SeatRepository);
+            // Populate(rf.StationRepository, rf.DepartureRepository, rf.LineRepository, rf.TrainRepository, rf.WagonRepository, rf.SeatRepository);
             DeactivateOldReservations();
         }
 
@@ -285,6 +285,11 @@ namespace HCI_Project
         {
             var p = MainFrame.Content as Page;
             HelpProvider.ShowHelp(p.Title, this);
+        }
+
+        private void network_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

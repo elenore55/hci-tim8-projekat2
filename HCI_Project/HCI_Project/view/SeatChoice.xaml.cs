@@ -49,6 +49,9 @@ namespace HCI_Project.view
         public SeatChoice(string email, DepartureDTO departureDTO, DateTime date, RepositoryFactory rf)
         {
             InitializeComponent();
+#if DEBUG
+            System.Diagnostics.PresentationTraceSources.DataBindingSource.Switch.Level = System.Diagnostics.SourceLevels.Critical;
+#endif
             DataContext = this;
 
             this.rf = rf;
