@@ -120,4 +120,14 @@
     <StartStation>Stanica 1</StartStation>
     <EndStation>Stanica 3</EndStation>
   </Ticket>
+  <Ticket>
+    <Id>13</Id>
+    <PurchaseDateTime>2022-06-12T18:32:43.1531967+02:00</PurchaseDateTime>
+    <DepartureDate>2022-06-23T00:00:00</DepartureDate>
+    <ClientEmail>milica@gmail.com</ClientEmail>
+    <SeatId>14</SeatId>
+    <DepartureId>1</DepartureId>
+    <StartStation>Subotica</StartStation>
+    <EndStation>Novi Sad</EndStation>
+  </Ticket>
 </ArrayOfTicket>

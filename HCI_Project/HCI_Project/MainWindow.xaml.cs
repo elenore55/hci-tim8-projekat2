@@ -27,7 +27,7 @@ namespace HCI_Project
         public MainWindow()
         {
             InitializeComponent();
-            new ClientWindow().Show();
+            new ClientWindow("milica@gmail.com").Show();
             Close();
             // MainFrame.Content = new WelcomePage();
             // rf = new RepositoryFactory();
@@ -264,21 +264,6 @@ namespace HCI_Project
             lr.Add(l2);
         }
 
-
-        private void purchase_Click(object sender, RoutedEventArgs e)
-        {
-            MainFrame.Content = new TicketPurchase(rf);
-        }
-
-        private void tickets_Click(object sender, RoutedEventArgs e)
-        {
-            MainFrame.Content = new ClientsTickets(rf);
-        }
-
-        private void reservations_Click(object sender, RoutedEventArgs e)
-        {
-            MainFrame.Content = new ClientsReservations(rf);
-        }
 
         private void help_Click(object sender, RoutedEventArgs e)
         {

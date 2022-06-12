@@ -24,12 +24,13 @@ namespace HCI_Project.view
     {
         public ObservableCollection<ReservationDTO> Rows { get; set; }
         private readonly RepositoryFactory rf;
-        private string email = "milica@gmail.com";
+        private string email;
 
-        public ClientsReservations(RepositoryFactory rf)
+        public ClientsReservations(string email, RepositoryFactory rf)
         {
             InitializeComponent();
             this.rf = rf;
+            this.email = email;
             DataContext = this;
             Rows = new ObservableCollection<ReservationDTO>();
             DisplayReservations();

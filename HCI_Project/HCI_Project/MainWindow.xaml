@@ -34,9 +34,9 @@
                 </ItemsPanelTemplate>
             </Menu.ItemsPanel>
             <MenuItem Grid.Column="0" Header="Tickets" HorizontalAlignment="Left">
-                <MenuItem x:Name="purchase" Header="_Reserve or purchase" Click="purchase_Click" Foreground="#4f5459"/>
-                <MenuItem x:Name="tickets" Header="_My tickets" Click="tickets_Click" Foreground="#4f5459" />
-                <MenuItem x:Name="reservations" Header="_My reservations" Click="reservations_Click" Foreground="#4f5459"/>
+                <MenuItem x:Name="purchase" Header="_Reserve or purchase" Foreground="#4f5459"/>
+                <MenuItem x:Name="tickets" Header="_My tickets" Foreground="#4f5459" />
+                <MenuItem x:Name="reservations" Header="_My reservations" Foreground="#4f5459"/>
             </MenuItem>
             <MenuItem x:Name="help" Grid.Column="1" Header="Help" Click="help_Click" HorizontalAlignment="Right"/>
         </Menu>

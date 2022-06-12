@@ -22,12 +22,14 @@ namespace HCI_Project
     public partial class ClientWindow : Window
     {
         private RepositoryFactory rf;
+        private string email;
 
-        public ClientWindow()
+        public ClientWindow(string email)
         {
             InitializeComponent();
-            MainFrame.Content = new WelcomePage();
+            this.email = email;
             rf = new RepositoryFactory();
+            MainFrame.Content = new WelcomePage();
             Populate(rf.StationRepository, rf.DepartureRepository, rf.LineRepository, rf.TrainRepository, rf.WagonRepository, rf.SeatRepository);
             DeactivateOldReservations();
         }
@@ -264,17 +266,17 @@ namespace HCI_Project
 
         private void purchase_Click(object sender, RoutedEventArgs e)
         {
-            MainFrame.Content = new TicketPurchase(rf);
+            MainFrame.Content = new TicketPurchase(email, rf);
         }
 
         private void tickets_Click(object sender, RoutedEventArgs e)
         {
-            MainFrame.Content = new ClientsTickets(rf);
+            MainFrame.Content = new ClientsTickets(email, rf);
         }
 
         private void reservations_Click(object sender, RoutedEventArgs e)
         {
-            MainFrame.Content = new ClientsReservations(rf);
+            MainFrame.Content = new ClientsReservations(email, rf);
         }
 
         private void help_Click(object sender, RoutedEventArgs e)
