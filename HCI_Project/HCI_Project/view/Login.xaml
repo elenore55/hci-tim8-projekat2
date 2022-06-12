@@ -51,7 +51,7 @@
             <Label x:Name ="error" Grid.Column="1" Grid.Row="5" HorizontalAlignment="Left" 
                        Margin="0,15,0,0" FontSize="20" Foreground="Red" Visibility="Collapsed">Invalid email or password</Label>
             <Button x:Name="loginBtn" Grid.Row="6" Grid.Column="1" Content="Login" Click="btnLogin_Click" 
-                        Margin="0,60,0,80" HorizontalAlignment="Stretch" FontSize="22" MinHeight="40"/>
+                        Margin="0,60,0,80" HorizontalAlignment="Stretch" FontSize="22" MinHeight="40" IsDefault="True"/>
         </Grid>
     </Grid>
 </Page>

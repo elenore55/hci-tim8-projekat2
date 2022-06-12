@@ -27,6 +27,8 @@ namespace HCI_Project.view
         {
             this.rf = r;
             InitializeComponent();
+            FocusManager.SetFocusedElement(this, emailField);
+            Keyboard.Focus(emailField);
             //this.WindowHeight = System.Windows.SystemParameters.FullPrimaryScreenHeight / 3 * 2;
             //this.WindowWidth = System.Windows.SystemParameters.FullPrimaryScreenWidth / 2;
 
