@@ -5,31 +5,53 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:HCI_Project.view"
       mc:Ignorable="d" 
-      Title="Login"  Height="350" Width="500">
+      Title="Login">
 
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
+        <Grid.Background>
+            <ImageBrush ImageSource="/images/LoginBackground.jpg" Stretch="UniformToFill" Opacity="0.8"/>
+        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="4*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" 
-               Margin="0,0,0,0" FontSize="40">Login</Label>
-        <Label Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right" 
-               Margin="0,35,10,0" FontSize="20">Username</Label>
-        <TextBox x:Name="usernameField" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" 
-               Margin="10,40,0,0" FontSize="20" Width="230" BorderThickness="1" MaxLength="30"></TextBox>
-        <Label Grid.Column="0" Grid.Row="2" HorizontalAlignment="Right" 
-               Margin="0,35,10,0" FontSize="20">Password</Label>
-        <TextBox x:Name="passwordField"  Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" 
-               Margin="10,40,0,0" FontSize="20" Width="230" BorderThickness="1" MaxLength="40"></TextBox>
-        <Button Grid.Row="3" Grid.Column="1" Name="delete" Content="Login" Click="btnLogin_Click" Width="80" 
-                Margin="100,30,0,0" HorizontalAlignment="Left"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Row="1" Grid.Column="1" Background="White">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="*"/>
+                
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Label Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" 
+                       Margin="0,50,0,0" FontSize="45" FontWeight="Bold">Login</Label>
+            <Label Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" 
+                       Margin="0,10,0,0" FontSize="20">Email</Label>
+            <TextBox x:Name="emailField" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Stretch" 
+                       Margin="0,0,0,0" FontSize="20" BorderThickness="1" MaxLength="30"></TextBox>
+            <Label Grid.Column="1" Grid.Row="3" HorizontalAlignment="Left" 
+                       Margin="0,15,0,0" FontSize="20">Password</Label>
+            <PasswordBox x:Name="passwordField"  Grid.Column="1" Grid.Row="4" HorizontalAlignment="Stretch" 
+                       Margin="0,0,0,0" FontSize="20"  BorderThickness="1" MaxLength="40"></PasswordBox>
+            <Label x:Name ="error" Grid.Column="1" Grid.Row="5" HorizontalAlignment="Left" 
+                       Margin="0,15,0,0" FontSize="20" Foreground="Red" Visibility="Collapsed">Invalid email or password</Label>
+            <Button x:Name="loginBtn" Grid.Row="6" Grid.Column="1" Content="Login" Click="btnLogin_Click" 
+                        Margin="0,60,0,80" HorizontalAlignment="Stretch" FontSize="22" MinHeight="40"/>
+        </Grid>
     </Grid>
 </Page>

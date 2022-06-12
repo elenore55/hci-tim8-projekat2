@@ -69,7 +69,7 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <materialDesign:ColorZone Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Grid.RowSpan="1" Background="#61bdf2" Padding="2" VerticalAlignment="Stretch"></materialDesign:ColorZone>
+        <materialDesign:ColorZone Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Grid.RowSpan="1" Background="#ffd740" Padding="2" VerticalAlignment="Stretch"></materialDesign:ColorZone>
         <Grid Grid.Row="0" Margin="0,10,0,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -77,22 +77,16 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
+                
             </Grid.ColumnDefinitions>
 
-            <Label Content="Train id:" Grid.Column="1" Margin="0,25,0,30" FontSize="16" HorizontalAlignment="Right"></Label>
-            <TextBox Grid.Column="2"  VerticalAlignment="Top" Margin="0,25,0,30" FontSize="16" Width="90" BorderThickness="1"
-                     Background="White" MaxLength="5"  materialDesign:HintAssist.HelperText="(Optional)"
-                     HorizontalAlignment="Left" ToolTip="You can enter train's id here"></TextBox>
-
-            <Label Content="Train name:" Grid.Column="3" Margin="0,25,0,30" FontSize="16"
+            <Label Content="Train name:" Grid.Column="1" Margin="0,25,0,30" FontSize="18"
                    materialDesign:HintAssist.HelperText="(Optional)" HorizontalAlignment="Right"></Label>
-            <TextBox Grid.Column="4" VerticalAlignment="Top" Margin="0,25,0,30" FontSize="16" Width="200" 
+            <TextBox Grid.Column="2" x:Name="trainName" VerticalAlignment="Top" Margin="0,25,0,30" FontSize="16" Width="200" 
                      BorderThickness="1" Background="White" MaxLength="30"  materialDesign:HintAssist.HelperText="(Optional)"
                      HorizontalAlignment="Left" Grid.ColumnSpan="2" ToolTip="You can enter train's name here"></TextBox>
 
-            <Button x:Name="btnFilter" Grid.Column="6" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="40,5,30,30" 
+            <Button x:Name="btnFilter" Grid.Column="4" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="40,5,30,30" 
                     Background="#3f51b5" Click="btnFilter_Click" FontSize="16" ToolTip="Click here to filter results">Filter</Button>
 
         </Grid>
@@ -100,9 +94,8 @@
             AlternationCount = "2" AutoGenerateColumns = "False" ItemsSource="{Binding Rows, RelativeSource={RelativeSource AncestorType=Page}}"
             RowDetailsVisibilityMode="VisibleWhenSelected" SelectionMode="Single" FontSize="16">
             <DataGrid.Columns>
-                <DataGridTextColumn Header = "Id" Binding = "{Binding Id}" Width="2*" />
-                <DataGridTextColumn Header = "Name" Binding = "{Binding Name}" Width="2*" />
-                <DataGridTextColumn Header = "Number of Wagons" Binding = "{Binding NumOfWagons}" Width="2*" />
+                <DataGridTextColumn Header = "Name" Binding = "{Binding Name}" Width="*" />
+                <DataGridTextColumn Header = "Number of Wagons" Binding = "{Binding NumOfWagons}" Width="*" />
                 <DataGridTemplateColumn Header = "Edit" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

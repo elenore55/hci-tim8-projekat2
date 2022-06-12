@@ -30,12 +30,15 @@ namespace HCI_Project
         public MainWindow()
         {
             InitializeComponent();
-            new ClientWindow("milica@gmail.com").Show();
-            Close();
+            rf = new RepositoryFactory();
+            //new ClientWindow("milica@gmail.com").Show();
+            //Close();
             // MainFrame.Content = new WelcomePage();
             // rf = new RepositoryFactory();
             // Populate(rf.StationRepository, rf.DepartureRepository, rf.LineRepository, rf.TrainRepository, rf.WagonRepository, rf.SeatRepository);
             // DeactivateOldReservations();
+            MainFrame.Content = new Login(rf);
+            //MainFrame.Content = new LinesView(rf);
         }
 
         

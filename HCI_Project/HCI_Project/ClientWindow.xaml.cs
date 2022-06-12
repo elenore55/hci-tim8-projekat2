@@ -267,6 +267,7 @@ namespace HCI_Project
         private void purchase_Click(object sender, RoutedEventArgs e)
         {
             MainFrame.Content = new TicketPurchase(email, rf);
+
         }
 
         private void tickets_Click(object sender, RoutedEventArgs e)

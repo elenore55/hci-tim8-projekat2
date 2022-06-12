@@ -92,6 +92,9 @@
     <Compile Include="HelpViewer.xaml.cs">
       <DependentUpon>HelpViewer.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ManagerWindow.xaml.cs">
+      <DependentUpon>ManagerWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="model\Serializable.cs" />
     <Compile Include="repository\ClientRepository.cs" />
     <Compile Include="repository\DepartureRepository.cs" />
@@ -176,6 +179,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="ManagerWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="view\ClientsReservations.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -322,6 +329,7 @@
     <Content Include="help\ClientsReservations.html" />
     <Content Include="help\ClientsTickets.html" />
     <Content Include="help\WelcomePage.html" />
+    <Resource Include="images\LoginBackground.jpg" />
     <Resource Include="images\background.jpg" />
     <Resource Include="help\img\clientsReservations\cancelReservationBtn.png" />
     <Resource Include="help\img\clientsReservations\purchaseTicketBtn.png" />

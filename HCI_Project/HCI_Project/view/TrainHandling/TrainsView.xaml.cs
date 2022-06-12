@@ -32,22 +32,24 @@ namespace HCI_Project.view
         public TrainsView(RepositoryFactory rf)
         {
             this.rf = rf;
-            Rows = createTrainDTOs();
+            Rows = new ObservableCollection<TrainDTO>();
+            createTrainDTOs();
             InitializeComponent();
 #if DEBUG
             System.Diagnostics.PresentationTraceSources.DataBindingSource.Switch.Level = System.Diagnostics.SourceLevels.Critical;
 #endif
         }
 
-        private ObservableCollection<TrainDTO> createTrainDTOs()
+        private void createTrainDTOs()
         {
-            ObservableCollection<TrainDTO> retVal = new ObservableCollection<TrainDTO>();
+            //ObservableCollection<TrainDTO> retVal = new ObservableCollection<TrainDTO>();
+            Rows.Clear();
             List<Train> trains = rf.TrainRepository.GetAll();
             foreach (Train t in trains)
             {
-                retVal.Add(new TrainDTO(t.Id, t.Name, t.Wagons.Count));
+                Rows.Add(new TrainDTO(t.Id, t.Name, t.Wagons.Count));
             }
-            return retVal;
+            //return retVal;
 
         }
 
@@ -105,15 +107,42 @@ namespace HCI_Project.view
 
         private void btnFilter_Click (object sender, RoutedEventArgs e)
         {
-            //s
+            string enteredName = trainName.Text;
+            if (enteredName!="")
+            {
+                Rows.Clear();
+                filterTrains(enteredName);
+                //trainsGrid.Items.Refresh();
+            }
+            else
+            {
+                createTrainDTOs();
+                //trainsGrid.Items.Refresh();
+            }
         }
 
+        private void filterTrains(string enteredName)
+        {
+            //ObservableCollection<TrainDTO> result = new ObservableCollection<TrainDTO>();
+            Rows.Clear();
+            List<Train> trains = rf.TrainRepository.GetAll();
+            foreach (Train t in trains)
+            {
+                if (t.Name.ToLower().Contains(enteredName.ToLower()))
+                {
+                    Rows.Add(new TrainDTO(t.Id, t.Name, t.Wagons.Count));
+                    //Rows.Remove(t);
+                }
+            }
+            
+        }
 
         public class TrainDTO
         {
             public long Id { get; set; }
             public String Name { get; set; }
             public int NumOfWagons { get; set; }
+
 
             public TrainDTO(long id, String name, int numOfWagons)
             {

@@ -2,10 +2,10 @@
 <ArrayOfClient xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Client>
 	  <Id>1</Id>
-	  <Username> pera </Username>
-	  <Password> pera </Password>
-	  <Email> pera </Email>
-	  <Name>Pera </Name>
+	  <Username>pera</Username>
+	  <Password>pera</Password>
+	  <Email>pera</Email>
+	  <Name>Pera</Name>
 	  <Surname>Peric</Surname>
   </Client>
 </ArrayOfClient>
