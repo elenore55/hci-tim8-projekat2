@@ -33,12 +33,15 @@
                     <DockPanel HorizontalAlignment="Stretch"/>
                 </ItemsPanelTemplate>
             </Menu.ItemsPanel>
-            <MenuItem Grid.Column="0" Header="Tickets" HorizontalAlignment="Left">
+            <MenuItem Header="Tickets" HorizontalAlignment="Left">
                 <MenuItem x:Name="purchase" Header="_Reserve or purchase" Click="purchase_Click" Foreground="#4f5459"/>
                 <MenuItem x:Name="tickets" Header="_My tickets" Click="tickets_Click" Foreground="#4f5459" />
                 <MenuItem x:Name="reservations" Header="_My reservations" Click="reservations_Click" Foreground="#4f5459"/>
             </MenuItem>
-            <MenuItem x:Name="help" Grid.Column="1" Header="Help" Click="help_Click" HorizontalAlignment="Right"/>
+            <MenuItem Header="Lines" HorizontalAlignment="Left">
+                <MenuItem x:Name="network" Header="_Network" Click="network_Click" Foreground="#4f5459"/>
+            </MenuItem>
+            <MenuItem x:Name="help" Header="Help" Click="help_Click" HorizontalAlignment="Right"/>
         </Menu>
 
         <Frame Grid.Row="1" NavigationUIVisibility="Hidden" x:Name="MainFrame">

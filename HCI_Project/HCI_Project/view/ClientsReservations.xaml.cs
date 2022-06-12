@@ -29,6 +29,9 @@ namespace HCI_Project.view
         public ClientsReservations(string email, RepositoryFactory rf)
         {
             InitializeComponent();
+#if DEBUG
+            System.Diagnostics.PresentationTraceSources.DataBindingSource.Switch.Level = System.Diagnostics.SourceLevels.Critical;
+#endif
             this.rf = rf;
             this.email = email;
             DataContext = this;
@@ -64,7 +67,7 @@ namespace HCI_Project.view
                     DateTimeOfDepartureStr = $"{r.DepartureDate.ToShortDateString()} {departure.StartTime.ToShortTimeString()}",
                     DateTimeOfArrivalStr = $"{r.DepartureDate.ToShortDateString()} {CalculateDeparture(departure.StartTime, r.EndStation, line).ToShortTimeString()}",
                     Destination = $"{r.StartStation} - {r.EndStation}",
-                    Price = line.Price,
+                    Price = line.GetPrice(wagon.Class),
                     SeatStr = $"{seat.Row + 1}{Convert.ToChar(65 + seat.Column)}",
                     WagonStr = $"No. {wagon.Ordinal + 1} ({wagon.Class} class)",
                     TrainName = departure.Train.Name,
@@ -172,6 +175,7 @@ namespace HCI_Project.view
         public string DateTimeOfArrivalStr { get; set; }
         public string Destination { get; set; }
         public double Price { get; set; }
+        public string PriceStr { get { return $"{Price} \u20AC"; } }
         public string SeatStr { get; set; }
         public string WagonStr { get; set; }
         public string TrainName { get; set; }
@@ -198,6 +202,47 @@ namespace HCI_Project.view
                     sb.Append($"{stations[i].Name,-46}{prev.ToShortTimeString()}\n");
                 }
                 return sb.ToString();
+            }
+        }
+
+        public string StationNames
+        {
+            get
+            {
+                List<Station> stations = Line.Stations;
+                StringBuilder sb = new StringBuilder();
+                sb.Append("STATION\n\n");
+                for (int i = 0; i < stations.Count; i++)
+                {
+                    sb.Append($"{stations[i].Name}\n");
+                }
+                return sb.ToString();
+            }
+        }
+
+        public string DepartureTimes
+        {
+            get
+            {
+                List<Station> stations = Line.Stations;
+                StringBuilder sb = new StringBuilder();
+                sb.Append($"DEPARTURE\n\n");
+                DateTime prev = DateTime.Parse(DateTimeOfDepartureStr);
+                for (int i = 0; i < stations.Count; i++)
+                {
+                    int offset = Line.OffsetsInMinutes[i];
+                    prev = prev.AddMinutes(offset);
+                    sb.Append($"     {prev.ToShortTimeString()}\n");
+                }
+                return sb.ToString();
+            }
+        }
+
+        public string DepartureDate
+        {
+            get
+            {
+                return $"Date of departure: {DateTimeOfDepartureStr.Substring(0, 10)}";
             }
         }
     }

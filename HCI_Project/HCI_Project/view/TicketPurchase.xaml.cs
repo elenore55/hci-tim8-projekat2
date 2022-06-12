@@ -1,4 +1,5 @@
-﻿using HCI_Project.model;
+﻿using HCI_Project;
+using HCI_Project.model;
 using HCI_Project.repository;
 using System;
 using System.Collections.Generic;
@@ -31,6 +32,9 @@ namespace HCI_Project.view
         public TicketPurchase(string email, RepositoryFactory rf)
         {
             InitializeComponent();
+#if DEBUG
+            System.Diagnostics.PresentationTraceSources.DataBindingSource.Switch.Level = System.Diagnostics.SourceLevels.Critical;
+#endif
             this.rf = rf;
             this.email = email;
             DataContext = this;
@@ -218,6 +222,13 @@ public class DepartureDTO
     public DateTime DepartureTime { get; set; }
     public Line Line { get; set; }
     public Train Train { get; set; }
+    public long LineNum
+    {
+        get
+        {
+            return Line.Id;
+        }
+    }
     public string DepartureTimeStr
     {
         get
@@ -241,7 +252,21 @@ public class DepartureDTO
             return start.ToShortTimeString();
         } 
     }
+    public string PriceStr
+    {
+        get { return $"{ Line.Price } \u20AC"; }
+    }
+
     public double Price { get { return Line.Price; } }
+     
+    public string FirstClassPrice
+    {
+        get
+        {
+            return $"{ Line.GetFirstClassPrice() } \u20AC";
+        }
+    }
+
     public string Details
     {
         get
@@ -254,6 +279,37 @@ public class DepartureDTO
                 int offset = Line.OffsetsInMinutes[i];
                 prev = prev.AddMinutes(offset);
                 sb.Append($"{stations[i].Name,-56}{prev.ToShortTimeString()}\n");
+            }
+            return sb.ToString();
+        }
+    }
+
+    public string StationNames
+    {
+        get
+        {
+            List<Station> stations = Line.Stations;
+            StringBuilder sb = new StringBuilder("STATION\n\n");
+            for (int i = 0; i < stations.Count; i++)
+            {
+                sb.Append($"{stations[i].Name}\n");
+            }
+            return sb.ToString();
+        }
+    }
+
+    public string DepartureTimes
+    {
+        get
+        {
+            List<Station> stations = Line.Stations;
+            StringBuilder sb = new StringBuilder($"DEPARTURE\n\n");
+            DateTime prev = DepartureTime;
+            for (int i = 0; i < stations.Count; i++)
+            {
+                int offset = Line.OffsetsInMinutes[i];
+                prev = prev.AddMinutes(offset);
+                sb.Append($"     {prev.ToShortTimeString()}\n");
             }
             return sb.ToString();
         }

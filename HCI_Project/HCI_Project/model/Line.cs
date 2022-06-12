@@ -14,6 +14,7 @@ namespace HCI_Project.model
         // Offsets[0] = 0
         public List<int> OffsetsInMinutes { get; set; }  
         public List<Departure> Departures { get; set; }
+        public int FirstClassPercentage { get; set; }
 
         public Station GetStartStation()
         {
@@ -25,6 +26,17 @@ namespace HCI_Project.model
         {
             if (Stations == null || Stations.Count == 0) return null;
             return Stations[Stations.Count - 1];
+        }
+
+        public double GetFirstClassPrice()
+        {
+            return Price + Price * FirstClassPercentage / 100;
+        }
+
+        public double GetPrice(WagonClass wagonClass)
+        {
+            if (wagonClass == WagonClass.First) return GetFirstClassPrice();
+            return Price;
         }
     }
 }

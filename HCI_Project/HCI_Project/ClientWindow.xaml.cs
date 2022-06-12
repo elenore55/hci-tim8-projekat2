@@ -21,8 +21,8 @@ namespace HCI_Project
     /// </summary>
     public partial class ClientWindow : Window
     {
-        private RepositoryFactory rf;
-        private string email;
+        private readonly RepositoryFactory rf;
+        private readonly string email;
 
         public ClientWindow(string email)
         {
@@ -30,7 +30,7 @@ namespace HCI_Project
             this.email = email;
             rf = new RepositoryFactory();
             MainFrame.Content = new WelcomePage();
-            Populate(rf.StationRepository, rf.DepartureRepository, rf.LineRepository, rf.TrainRepository, rf.WagonRepository, rf.SeatRepository);
+            // Populate(rf.StationRepository, rf.DepartureRepository, rf.LineRepository, rf.TrainRepository, rf.WagonRepository, rf.SeatRepository);
             DeactivateOldReservations();
         }
 
@@ -249,7 +249,8 @@ namespace HCI_Project
                 Departures = new List<Departure>() { d1, d2, d3 },
                 Stations = new List<Station>() { s1, s2, s3 },
                 Price = 50,
-                OffsetsInMinutes = new List<int>() { 0, 45, 60 }
+                OffsetsInMinutes = new List<int>() { 0, 45, 60 },
+                FirstClassPercentage = 10
             };
             Line l2 = new model.Line()
             {
@@ -257,7 +258,8 @@ namespace HCI_Project
                 Departures = new List<Departure>() { d4, d5, d6 },
                 Stations = new List<Station>() { s4, s5, s7, s6 },
                 Price = 60,
-                OffsetsInMinutes = new List<int>() { 0, 45, 60, 100 }
+                OffsetsInMinutes = new List<int>() { 0, 45, 60, 100 },
+                FirstClassPercentage = 13
             };
             lr.Add(l1);
             lr.Add(l2);
@@ -284,6 +286,11 @@ namespace HCI_Project
         {
             var p = MainFrame.Content as Page;
             HelpProvider.ShowHelp(p.Title, this);
+        }
+
+        private void network_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
