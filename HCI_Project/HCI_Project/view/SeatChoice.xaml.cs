@@ -30,7 +30,7 @@ namespace HCI_Project.view
         public DateTime DepartureDate { get; set; }
 
         private readonly string FREE = "#c7e8b7";
-        private readonly string RESERVED = "#f2d933";
+        private readonly string RESERVED = "#0090f2";
         private readonly string TAKEN = "#7d7b7a";
         private readonly string SELECTED = "#4bab65";
         private readonly string FIRST_CLASS = "#d1d19b";

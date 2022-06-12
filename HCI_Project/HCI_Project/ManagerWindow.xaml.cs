@@ -99,7 +99,8 @@ namespace HCI_Project
 
         private void demo_Click(object sender, RoutedEventArgs e)
         {
-
+            DemoPlayer m = new DemoPlayer(@"../../videos/create_schedule.mkv");
+            m.ShowDialog();
         }
     }
 }

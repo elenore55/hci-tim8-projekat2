@@ -123,6 +123,9 @@
     <Compile Include="view\ClientsTickets.xaml.cs">
       <DependentUpon>ClientsTickets.xaml</DependentUpon>
     </Compile>
+    <Compile Include="view\DemoPlayer.xaml.cs">
+      <DependentUpon>DemoPlayer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="view\DepartureHandling\DeparturesEdit.xaml.cs">
       <DependentUpon>DeparturesEdit.xaml</DependentUpon>
     </Compile>
@@ -218,6 +221,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="view\DemoPlayer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="view\DepartureHandling\DeparturesEdit.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -227,7 +234,7 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="view\Login.xaml">
-          <SubType>Designer</SubType>
+      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="view\ClientLineNetwork.xaml">
@@ -378,9 +385,7 @@
   <ItemGroup>
     <Resource Include="train.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="images\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup />
   <ItemGroup>
     <Content Include="help\ClientsReservations.html" />
