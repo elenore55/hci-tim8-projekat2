@@ -1,8 +1,10 @@
 ﻿using HCI_Project.model;
 using HCI_Project.repository;
+using HCI_Project.utils;
 using HCI_Project.view;
 using HCI_Project.view.LinesHandling;
 using HCI_Project.view.Reports;
+using Microsoft.Maps.MapControl.WPF;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,19 +28,13 @@ namespace HCI_Project
     public partial class MainWindow : Window
     {
         private RepositoryFactory rf;
-
         public MainWindow()
         {
             InitializeComponent();
             rf = new RepositoryFactory();
-            //new ClientWindow("milica@gmail.com").Show();
-            //Close();
-            // MainFrame.Content = new WelcomePage();
-            // rf = new RepositoryFactory();
-            // Populate(rf.StationRepository, rf.DepartureRepository, rf.LineRepository, rf.TrainRepository, rf.WagonRepository, rf.SeatRepository);
-            // DeactivateOldReservations();
+            Populate(rf.StationRepository, rf.DepartureRepository, rf.LineRepository, rf.TrainRepository, rf.WagonRepository, rf.SeatRepository);
+            DeactivateOldReservations();
             MainFrame.Content = new Login(rf);
-            //MainFrame.Content = new LinesView(rf);
         }
 
         
@@ -46,8 +42,11 @@ namespace HCI_Project
         {
             var p = MainFrame.Content as Page;
             HelpProvider.ShowHelp(p.Title, this);
+            StationRepository stationRepository = new StationRepository();
+            LineRepository lineRepository = new LineRepository();
+            DepartureRepository departureRepository = new DepartureRepository();
+            MainFrame.Content = new TrainLinesCRUD(rf);
         }
-
         private void DeactivateOldReservations()
         {
             int days = 3;
@@ -79,69 +78,25 @@ namespace HCI_Project
             tr.ClearAll();
             wr.ClearAll();
             sr1.ClearAll();
-            Station s1 = new Station()
-            {
-                Id = sr.GetNextId(),
-                Name = "Subotica",
-                Coords = new model.Point() { X = 3, Y = 5 },
-                Type = StationType.Start,
-                LineId = 1
-            };
-            Station s2 = new Station()
-            {
-                Id = sr.GetNextId(),
-                Name = "Novi Sad",
-                Coords = new model.Point() { X = 5, Y = 5 },
-                Type = StationType.Middle,
-                LineId = 1
-            };
-            Station s3 = new Station()
-            {
-                Id = sr.GetNextId(),
-                Name = "Beograd",
-                Coords = new model.Point() { X = 10, Y = 10 },
-                Type = StationType.End,
-                LineId = 1
-            };
-            Station s4 = new Station()
-            {
-                Id = sr.GetNextId(),
-                Name = "Kragujevac",
-                Coords = new model.Point() { X = 6, Y = 5 },
-                Type = StationType.Start,
-                LineId = 2
-            };
-            Station s5 = new Station()
-            {
-                Id = sr.GetNextId(),
-                Name = "Kruševac",
-                Coords = new model.Point() { X = 6, Y = 5 },
-                Type = StationType.Middle,
-                LineId = 2
-            };
-            Station s7 = new Station()
-            {
-                Id = sr.GetNextId(),
-                Name = "Niš",
-                Coords = new model.Point() { X = 6, Y = 55 },
-                Type = StationType.Middle,
-                LineId = 2
-            };
-            Station s6 = new Station()
-            {
-                Id = sr.GetNextId(),
-                Name = "Leskovac",
-                Coords = new model.Point() { X = 15, Y = 10 },
-                Type = StationType.End,
-                LineId = 2
-            };
-            sr.Add(s1);
-            sr.Add(s2);
-            sr.Add(s3);
-            sr.Add(s4);
-            sr.Add(s5);
-            sr.Add(s6);
-            sr.Add(s7);
+            sr.Add(new Station(new System.Windows.Point(45.7737908329366, 19.1170693111155), "Sombor") {Id = sr.GetNextId() });
+            sr.Add(new Station(new System.Windows.Point(43.3168743676544, 21.8930174489589), "Nis") { Id = sr.GetNextId() });
+            sr.Add(new Station(new System.Windows.Point(44.1845546497502, 21.1054707255333), "Lapovo") { Id = sr.GetNextId() });
+            sr.Add(new Station(new System.Windows.Point(44.2737853394934, 19.8837362826773), "Valjevo") { Id = sr.GetNextId() });
+            sr.Add(new Station(new System.Windows.Point(43.8468213035184, 20.0354259952504), "Pozega") { Id = sr.GetNextId() });
+            sr.Add(new Station(new System.Windows.Point(43.8560751522863, 19.8432587298032), "Uzice") { Id = sr.GetNextId() });
+            sr.Add(new Station(new System.Windows.Point(45.1224246748143, 21.2969962172208), "Vrsac") { Id = sr.GetNextId() });
+            sr.Add(new Station(new System.Windows.Point(45.126348777821, 19.2292180982901), "Sid") { Id = sr.GetNextId() });
+            sr.Add(new Station(new System.Windows.Point(44.0132043068434, 20.9241081767304), "Kragujevac") { Id = sr.GetNextId() });
+            sr.Add(new Station(new System.Windows.Point(44.4401983117903, 20.6913074485451), "Mladenovac") { Id = sr.GetNextId() });
+            sr.Add(new Station(new System.Windows.Point(44.8068530443879, 20.4176244378858), "Beograd") { Id = sr.GetNextId() });
+            sr.Add(new Station(new System.Windows.Point(45.2653991901631, 19.8295025367481), "Novi Sad") { Id = sr.GetNextId() });
+            sr.Add(new Station(new System.Windows.Point(43.9167290500169, 21.3734995473952), "Cuprija") { Id = sr.GetNextId() });
+            sr.Add(new Station(new System.Windows.Point(43.1423009222924, 22.5993454464567), "Pirot") { Id = sr.GetNextId() });
+            sr.Add(new Station(new System.Windows.Point(43.9825635232647, 21.2643563898127), "Jagodina") { Id = sr.GetNextId() });
+            sr.Add(new Station(new System.Windows.Point(43.8898154372637, 20.3559119017471), "Cacak") { Id = sr.GetNextId() });
+            sr.Add(new Station(new System.Windows.Point(43.5638272233543, 19.5416579208959), "Priboj") { Id = sr.GetNextId() });
+            sr.Add(new Station(new System.Windows.Point(43.1335608534931, 21.2681129272782), "Kursumlija") { Id = sr.GetNextId() });
+            sr.Add(new Station(new System.Windows.Point(42.6578408443893, 21.150085751261), "Pristina") { Id = sr.GetNextId() });
 
             for (int i = 0; i < 5; i++)
             {
@@ -172,7 +127,6 @@ namespace HCI_Project
                     sr1.Add(seat);
                 }
             }
-
             Wagon wagon = new Wagon()
             {
                 Id = wr.GetNextId(),
@@ -255,17 +209,21 @@ namespace HCI_Project
             {
                 Id = lr.GetNextId(),
                 Departures = new List<Departure>() { d1, d2, d3 },
-                Stations = new List<Station>() { s1, s2, s3 },
+                Stations = new List<Station>() { sr.GetById(1), sr.GetById(2), sr.GetById(3) },
                 Price = 50,
-                OffsetsInMinutes = new List<int>() { 0, 45, 60 }
+                OffsetsInMinutes = new List<int>() { 0, 45, 60 },
+                LastStation = sr.GetById(3).Name,
+                FirstClassPercentage = 10
             };
             Line l2 = new model.Line()
             {
                 Id = lr.GetNextId(),
                 Departures = new List<Departure>() { d4, d5, d6 },
-                Stations = new List<Station>() { s4, s5, s7, s6 },
+                Stations = new List<Station>() { sr.GetById(4), sr.GetById(5), sr.GetById(6), sr.GetById(7) },
                 Price = 60,
-                OffsetsInMinutes = new List<int>() { 0, 45, 60, 100 }
+                OffsetsInMinutes = new List<int>() { 0, 45, 60, 100 },
+                LastStation = sr.GetById(7).Name,
+                FirstClassPercentage = 10
             };
             lr.Add(l1);
             lr.Add(l2);

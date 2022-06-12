@@ -6,33 +6,27 @@
     <Stations>
       <Station>
         <Id>1</Id>
-        <Name>Subotica</Name>
+        <Name>Sombor</Name>
         <Coords>
-          <X>3</X>
-          <Y>5</Y>
+          <X>45.7737908329366</X>
+          <Y>19.1170693111155</Y>
         </Coords>
-        <Type>Start</Type>
-        <LineId>1</LineId>
       </Station>
       <Station>
         <Id>2</Id>
-        <Name>Novi Sad</Name>
+        <Name>Nis</Name>
         <Coords>
-          <X>5</X>
-          <Y>5</Y>
+          <X>43.3168743676544</X>
+          <Y>21.8930174489589</Y>
         </Coords>
-        <Type>Middle</Type>
-        <LineId>1</LineId>
       </Station>
       <Station>
         <Id>3</Id>
-        <Name>Beograd</Name>
+        <Name>Lapovo</Name>
         <Coords>
-          <X>10</X>
-          <Y>10</Y>
+          <X>44.1845546497502</X>
+          <Y>21.1054707255333</Y>
         </Coords>
-        <Type>End</Type>
-        <LineId>1</LineId>
       </Station>
     </Stations>
     <OffsetsInMinutes>
@@ -1029,7 +1023,8 @@
         </Train>
       </Departure>
     </Departures>
-    <FirstClassPercentage>10</FirstClassPercentage>
+    <LastStation>Lapovo</LastStation>
+    <FistClassPercentage>10</FistClassPercentage>
   </Line>
   <Line>
     <Id>2</Id>
@@ -1037,43 +1032,35 @@
     <Stations>
       <Station>
         <Id>4</Id>
-        <Name>Kragujevac</Name>
+        <Name>Valjevo</Name>
         <Coords>
-          <X>6</X>
-          <Y>5</Y>
+          <X>44.2737853394934</X>
+          <Y>19.8837362826773</Y>
         </Coords>
-        <Type>Start</Type>
-        <LineId>2</LineId>
       </Station>
       <Station>
         <Id>5</Id>
-        <Name>Kruševac</Name>
+        <Name>Pozega</Name>
         <Coords>
-          <X>6</X>
-          <Y>5</Y>
+          <X>43.8468213035184</X>
+          <Y>20.0354259952504</Y>
         </Coords>
-        <Type>Middle</Type>
-        <LineId>2</LineId>
       </Station>
       <Station>
         <Id>6</Id>
-        <Name>Niš</Name>
+        <Name>Uzice</Name>
         <Coords>
-          <X>6</X>
-          <Y>55</Y>
+          <X>43.8560751522863</X>
+          <Y>19.8432587298032</Y>
         </Coords>
-        <Type>Middle</Type>
-        <LineId>2</LineId>
       </Station>
       <Station>
         <Id>7</Id>
-        <Name>Leskovac</Name>
+        <Name>Vrsac</Name>
         <Coords>
-          <X>15</X>
-          <Y>10</Y>
+          <X>45.1224246748143</X>
+          <Y>21.2969962172208</Y>
         </Coords>
-        <Type>End</Type>
-        <LineId>2</LineId>
       </Station>
     </Stations>
     <OffsetsInMinutes>
@@ -2071,6 +2058,34 @@
         </Train>
       </Departure>
     </Departures>
-    <FirstClassPercentage>13</FirstClassPercentage>
+    <LastStation>Vrsac</LastStation>
+    <FistClassPercentage>10</FistClassPercentage>
+  </Line>
+  <Line>
+    <Id>3</Id>
+    <Price>11</Price>
+    <Stations>
+      <Station>
+        <Id>12</Id>
+        <Name>Novi Sad</Name>
+        <Coords>
+          <X>45.2653991901631</X>
+          <Y>19.8295025367481</Y>
+        </Coords>
+      </Station>
+      <Station>
+        <Id>7</Id>
+        <Name>Vrsac</Name>
+        <Coords>
+          <X>45.1224246748143</X>
+          <Y>21.2969962172208</Y>
+        </Coords>
+      </Station>
+    </Stations>
+    <OffsetsInMinutes>
+      <int>134</int>
+    </OffsetsInMinutes>
+    <LastStation>Vrsac</LastStation>
+    <FistClassPercentage>1</FistClassPercentage>
   </Line>
 </ArrayOfLine>

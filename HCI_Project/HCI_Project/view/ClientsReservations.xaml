@@ -19,7 +19,6 @@
             </Style.Setters>
         </Style>
 
-
         <Style TargetType="DataGridColumnHeader">
             <Setter Property="FontWeight" Value="Bold"></Setter>
             <Setter Property="FontSize" Value="18"></Setter>

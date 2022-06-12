@@ -37,6 +37,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BingMapsRESTToolkit, Version=1.1.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\BingMapsRESTToolkit.1.1.4\lib\net45\BingMapsRESTToolkit.dll</HintPath>
+    </Reference>
     <Reference Include="DotNetProjects.Input.Toolkit, Version=6.1.94.0, Culture=neutral, PublicKeyToken=79778c5f2eed289b, processorArchitecture=MSIL">
       <HintPath>..\packages\DotNetProjects.WpfToolkit.Input.6.1.94\lib\net40\DotNetProjects.Input.Toolkit.dll</HintPath>
     </Reference>
@@ -46,9 +49,13 @@
     <Reference Include="MaterialDesignThemes.Wpf, Version=4.6.0.0, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialDesignThemes.4.6.0-ci191\lib\net462\MaterialDesignThemes.Wpf.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Maps.MapControl.WPF, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Maps.MapControl.WPF.1.0.0.3\lib\net40-Client\Microsoft.Maps.MapControl.WPF.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -109,6 +116,7 @@
     <Compile Include="repository\TicketRepository.cs" />
     <Compile Include="repository\TrainRepository.cs" />
     <Compile Include="repository\WagonRepository.cs" />
+    <Compile Include="utils\BingMapRESTServices.cs" />
     <Compile Include="view\ClientsReservations.xaml.cs">
       <DependentUpon>ClientsReservations.xaml</DependentUpon>
     </Compile>
@@ -124,6 +132,12 @@
     <Compile Include="view\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
+    <Compile Include="view\ClientLineNetwork.xaml.cs">
+      <DependentUpon>ClientLineNetwork.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\LoadingWindow.xaml.cs">
+      <DependentUpon>LoadingWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="view\PurchaseConfirmation.xaml.cs">
       <DependentUpon>PurchaseConfirmation.xaml</DependentUpon>
     </Compile>
@@ -138,6 +152,12 @@
     </Compile>
     <Compile Include="view\SeatChoice.xaml.cs">
       <DependentUpon>SeatChoice.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\StationCreation.xaml.cs">
+      <DependentUpon>StationCreation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\StationCRUD.xaml.cs">
+      <DependentUpon>StationCRUD.xaml</DependentUpon>
     </Compile>
     <Compile Include="view\TicketPurchase.xaml.cs">
       <DependentUpon>TicketPurchase.xaml</DependentUpon>
@@ -164,6 +184,12 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Compile Include="view\TrainLineCreation.xaml.cs">
+      <DependentUpon>TrainLineCreation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\TrainLinesCRUD.xaml.cs">
+      <DependentUpon>TrainLinesCRUD.xaml</DependentUpon>
+    </Compile>
     <Page Include="HelpViewer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -201,6 +227,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="view\Login.xaml">
+          <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\ClientLineNetwork.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\LoadingWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -221,6 +255,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="view\SeatChoice.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\StationCreation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\StationCRUD.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -249,6 +291,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="view\WelcomePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\TrainLineCreation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\TrainLinesCRUD.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -324,6 +374,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="help\img\Lines\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="train.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="images\" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
