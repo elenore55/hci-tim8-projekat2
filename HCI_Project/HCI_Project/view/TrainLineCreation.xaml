@@ -100,7 +100,7 @@
           MessageQueue="{materialDesign:MessageQueue}"
           />
         <materialDesign:Snackbar 
-            Grid.RowSpan="5" 
+            Grid.RowSpan="6" 
             VerticalAlignment="Bottom"
             x:Name="LineAdded"
             Background="#5db95d"

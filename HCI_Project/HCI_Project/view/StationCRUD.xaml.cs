@@ -67,7 +67,7 @@ namespace HCI_Project.view
         {
             StationCreation crud = new StationCreation(rf);
             crud.DataChangedEvent += ProductListUpdate_DataChanged;
-            crud.Show();
+            crud.ShowDialog();
         }
 
         private void Edit_Station(object sender, RoutedEventArgs e)
@@ -75,7 +75,7 @@ namespace HCI_Project.view
             var item = ((FrameworkElement)e.OriginalSource).DataContext as Station;
             StationCreation crud = new StationCreation(rf, item);
             crud.DataChangedEvent += ProductListUpdate_DataChanged;
-            crud.Show();
+            crud.ShowDialog();
         }
 
         private void ProductListUpdate_DataChanged(object sender, EventArgs e)

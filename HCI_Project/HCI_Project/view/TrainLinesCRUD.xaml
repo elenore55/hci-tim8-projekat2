@@ -7,7 +7,7 @@
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
       xmlns:local="clr-namespace:HCI_Project.view"
       mc:Ignorable="d" 
-      d:DesignHeight="600" d:DesignWidth="1300"
+      d:DesignHeight="600" d:DesignWidth="1500"
       Title="TrainLineCRUD"
       DataContext="{Binding RelativeSource={RelativeSource Self}}">
 

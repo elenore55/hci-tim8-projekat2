@@ -44,8 +44,7 @@ namespace HCI_Project.view
         {
             TrainLineCreation crud = new TrainLineCreation(rf);
             crud.DataChangedEvent += ProductListUpdate_DataChanged;
-            crud.Show();
-            //((MainWindow)App.Current.MainWindow).MainFrame.Content = new TrainLineCreation(rf);
+            crud.ShowDialog();
         }
 
         private void Display_Route(object sender, MouseButtonEventArgs e)
@@ -96,7 +95,7 @@ namespace HCI_Project.view
             //((MainWindow)App.Current.MainWindow).MainFrame.Content = new TrainLineCreation(rf, item);
             TrainLineCreation crud = new TrainLineCreation(rf, item);
             crud.DataChangedEvent += ProductListUpdate_DataChanged;
-            crud.Show();
+            crud.ShowDialog();
         }
 
         private void ProductListUpdate_DataChanged(object sender, EventArgs e)

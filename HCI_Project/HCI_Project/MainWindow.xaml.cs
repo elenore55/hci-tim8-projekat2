@@ -124,7 +124,6 @@ namespace HCI_Project
                     sr1.Add(seat);
                 }
             }
-
             Wagon wagon = new Wagon()
             {
                 Id = wr.GetNextId(),

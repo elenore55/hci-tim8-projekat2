@@ -2061,4 +2061,31 @@
     <LastStation>Vrsac</LastStation>
     <FistClassPercentage>10</FistClassPercentage>
   </Line>
+  <Line>
+    <Id>3</Id>
+    <Price>11</Price>
+    <Stations>
+      <Station>
+        <Id>12</Id>
+        <Name>Novi Sad</Name>
+        <Coords>
+          <X>45.2653991901631</X>
+          <Y>19.8295025367481</Y>
+        </Coords>
+      </Station>
+      <Station>
+        <Id>7</Id>
+        <Name>Vrsac</Name>
+        <Coords>
+          <X>45.1224246748143</X>
+          <Y>21.2969962172208</Y>
+        </Coords>
+      </Station>
+    </Stations>
+    <OffsetsInMinutes>
+      <int>134</int>
+    </OffsetsInMinutes>
+    <LastStation>Vrsac</LastStation>
+    <FistClassPercentage>1</FistClassPercentage>
+  </Line>
 </ArrayOfLine>
