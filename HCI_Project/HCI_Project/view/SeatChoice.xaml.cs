@@ -44,13 +44,15 @@ namespace HCI_Project.view
         private readonly DepartureDTO departureDTO;
         private readonly bool isReservationPossible;
         private readonly RepositoryFactory rf;
+        private string email;
 
-        public SeatChoice(DepartureDTO departureDTO, DateTime date, RepositoryFactory rf)
+        public SeatChoice(string email, DepartureDTO departureDTO, DateTime date, RepositoryFactory rf)
         {
             InitializeComponent();
             DataContext = this;
 
             this.rf = rf;
+            this.email = email;
             this.departureDTO = departureDTO;
             isReservationPossible = (date - DateTime.Now).TotalDays >= 3;
             DepartureDate = date;
@@ -435,7 +437,7 @@ namespace HCI_Project.view
                 Id = rf.TicketRepository.GetNextId(),
                 PurchaseDateTime = DateTime.Now,
                 DepartureDate = DepartureDate,
-                ClientEmail = "milica@gmail.com",
+                ClientEmail = email,
                 SeatId = long.Parse(selectedSeat.Name.Substring(4)),
                 DepartureId = departureDTO.Id,
                 StartStation = line.Stations[departureDTO.StartIndex].Name,
@@ -456,7 +458,7 @@ namespace HCI_Project.view
                 Id = rf.ReservationRepository.GetNextId(),
                 ReservationDateTime = DateTime.Now,
                 DepartureDate = DepartureDate,
-                ClientEmail = "milica@gmail.com",
+                ClientEmail = email,
                 SeatId = long.Parse(selectedSeat.Name.Substring(4)),
                 DepartureId = departureDTO.Id,
                 IsActive = true,
@@ -477,7 +479,7 @@ namespace HCI_Project.view
         {
             string start = departureDTO.Line.Stations[departureDTO.StartIndex].Name;
             string end = departureDTO.Line.Stations[departureDTO.EndIndex].Name;
-            TicketPurchase tp = new TicketPurchase(rf);
+            TicketPurchase tp = new TicketPurchase(email, rf);
             tp.tbFrom.Text = start;
             tp.tbTo.Text = end;
             tp.DepartureDate.SelectedDate = DepartureDate;

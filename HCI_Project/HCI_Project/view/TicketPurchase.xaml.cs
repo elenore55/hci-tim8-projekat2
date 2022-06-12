@@ -26,11 +26,13 @@ namespace HCI_Project.view
         private readonly RepositoryFactory rf;
         public ObservableCollection<DepartureDTO> MyRows { get; set; }
         public List<Departure> Departures { get; set; }
+        private string email;
 
-        public TicketPurchase(RepositoryFactory rf)
+        public TicketPurchase(string email, RepositoryFactory rf)
         {
             InitializeComponent();
             this.rf = rf;
+            this.email = email;
             DataContext = this;
 
             List<Station> stations = rf.StationRepository.GetAll();
@@ -197,7 +199,7 @@ namespace HCI_Project.view
             {
                 MessageBox.Show("Departure not selected", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            SeatChoice sc = new SeatChoice(MyRows[rowIndex], DepartureDate.SelectedDate.Value, rf);
+            SeatChoice sc = new SeatChoice(email, MyRows[rowIndex], DepartureDate.SelectedDate.Value, rf);
             NavigationService.Navigate(sc);
         }
 

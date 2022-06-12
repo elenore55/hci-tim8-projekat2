@@ -22,14 +22,15 @@ namespace HCI_Project.view
     public partial class ClientsTickets : Page
     {
         private readonly RepositoryFactory rf;
-        private string email = "milica@gmail.com";
+        private string email;
 
         public ObservableCollection<TicketDTO> Rows { get; set; }
 
-        public ClientsTickets(RepositoryFactory rf)
+        public ClientsTickets(string email, RepositoryFactory rf)
         {
             InitializeComponent();
             this.rf = rf;
+            this.email = email;
             Rows = new ObservableCollection<TicketDTO>();
             DataContext = this;
             DisplayTickets();

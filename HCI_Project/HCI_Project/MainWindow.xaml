@@ -15,8 +15,8 @@
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"
         WindowStartupLocation="CenterScreen"
-        Height="850" Width="1200"
-        Title="Railways Serbia" 
+        Title="Railways Serbia"
+        WindowState="Maximized"
         Closing="Window_Closing">
     <Window.CommandBindings>
         <CommandBinding Command="ApplicationCommands.Help" Executed="CommandBinding_Executed"/>
@@ -27,17 +27,23 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <DockPanel Grid.Row="0">
-            <Menu DockPanel.Dock="Top" Background="#4f5459" Foreground="White" BorderThickness="1">
-                <MenuItem Header="Tickets">
-                    <MenuItem x:Name="purchase" Header="_Reserve or purchase" Click="purchase_Click" Foreground="#4f5459"/>
-                    <MenuItem x:Name="tickets" Header="_My tickets" Click="tickets_Click" Foreground="#4f5459" />
-                    <MenuItem x:Name="reservations" Header="_My reservations" Click="reservations_Click" Foreground="#4f5459"/>
-                </MenuItem>
-                <MenuItem Header="Help"/>
-            </Menu>
-        </DockPanel>
-        <Frame Grid.Row="1" NavigationUIVisibility="Hidden" x:Name="MainFrame"></Frame>
-        
+
+        <Menu Grid.Row="0" Background="#4f5459" Foreground="White" BorderThickness="1">
+            <Menu.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <DockPanel HorizontalAlignment="Stretch"/>
+                </ItemsPanelTemplate>
+            </Menu.ItemsPanel>
+            <MenuItem Grid.Column="0" Header="Tickets" HorizontalAlignment="Left">
+                <MenuItem x:Name="purchase" Header="_Reserve or purchase" Foreground="#4f5459"/>
+                <MenuItem x:Name="tickets" Header="_My tickets" Foreground="#4f5459" />
+                <MenuItem x:Name="reservations" Header="_My reservations" Foreground="#4f5459"/>
+            </MenuItem>
+            <MenuItem x:Name="help" Grid.Column="1" Header="Help" Click="help_Click" HorizontalAlignment="Right"/>
+        </Menu>
+
+        <Frame Grid.Row="1" NavigationUIVisibility="Hidden" x:Name="MainFrame">
+            
+        </Frame>
     </Grid>
 </Window>

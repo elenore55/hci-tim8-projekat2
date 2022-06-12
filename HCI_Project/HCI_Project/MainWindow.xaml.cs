@@ -30,14 +30,12 @@ namespace HCI_Project
         public MainWindow()
         {
             InitializeComponent();
-            rf = new RepositoryFactory();
-            Populate(rf.StationRepository, rf.DepartureRepository, rf.LineRepository, rf.TrainRepository, rf.WagonRepository, rf.SeatRepository);
-            DeactivateOldReservations();
-            //this.Content = new LinesView(rf);
-            //this.Content = new TrainsView(rf);
-            //this.Content = new MonthlyReport(rf);
-            //this.Content = new DepartureReport(rf);
-            this.Content = new Login();
+            new ClientWindow("milica@gmail.com").Show();
+            Close();
+            // MainFrame.Content = new WelcomePage();
+            // rf = new RepositoryFactory();
+            // Populate(rf.StationRepository, rf.DepartureRepository, rf.LineRepository, rf.TrainRepository, rf.WagonRepository, rf.SeatRepository);
+            // DeactivateOldReservations();
         }
 
         
@@ -67,7 +65,7 @@ namespace HCI_Project
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            Application.Current.Shutdown();
+            // Application.Current.Shutdown();
         }
 
         private void Populate(StationRepository sr, DepartureRepository dr, LineRepository lr, TrainRepository tr, WagonRepository wr, SeatRepository sr1)
@@ -271,19 +269,10 @@ namespace HCI_Project
         }
 
 
-        private void purchase_Click(object sender, RoutedEventArgs e)
+        private void help_Click(object sender, RoutedEventArgs e)
         {
-            MainFrame.Content = new TicketPurchase(rf);
-        }
-
-        private void tickets_Click(object sender, RoutedEventArgs e)
-        {
-            MainFrame.Content = new ClientsTickets(rf);
-        }
-
-        private void reservations_Click(object sender, RoutedEventArgs e)
-        {
-            MainFrame.Content = new ClientsReservations(rf);
+            var p = MainFrame.Content as Page;
+            HelpProvider.ShowHelp(p.Title, this);
         }
 
 

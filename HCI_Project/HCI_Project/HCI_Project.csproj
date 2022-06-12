@@ -85,6 +85,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ClientWindow.xaml.cs">
+      <DependentUpon>ClientWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="HelpProvider.cs" />
     <Compile Include="HelpViewer.xaml.cs">
       <DependentUpon>HelpViewer.xaml</DependentUpon>
@@ -300,6 +303,7 @@
   <ItemGroup>
     <Resource Include="resources\wagons.xml" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Folder Include="help\img\Lines\" />
     <Folder Include="images\" />
@@ -307,6 +311,14 @@
   <ItemGroup>
     <Content Include="help\ClientsReservations.html" />
     <Content Include="help\ClientsTickets.html" />
+    <Content Include="help\WelcomePage.html" />
+    <Resource Include="images\background.jpg" />
+    <Resource Include="help\img\clientsReservations\cancelReservationBtn.png" />
+    <Resource Include="help\img\clientsReservations\purchaseTicketBtn.png" />
+    <Resource Include="help\img\clientsTickets\removeFilter.png" />
+    <Resource Include="help\img\clientsTickets\purchasedTickets.png" />
+    <Resource Include="help\img\clientsTickets\btnFilter.png" />
+    <Resource Include="help\img\clientsTickets\optionalDatesPick.png" />
     <Resource Include="help\img\ticketPurchase\departureDate.png" />
     <Resource Include="help\img\ticketPurchase\btnShow.png" />
     <Resource Include="help\img\ticketPurchase\departures.png" />
