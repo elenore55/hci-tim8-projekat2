@@ -14,25 +14,22 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-
 namespace HCI_Project
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for ClientWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class ClientWindow : Window
     {
         private RepositoryFactory rf;
 
-        public MainWindow()
+        public ClientWindow()
         {
             InitializeComponent();
-            new ClientWindow().Show();
-            Close();
-            // MainFrame.Content = new WelcomePage();
-            // rf = new RepositoryFactory();
-            // Populate(rf.StationRepository, rf.DepartureRepository, rf.LineRepository, rf.TrainRepository, rf.WagonRepository, rf.SeatRepository);
-            // DeactivateOldReservations();
+            MainFrame.Content = new WelcomePage();
+            rf = new RepositoryFactory();
+            Populate(rf.StationRepository, rf.DepartureRepository, rf.LineRepository, rf.TrainRepository, rf.WagonRepository, rf.SeatRepository);
+            DeactivateOldReservations();
         }
 
         private void CommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
@@ -61,7 +58,7 @@ namespace HCI_Project
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            // Application.Current.Shutdown();
+            Application.Current.Shutdown();
         }
 
         private void Populate(StationRepository sr, DepartureRepository dr, LineRepository lr, TrainRepository tr, WagonRepository wr, SeatRepository sr1)

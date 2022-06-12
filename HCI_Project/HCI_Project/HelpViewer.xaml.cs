@@ -19,7 +19,7 @@ namespace HCI_Project
     /// </summary>
     public partial class HelpViewer : Window
     {
-        public HelpViewer(string key, MainWindow originator)
+        public HelpViewer(string key, Window originator)
         {
             InitializeComponent();
             string curDir = Directory.GetCurrentDirectory();
