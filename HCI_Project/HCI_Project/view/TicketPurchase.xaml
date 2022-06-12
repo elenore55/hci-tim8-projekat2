@@ -162,7 +162,16 @@
             </DataGrid.Columns>
             <DataGrid.RowDetailsTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding Details}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10" />
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition  Width="*"/>
+                            <ColumnDefinition  Width="*"/>
+                            <ColumnDefinition  Width="*"/>
+                            <ColumnDefinition  Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="1" Text="{Binding StationNames}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10" />
+                        <TextBlock Grid.Column="2" Text="{Binding DepartureTimes}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10" />
+                    </Grid>
                 </DataTemplate>
             </DataGrid.RowDetailsTemplate>
         </DataGrid>

@@ -258,4 +258,35 @@ public class DepartureDTO
             return sb.ToString();
         }
     }
+
+    public string StationNames
+    {
+        get
+        {
+            List<Station> stations = Line.Stations;
+            StringBuilder sb = new StringBuilder("STATION\n\n");
+            for (int i = 0; i < stations.Count; i++)
+            {
+                sb.Append($"{stations[i].Name}\n");
+            }
+            return sb.ToString();
+        }
+    }
+
+    public string DepartureTimes
+    {
+        get
+        {
+            List<Station> stations = Line.Stations;
+            StringBuilder sb = new StringBuilder($"DEPARTURE\n\n");
+            DateTime prev = DepartureTime;
+            for (int i = 0; i < stations.Count; i++)
+            {
+                int offset = Line.OffsetsInMinutes[i];
+                prev = prev.AddMinutes(offset);
+                sb.Append($"     {prev.ToShortTimeString()}\n");
+            }
+            return sb.ToString();
+        }
+    }
 }

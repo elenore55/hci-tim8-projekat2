@@ -200,5 +200,46 @@ namespace HCI_Project.view
                 return sb.ToString();
             }
         }
+
+        public string StationNames
+        {
+            get
+            {
+                List<Station> stations = Line.Stations;
+                StringBuilder sb = new StringBuilder();
+                sb.Append("STATION\n\n");
+                for (int i = 0; i < stations.Count; i++)
+                {
+                    sb.Append($"{stations[i].Name}\n");
+                }
+                return sb.ToString();
+            }
+        }
+
+        public string DepartureTimes
+        {
+            get
+            {
+                List<Station> stations = Line.Stations;
+                StringBuilder sb = new StringBuilder();
+                sb.Append($"DEPARTURE\n\n");
+                DateTime prev = DateTime.Parse(DateTimeOfDepartureStr);
+                for (int i = 0; i < stations.Count; i++)
+                {
+                    int offset = Line.OffsetsInMinutes[i];
+                    prev = prev.AddMinutes(offset);
+                    sb.Append($"     {prev.ToShortTimeString()}\n");
+                }
+                return sb.ToString();
+            }
+        }
+
+        public string DepartureDate
+        {
+            get
+            {
+                return $"Date of departure: {DateTimeOfDepartureStr.Substring(0, 10)}";
+            }
+        }
     }
 }
