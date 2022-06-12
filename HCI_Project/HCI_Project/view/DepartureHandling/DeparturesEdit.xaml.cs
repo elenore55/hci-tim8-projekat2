@@ -1,5 +1,6 @@
 ﻿using HCI_Project.model;
 using HCI_Project.repository;
+using HCI_Project.view.LinesHandling;
 using MaterialDesignThemes.Wpf;
 using System;
 using System.Collections.Generic;
@@ -27,6 +28,7 @@ namespace HCI_Project.view.DepartureHandling
         public RepositoryFactory rf;
         public long LineId;
         public int currentDepNum;
+        Label errorLabel;
         public DeparturesEdit(RepositoryFactory rep, long id)
         {
             
@@ -65,6 +67,7 @@ namespace HCI_Project.view.DepartureHandling
             b.Margin = new Thickness(20, 5, 5, 5);
             b.FontSize = 14;
             b.Content = "Delete";
+            b.ToolTip = "Delete this departure";
             b.Name = "s" + i;       // dodala sam s napocetku jer sam broj ne moze da bude ime
             b.Click += new RoutedEventHandler(deleteDepartureBtn_Click);
 
@@ -94,6 +97,7 @@ namespace HCI_Project.view.DepartureHandling
             tp.Height = 40;
             tp.Margin = new Thickness(5, 5, 5, 5);
             tp.FontSize = 20;
+            //tp.ToolTip = "Enter the departure time";
             setDefaultValue(tp, i);     //ova funkcija ce da stavi vrijednost na originalnu
 
             Grid.SetColumn(tp, 0);
@@ -107,6 +111,7 @@ namespace HCI_Project.view.DepartureHandling
             Button b = new Button();
             b.Content = "+ Add departure";
             b.Margin = new Thickness(0, 30, 0, 30);
+            b.ToolTip = "Click here to add new departure time for this line";
             // ovo je dodavanje reda
             watchGrid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
             //watchGrid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
@@ -171,6 +176,23 @@ namespace HCI_Project.view.DepartureHandling
                     AddMinutesLabel(i * 2 + 1);
                 }
             }
+            addErrorLabel(stations.Count*2-1);
+        }
+
+        private void addErrorLabel(int n)
+        {
+            stationsGrid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+            errorLabel = new Label();
+            errorLabel.Name = "errorLabel";
+            errorLabel.Content = "You must fill in all the fields";
+            errorLabel.Foreground = new SolidColorBrush(Colors.Red);
+            errorLabel.FontSize = 20;
+            errorLabel.SetValue(Grid.ColumnSpanProperty, 3);
+            errorLabel.Visibility = Visibility.Hidden;
+
+            Grid.SetColumn(errorLabel, 0);
+            Grid.SetRow(errorLabel, n);
+            stationsGrid.Children.Add(errorLabel);
         }
 
         private void AddMinutesLabel(int v)
@@ -203,8 +225,11 @@ namespace HCI_Project.view.DepartureHandling
         private void AddStationTextBox(int i, int m)
         {
             TextBox t = new TextBox();
+            t.MaxLength = 4;
+            t.ToolTip = "Enter the time between two stations";
             t.Width = 40;
-            t.BorderThickness = new Thickness(1);
+            t.BorderThickness = new Thickness(1, 1, 1, 1);
+            t.BorderBrush = Brushes.Black;
             t.Text = m.ToString();
             t.FontSize = 20;
             t.PreviewTextInput += PreviewTextInput;
@@ -216,21 +241,59 @@ namespace HCI_Project.view.DepartureHandling
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            // ovdje smo sacuvali promjene iz prve polovine prozora
-            saveOffsets();
-            // sad cemo da cuvamo promjene iz druge polovine
-            saveDepartures();
-            // i na kraju opet jos samo osvjezimo stranicu da se sacuvaju promejne
-            // a mozda to i ne mora 
-            DeparturesEdit de = new DeparturesEdit(rf, LineId);
-            Window wnd = Window.GetWindow(this);
-            wnd.Content = de;
+            if (!allBoxesFilled())
+            {
+                // uradi nesto
+                errorLabel.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                //ako su sva polja popunjena, provjeravam da li su sva vremena prazna
+                List<TimePicker> allPickers = AllPickers(watchGrid);
+                if (!allPickersAreDisabled(allPickers))
+                {
+                    saveOffsets();
+                    saveDepartures();
+                    MessageBox.Show("Changes are saved!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                    DeparturesEdit de = new DeparturesEdit(rf, LineId);
+                    Window wnd = Window.GetWindow(this);
+                    wnd.Content = de;
+                }
+                else
+                {
+                    handleNoDepartures(allPickers);
+                }       
+            }
+        }
+
+        private bool allBoxesFilled()
+        {
+            bool retVal = true;
+            List<TextBox> boxes = AllTextBoxes(stationsGrid);
+            foreach(TextBox b in boxes)
+            {
+                if (b.Text.Equals(""))
+                {
+                    b.BorderThickness = new Thickness(1, 1, 1, 2);
+                    b.BorderBrush = Brushes.Red;
+                    retVal = false;
+                }
+                else
+                {
+                    b.BorderThickness = new Thickness(1, 1, 1, 1);
+                    b.BorderBrush = Brushes.Black;
+
+                }
+            }
+            //
+            return retVal;
         }
 
         private void saveDepartures()
         {
             //Console.WriteLine("Duzina liste departura je " + rf.LineRepository.GetById(LineId).Departures.Count());
-            List<TimePicker> allPickers= AllPickers(watchGrid);
+            List<TimePicker> allPickers = AllPickers(watchGrid);
+            
             List<Departure> deps = rf.LineRepository.GetById(LineId).Departures;
             for (int i = 0; i < deps.Count; i++)
             {
@@ -238,11 +301,11 @@ namespace HCI_Project.view.DepartureHandling
             }
             // sad jos jednom proci kroz sve pickere i ako bude neki disableovan, njega obrisati
             // vjerovatno treba ici odzada
-            
+
             // ovo su ovi koji su novododati
             for (int i = deps.Count; i < allPickers.Count; i++)
             {
-                if (allPickers[i].SelectedTime!=null)
+                if (allPickers[i].SelectedTime != null)
                 {
                     Departure newD = new Departure();
                     newD.StartTime = allPickers[i].SelectedTime.Value;
@@ -250,21 +313,43 @@ namespace HCI_Project.view.DepartureHandling
                     newD.Train = rf.TrainRepository.GetById(1);
                     deps.Add(newD);
                 }
-                
+
             }
             for (int i = allPickers.Count - 1; i >= 0; i--)
             {
-                Console.WriteLine("Kad sam isla unazad indeks je bio " + i);
                 if (allPickers[i].IsEnabled == false)
                 {
-                    Console.WriteLine("Bio je disableovan");
                     deps.RemoveAt(i);
                 }
             }
-            Console.WriteLine("Duzina departura je " + deps.Count);
             rf.LineRepository.SaveAll();
+           
+                
+           
+           
         }
 
+        private void handleNoDepartures(List<TimePicker> allPickers)
+        {
+            Console.WriteLine("Duzina linija prije brisanje je bila " + rf.LineRepository.GetAll().Count);
+            rf.LineRepository.Delete(LineId);
+            MessageBox.Show("This line has no more departures so it has been deleted!", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+            rf.LineRepository.SaveAll();
+            Console.WriteLine("Duzina linija prije brisanje je na kraju " + rf.LineRepository.GetAll().Count);
+            // ovdje treba da ga vratim na onu prethodnu
+            LinesView lv = new LinesView(rf);
+            Window wnd = Window.GetWindow(this);
+            wnd.Content = lv;
+        }
+
+        private bool allPickersAreDisabled(List<TimePicker> pickers)
+        {
+            foreach(TimePicker p in pickers)
+            {
+                if (p.IsEnabled == true) return false;
+            }
+            return true;
+        }
 
         private void saveOffsets()
         {
@@ -278,6 +363,7 @@ namespace HCI_Project.view.DepartureHandling
 
         private void btnDiscard_Click(object sender, RoutedEventArgs e)
         {
+            MessageBox.Show("Your changes are discared!", "Discard", MessageBoxButton.OK, MessageBoxImage.Warning);
             DeparturesEdit de = new DeparturesEdit(rf, LineId);
             Window wnd = Window.GetWindow(this);
             wnd.Content = de;

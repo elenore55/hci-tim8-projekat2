@@ -45,7 +45,7 @@ namespace HCI_Project.view
             List<Train> trains = rf.TrainRepository.GetAll();
             foreach (Train t in trains)
             {
-                retVal.Add(new TrainDTO(t.Id, t.Wagons.Count));
+                retVal.Add(new TrainDTO(t.Id, t.Name, t.Wagons.Count));
             }
             return retVal;
 
@@ -103,15 +103,22 @@ namespace HCI_Project.view
             wnd.Content = new AddTrain(rf);
         }
 
+        private void btnFilter_Click (object sender, RoutedEventArgs e)
+        {
+            //s
+        }
+
 
         public class TrainDTO
         {
             public long Id { get; set; }
+            public String Name { get; set; }
             public int NumOfWagons { get; set; }
 
-            public TrainDTO(long id, int numOfWagons)
+            public TrainDTO(long id, String name, int numOfWagons)
             {
                 this.Id = id;
+                this.Name = name;
                 this.NumOfWagons = numOfWagons;
             }
 

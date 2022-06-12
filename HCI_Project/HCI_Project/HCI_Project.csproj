@@ -301,6 +301,7 @@
     <Resource Include="resources\wagons.xml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="help\img\Lines\" />
     <Folder Include="images\" />
   </ItemGroup>
   <ItemGroup>

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using HCI_Project.model;
+using HCI_Project.repository;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,11 +25,19 @@ namespace HCI_Project.view
         public Login()
         {
             InitializeComponent();
+            this.WindowHeight = System.Windows.SystemParameters.FullPrimaryScreenHeight / 3 * 2;
+            this.WindowWidth = System.Windows.SystemParameters.FullPrimaryScreenWidth / 2;
+
         }
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
-
+            RepositoryFactory rf = new RepositoryFactory();
+            Console.WriteLine("Uneseni mejl je " + usernameField.Text);
+            foreach (Client c in rf.ClientRepository.GetAll())
+            {
+                Console.WriteLine("Ime " + c.Name);
+            }
         }
 
 

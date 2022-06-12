@@ -29,7 +29,7 @@ namespace HCI_Project.view.LinesHandling
         public ObservableCollection<LineDTO> MyRows { get; set; }
         //public List<Departure> Departures { get; set; }
 
-        public LinesView(RepositoryFactory rf, bool demoMode)
+        public LinesView(RepositoryFactory rf)
         {   
             this.rf = rf;
             MyRows = findAllRows();
@@ -48,7 +48,7 @@ namespace HCI_Project.view.LinesHandling
 
         public void demoFunc()
         {
-            //Thread.Sleep(2000);
+            Thread.Sleep(2000);
             tbFrom.Text = "Novi Sad";
             Thread.Sleep(2000);
             tbTo.Text = "Beograd";
@@ -207,8 +207,6 @@ namespace HCI_Project.view.LinesHandling
             
             LineDTO selected = dataGrid.SelectedItem as LineDTO;
             long lineId = selected.Id;
-            Console.WriteLine("Id odabrane linije je " + lineId);
-
             DeparturesEdit de = new DeparturesEdit(rf, lineId);
             //NavigationService.Navigate(de);
             Window wnd = Window.GetWindow(this);

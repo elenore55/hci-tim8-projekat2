@@ -38,6 +38,6 @@
             </Menu>
         </DockPanel>
         <Frame Grid.Row="1" NavigationUIVisibility="Hidden" x:Name="MainFrame"></Frame>
-        <Button Grid.Row="2" Content="Demo mode" Width="200" Height="50" Margin="0,0,0,100" Click="btnDemo_Click" ></Button>
+        
     </Grid>
 </Window>

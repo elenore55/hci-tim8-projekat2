@@ -496,7 +496,8 @@ namespace HCI_Project.view.TrainHandling
                 // dodamo voz
                 Train.Name = trainName.Text;
                 rf.TrainRepository.Add(Train);
-                // ucitamo ponovo stranicu            
+                MessageBox.Show("Train successfully added!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                // ucitamo ponovo stranicu
                 Window wnd = Window.GetWindow(this);
                 wnd.Content = new AddTrain(rf);
             }

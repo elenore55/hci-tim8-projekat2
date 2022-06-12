@@ -37,7 +37,7 @@ namespace HCI_Project
             //this.Content = new TrainsView(rf);
             //this.Content = new MonthlyReport(rf);
             //this.Content = new DepartureReport(rf);
-            //demoFunc();
+            this.Content = new Login();
         }
 
         
@@ -287,22 +287,6 @@ namespace HCI_Project
         }
 
 
-        private void btnDemo_Click(object sender, RoutedEventArgs e)
-        {
-            demoFunc();
-        }
-
-        private void demoFunc()
-        {
-            LinesView lv = new LinesView(rf, true);
-            this.Content = lv;
-            //Thread.Sleep(2000);
-            lv.demoFunc();
-
-        }
-
-
-
-
+        
     }
 }
