@@ -36,6 +36,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>logo.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="BingMapsRESTToolkit, Version=1.1.4.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\BingMapsRESTToolkit.1.1.4\lib\net45\BingMapsRESTToolkit.dll</HintPath>
@@ -391,6 +394,8 @@
     <Content Include="help\ClientsReservations.html" />
     <Content Include="help\ClientsTickets.html" />
     <Content Include="help\WelcomePage.html" />
+    <Resource Include="logo.ico" />
+    <Resource Include="images\logo.ico" />
     <Resource Include="images\LoginBackground.jpg" />
     <Resource Include="images\background.jpg" />
     <Resource Include="help\img\clientsReservations\cancelReservationBtn.png" />

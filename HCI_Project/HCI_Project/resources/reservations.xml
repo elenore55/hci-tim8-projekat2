@@ -70,7 +70,7 @@
     <Id>8</Id>
     <ReservationDateTime>2022-06-08T08:19:06.6859202+02:00</ReservationDateTime>
     <DepartureDate>2022-06-16T00:00:00</DepartureDate>
-    <IsActive>true</IsActive>
+    <IsActive>false</IsActive>
     <ClientEmail>milica@gmail.com</ClientEmail>
     <SeatId>46</SeatId>
     <DepartureId>3</DepartureId>
