@@ -153,6 +153,13 @@
     <Compile Include="view\TrainHandling\TrainsView.xaml.cs">
       <DependentUpon>TrainsView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="view\WelcomePage.xaml.cs">
+      <DependentUpon>WelcomePage.xaml</DependentUpon>
+    </Compile>
+    <Page Include="ClientWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="HelpViewer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -233,6 +240,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="view\WelcomePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="model\Client.cs" />
@@ -303,11 +314,10 @@
   <ItemGroup>
     <Resource Include="resources\wagons.xml" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Folder Include="help\img\Lines\" />
-    <Folder Include="images\" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="help\ClientsReservations.html" />
     <Content Include="help\ClientsTickets.html" />
