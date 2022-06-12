@@ -276,5 +276,11 @@ namespace HCI_Project
         {
             MainFrame.Content = new ClientsReservations(rf);
         }
+
+        private void help_Click(object sender, RoutedEventArgs e)
+        {
+            var p = MainFrame.Content as Page;
+            HelpProvider.ShowHelp(p.Title, this);
+        }
     }
 }
