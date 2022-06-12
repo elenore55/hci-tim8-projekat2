@@ -96,5 +96,10 @@ namespace HCI_Project
         {
             MainFrame.Content = new LinesView(rf);
         }
+
+        private void demo_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

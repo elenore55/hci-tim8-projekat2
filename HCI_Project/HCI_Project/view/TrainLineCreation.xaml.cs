@@ -336,6 +336,7 @@ namespace HCI_Project.view
                         var r = await routeRequest.Execute();
                         var route = r.ResourceSets[0].Resources[0] as Route;
                         List<int> Offsets = new List<int>();
+                        Offsets.Add(0);
                         foreach (RouteLeg rl in route.RouteLegs)
                         {
                             Offsets.Add((int)rl.TravelDuration / 60);
@@ -345,11 +346,13 @@ namespace HCI_Project.view
                         {
                             l = editedLine;
                             rf.LineRepository.Delete(l.Id);
+                            l.Departures = editedLine.Departures;
                         }
                         else 
                         {
                             l = new model.Line();
                             l.Id = rf.LineRepository.GetNextId();
+                            l.Departures = new List<Departure>();
                         }
                         l.Stations = StopStations;
                         l.OffsetsInMinutes = Offsets.GetRange(0, Offsets.Count - 1);

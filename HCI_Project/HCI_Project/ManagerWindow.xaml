@@ -46,9 +46,12 @@
                 <MenuItem Header="_Departure report" Click="departureReport_Click" Foreground="#4f5459" />
             </MenuItem>
 
-
-            <MenuItem x:Name="help" Header="Help" Click="help_Click" HorizontalAlignment="Right"/>
-            <MenuItem x:Name="logout" Header="Logout" Click="help_Click" HorizontalAlignment="Right" Margin="0,0,65,0"/>
+            <MenuItem Header="Help" HorizontalAlignment="Right" Margin="0 0 80 0">
+                <MenuItem Header="Online" Click="help_Click" HorizontalAlignment="Right" Foreground="#4f5459"/>
+                <MenuItem Header="Demo" Click="demo_Click" HorizontalAlignment="Right" Foreground="#4f5459"/>
+            </MenuItem>
+            
+            <MenuItem x:Name="logout" Header="Logout" Click="help_Click" HorizontalAlignment="Right"/>
         </Menu>
 
         <Frame Grid.Row="1" NavigationUIVisibility="Hidden" x:Name="MainFrame">
