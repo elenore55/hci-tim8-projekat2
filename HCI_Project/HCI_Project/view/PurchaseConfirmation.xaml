@@ -14,8 +14,8 @@
             <Setter Property="Margin" Value="10,5,10,5"></Setter>
         </Style>
     </Window.Resources>
-    <Grid>
-        <Grid>
+    <Grid Background="AliceBlue">
+        <Grid Margin="25,0,0,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
@@ -34,6 +34,7 @@
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="25" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
                 <Label Grid.Row="0" Grid.Column="0" Style="{StaticResource LabelStyle}">From:</Label>
@@ -44,13 +45,13 @@
                 <Label Grid.Row="5" Grid.Column="0" Style="{StaticResource LabelStyle}">Seat:</Label>
                 <Label Grid.Row="6" Grid.Column="0" Style="{StaticResource LabelStyle}">Price:</Label>
 
-                <Label Grid.Row="0" Grid.Column="1" Style="{StaticResource LabelStyle}" Content="{Binding From}"></Label>
-                <Label Grid.Row="1" Grid.Column="1" Style="{StaticResource LabelStyle}" Content="{Binding To}"></Label>
-                <Label Grid.Row="2" Grid.Column="1" Style="{StaticResource LabelStyle}" Content="{Binding DepartureDateTime}"></Label>
-                <Label Grid.Row="3" Grid.Column="1" Style="{StaticResource LabelStyle}" Content="{Binding ArrivalDateTime}"></Label>
-                <Label Grid.Row="4" Grid.Column="1" Style="{StaticResource LabelStyle}" Content="{Binding Wagon}"></Label>
-                <Label Grid.Row="5" Grid.Column="1" Style="{StaticResource LabelStyle}" Content="{Binding Seat}"></Label>
-                <Label Grid.Row="6" Grid.Column="1" Style="{StaticResource LabelStyle}" Content="{Binding Price}"></Label>
+                <Label Grid.Row="0" Grid.Column="2" Style="{StaticResource LabelStyle}" Content="{Binding From}"></Label>
+                <Label Grid.Row="1" Grid.Column="2" Style="{StaticResource LabelStyle}" Content="{Binding To}"></Label>
+                <Label Grid.Row="2" Grid.Column="2" Style="{StaticResource LabelStyle}" Content="{Binding DepartureDateTime}"></Label>
+                <Label Grid.Row="3" Grid.Column="2" Style="{StaticResource LabelStyle}" Content="{Binding ArrivalDateTime}"></Label>
+                <Label Grid.Row="4" Grid.Column="2" Style="{StaticResource LabelStyle}" Content="{Binding Wagon}"></Label>
+                <Label Grid.Row="5" Grid.Column="2" Style="{StaticResource LabelStyle}" Content="{Binding Seat}"></Label>
+                <Label Grid.Row="6" Grid.Column="2" Style="{StaticResource LabelStyle}" Content="{Binding Price}"></Label>
             </Grid>
             <Grid Grid.Row="2">
                 <Grid.ColumnDefinitions>

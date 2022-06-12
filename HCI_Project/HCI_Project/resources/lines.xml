@@ -1029,6 +1029,7 @@
         </Train>
       </Departure>
     </Departures>
+    <FirstClassPercentage>10</FirstClassPercentage>
   </Line>
   <Line>
     <Id>2</Id>
@@ -2070,5 +2071,6 @@
         </Train>
       </Departure>
     </Departures>
+    <FirstClassPercentage>13</FirstClassPercentage>
   </Line>
 </ArrayOfLine>

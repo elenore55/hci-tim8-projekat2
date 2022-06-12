@@ -73,6 +73,7 @@
     <Compile Include="ClientWindow.xaml.cs">
       <DependentUpon>ClientWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Config.cs" />
     <Compile Include="HelpProvider.cs" />
     <Compile Include="HelpViewer.xaml.cs">
       <DependentUpon>HelpViewer.xaml</DependentUpon>

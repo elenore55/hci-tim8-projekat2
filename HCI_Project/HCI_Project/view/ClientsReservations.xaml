@@ -59,7 +59,7 @@
             </Setter>
         </Style>
     </Page.Resources>
-    <Grid>
+    <Grid Background="AliceBlue">
         <Grid.Resources>
             <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#7986cb" />
         </Grid.Resources>
@@ -95,7 +95,7 @@
                 <DataGridTextColumn Header = "Train" Binding = "{Binding TrainName}" Width="*" />
                 <DataGridTextColumn Header = "Wagon" Binding = "{Binding WagonStr}" Width="2*" />
                 <DataGridTextColumn Header = "Seat" Binding = "{Binding SeatStr}" Width="*" />
-                <DataGridTextColumn Header = "Price (EUR)" Binding = "{Binding Price}" Width="*"/>
+                <DataGridTextColumn Header = "Price" Binding = "{Binding PriceStr}" Width="*"/>
             </DataGrid.Columns>
             <DataGrid.RowDetailsTemplate>
                 <DataTemplate>

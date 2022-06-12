@@ -390,6 +390,9 @@ namespace HCI_Project.view
 
         private void btnReserve_Click(object sender, RoutedEventArgs e)
         {
+            double price = departureDTO.Price;
+            if (selectedWagonClass == WagonClass.First.ToString())
+                price = departureDTO.Line.GetFirstClassPrice();
             TicketData td = new TicketData
             {
                 From = departureDTO.Line.Stations[departureDTO.StartIndex].Name,
@@ -398,7 +401,7 @@ namespace HCI_Project.view
                 ArrivalDateTime = $"{DepartureDate.ToShortDateString()} {departureDTO.ArrivalTimeStr}",
                 Wagon = $"Number {Grid.GetRow(selectedWagon) + 1}, {selectedWagonClass} class",
                 Seat = $"{Grid.GetColumn(selectedSeat) + 1}{Convert.ToChar(65 + Grid.GetRow(selectedSeat))}",
-                Price = $"{departureDTO.Price} EUR",
+                Price = $"{price} \u20AC",
                 IsReservation = true
             };
             PurchaseConfirmation confirmation = new PurchaseConfirmation(td);
@@ -408,6 +411,9 @@ namespace HCI_Project.view
 
         private void btnPurchase_Click(object sender, RoutedEventArgs e)
         {
+            double price = departureDTO.Price;
+            if (selectedWagonClass == WagonClass.First.ToString())
+                price = departureDTO.Line.GetFirstClassPrice();
             TicketData td = new TicketData
             {
                 From = departureDTO.Line.Stations[departureDTO.StartIndex].Name,
@@ -416,7 +422,7 @@ namespace HCI_Project.view
                 ArrivalDateTime = $"{DepartureDate.ToShortDateString()} {departureDTO.ArrivalTimeStr}",
                 Wagon = $"Number {Grid.GetRow(selectedWagon) + 1}, {selectedWagonClass} class",
                 Seat = $"{Grid.GetColumn(selectedSeat) + 1}{Convert.ToChar(65 + Grid.GetRow(selectedSeat))}",
-                Price = $"{departureDTO.Price} EUR",
+                Price = $"{price} EUR",
                 IsReservation = false
             };
             PurchaseConfirmation confirmation = new PurchaseConfirmation(td);

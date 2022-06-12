@@ -83,7 +83,7 @@
         </Style>
 
     </Page.Resources>
-    <Grid>
+    <Grid Background="AliceBlue">
         <Grid.Resources>
             <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#7986cb" />
         </Grid.Resources>
@@ -155,10 +155,12 @@
          AlternationCount = "2" AutoGenerateColumns = "False" ItemsSource="{Binding MyRows, RelativeSource={RelativeSource AncestorType=Page}}"
         RowDetailsVisibilityMode="VisibleWhenSelected" SelectionMode="Single" SelectionChanged="dataGrid_Selected" Visibility="Hidden">
             <DataGrid.Columns>
+                <DataGridTextColumn Header = "Line" Binding = "{Binding LineNum}" Width="*" />
                 <DataGridTextColumn Header = "Departure time" Binding = "{Binding DepartureTimeStr}" Width="2*" />
                 <DataGridTextColumn Header = "Arrival time" Binding = "{Binding ArrivalTimeStr}" Width="2*" />
                 <DataGridTextColumn Header = "Train" Binding = "{Binding Train.Name}" Width="2*" />
-                <DataGridTextColumn Header = "Price (EUR)" Binding = "{Binding Price}" Width="*"/>
+                <DataGridTextColumn Header = "Regular price" Binding = "{Binding PriceStr}" Width="2*"/>
+                <DataGridTextColumn Header = "First class price" Binding = "{Binding FirstClassPrice}" Width="2*"/>
             </DataGrid.Columns>
             <DataGrid.RowDetailsTemplate>
                 <DataTemplate>

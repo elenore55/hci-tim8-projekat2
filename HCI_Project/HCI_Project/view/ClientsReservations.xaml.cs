@@ -64,7 +64,7 @@ namespace HCI_Project.view
                     DateTimeOfDepartureStr = $"{r.DepartureDate.ToShortDateString()} {departure.StartTime.ToShortTimeString()}",
                     DateTimeOfArrivalStr = $"{r.DepartureDate.ToShortDateString()} {CalculateDeparture(departure.StartTime, r.EndStation, line).ToShortTimeString()}",
                     Destination = $"{r.StartStation} - {r.EndStation}",
-                    Price = line.Price,
+                    Price = line.GetPrice(wagon.Class),
                     SeatStr = $"{seat.Row + 1}{Convert.ToChar(65 + seat.Column)}",
                     WagonStr = $"No. {wagon.Ordinal + 1} ({wagon.Class} class)",
                     TrainName = departure.Train.Name,
@@ -172,6 +172,7 @@ namespace HCI_Project.view
         public string DateTimeOfArrivalStr { get; set; }
         public string Destination { get; set; }
         public double Price { get; set; }
+        public string PriceStr { get { return $"{Price} \u20AC"; } }
         public string SeatStr { get; set; }
         public string WagonStr { get; set; }
         public string TrainName { get; set; }

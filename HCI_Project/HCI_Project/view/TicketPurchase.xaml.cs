@@ -1,4 +1,5 @@
-﻿using HCI_Project.model;
+﻿using HCI_Project;
+using HCI_Project.model;
 using HCI_Project.repository;
 using System;
 using System.Collections.Generic;
@@ -218,6 +219,13 @@ public class DepartureDTO
     public DateTime DepartureTime { get; set; }
     public Line Line { get; set; }
     public Train Train { get; set; }
+    public long LineNum
+    {
+        get
+        {
+            return Line.Id;
+        }
+    }
     public string DepartureTimeStr
     {
         get
@@ -241,7 +249,21 @@ public class DepartureDTO
             return start.ToShortTimeString();
         } 
     }
+    public string PriceStr
+    {
+        get { return $"{ Line.Price } \u20AC"; }
+    }
+
     public double Price { get { return Line.Price; } }
+     
+    public string FirstClassPrice
+    {
+        get
+        {
+            return $"{ Line.GetFirstClassPrice() } \u20AC";
+        }
+    }
+
     public string Details
     {
         get
