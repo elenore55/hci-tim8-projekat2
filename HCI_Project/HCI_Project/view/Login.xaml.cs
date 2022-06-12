@@ -41,7 +41,7 @@ namespace HCI_Project.view
                 if (c.Email.Equals(emailField.Text) && c.Password.Equals(passwordField.Password.ToString()))
                 {
                     Window wnd = Window.GetWindow(this);
-                    wnd.Close();
+                    wnd.Hide();
                     ClientWindow cw = new ClientWindow(emailField.Text);
                     cw.Show();
                     return;
@@ -55,7 +55,7 @@ namespace HCI_Project.view
                     ManagerWindow mw = new ManagerWindow();
                     mw.Show();
                     Window wnd = Window.GetWindow(this);
-                    wnd.Close();
+                    wnd.Hide();
                     return; 
                 }
             }

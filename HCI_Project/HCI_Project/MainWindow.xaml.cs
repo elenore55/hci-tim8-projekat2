@@ -67,7 +67,7 @@ namespace HCI_Project
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            // Application.Current.Shutdown();
+            Application.Current.Shutdown();
         }
 
         private void Populate(StationRepository sr, DepartureRepository dr, LineRepository lr, TrainRepository tr, WagonRepository wr, SeatRepository sr1)
