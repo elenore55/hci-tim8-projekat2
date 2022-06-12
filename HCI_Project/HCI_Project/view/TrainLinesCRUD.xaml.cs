@@ -28,7 +28,7 @@ namespace HCI_Project.view
     /// </summary>
     public partial class TrainLinesCRUD : Page
     {
-        private string BingMapsKey = "AinQ9hRJn7QhWLbnmUvC6OJ9RvqMuOWGDRkvSqOf5MUgrvbkmFHxHNg6aIjno0CM";
+        private readonly string BingMapsKey = "AinQ9hRJn7QhWLbnmUvC6OJ9RvqMuOWGDRkvSqOf5MUgrvbkmFHxHNg6aIjno0CM";
         public List<HCI_Project.model.Line> Lines { get; set; }
         public LoadingWindow viewer = new LoadingWindow();
         private RepositoryFactory rf; 

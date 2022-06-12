@@ -20,8 +20,8 @@
     <Id>3</Id>
     <Name>Lapovo</Name>
     <Coords>
-      <X>43.3168743676544</X>
-      <Y>21.8930174489589</Y>
+      <X>44.1845546497502</X>
+      <Y>21.1054707255333</Y>
     </Coords>
   </Station>
   <Station>
@@ -150,22 +150,6 @@
     <Coords>
       <X>42.6578408443893</X>
       <Y>21.150085751261</Y>
-    </Coords>
-  </Station>
-  <Station>
-    <Id>0</Id>
-    <Name>a</Name>
-    <Coords>
-      <X>45.405975433267713</X>
-      <Y>20.021673758175837</Y>
-    </Coords>
-  </Station>
-  <Station>
-    <Id>0</Id>
-    <Name>aas</Name>
-    <Coords>
-      <X>45.372219806433712</X>
-      <Y>20.065619070675837</Y>
     </Coords>
   </Station>
 </ArrayOfStation>

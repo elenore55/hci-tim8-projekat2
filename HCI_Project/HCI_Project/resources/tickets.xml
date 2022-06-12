@@ -120,4 +120,24 @@
     <StartStation>Stanica 1</StartStation>
     <EndStation>Stanica 3</EndStation>
   </Ticket>
+  <Ticket>
+    <Id>13</Id>
+    <PurchaseDateTime>2022-06-09T02:09:15.7705793+02:00</PurchaseDateTime>
+    <DepartureDate>2022-06-09T00:00:00</DepartureDate>
+    <ClientEmail>milica@gmail.com</ClientEmail>
+    <SeatId>20</SeatId>
+    <DepartureId>1</DepartureId>
+    <StartStation>Sombor</StartStation>
+    <EndStation>Lapovo</EndStation>
+  </Ticket>
+  <Ticket>
+    <Id>14</Id>
+    <PurchaseDateTime>2022-06-09T02:09:42.7400085+02:00</PurchaseDateTime>
+    <DepartureDate>2022-06-23T00:00:00</DepartureDate>
+    <ClientEmail>milica@gmail.com</ClientEmail>
+    <SeatId>18</SeatId>
+    <DepartureId>2</DepartureId>
+    <StartStation>Sombor</StartStation>
+    <EndStation>Lapovo</EndStation>
+  </Ticket>
 </ArrayOfTicket>

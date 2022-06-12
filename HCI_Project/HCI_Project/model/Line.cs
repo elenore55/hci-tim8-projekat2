@@ -15,6 +15,7 @@ namespace HCI_Project.model
         public List<int> OffsetsInMinutes { get; set; }
         public List<Departure> Departures { get; set; }
         public string LastStation { get; set; }
+        public int FistClassPercentage { get; set; }
 
         public Station GetStartStation()
         {

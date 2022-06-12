@@ -26,8 +26,14 @@ namespace HCI_Project.view
     /// </summary>
     public partial class ClintLineNetwork : Page
     {
+        public class StationList
+        {
+            public Station Station { get; set; }
+            public int Offset { get; set; }
+        }
         private string BingMapsKey = "AinQ9hRJn7QhWLbnmUvC6OJ9RvqMuOWGDRkvSqOf5MUgrvbkmFHxHNg6aIjno0CM";
         public List<model.Line> Lines { get; set; }
+        public List<StationList> Stations { get; set; }
         public LoadingWindow viewer = new LoadingWindow();
         private RepositoryFactory rf;
         public ClintLineNetwork(RepositoryFactory rf)
@@ -70,8 +76,20 @@ namespace HCI_Project.view
             {
                 pushpins[i].Content = i + 1;
             }
+            Stations = new List<StationList>();
+            for(int i = 0; i < l.Stations.Count; i++)
+            {
+                int offset = l.OffsetsInMinutes[i];
+                if (i > 0)
+                {
+                    offset += Stations[i - 1].Offset;
+                }
+                Stations.Add(new StationList() { Station = l.Stations[i], Offset = offset });
+            }
             pushpins.ForEach(x => MyMap.Children.Add(x));
             MyMap.UpdateLayout();
+            LBStations.ItemsSource = Stations;
+            LBStations.Items.Refresh();
             Thread.Sleep(1000);
             System.Windows.Threading.Dispatcher.FromThread(viewerThread).InvokeShutdown();
         }

@@ -27,7 +27,7 @@ namespace HCI_Project.view
     /// </summary>
     public partial class TrainLineCreation : Window
     {
-        private string BingMapsKey = "AinQ9hRJn7QhWLbnmUvC6OJ9RvqMuOWGDRkvSqOf5MUgrvbkmFHxHNg6aIjno0CM";
+        private readonly string BingMapsKey = "AinQ9hRJn7QhWLbnmUvC6OJ9RvqMuOWGDRkvSqOf5MUgrvbkmFHxHNg6aIjno0CM";
         public delegate void DataChangedEventHandler(object sender, EventArgs e);
         public event DataChangedEventHandler DataChangedEvent;
         private System.Windows.Point StartPoint;
@@ -255,14 +255,32 @@ namespace HCI_Project.view
             UpdateMap();
             LBStations.Items.Refresh();
         }
-        private void tbFrom_GotFocus(object sender, RoutedEventArgs e)
+        private void price_GotFocus(object sender, RoutedEventArgs e)
         {
             priceTxt.BorderBrush = Brushes.Gray;
         }
 
-        private void tbFrom_LostFocus(object sender, RoutedEventArgs e)
+        private void price_LostFocus(object sender, RoutedEventArgs e)
         {
             MarkPriceTxtToRed();
+        }
+
+        private void percentage_GotFocus(object sender, RoutedEventArgs e)
+        {
+            percentageTxt.BorderBrush = Brushes.Gray;
+        }
+
+        private void percentage_LostFocus(object sender, RoutedEventArgs e)
+        {
+            MarkPercentageTxtToRed();
+        }
+
+        private void MarkPercentageTxtToRed()
+        {
+            if (percentageTxt.Text.Trim() == "")
+            {
+                percentageTxt.BorderBrush = Brushes.Red;
+            }
         }
 
         private void MarkPriceTxtToRed()
@@ -282,52 +300,76 @@ namespace HCI_Project.view
                     double price;
                     if (!Double.TryParse(priceTxt.Text, out price))
                     {
+                        NoPrice.MessageQueue.Enqueue($"Price must be numbers!", null, null, null, false, true, TimeSpan.FromSeconds(3));
+                        priceTxt.BorderBrush = Brushes.Red;
+                        return;
+                    } else if (price < 0)
+                    {
+                        NoPrice.MessageQueue.Enqueue($"Price must be positive!", null, null, null, false, true, TimeSpan.FromSeconds(3));
+                        priceTxt.BorderBrush = Brushes.Red;
                         return;
                     }
-                    List<SimpleWaypoint> waypoints = new List<SimpleWaypoint>();
-                    foreach (Station s in StopStations)
+                    if (percentageTxt.Text.Trim().Length != 0) {
+                        int percentage;
+                        if (!Int32.TryParse(percentageTxt.Text, out percentage))
+                        {
+                            NoPercentage.MessageQueue.Enqueue($"Percentage must be numbers!", null, null, null, false, true, TimeSpan.FromSeconds(3));
+                            percentageTxt.BorderBrush = Brushes.Red;
+                            return;
+                        } else if (percentage < 0 || percentage > 100)
+                        {
+                            NoPercentage.MessageQueue.Enqueue($"Percentage must be in range 0-100!", null, null, null, false, true, TimeSpan.FromSeconds(3));
+                            percentageTxt.BorderBrush = Brushes.Red;
+                            return;
+                        }
+                        List<SimpleWaypoint> waypoints = new List<SimpleWaypoint>();
+                        foreach (Station s in StopStations)
+                        {
+                            waypoints.Add(new SimpleWaypoint(s.Coords.X, s.Coords.Y));
+                        }
+                        var routeRequest = new RouteRequest()
+                        {
+                            Waypoints = waypoints,
+                            WaypointOptimization = BingMapsRESTToolkit.Extensions.TspOptimizationType.TravelDistance,
+                            BingMapsKey = this.BingMapsKey
+                        };
+                        var r = await routeRequest.Execute();
+                        var route = r.ResourceSets[0].Resources[0] as Route;
+                        List<int> Offsets = new List<int>();
+                        foreach (RouteLeg rl in route.RouteLegs)
+                        {
+                            Offsets.Add((int)rl.TravelDuration / 60);
+                        }
+                        model.Line l;
+                        if (isEdit)
+                        {
+                            l = editedLine;
+                            rf.LineRepository.Delete(l.Id);
+                        }
+                        else 
+                        {
+                            l = new model.Line();
+                            l.Id = rf.LineRepository.GetNextId();
+                        }
+                        l.Stations = StopStations;
+                        l.OffsetsInMinutes = Offsets.GetRange(0, Offsets.Count - 1);
+                        l.Price = price;
+                        l.LastStation = StopStations[StopStations.Count - 1].Name;
+                        l.FistClassPercentage = percentage;
+                        rf.LineRepository.Add(l);
+                        DataChangedEventHandler handler = DataChangedEvent;
+                        if (handler != null)
+                        {
+                            handler(this, new EventArgs());
+                        }
+                        if (isEdit) LineAdded.MessageQueue.Enqueue($"Line '{l.Id}' edited!", null, null, null, false, true, TimeSpan.FromSeconds(3));
+                        else LineAdded.MessageQueue.Enqueue($"Line '{l.Id}' succesfuly added!", null, null, null, false, true, TimeSpan.FromSeconds(3));
+                    } 
+                    else
                     {
-                        waypoints.Add(new SimpleWaypoint(s.Coords.X, s.Coords.Y));
+                        NoPercentage.MessageQueue.Enqueue($"Percentage must be entered!", null, null, null, false, true, TimeSpan.FromSeconds(3));
+                        percentageTxt.BorderBrush = Brushes.Red;
                     }
-                    var routeRequest = new RouteRequest()
-                    {
-                        Waypoints = waypoints,
-                        WaypointOptimization = BingMapsRESTToolkit.Extensions.TspOptimizationType.TravelDistance,
-                        BingMapsKey = this.BingMapsKey
-                    };
-                    var r = await routeRequest.Execute();
-                    var route = r.ResourceSets[0].Resources[0] as Route;
-                    List<int> Offsets = new List<int>();
-                    int last = 0;
-                    foreach (RouteLeg rl in route.RouteLegs)
-                    {
-                        int current = (int)rl.TravelDuration/60;
-                        Offsets.Add(last + current);
-                        last = current;
-                    }
-                    model.Line l;
-                    if (isEdit)
-                    {
-                        l = editedLine;
-                        rf.LineRepository.Delete(l.Id);
-                    }
-                    else 
-                    {
-                        l = new model.Line();
-                        l.Id = rf.LineRepository.GetNextId();
-                    }
-                    l.Stations = StopStations;
-                    l.OffsetsInMinutes = Offsets.GetRange(0, Offsets.Count - 1);
-                    l.Price = price;
-                    l.LastStation = StopStations[StopStations.Count - 1].Name;
-                    rf.LineRepository.Add(l);
-                    DataChangedEventHandler handler = DataChangedEvent;
-                    if (handler != null)
-                    {
-                        handler(this, new EventArgs());
-                    }
-                    if (isEdit) LineAdded.MessageQueue.Enqueue($"Line '{l.Id}' edited!", null, null, null, false, true, TimeSpan.FromSeconds(3));
-                    else LineAdded.MessageQueue.Enqueue($"Line '{l.Id}' succesfuly added!", null, null, null, false, true, TimeSpan.FromSeconds(3));
                 } else
                 {
                     NoPrice.MessageQueue.Enqueue($"Price must be entered!", null, null, null, false, true, TimeSpan.FromSeconds(3));

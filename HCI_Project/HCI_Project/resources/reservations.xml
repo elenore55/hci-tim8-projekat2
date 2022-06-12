@@ -88,4 +88,15 @@
     <StartStation>Stanica 1</StartStation>
     <EndStation>Stanica 2</EndStation>
   </Reservation>
+  <Reservation>
+    <Id>10</Id>
+    <ReservationDateTime>2022-06-09T02:09:29.4871718+02:00</ReservationDateTime>
+    <DepartureDate>2022-06-23T00:00:00</DepartureDate>
+    <IsActive>true</IsActive>
+    <ClientEmail>milica@gmail.com</ClientEmail>
+    <SeatId>10</SeatId>
+    <DepartureId>2</DepartureId>
+    <StartStation>Sombor</StartStation>
+    <EndStation>Lapovo</EndStation>
+  </Reservation>
 </ArrayOfReservation>

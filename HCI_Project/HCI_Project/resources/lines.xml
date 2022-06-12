@@ -24,8 +24,8 @@
         <Id>3</Id>
         <Name>Lapovo</Name>
         <Coords>
-          <X>43.3168743676544</X>
-          <Y>21.8930174489589</Y>
+          <X>44.1845546497502</X>
+          <Y>21.1054707255333</Y>
         </Coords>
       </Station>
     </Stations>
@@ -1023,6 +1023,8 @@
         </Train>
       </Departure>
     </Departures>
+    <LastStation>Lapovo</LastStation>
+    <FistClassPercentage>10</FistClassPercentage>
   </Line>
   <Line>
     <Id>2</Id>
@@ -1053,11 +1055,11 @@
         </Coords>
       </Station>
       <Station>
-        <Id>6</Id>
-        <Name>Uzice</Name>
+        <Id>7</Id>
+        <Name>Vrsac</Name>
         <Coords>
-          <X>43.8560751522863</X>
-          <Y>19.8432587298032</Y>
+          <X>45.1224246748143</X>
+          <Y>21.2969962172208</Y>
         </Coords>
       </Station>
     </Stations>
@@ -2056,5 +2058,7 @@
         </Train>
       </Departure>
     </Departures>
+    <LastStation>Vrsac</LastStation>
+    <FistClassPercentage>10</FistClassPercentage>
   </Line>
 </ArrayOfLine>
