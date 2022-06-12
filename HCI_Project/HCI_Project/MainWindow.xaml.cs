@@ -236,7 +236,6 @@ namespace HCI_Project
             HelpProvider.ShowHelp(p.Title, this);
         }
 
-
         
     }
 }
