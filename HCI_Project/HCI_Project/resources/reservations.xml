@@ -99,4 +99,15 @@
     <StartStation>Sombor</StartStation>
     <EndStation>Lapovo</EndStation>
   </Reservation>
+  <Reservation>
+    <Id>11</Id>
+    <ReservationDateTime>2022-06-13T13:12:27.9571132+02:00</ReservationDateTime>
+    <DepartureDate>2022-06-23T00:00:00</DepartureDate>
+    <IsActive>true</IsActive>
+    <ClientEmail>pera</ClientEmail>
+    <SeatId>5</SeatId>
+    <DepartureId>2</DepartureId>
+    <StartStation>Sombor</StartStation>
+    <EndStation>Lapovo</EndStation>
+  </Reservation>
 </ArrayOfReservation>

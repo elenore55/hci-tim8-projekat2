@@ -33,12 +33,12 @@
                     <Grid/>
                 </ItemsPanelTemplate>
             </Menu.ItemsPanel>
-            <MenuItem Header="Tickets" HorizontalAlignment="Left" Margin="85,0,0,0">
+            <MenuItem Header="Tickets" HorizontalAlignment="Left">
                 <MenuItem x:Name="purchase" Header="_Reserve or purchase" Click="purchase_Click" Foreground="#4f5459"/>
                 <MenuItem x:Name="tickets" Header="_My tickets" Click="tickets_Click" Foreground="#4f5459" />
                 <MenuItem x:Name="reservations" Header="_My reservations" Click="reservations_Click" Foreground="#4f5459"/>
             </MenuItem>
-            <MenuItem Header="Lines" HorizontalAlignment="Left">
+            <MenuItem Header="Lines" HorizontalAlignment="Left" Margin="85,0,0,0">
                 <MenuItem x:Name="network" Header="_Network" Click="network_Click" Foreground="#4f5459"/>
             </MenuItem>
             <MenuItem x:Name="help" Header="Help" Click="help_Click" HorizontalAlignment="Right" Margin="0,0,80,0"/>

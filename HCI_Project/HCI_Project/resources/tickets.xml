@@ -140,4 +140,14 @@
     <StartStation>Sombor</StartStation>
     <EndStation>Lapovo</EndStation>
   </Ticket>
+  <Ticket>
+    <Id>15</Id>
+    <PurchaseDateTime>2022-06-13T13:12:23.0458077+02:00</PurchaseDateTime>
+    <DepartureDate>2022-06-23T00:00:00</DepartureDate>
+    <ClientEmail>pera</ClientEmail>
+    <SeatId>7</SeatId>
+    <DepartureId>2</DepartureId>
+    <StartStation>Sombor</StartStation>
+    <EndStation>Lapovo</EndStation>
+  </Ticket>
 </ArrayOfTicket>
