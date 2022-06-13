@@ -27,6 +27,11 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="3*"/>
+        </Grid.RowDefinitions>
         <Label Grid.ColumnSpan="3" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="18">Select Line</Label>
         <ComboBox Grid.ColumnSpan="3" x:Name="CBLines" VerticalAlignment="Top" HorizontalAlignment="Center" Width="350" FontSize="20" Margin="0 40 0 0" ItemsSource="{Binding Lines}" SelectionChanged="ComboBox_Selected">
             <ComboBox.ItemTemplate>
@@ -42,18 +47,31 @@
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
-        <m:Map Grid.ColumnSpan="2" Grid.Column="0" Grid.RowSpan="5" AllowDrop="True" Background="Transparent" Center="45.2461818273899, 19.85138567223834" ZoomLevel="7" Margin="20 90 20 20" x:Name="MyMap" Mode="Road"/>
-        <Label Grid.Column="2" FontSize="20" HorizontalAlignment="Center" Margin="0 60 0 0">Stations</Label>
-        <ListView Grid.Column="2" FontSize="15" x:Name="LBStations" AlternationCount="1000" Margin="10 100 10 10">
+        <m:Map Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="1" Grid.RowSpan="2" AllowDrop="True" Background="Transparent" Center="45.2461818273899, 19.85138567223834" ZoomLevel="7" Margin="20" x:Name="MyMap" Mode="Road"/>
+        <Label Grid.Column="2" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Bottom">Stations</Label>
+        <Label Grid.Column="2" Grid.Row="1" Grid.RowSpan="2" VerticalAlignment="Center" FontSize="20" HorizontalAlignment="Center" >Departures</Label>
+        <ListView Grid.Column="2" Grid.Row="1" FontSize="15" x:Name="LBStations" AlternationCount="1000" Margin="10 10 10 20">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding Path=(ItemsControl.AlternationIndex), RelativeSource={RelativeSource AncestorType=ListViewItem}}"/>
+                        <TextBlock Text="{Binding Path=(ItemsControl.AlternationIndex), RelativeSource={RelativeSource AncestorType=ListViewItem}}" />
                         <TextBlock Text=". "/>
-                        <TextBlock Text="{Binding Station.Name}" Width="100"/>
+                        <TextBlock Text="{Binding Station.Name}" FontWeight="Bold" Width="100"/>
                         <TextBlock Text="Travel time: "/>
-                        <TextBlock Text="{Binding Offset}"/>
+                        <TextBlock Text="{Binding Offset}" FontWeight="Bold"/>
                         <TextBlock Text="min"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <ListView Grid.Column="2" Grid.Row="2" FontSize="15" x:Name="LBDepartures" AlternationCount="1000" Margin="10 30 10 10">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Dearture Time: "/>
+                        <TextBlock Text="{Binding StartTime}" Width="100" FontWeight="Bold"/>
+                        <TextBlock Text="Arival Time: "/>
+                        <TextBlock Text="{Binding EndTime}" FontWeight="Bold"/>
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>

@@ -31,9 +31,15 @@ namespace HCI_Project.view
             public Station Station { get; set; }
             public int Offset { get; set; }
         }
+        public class DepartureSimple
+        {
+            public string StartTime { get; set; }
+            public string EndTime { get; set; }
+        }
         private string BingMapsKey = "AinQ9hRJn7QhWLbnmUvC6OJ9RvqMuOWGDRkvSqOf5MUgrvbkmFHxHNg6aIjno0CM";
         public List<model.Line> Lines { get; set; }
         public List<StationList> Stations { get; set; }
+        public List<DepartureSimple> Departures { get; set; }
         public LoadingWindow viewer = new LoadingWindow();
         private RepositoryFactory rf;
         public ClintLineNetwork(RepositoryFactory rf)
@@ -77,6 +83,7 @@ namespace HCI_Project.view
                 pushpins[i].Content = i + 1;
             }
             Stations = new List<StationList>();
+            Departures = new List<DepartureSimple>();
             for(int i = 0; i < l.Stations.Count; i++)
             {
                 int offset = l.OffsetsInMinutes[i];
@@ -86,8 +93,20 @@ namespace HCI_Project.view
                 }
                 Stations.Add(new StationList() { Station = l.Stations[i], Offset = offset });
             }
+            foreach (Departure d in l.Departures)
+            {
+                DateTime start = d.StartTime;
+                DateTime end = start.AddMinutes(Stations[Stations.Count - 1].Offset);
+                Departures.Add(new DepartureSimple()
+                {
+                    StartTime = start.ToShortTimeString(),
+                    EndTime = end.ToShortTimeString()
+                });
+            }
             pushpins.ForEach(x => MyMap.Children.Add(x));
             MyMap.UpdateLayout();
+            LBDepartures.ItemsSource = Departures;
+            LBDepartures.Items.Refresh();
             LBStations.ItemsSource = Stations;
             LBStations.Items.Refresh();
             Thread.Sleep(1000);
