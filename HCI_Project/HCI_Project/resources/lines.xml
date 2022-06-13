@@ -39,8 +39,6 @@
         <Id>1</Id>
         <StartTime>2022-06-01T13:00:00</StartTime>
         <LineId>1</LineId>
-        <Tickets />
-        <Reservations />
         <Train>
           <Id>1</Id>
           <Name>Moj voz</Name>
@@ -370,8 +368,6 @@
         <Id>2</Id>
         <StartTime>2022-06-01T14:30:00</StartTime>
         <LineId>1</LineId>
-        <Tickets />
-        <Reservations />
         <Train>
           <Id>1</Id>
           <Name>Moj voz</Name>
@@ -701,8 +697,6 @@
         <Id>3</Id>
         <StartTime>2022-06-01T18:00:00</StartTime>
         <LineId>1</LineId>
-        <Tickets />
-        <Reservations />
         <Train>
           <Id>1</Id>
           <Name>Moj voz</Name>
@@ -1034,7 +1028,7 @@
   </Line>
   <Line>
     <Id>2</Id>
-    <Price>100</Price>
+    <Price>60</Price>
     <Stations>
       <Station>
         <Id>4</Id>
@@ -1061,27 +1055,25 @@
         </Coords>
       </Station>
       <Station>
-        <Id>11</Id>
-        <Name>Beograd</Name>
+        <Id>7</Id>
+        <Name>Vrsac</Name>
         <Coords>
-          <X>44.8068530443879</X>
-          <Y>20.4176244378858</Y>
+          <X>45.1224246748143</X>
+          <Y>21.2969962172208</Y>
         </Coords>
       </Station>
     </Stations>
     <OffsetsInMinutes>
       <int>0</int>
-      <int>105</int>
-      <int>30</int>
-      <int>110</int>
+      <int>45</int>
+      <int>60</int>
+      <int>100</int>
     </OffsetsInMinutes>
     <Departures>
       <Departure>
         <Id>4</Id>
         <StartTime>2022-06-01T11:00:00</StartTime>
         <LineId>2</LineId>
-        <Tickets />
-        <Reservations />
         <Train>
           <Id>1</Id>
           <Name>Moj voz</Name>
@@ -1411,8 +1403,6 @@
         <Id>5</Id>
         <StartTime>2022-06-01T15:15:00</StartTime>
         <LineId>2</LineId>
-        <Tickets />
-        <Reservations />
         <Train>
           <Id>1</Id>
           <Name>Moj voz</Name>
@@ -1742,8 +1732,6 @@
         <Id>6</Id>
         <StartTime>2022-06-01T20:20:00</StartTime>
         <LineId>2</LineId>
-        <Tickets />
-        <Reservations />
         <Train>
           <Id>1</Id>
           <Name>Moj voz</Name>
@@ -2070,7 +2058,7 @@
         </Train>
       </Departure>
     </Departures>
-    <LastStation>Beograd</LastStation>
-    <FirstClassPercentage>15</FirstClassPercentage>
+    <LastStation>Vrsac</LastStation>
+    <FirstClassPercentage>10</FirstClassPercentage>
   </Line>
 </ArrayOfLine>
