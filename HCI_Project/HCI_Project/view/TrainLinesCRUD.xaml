@@ -8,7 +8,7 @@
       xmlns:local="clr-namespace:HCI_Project.view"
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="1500"
-      Title="TrainLineCRUD"
+      Title="TrainLinesCRUD"
       DataContext="{Binding RelativeSource={RelativeSource Self}}">
 
     <Page.Resources>

@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HCI_Project.view"
         mc:Ignorable="d"
-        Title="DemoPlayer" Height="450" Width="800">
+        Title="DemoPlayer" Height="450" Width="800"
+        WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -14,14 +15,14 @@
         <Viewbox>
             <MediaElement x:Name="Player" Stretch="UniformToFill"/>
         </Viewbox>
-        <Label x:Name="info" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="50" FontStyle="Oblique">Press Play to start video!</Label>
+        <Label x:Name="info" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="50" FontStyle="Oblique" Content="{Binding LabelText}"></Label>
 
         <StackPanel Grid.Row="1">
             <Label x:Name="lblStatus"/>
             <WrapPanel HorizontalAlignment="Center">
-                <Button Click="Button_Click">Play</Button>
-                <Button Click="Button_Click_1">Pause</Button>
-                <Button Click="Button_Click_2">Stop</Button>
+                <Button x:Name="btnPlay" Click="Button_Click" Margin="0,0,5,5">Play</Button>
+                <Button x:Name="btnPause" Click="Button_Click_1" Margin="5,0,5,5">Pause</Button>
+                <Button x:Name="btnStop" Click="Button_Click_2" Margin="5,0,0,5">Stop</Button>
             </WrapPanel>
             
         </StackPanel>

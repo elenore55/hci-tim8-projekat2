@@ -99,6 +99,7 @@
       <DependentUpon>ClientWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Config.cs" />
+    <Compile Include="DemoProvider.cs" />
     <Compile Include="HelpProvider.cs" />
     <Compile Include="HelpViewer.xaml.cs">
       <DependentUpon>HelpViewer.xaml</DependentUpon>
@@ -394,6 +395,9 @@
   <ItemGroup>
     <Content Include="help\ClientsReservations.html" />
     <Content Include="help\ClientsTickets.html" />
+    <Content Include="videos\create_schedule.mkv" />
+    <Content Include="videos\StationCRUD.mkv" />
+    <Content Include="videos\TrainLinesCRUD.mkv" />
     <Resource Include="help\img\welcomePage\linesMenuItem.png" />
     <Resource Include="help\img\welcomePage\ticketsMenuItem.png" />
     <Resource Include="help\img\clientsReservations\reservedTickets.png" />

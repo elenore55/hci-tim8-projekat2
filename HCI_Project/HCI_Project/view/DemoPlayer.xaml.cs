@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,15 +21,30 @@ namespace HCI_Project.view
     /// </summary>
     public partial class DemoPlayer : Window
     {
+        public string LabelText { get; set; }
+        public bool VideoExists { get; set; }
+
         public DemoPlayer(String source)
         {
             InitializeComponent();
-            DispatcherTimer timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromSeconds(1);
-            timer.Tick += timer_Tick;
-            timer.Start();
-            Player.Source = new Uri(source, UriKind.Relative);
-            Player.LoadedBehavior = MediaState.Manual;
+            DataContext = this;
+            if (File.Exists(source))
+            {
+                LabelText = "Press Play to start video!";
+                DispatcherTimer timer = new DispatcherTimer();
+                timer.Interval = TimeSpan.FromSeconds(1);
+                timer.Tick += timer_Tick;
+                timer.Start();
+                Player.Source = new Uri(source, UriKind.Relative);
+                Player.LoadedBehavior = MediaState.Manual;
+            } 
+            else
+            {
+                LabelText = "No demo for this part";
+                btnPlay.Visibility = Visibility.Hidden;
+                btnPause.Visibility = Visibility.Hidden;
+                btnStop.Visibility = Visibility.Hidden;
+            }
         }
 
         private void timer_Tick(object sender, EventArgs e)
