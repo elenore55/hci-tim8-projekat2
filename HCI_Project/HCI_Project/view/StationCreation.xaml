@@ -8,7 +8,7 @@
       xmlns:local="clr-namespace:HCI_Project.view"
       mc:Ignorable="d" 
       Height="600" Width="1300"
-      Title="StationCreation"
+      WindowStartupLocation="CenterScreen"
       DataContext="{Binding RelativeSource={RelativeSource Self}}">
 
     <Window.Resources>

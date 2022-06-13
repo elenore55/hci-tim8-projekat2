@@ -36,8 +36,10 @@ namespace HCI_Project.view
         public StationCreation(RepositoryFactory rf, Station s = null)
         {
             this.rf = rf;
+            Title = "Station Creation";
             if (s != null)
-            { 
+            {
+                Title = "Station Edit";
                 isEdit = true;
                 editedStation = s;
                 Location pinLocation = new Location();

@@ -43,8 +43,10 @@ namespace HCI_Project.view
         public TrainLineCreation(RepositoryFactory rf, model.Line l = null)
         {
             this.rf = rf;
-            if(l != null)
+            Title = "Line Creation";
+            if (l != null)
             {
+                Title = "Line Edit";
                 editedLine = l;
                 isEdit = true;
                 StopStations = l.Stations;

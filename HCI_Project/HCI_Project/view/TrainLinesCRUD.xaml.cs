@@ -115,6 +115,8 @@ namespace HCI_Project.view
             MyMap.UpdateLayout();
         }
 
+
+
         private void Delete_Line(object sender, RoutedEventArgs e)
         {
             var item = ((FrameworkElement)e.OriginalSource).DataContext as model.Line;
@@ -122,7 +124,7 @@ namespace HCI_Project.view
             MessageBoxResult result = System.Windows.MessageBox.Show($"Are you sure you want to delete line {item.Id}?", "Delete Confirmation", buttons);
             if (result == MessageBoxResult.Yes)
             {
-                if (!item.CanBeDeleted())
+                  if (canBeDeleted(item))
                 {
                     MessageBoxResult result2 = System.Windows.MessageBox.Show($"Line have occupied departures in future. Are you sure?", "Delete Confirmation", buttons);
                     if (result2 == MessageBoxResult.No)
@@ -130,9 +132,12 @@ namespace HCI_Project.view
                         return;
                     }
                 }
-                if (SelectedLine.Id == item.Id)
+                if (SelectedLine != null)
                 {
-                    MyMap.Children.Clear();
+                    if (SelectedLine.Id == item.Id)
+                    {
+                        MyMap.Children.Clear();
+                    }
                 }
                 Lines.Remove(item);
                 rf.LineRepository.Delete(item.Id);
@@ -140,6 +145,26 @@ namespace HCI_Project.view
                 LineAdded.MessageQueue.Enqueue($"Line '{item.Id}' succesfuly deleted!", null, null, null, false, true, TimeSpan.FromSeconds(3));
                 
             }
+        }
+
+        private bool canBeDeleted(model.Line item)
+        {
+            if (!item.CanBeDeleted()) return false;
+            foreach(Reservation r in rf.ReservationRepository.GetAll())
+            {
+                if (r.IsActive || r.DepartureDate > DateTime.Now)
+                {
+                    if (item.Departures.Contains(rf.DepartureRepository.GetById(r.DepartureId))) return false;
+                }
+            }
+            foreach(Ticket t in rf.TicketRepository.GetAll())
+            {
+                if (t.DepartureDate > DateTime.Now)
+                {
+                    if (item.Departures.Contains(rf.DepartureRepository.GetById(t.DepartureId))) return false;
+                }
+            }
+            return true;
         }
     }
 }

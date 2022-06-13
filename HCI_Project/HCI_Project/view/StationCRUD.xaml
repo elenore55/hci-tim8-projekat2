@@ -33,7 +33,7 @@
             <RowDefinition Height="2*"/>
             <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
-        <Label Grid.Column="1" Grid.Row="4" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0 0 0 30" FontSize="15">Double-click line to display route</Label>
+        <Label Grid.Column="1" Grid.Row="4" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0 0 0 30" FontSize="15">Double-click station to focuse it on the map</Label>
         <m:Map Grid.Column="0" Grid.RowSpan="5" AllowDrop="True" Background="Transparent" Center="45.2461818273899, 19.85138567223834" ZoomLevel="7" Margin="20" x:Name="MyMap" Mode="Road"/>
         <materialDesign:Badged Grid.Column="1" Grid.Row="0" HorizontalAlignment="Right" Margin="0 20 20 0"
           Badge="{materialDesign:PackIcon Plus}"
