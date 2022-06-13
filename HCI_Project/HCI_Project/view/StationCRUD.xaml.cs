@@ -154,6 +154,7 @@ namespace HCI_Project.view
                 }
                 updateMap();
                 MyMap.Center = new Location(item.Coords.X, item.Coords.Y);
+                MyMap.ZoomLevel = 8;
                 MyMap.UpdateLayout();
             }
         }

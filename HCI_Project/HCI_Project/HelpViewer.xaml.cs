@@ -27,11 +27,9 @@ namespace HCI_Project
             string path = string.Format("{0}/help/{1}.html", curDir, key);
             if (!File.Exists(path))
             {
-                key = "error";
+                key = "NoHelp";
             }
             Uri u = new Uri(String.Format("file:///{0}/help/{1}.html", curDir, key));
-            // ch = new JavaScriptControlHelper(originator);
-            // wbHelp.ObjectForScripting = ch;
             wbHelp.Navigate(u);
         }
 

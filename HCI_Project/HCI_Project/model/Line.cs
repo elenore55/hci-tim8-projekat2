@@ -51,7 +51,7 @@ namespace HCI_Project.model
             {
                 if (d.StartTime > DateTime.Now)
                 {
-                    if (d.Tickets.Count > 0)
+                    if (d.Tickets.Count > 0 || d.Reservations.Count > 0)
                     {
                         return false;
                     }
