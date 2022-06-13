@@ -30,7 +30,7 @@
         </Grid.RowDefinitions>
 
         <Frame Grid.Row="1" NavigationUIVisibility="Hidden" x:Name="MainFrame">
-            
+
         </Frame>
     </Grid>
 </Window>

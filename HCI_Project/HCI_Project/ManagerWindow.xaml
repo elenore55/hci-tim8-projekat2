@@ -25,6 +25,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <Menu Grid.Row="0" Background="#4f5459" Foreground="White" BorderThickness="1">
@@ -57,5 +58,10 @@
         <Frame Grid.Row="1" NavigationUIVisibility="Hidden" x:Name="MainFrame">
 
         </Frame>
+        <StatusBar Grid.Row="2">
+            <StatusBarItem>
+                <Label>Press F1 for Help</Label>
+            </StatusBarItem>
+        </StatusBar>
     </Grid>
 </Window>
