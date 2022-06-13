@@ -31,6 +31,7 @@ namespace HCI_Project.view
         {
             this.rf = rf;
             Stations = rf.StationRepository.GetAll();
+            Stations = Stations.OrderBy(o => o.Id).ToList();
             InitializeComponent();
             addStations();
             LBStations.ItemsSource = Stations;
@@ -80,6 +81,7 @@ namespace HCI_Project.view
 
         private void ProductListUpdate_DataChanged(object sender, EventArgs e)
         {
+            Stations = rf.StationRepository.GetAll();
             Stations = Stations.OrderBy(o => o.Id).ToList();
             LBStations.ItemsSource = Stations;
             addStations();
@@ -95,7 +97,7 @@ namespace HCI_Project.view
             {
                 if (!CanBeDeleted(item))
                 {
-                    MessageBox.Show($"Removee this station from lines first!", "Deletion Aborted");
+                    MessageBox.Show($"Remove this station from lines first!", "Deletion Aborted");
                     return;
                 }
                 foreach (Pushpin p in StationPins)
@@ -116,6 +118,8 @@ namespace HCI_Project.view
                 };
                 LBStations.Items.Refresh();
                 rf.StationRepository.Delete(item.Id);
+                addStations();
+                updateMap();
                 Deleted.MessageQueue.Enqueue($"Station '{item.Name}' succesfuly deleted!", null, null, null, false, true, TimeSpan.FromSeconds(3));
             }
         }
@@ -135,21 +139,23 @@ namespace HCI_Project.view
         private void Zoom_Station(object sender, MouseButtonEventArgs e)
         {
             var item = ((FrameworkElement)e.OriginalSource).DataContext as Station;
-            foreach(Pushpin p in StationPins)
-            {
-                if(p.Location.Latitude == item.Coords.X && p.Location.Longitude == item.Coords.Y)
+            if (item != null) { 
+                foreach(Pushpin p in StationPins)
                 {
-                    p.Width = 40;
-                    p.Height = 40;
-                } else
-                {
-                    p.Width = 18;
-                    p.Height = 18;
+                    if(p.Location.Latitude == item.Coords.X && p.Location.Longitude == item.Coords.Y)
+                    {
+                        p.Width = 40;
+                        p.Height = 40;
+                    } else
+                    {
+                        p.Width = 18;
+                        p.Height = 18;
+                    }
                 }
+                updateMap();
+                MyMap.Center = new Location(item.Coords.X, item.Coords.Y);
+                MyMap.UpdateLayout();
             }
-            updateMap();
-            MyMap.Center = new Location(item.Coords.X, item.Coords.Y);
-            MyMap.UpdateLayout();
         }
     }
 }
