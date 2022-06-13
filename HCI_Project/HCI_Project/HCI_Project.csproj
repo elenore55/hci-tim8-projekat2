@@ -396,6 +396,7 @@
     <Content Include="help\ClientsTickets.html" />
     <Resource Include="help\img\welcomePage\linesMenuItem.png" />
     <Resource Include="help\img\welcomePage\ticketsMenuItem.png" />
+    <Resource Include="help\img\clientsReservations\reservedTickets.png" />
     <Content Include="help\WelcomePage.html" />
     <Resource Include="logo.ico" />
     <Resource Include="images\logo.ico" />

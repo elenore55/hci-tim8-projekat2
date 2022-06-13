@@ -150,4 +150,24 @@
     <StartStation>Sombor</StartStation>
     <EndStation>Lapovo</EndStation>
   </Ticket>
+  <Ticket>
+    <Id>16</Id>
+    <PurchaseDateTime>2022-06-13T13:42:32.0588924+02:00</PurchaseDateTime>
+    <DepartureDate>2022-06-17T00:00:00</DepartureDate>
+    <ClientEmail>pera</ClientEmail>
+    <SeatId>5</SeatId>
+    <DepartureId>4</DepartureId>
+    <StartStation>Valjevo</StartStation>
+    <EndStation>Požega</EndStation>
+  </Ticket>
+  <Ticket>
+    <Id>17</Id>
+    <PurchaseDateTime>2022-06-13T13:55:42.9159644+02:00</PurchaseDateTime>
+    <DepartureDate>2022-06-17T00:00:00</DepartureDate>
+    <ClientEmail>pera</ClientEmail>
+    <SeatId>7</SeatId>
+    <DepartureId>1</DepartureId>
+    <StartStation>Sombor</StartStation>
+    <EndStation>Lapovo</EndStation>
+  </Ticket>
 </ArrayOfTicket>

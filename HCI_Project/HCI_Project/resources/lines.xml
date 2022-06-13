@@ -14,7 +14,7 @@
       </Station>
       <Station>
         <Id>2</Id>
-        <Name>Nis</Name>
+        <Name>Niš</Name>
         <Coords>
           <X>43.3168743676544</X>
           <Y>21.8930174489589</Y>
@@ -1040,7 +1040,7 @@
       </Station>
       <Station>
         <Id>5</Id>
-        <Name>Pozega</Name>
+        <Name>Požega</Name>
         <Coords>
           <X>43.8468213035184</X>
           <Y>20.0354259952504</Y>
@@ -1048,7 +1048,7 @@
       </Station>
       <Station>
         <Id>6</Id>
-        <Name>Uzice</Name>
+        <Name>Užice</Name>
         <Coords>
           <X>43.8560751522863</X>
           <Y>19.8432587298032</Y>
@@ -1056,7 +1056,7 @@
       </Station>
       <Station>
         <Id>7</Id>
-        <Name>Vrsac</Name>
+        <Name>Vršac</Name>
         <Coords>
           <X>45.1224246748143</X>
           <Y>21.2969962172208</Y>
@@ -2058,7 +2058,7 @@
         </Train>
       </Departure>
     </Departures>
-    <LastStation>Vrsac</LastStation>
+    <LastStation>Vršac</LastStation>
     <FirstClassPercentage>10</FirstClassPercentage>
   </Line>
 </ArrayOfLine>

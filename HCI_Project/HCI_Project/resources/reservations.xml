@@ -110,4 +110,37 @@
     <StartStation>Sombor</StartStation>
     <EndStation>Lapovo</EndStation>
   </Reservation>
+  <Reservation>
+    <Id>12</Id>
+    <ReservationDateTime>2022-06-13T13:42:40.7934246+02:00</ReservationDateTime>
+    <DepartureDate>2022-06-17T00:00:00</DepartureDate>
+    <IsActive>true</IsActive>
+    <ClientEmail>pera</ClientEmail>
+    <SeatId>44</SeatId>
+    <DepartureId>4</DepartureId>
+    <StartStation>Valjevo</StartStation>
+    <EndStation>Požega</EndStation>
+  </Reservation>
+  <Reservation>
+    <Id>13</Id>
+    <ReservationDateTime>2022-06-13T13:47:42.9754958+02:00</ReservationDateTime>
+    <DepartureDate>2022-06-30T00:00:00</DepartureDate>
+    <IsActive>true</IsActive>
+    <ClientEmail>pera</ClientEmail>
+    <SeatId>46</SeatId>
+    <DepartureId>6</DepartureId>
+    <StartStation>Valjevo</StartStation>
+    <EndStation>Užice</EndStation>
+  </Reservation>
+  <Reservation>
+    <Id>14</Id>
+    <ReservationDateTime>2022-06-13T13:55:51.5130041+02:00</ReservationDateTime>
+    <DepartureDate>2022-06-17T00:00:00</DepartureDate>
+    <IsActive>true</IsActive>
+    <ClientEmail>pera</ClientEmail>
+    <SeatId>5</SeatId>
+    <DepartureId>1</DepartureId>
+    <StartStation>Sombor</StartStation>
+    <EndStation>Lapovo</EndStation>
+  </Reservation>
 </ArrayOfReservation>

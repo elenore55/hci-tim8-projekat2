@@ -10,7 +10,7 @@
   </Station>
   <Station>
     <Id>2</Id>
-    <Name>Nis</Name>
+    <Name>Niš</Name>
     <Coords>
       <X>43.3168743676544</X>
       <Y>21.8930174489589</Y>
@@ -34,7 +34,7 @@
   </Station>
   <Station>
     <Id>5</Id>
-    <Name>Pozega</Name>
+    <Name>Požega</Name>
     <Coords>
       <X>43.8468213035184</X>
       <Y>20.0354259952504</Y>
@@ -42,7 +42,7 @@
   </Station>
   <Station>
     <Id>6</Id>
-    <Name>Uzice</Name>
+    <Name>Užice</Name>
     <Coords>
       <X>43.8560751522863</X>
       <Y>19.8432587298032</Y>
@@ -50,7 +50,7 @@
   </Station>
   <Station>
     <Id>7</Id>
-    <Name>Vrsac</Name>
+    <Name>Vršac</Name>
     <Coords>
       <X>45.1224246748143</X>
       <Y>21.2969962172208</Y>
@@ -58,7 +58,7 @@
   </Station>
   <Station>
     <Id>8</Id>
-    <Name>Sid</Name>
+    <Name>Šid</Name>
     <Coords>
       <X>45.126348777821</X>
       <Y>19.2292180982901</Y>
@@ -98,7 +98,7 @@
   </Station>
   <Station>
     <Id>13</Id>
-    <Name>Cuprija</Name>
+    <Name>Ćuprija</Name>
     <Coords>
       <X>43.9167290500169</X>
       <Y>21.3734995473952</Y>
@@ -122,7 +122,7 @@
   </Station>
   <Station>
     <Id>16</Id>
-    <Name>Cacak</Name>
+    <Name>Čačak</Name>
     <Coords>
       <X>43.8898154372637</X>
       <Y>20.3559119017471</Y>
@@ -138,7 +138,7 @@
   </Station>
   <Station>
     <Id>18</Id>
-    <Name>Kursumlija</Name>
+    <Name>Kuršumlija</Name>
     <Coords>
       <X>43.1335608534931</X>
       <Y>21.2681129272782</Y>
@@ -146,7 +146,7 @@
   </Station>
   <Station>
     <Id>19</Id>
-    <Name>Pristina</Name>
+    <Name>Priština</Name>
     <Coords>
       <X>42.6578408443893</X>
       <Y>21.150085751261</Y>
