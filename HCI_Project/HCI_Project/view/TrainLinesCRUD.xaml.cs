@@ -30,6 +30,7 @@ namespace HCI_Project.view
     {
         private readonly string BingMapsKey = "AinQ9hRJn7QhWLbnmUvC6OJ9RvqMuOWGDRkvSqOf5MUgrvbkmFHxHNg6aIjno0CM";
         public List<HCI_Project.model.Line> Lines { get; set; }
+        public model.Line SelectedLine { get; set; }
         public LoadingWindow viewer = new LoadingWindow();
         private RepositoryFactory rf; 
         public TrainLinesCRUD(RepositoryFactory rf)
@@ -61,32 +62,38 @@ namespace HCI_Project.view
             var item = ((FrameworkElement)e.OriginalSource).DataContext as model.Line;
             if (item != null)
             {
-                List<Pushpin> pushpins = new List<Pushpin>();
-                MyMap.Children.Clear();
-                List<SimpleWaypoint> waypoints = new List<SimpleWaypoint>();
-                foreach (Station s in item.Stations)
-                {
-                    waypoints.Add(new SimpleWaypoint(s.Coords.X, s.Coords.Y));
-                    Location pinLocation = new Location();
-                    pinLocation.Latitude = s.Coords.X;
-                    pinLocation.Longitude = s.Coords.Y;
-                    Pushpin pin = new Pushpin
-                    {
-                        Location = pinLocation,
-                        ToolTip = s.Name
-                    };
-                    pushpins.Add(pin);
-                }
-                BingMapRESTServices.SendRequest(MyMap, waypoints);
-                for (int i = 0; i < item.Stations.Count; i++)
-                {
-                    pushpins[i].Content = i + 1;
-                }
-                pushpins.ForEach(x => MyMap.Children.Add(x));
+                SelectedLine = item;
+                Draw_Map(item);
             }
             MyMap.UpdateLayout();
             Thread.Sleep(1000);
             System.Windows.Threading.Dispatcher.FromThread(viewerThread).InvokeShutdown();
+        }
+
+        private void Draw_Map(model.Line item)
+        {
+            List<Pushpin> pushpins = new List<Pushpin>();
+            MyMap.Children.Clear();
+            List<SimpleWaypoint> waypoints = new List<SimpleWaypoint>();
+            foreach (Station s in item.Stations)
+            {
+                waypoints.Add(new SimpleWaypoint(s.Coords.X, s.Coords.Y));
+                Location pinLocation = new Location();
+                pinLocation.Latitude = s.Coords.X;
+                pinLocation.Longitude = s.Coords.Y;
+                Pushpin pin = new Pushpin
+                {
+                    Location = pinLocation,
+                    ToolTip = s.Name
+                };
+                pushpins.Add(pin);
+            }
+            BingMapRESTServices.SendRequest(MyMap, waypoints);
+            for (int i = 0; i < item.Stations.Count; i++)
+            {
+                pushpins[i].Content = i + 1;
+            }
+            pushpins.ForEach(x => MyMap.Children.Add(x));
         }
 
         private void Edit_Line(object sender, RoutedEventArgs e)
@@ -97,11 +104,15 @@ namespace HCI_Project.view
             crud.ShowDialog();
         }
 
-        private void ProductListUpdate_DataChanged(object sender, EventArgs e)
+        private void ProductListUpdate_DataChanged(object sender, EventArgs e, model.Line line)
         {
+            Lines = rf.LineRepository.GetAll();
             Lines = Lines.OrderBy(o => o.Id).ToList();
             LBLines.ItemsSource = Lines;
             LBLines.Items.Refresh();
+            SelectedLine = line;
+            Draw_Map(line);
+            MyMap.UpdateLayout();
         }
 
         private void Delete_Line(object sender, RoutedEventArgs e)
@@ -119,10 +130,15 @@ namespace HCI_Project.view
                         return;
                     }
                 }
+                if (SelectedLine.Id == item.Id)
+                {
+                    MyMap.Children.Clear();
+                }
                 Lines.Remove(item);
                 rf.LineRepository.Delete(item.Id);
                 LBLines.Items.Refresh();
                 LineAdded.MessageQueue.Enqueue($"Line '{item.Id}' succesfuly deleted!", null, null, null, false, true, TimeSpan.FromSeconds(3));
+                
             }
         }
     }

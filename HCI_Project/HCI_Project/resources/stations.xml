@@ -1,14 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfStation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Station>
-    <Id>1</Id>
-    <Name>Sombor</Name>
-    <Coords>
-      <X>45.7737908329366</X>
-      <Y>19.1170693111155</Y>
-    </Coords>
-  </Station>
-  <Station>
     <Id>2</Id>
     <Name>Nis</Name>
     <Coords>
@@ -105,14 +97,6 @@
     </Coords>
   </Station>
   <Station>
-    <Id>14</Id>
-    <Name>Pirot</Name>
-    <Coords>
-      <X>43.1423009222924</X>
-      <Y>22.5993454464567</Y>
-    </Coords>
-  </Station>
-  <Station>
     <Id>15</Id>
     <Name>Jagodina</Name>
     <Coords>
@@ -150,6 +134,22 @@
     <Coords>
       <X>42.6578408443893</X>
       <Y>21.150085751261</Y>
+    </Coords>
+  </Station>
+  <Station>
+    <Id>1</Id>
+    <Name>Sombor</Name>
+    <Coords>
+      <X>45.962647505140126</X>
+      <Y>19.42811972615457</Y>
+    </Coords>
+  </Station>
+  <Station>
+    <Id>20</Id>
+    <Name>Zrenjanin</Name>
+    <Coords>
+      <X>45.378972544521439</X>
+      <Y>20.323111136105524</Y>
     </Coords>
   </Station>
 </ArrayOfStation>

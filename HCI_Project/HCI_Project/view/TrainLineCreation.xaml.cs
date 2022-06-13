@@ -28,7 +28,7 @@ namespace HCI_Project.view
     public partial class TrainLineCreation : Window
     {
         private readonly string BingMapsKey = "AinQ9hRJn7QhWLbnmUvC6OJ9RvqMuOWGDRkvSqOf5MUgrvbkmFHxHNg6aIjno0CM";
-        public delegate void DataChangedEventHandler(object sender, EventArgs e);
+        public delegate void DataChangedEventHandler(object sender, EventArgs e, model.Line line);
         public event DataChangedEventHandler DataChangedEvent;
         private System.Windows.Point StartPoint;
         private List<Pushpin> StopPins = new List<Pushpin>();
@@ -364,7 +364,7 @@ namespace HCI_Project.view
                         DataChangedEventHandler handler = DataChangedEvent;
                         if (handler != null)
                         {
-                            handler(this, new EventArgs());
+                            handler(this, new EventArgs(), l);
                         }
                         if (isEdit) LineAdded.MessageQueue.Enqueue($"Line '{l.Id}' edited!", null, null, null, false, true, TimeSpan.FromSeconds(3));
                         else LineAdded.MessageQueue.Enqueue($"Line '{l.Id}' succesfuly added!", null, null, null, false, true, TimeSpan.FromSeconds(3));
