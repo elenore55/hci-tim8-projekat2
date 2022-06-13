@@ -29,20 +29,6 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <Menu Grid.Row="0" Background="#4f5459" Foreground="White" BorderThickness="1">
-            <Menu.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <DockPanel HorizontalAlignment="Stretch"/>
-                </ItemsPanelTemplate>
-            </Menu.ItemsPanel>
-            <MenuItem Grid.Column="0" Header="Tickets" HorizontalAlignment="Left">
-                <MenuItem x:Name="purchase" Header="_Reserve or purchase" Foreground="#4f5459"/>
-                <MenuItem x:Name="tickets" Header="_My tickets" Foreground="#4f5459" />
-                <MenuItem x:Name="reservations" Header="_My reservations" Foreground="#4f5459"/>
-            </MenuItem>
-            <MenuItem x:Name="help" Grid.Column="1" Header="Help" Click="help_Click" HorizontalAlignment="Right"/>
-        </Menu>
-
         <Frame Grid.Row="1" NavigationUIVisibility="Hidden" x:Name="MainFrame">
             
         </Frame>

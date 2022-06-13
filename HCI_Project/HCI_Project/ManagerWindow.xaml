@@ -51,7 +51,7 @@
                 <MenuItem Header="Demo" Click="demo_Click" HorizontalAlignment="Right" Foreground="#4f5459"/>
             </MenuItem>
             
-            <MenuItem x:Name="logout" Header="Logout" Click="help_Click" HorizontalAlignment="Right"/>
+            <MenuItem x:Name="logout" Header="Logout" Click="logout_Click" HorizontalAlignment="Right"/>
         </Menu>
 
         <Frame Grid.Row="1" NavigationUIVisibility="Hidden" x:Name="MainFrame">

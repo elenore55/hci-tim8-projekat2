@@ -102,5 +102,11 @@ namespace HCI_Project
             DemoPlayer m = new DemoPlayer(@"../../videos/create_schedule.mkv");
             m.ShowDialog();
         }
+
+        private void logout_Click(object sender, RoutedEventArgs e)
+        {
+            new MainWindow().Show();
+            Hide();
+        }
     }
 }

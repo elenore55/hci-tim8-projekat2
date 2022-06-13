@@ -89,5 +89,11 @@ namespace HCI_Project
         {
             MainFrame.Content = new ClintLineNetwork(rf);
         }
+
+        private void logout_Click(object sender, RoutedEventArgs e)
+        {
+            new MainWindow().Show();
+            Hide();
+        }
     }
 }
