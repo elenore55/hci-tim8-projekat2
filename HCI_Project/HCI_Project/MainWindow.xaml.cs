@@ -79,24 +79,24 @@ namespace HCI_Project
             wr.ClearAll();
             sr1.ClearAll();
             sr.Add(new Station(new System.Windows.Point(45.7737908329366, 19.1170693111155), "Sombor") {Id = sr.GetNextId() });
-            sr.Add(new Station(new System.Windows.Point(43.3168743676544, 21.8930174489589), "Nis") { Id = sr.GetNextId() });
+            sr.Add(new Station(new System.Windows.Point(43.3168743676544, 21.8930174489589), "Niš") { Id = sr.GetNextId() });
             sr.Add(new Station(new System.Windows.Point(44.1845546497502, 21.1054707255333), "Lapovo") { Id = sr.GetNextId() });
             sr.Add(new Station(new System.Windows.Point(44.2737853394934, 19.8837362826773), "Valjevo") { Id = sr.GetNextId() });
-            sr.Add(new Station(new System.Windows.Point(43.8468213035184, 20.0354259952504), "Pozega") { Id = sr.GetNextId() });
-            sr.Add(new Station(new System.Windows.Point(43.8560751522863, 19.8432587298032), "Uzice") { Id = sr.GetNextId() });
-            sr.Add(new Station(new System.Windows.Point(45.1224246748143, 21.2969962172208), "Vrsac") { Id = sr.GetNextId() });
-            sr.Add(new Station(new System.Windows.Point(45.126348777821, 19.2292180982901), "Sid") { Id = sr.GetNextId() });
+            sr.Add(new Station(new System.Windows.Point(43.8468213035184, 20.0354259952504), "Požega") { Id = sr.GetNextId() });
+            sr.Add(new Station(new System.Windows.Point(43.8560751522863, 19.8432587298032), "Užice") { Id = sr.GetNextId() });
+            sr.Add(new Station(new System.Windows.Point(45.1224246748143, 21.2969962172208), "Vršac") { Id = sr.GetNextId() });
+            sr.Add(new Station(new System.Windows.Point(45.126348777821, 19.2292180982901), "Šid") { Id = sr.GetNextId() });
             sr.Add(new Station(new System.Windows.Point(44.0132043068434, 20.9241081767304), "Kragujevac") { Id = sr.GetNextId() });
             sr.Add(new Station(new System.Windows.Point(44.4401983117903, 20.6913074485451), "Mladenovac") { Id = sr.GetNextId() });
             sr.Add(new Station(new System.Windows.Point(44.8068530443879, 20.4176244378858), "Beograd") { Id = sr.GetNextId() });
             sr.Add(new Station(new System.Windows.Point(45.2653991901631, 19.8295025367481), "Novi Sad") { Id = sr.GetNextId() });
-            sr.Add(new Station(new System.Windows.Point(43.9167290500169, 21.3734995473952), "Cuprija") { Id = sr.GetNextId() });
+            sr.Add(new Station(new System.Windows.Point(43.9167290500169, 21.3734995473952), "Ćuprija") { Id = sr.GetNextId() });
             sr.Add(new Station(new System.Windows.Point(43.1423009222924, 22.5993454464567), "Pirot") { Id = sr.GetNextId() });
             sr.Add(new Station(new System.Windows.Point(43.9825635232647, 21.2643563898127), "Jagodina") { Id = sr.GetNextId() });
-            sr.Add(new Station(new System.Windows.Point(43.8898154372637, 20.3559119017471), "Cacak") { Id = sr.GetNextId() });
+            sr.Add(new Station(new System.Windows.Point(43.8898154372637, 20.3559119017471), "Čačak") { Id = sr.GetNextId() });
             sr.Add(new Station(new System.Windows.Point(43.5638272233543, 19.5416579208959), "Priboj") { Id = sr.GetNextId() });
-            sr.Add(new Station(new System.Windows.Point(43.1335608534931, 21.2681129272782), "Kursumlija") { Id = sr.GetNextId() });
-            sr.Add(new Station(new System.Windows.Point(42.6578408443893, 21.150085751261), "Pristina") { Id = sr.GetNextId() });
+            sr.Add(new Station(new System.Windows.Point(43.1335608534931, 21.2681129272782), "Kuršumlija") { Id = sr.GetNextId() });
+            sr.Add(new Station(new System.Windows.Point(42.6578408443893, 21.150085751261), "Priština") { Id = sr.GetNextId() });
 
             for (int i = 0; i < 5; i++)
             {
