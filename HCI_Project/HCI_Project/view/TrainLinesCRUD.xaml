@@ -49,9 +49,9 @@
                         <TextBlock VerticalAlignment="Center" Text="Line: " />
                         <TextBlock VerticalAlignment="Center" Grid.Column="0" Text="{Binding Id}" Width="25" FontWeight="Bold"/>
                         <TextBlock VerticalAlignment="Center" Text="  Start: " />
-                        <TextBlock VerticalAlignment="Center" Text="{Binding Stations[0].Name}" Width="120" FontWeight="Bold"/>
+                        <TextBlock VerticalAlignment="Center" Text="{Binding Stations[0].Name}" Width="100" FontWeight="Bold"/>
                         <TextBlock VerticalAlignment="Center" Text="  End: " />
-                        <TextBlock VerticalAlignment="Center" Text="{Binding LastStation}" Width="120" FontWeight="Bold"/>
+                        <TextBlock VerticalAlignment="Center" Text="{Binding LastStation}" Width="100" FontWeight="Bold"/>
                         <TextBlock VerticalAlignment="Center" Text="Price(EUR): " />
                         <TextBlock VerticalAlignment="Center" Text="{Binding Price}" Width="50" FontWeight="Bold"/>
                         <Button Margin="15 0 0 0" VerticalContentAlignment="Top" Height="25" Content="{materialDesign:PackIcon Pencil}" ToolTip="Edit" Click="Edit_Line"></Button>

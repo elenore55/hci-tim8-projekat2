@@ -67,6 +67,7 @@ namespace HCI_Project.view
             {
                 Create_Save.Content = "Save";
                 priceTxt.Text = editedLine.Price.ToString();
+                percentageTxt.Text = editedLine.FirstClassPercentage.ToString();
             }
             Stations = rf.StationRepository.GetAll();
             MyMap.CredentialsProvider = new ApplicationIdCredentialsProvider(BingMapsKey);

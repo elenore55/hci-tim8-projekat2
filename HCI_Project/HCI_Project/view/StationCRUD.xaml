@@ -60,16 +60,8 @@
             Grid.Column="1"
             Grid.RowSpan="5" 
             VerticalAlignment="Bottom"
-            x:Name="StationAdded"
+            x:Name="Deleted"
             Background="#5db95d"
-            Margin="0 0 0 75"
-            MessageQueue="{materialDesign:MessageQueue}"/>
-        <materialDesign:Snackbar 
-            Grid.Column="1"
-            Grid.RowSpan="5" 
-            VerticalAlignment="Bottom"
-            x:Name="DeleteFailed"
-            Background="Red"
             Margin="0 0 0 75"
             MessageQueue="{materialDesign:MessageQueue}"/>
     </Grid>

@@ -92,7 +92,6 @@ namespace HCI_Project.view
         private void Edit_Line(object sender, RoutedEventArgs e)
         {
             var item = ((FrameworkElement)e.OriginalSource).DataContext as model.Line;
-            //((MainWindow)App.Current.MainWindow).MainFrame.Content = new TrainLineCreation(rf, item);
             TrainLineCreation crud = new TrainLineCreation(rf, item);
             crud.DataChangedEvent += ProductListUpdate_DataChanged;
             crud.ShowDialog();
@@ -100,6 +99,8 @@ namespace HCI_Project.view
 
         private void ProductListUpdate_DataChanged(object sender, EventArgs e)
         {
+            Lines = Lines.OrderBy(o => o.Id).ToList();
+            LBLines.ItemsSource = Lines;
             LBLines.Items.Refresh();
         }
 

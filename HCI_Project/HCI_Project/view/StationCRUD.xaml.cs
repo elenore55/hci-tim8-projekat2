@@ -80,7 +80,8 @@ namespace HCI_Project.view
 
         private void ProductListUpdate_DataChanged(object sender, EventArgs e)
         {
-            LBStations.Items.Refresh();
+            Stations = Stations.OrderBy(o => o.Id).ToList();
+            LBStations.ItemsSource = Stations;
             addStations();
             updateMap();
         }
@@ -88,24 +89,47 @@ namespace HCI_Project.view
         private void Delete(object sender, RoutedEventArgs e)
         {
             var item = ((FrameworkElement)e.OriginalSource).DataContext as Station;
-            foreach (Pushpin p in StationPins)
+            MessageBoxButton buttons = MessageBoxButton.YesNo;
+            MessageBoxResult result = System.Windows.MessageBox.Show($"Are you sure you want to delete station {item.Name}?", "Delete Confirmation", buttons);
+            if (result == MessageBoxResult.Yes)
             {
-                if (p.Location.Latitude == item.Coords.X && p.Location.Longitude == item.Coords.Y)
+                if (!CanBeDeleted(item))
                 {
-                    StationPins.Remove(p);
-                    break;
+                    MessageBox.Show($"Removee this station from lines first!", "Deletion Aborted");
+                    return;
                 }
-            };
-            foreach(Station s in Stations)
-            {
-                if(s.Id == item.Id)
+                foreach (Pushpin p in StationPins)
                 {
-                    Stations.Remove(s);
-                    break;
-                }
-            };
-            LBStations.Items.Refresh();
+                    if (p.Location.Latitude == item.Coords.X && p.Location.Longitude == item.Coords.Y)
+                    {
+                        StationPins.Remove(p);
+                        break;
+                    }
+                };
+                foreach (Station s in Stations)
+                {
+                    if (s.Id == item.Id)
+                    {
+                        Stations.Remove(s);
+                        break;
+                    }
+                };
+                LBStations.Items.Refresh();
+                rf.StationRepository.Delete(item.Id);
+                Deleted.MessageQueue.Enqueue($"Station '{item.Name}' succesfuly deleted!", null, null, null, false, true, TimeSpan.FromSeconds(3));
+            }
+        }
 
+        private bool CanBeDeleted(Station item)
+        {
+            foreach(model.Line l in rf.LineRepository.GetAll())
+            {
+                foreach(Station s in l.Stations)
+                {
+                    if (item.Id == s.Id) return false;
+                }
+            }
+            return true;
         }
 
         private void Zoom_Station(object sender, MouseButtonEventArgs e)
