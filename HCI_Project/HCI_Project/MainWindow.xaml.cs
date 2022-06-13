@@ -2,6 +2,7 @@
 using HCI_Project.repository;
 using HCI_Project.utils;
 using HCI_Project.view;
+using HCI_Project.view.DepartureHandling;
 using HCI_Project.view.LinesHandling;
 using HCI_Project.view.Reports;
 using Microsoft.Maps.MapControl.WPF;
@@ -35,6 +36,8 @@ namespace HCI_Project
             Populate(rf.StationRepository, rf.DepartureRepository, rf.LineRepository, rf.TrainRepository, rf.WagonRepository, rf.SeatRepository);
             DeactivateOldReservations();
             MainFrame.Content = new Login(rf);
+            //DepartureEditWindow d = new DepartureEditWindow(rf, 1);
+            //d.ShowDialog();
         }
 
         

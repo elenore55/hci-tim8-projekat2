@@ -1,0 +1,138 @@
+﻿<Page x:Class="HCI_Project.view.TrainsView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:HCI_Project.view"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:content="clr-namespace:System.Windows.Controls;assembly=DotNetProjects.Input.Toolkit"
+      mc:Ignorable="d" 
+      d:DesignHeight="400" d:DesignWidth="800"
+      Title="TrainsView">
+    <Page.Resources>
+
+        <Style x:Key="AutoCompleteBoxStyle" TargetType="{x:Type content:AutoCompleteBox}">
+            <Style.Resources>
+                <Style TargetType="{x:Type ListBox}">
+                    <Setter Property="MaxHeight" Value="200" />
+                </Style>
+            </Style.Resources>
+        </Style>
+        
+        <Style x:Key="LabelStyle" TargetType="{x:Type Label}">
+            <Style.Setters>
+                <Setter Property="HorizontalAlignment" Value="Left" />
+                <Setter Property="VerticalAlignment" Value="Bottom" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="FontWeight" Value="Bold" />
+                <Setter Property="Margin" Value="30,7,30,1" />
+            </Style.Setters>
+        </Style>
+
+
+        <Style TargetType="DataGridColumnHeader">
+            <Setter Property="FontWeight" Value="Bold"></Setter>
+            <Setter Property="FontSize" Value="18"></Setter>
+            <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+            <Setter Property="Padding" Value="0,5,0,5"></Setter>
+        </Style>
+
+        <Style TargetType="{x:Type DataGridRow}">
+            <Setter Property="FontSize" Value="20"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+            <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+            <Setter Property="Padding" Value="0,5,0,5"></Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="Transparent" />
+                    <Setter Property="Cursor" Value="Hand" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style TargetType="{x:Type DataGridCell}">
+            <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="ToolTip">
+                <Setter.Value>
+                    <TextBlock Text="Click to see departure details" />
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type DataGridCell}">
+                        <Border Padding="{TemplateBinding Padding}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                            <ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+
+    <Grid>
+        <Grid.Resources>
+            <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#7986cb" />
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <materialDesign:ColorZone Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Grid.RowSpan="1" Background="#ffd740" Padding="2" VerticalAlignment="Stretch"></materialDesign:ColorZone>
+        <Grid Grid.Row="0" Margin="0,10,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                
+            </Grid.ColumnDefinitions>
+
+           
+            <materialDesign:ColorZone x:Name="tbFromBorder" Grid.Column="2" VerticalAlignment="Top" Mode="Standard" Padding="8 4 8 4" CornerRadius="8" Margin="0 20 0 30" materialDesign:ShadowAssist.ShadowDepth="Depth2">
+                <Grid MinHeight="30">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <materialDesign:PackIcon  Grid.Column="0" Kind="Search" Opacity=".56" VerticalAlignment="Center" Margin="2,0,5,0"/>
+                    <content:AutoCompleteBox Grid.Column="1" VerticalAlignment="Center" x:Name="trainName" FilterMode="Contains" ToolTip="Type to search for train names"
+                                             Background="{Binding Path=Background, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Page}}}" Style="{StaticResource AutoCompleteBoxStyle}" 
+                                             BorderThickness="0" Placeholder="Search train names.." FontSize="16"/>
+                </Grid>
+            </materialDesign:ColorZone>
+
+            <Button x:Name="btnFilter" Grid.Column="4" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="40,5,30,30" 
+                    Background="#3f51b5" Click="btnFilter_Click" FontSize="16" ToolTip="Click here to filter results">Filter</Button>
+
+        </Grid>
+        <DataGrid Grid.Row="1" Name = "trainsGrid" AlternatingRowBackground = "LightBlue" Margin="40 20 40 10" IsReadOnly="True"
+            AlternationCount = "2" AutoGenerateColumns = "False" ItemsSource="{Binding Rows, RelativeSource={RelativeSource AncestorType=Page}}"
+            RowDetailsVisibilityMode="VisibleWhenSelected" SelectionMode="Single" FontSize="16">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header = "Name" Binding = "{Binding Name}" Width="*" />
+                <DataGridTextColumn Header = "Number of Wagons" Binding = "{Binding NumOfWagons}" Width="*" />
+                <DataGridTemplateColumn Header = "Edit" Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Name="edit" Content="Edit" Click="btnEdit_Click" Width="80" ToolTip="Click here to edit train"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header = "Delete" Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Name="delete" Content="Delete" Click="btnDelete_Click" Width="80" ToolTip="Click here to delete train"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+
+        </DataGrid>
+
+        <Button Content="+ Add new train" Grid.Row="2" Margin="0,0,0,50" Width="200" Height="50" 
+                ToolTip="Click here to add a new train" x:Name="btnAddTrain" Click="btnAddTrain_Click"></Button>
+    </Grid>
+</Page>
+

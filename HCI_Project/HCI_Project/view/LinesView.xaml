@@ -1,0 +1,173 @@
+﻿<Page x:Class="HCI_Project.view.LinesHandling.LinesView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:HCI_Project.view"
+      xmlns:sys="clr-namespace:System;assembly=mscorlib"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+      xmlns:content="clr-namespace:System.Windows.Controls;assembly=DotNetProjects.Input.Toolkit"
+      TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+      TextElement.FontWeight="Regular"
+      TextElement.FontSize="13"
+      TextOptions.TextFormattingMode="Ideal" 
+      TextOptions.TextRenderingMode="Auto"        
+      Background="{DynamicResource MaterialDesignPaper}"
+      FontFamily="{DynamicResource MaterialDesignFont}"
+      mc:Ignorable="d" 
+      d:DesignHeight="800" d:DesignWidth="1500"
+      Title="LinesView"
+      DataContext="{Binding RelativeSource={RelativeSource Self}}">
+
+    <Page.Resources>
+        <Style x:Key="AutoCompleteBoxStyle" TargetType="{x:Type content:AutoCompleteBox}">
+            <Style.Resources>
+                <Style TargetType="{x:Type ListBox}">
+                    <Setter Property="MaxHeight" Value="200" />
+                </Style>
+            </Style.Resources>
+        </Style>
+
+        <Style TargetType="DataGridColumnHeader">
+            <Setter Property="FontWeight" Value="Bold"></Setter>
+            <Setter Property="FontSize" Value="18"></Setter>
+            <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+            <Setter Property="Padding" Value="0,5,0,5"></Setter>
+        </Style>
+
+        <Style TargetType="{x:Type DataGridRow}">
+            <Setter Property="FontSize" Value="20"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+            <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+            <Setter Property="Padding" Value="0,5,0,5"></Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="Transparent" />
+                    <Setter Property="Cursor" Value="Hand" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style TargetType="{x:Type DataGridCell}">
+            <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="ToolTip">
+                <Setter.Value>
+                    <TextBlock Text="Click to see select and details" />
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type DataGridCell}">
+                        <Border Padding="{TemplateBinding Padding}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                            <ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="GridViewColumnHeaderStyle" TargetType="{x:Type GridViewColumnHeader}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type GridViewColumnHeader}">
+                        <Border BorderThickness="0,0,0,1" BorderBrush="Black" Background="Transparent">
+                            <TextBlock x:Name="ContentHeader" Text="{TemplateBinding Content}" Padding="5,5,5,0" Width="{TemplateBinding Width}" TextAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="OverridesDefaultStyle" Value="True" />
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="FontSize" Value="20" />
+        </Style>
+
+    </Page.Resources>
+    <Grid>
+        <Grid.Resources>
+            <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#7986cb" />
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <materialDesign:ColorZone Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="4" Grid.RowSpan="2" Background="#ffd740" Padding="2" VerticalAlignment="Stretch"></materialDesign:ColorZone>
+
+        <Grid Grid.Row="0" Margin="0,15,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+
+            <Label Margin="30 7 30 1" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontSize="18" FontWeight="Bold">Starting destination</Label>
+            <Label Margin="30 7 30 1" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontSize="18" FontWeight="Bold">Final destination</Label>
+        </Grid>
+
+        <Grid Grid.Row="1" Margin="0,0,0,20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+
+            <materialDesign:ColorZone x:Name="tbFromBorder" Grid.Column="0" VerticalAlignment="Top" Mode="Standard" Padding="8 4 8 4" CornerRadius="8" Margin="30 5 30 10" materialDesign:ShadowAssist.ShadowDepth="Depth2">
+                <Grid MinHeight="30">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <materialDesign:PackIcon  Grid.Column="0" Kind="Search" Opacity=".56" VerticalAlignment="Center" Margin="2,0,5,0"/>
+                    <content:AutoCompleteBox Grid.Column="1" VerticalAlignment="Center" x:Name="tbFrom" FilterMode="Contains" ToolTip="Type to search for the starting destination"
+                                             Background="{Binding Path=Background, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Page}}}" Style="{StaticResource AutoCompleteBoxStyle}" 
+                                             BorderThickness="0" Placeholder="Search destination.." GotFocus="tbFrom_GotFocus" LostFocus="tbFrom_LostFocus" FontSize="16"/>
+                </Grid>
+            </materialDesign:ColorZone>
+            <materialDesign:ColorZone x:Name="tbToBorder" Grid.Column="1" VerticalAlignment="Top" Mode="Standard" Padding="8 4 8 4" CornerRadius="8" Margin="30 5 30 10" materialDesign:ShadowAssist.ShadowDepth="Depth2">
+                <Grid MinHeight="30">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <materialDesign:PackIcon Grid.Column="0" VerticalAlignment="Center" Kind="Search" Opacity=".56" Margin="2,0,5,0"/>
+                    <content:AutoCompleteBox Grid.Column="1" VerticalAlignment="Center" x:Name="tbTo" FilterMode="Contains" ToolTip="Type to search for the final destination"
+                                             Background="{Binding Path=Background, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Page}}}" Style="{StaticResource AutoCompleteBoxStyle}" 
+                                             BorderThickness="0" GotFocus="tbTo_GotFocus" LostFocus="tbTo_LostFocus" Placeholder="Search destination.." FontSize="16"/>
+                </Grid>
+            </materialDesign:ColorZone>
+            
+            <Button x:Name="btnShow" Click="btnShow_Click" Grid.Column="3" VerticalAlignment="Top" Background="#3f51b5"
+                    Margin="40,7,40,10" ToolTip="Click to show available departures" FontSize="18" MinHeight="40">Show</Button>
+        </Grid>
+        <Label Grid.Row="2" x:Name="lblNoResults" FontSize="24" HorizontalAlignment="Center" Visibility="Hidden" Margin="40,20,40,10">Selected stations are not connected</Label>
+        <DataGrid Grid.Row="2" Name = "dataGrid" AlternatingRowBackground = "#c5cae9" Margin="50,20,50,10" IsReadOnly="True"
+         AlternationCount = "2" AutoGenerateColumns = "False" ItemsSource="{Binding MyRows, RelativeSource={RelativeSource AncestorType=Page}}"
+        RowDetailsVisibilityMode="VisibleWhenSelected" SelectionMode="Single" Visibility="Hidden">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header = "Line id" Binding = "{Binding Id}" Width="2*" />
+                <DataGridTextColumn Header = "First Station" Binding = "{Binding FirstStation}" Width="2*" />
+                <DataGridTextColumn Header = "Last Station" Binding = "{Binding LastStation}" Width="2*" />
+                <DataGridTextColumn Header = "Price (EUR)" Binding = "{Binding Price}" Width="2*"/>
+                <DataGridTemplateColumn Header = "Edit departures" Width="2*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Name="btnEdit" Content="Departures" Click="btnEdit_Click" Width="120"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                
+            </DataGrid.Columns>
+
+            <DataGrid.RowDetailsTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Details}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10" />
+                </DataTemplate>
+            </DataGrid.RowDetailsTemplate>
+        </DataGrid>
+
+    </Grid>
+</Page>

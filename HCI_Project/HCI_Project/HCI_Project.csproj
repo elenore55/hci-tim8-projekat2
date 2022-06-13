@@ -122,6 +122,9 @@
     <Compile Include="repository\WagonRepository.cs" />
     <Compile Include="utils\AlterationConverter.cs" />
     <Compile Include="utils\BingMapRESTServices.cs" />
+    <Compile Include="view\AddTrainWindow.xaml.cs">
+      <DependentUpon>AddTrainWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="view\ClientsReservations.xaml.cs">
       <DependentUpon>ClientsReservations.xaml</DependentUpon>
     </Compile>
@@ -131,10 +134,16 @@
     <Compile Include="view\DemoPlayer.xaml.cs">
       <DependentUpon>DemoPlayer.xaml</DependentUpon>
     </Compile>
-    <Compile Include="view\DepartureHandling\DeparturesEdit.xaml.cs">
+    <Compile Include="view\DepartureEditWindow.xaml.cs">
+      <DependentUpon>DepartureEditWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\DeparturesEdit.xaml.cs">
       <DependentUpon>DeparturesEdit.xaml</DependentUpon>
     </Compile>
-    <Compile Include="view\DepartureHandling\LinesView.xaml.cs">
+    <Compile Include="view\DepartureTicketsWindow.xaml.cs">
+      <DependentUpon>DepartureTicketsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\LinesView.xaml.cs">
       <DependentUpon>LinesView.xaml</DependentUpon>
     </Compile>
     <Compile Include="view\Login.xaml.cs">
@@ -149,13 +158,13 @@
     <Compile Include="view\PurchaseConfirmation.xaml.cs">
       <DependentUpon>PurchaseConfirmation.xaml</DependentUpon>
     </Compile>
-    <Compile Include="view\Reports\DepartureReport.xaml.cs">
+    <Compile Include="view\DepartureReport.xaml.cs">
       <DependentUpon>DepartureReport.xaml</DependentUpon>
     </Compile>
-    <Compile Include="view\Reports\DepartureTickets.xaml.cs">
+    <Compile Include="view\DepartureTickets.xaml.cs">
       <DependentUpon>DepartureTickets.xaml</DependentUpon>
     </Compile>
-    <Compile Include="view\Reports\MonthlyReport.xaml.cs">
+    <Compile Include="view\MonthlyReport.xaml.cs">
       <DependentUpon>MonthlyReport.xaml</DependentUpon>
     </Compile>
     <Compile Include="view\SeatChoice.xaml.cs">
@@ -170,19 +179,22 @@
     <Compile Include="view\TicketPurchase.xaml.cs">
       <DependentUpon>TicketPurchase.xaml</DependentUpon>
     </Compile>
-    <Compile Include="view\TrainHandling\AddTrain.xaml.cs">
+    <Compile Include="view\AddTrain.xaml.cs">
       <DependentUpon>AddTrain.xaml</DependentUpon>
     </Compile>
-    <Compile Include="view\TrainHandling\DeleteTrainConfirmation.xaml.cs">
+    <Compile Include="view\DeleteTrainConfirmation.xaml.cs">
       <DependentUpon>DeleteTrainConfirmation.xaml</DependentUpon>
     </Compile>
-    <Compile Include="view\TrainHandling\TrainDeleted.xaml.cs">
+    <Compile Include="view\TrainDeleted.xaml.cs">
       <DependentUpon>TrainDeleted.xaml</DependentUpon>
     </Compile>
-    <Compile Include="view\TrainHandling\TrainEdit.xaml.cs">
+    <Compile Include="view\TrainEdit.xaml.cs">
       <DependentUpon>TrainEdit.xaml</DependentUpon>
     </Compile>
-    <Compile Include="view\TrainHandling\TrainsView.xaml.cs">
+    <Compile Include="view\TrainEditWindow.xaml.cs">
+      <DependentUpon>TrainEditWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\TrainsView.xaml.cs">
       <DependentUpon>TrainsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="view\WelcomePage.xaml.cs">
@@ -218,6 +230,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="view\AddTrainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="view\ClientsReservations.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -230,11 +246,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="view\DepartureHandling\DeparturesEdit.xaml">
+    <Page Include="view\DepartureEditWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="view\DepartureHandling\LinesView.xaml">
+    <Page Include="view\DeparturesEdit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\DepartureTicketsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\LinesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -254,15 +278,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="view\Reports\DepartureReport.xaml">
+    <Page Include="view\DepartureReport.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="view\Reports\DepartureTickets.xaml">
+    <Page Include="view\DepartureTickets.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="view\Reports\MonthlyReport.xaml">
+    <Page Include="view\MonthlyReport.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -282,23 +306,27 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="view\TrainHandling\AddTrain.xaml">
+    <Page Include="view\AddTrain.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="view\TrainHandling\DeleteTrainConfirmation.xaml">
+    <Page Include="view\DeleteTrainConfirmation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="view\TrainHandling\TrainDeleted.xaml">
+    <Page Include="view\TrainDeleted.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="view\TrainHandling\TrainEdit.xaml">
+    <Page Include="view\TrainEdit.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="view\TrainHandling\TrainsView.xaml">
+    <Page Include="view\TrainEditWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\TrainsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -385,7 +413,9 @@
     <Resource Include="resources\wagons.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="help\img\Lines\" />
+    <Folder Include="view\DepartureHandling\" />
+    <Folder Include="view\Reports\" />
+    <Folder Include="view\TrainHandling\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="train.png" />
@@ -393,9 +423,34 @@
   <ItemGroup />
   <ItemGroup />
   <ItemGroup>
+    <Content Include="help\AddTrain.html" />
     <Content Include="help\ClientsReservations.html" />
     <Content Include="help\ClientsTickets.html" />
+    <Content Include="help\DepartureEditWindow.html" />
+    <Content Include="help\DepartureReport.html" />
+    <Content Include="help\DeparturesEdit.html" />
+    <Content Include="help\DepartureTickets.html" />
+    <Content Include="videos\DepartureReport.mp4" />
+    <Content Include="videos\LinesView.mp4" />
+    <Content Include="videos\MonthlyReport.mkv" />
+    <Content Include="videos\TrainsView.mp4" />
+    <Resource Include="help\img\crud\DeparturesEdit.png" />
+    <Resource Include="help\img\crud\LinesView1.png" />
+    <Resource Include="help\img\crud\Watch.png" />
+    <Resource Include="help\img\crud\AddTrain.png" />
+    <Resource Include="help\img\crud\TrainEdit.png" />
+    <Resource Include="help\img\crud\TrainsView.png" />
+    <Resource Include="help\img\crud\DepartureReport.png" />
+    <Resource Include="help\img\crud\DepartureTickets.png" />
+    <Resource Include="help\img\crud\MonthlyReport.png" />
+    <Content Include="help\img\LinesView.html" />
+    <Content Include="help\LinesView.html" />
+    <Content Include="help\MonhtlyReport.html" />
+    <Content Include="help\TrainEdit.html" />
+    <Content Include="help\TrainEditWindow.html" />
+    <Content Include="help\TrainsView.html" />
     <Content Include="videos\create_schedule.mkv" />
+    <Content Include="videos\MonthlyReport.mp4" />
     <Content Include="videos\StationCRUD.mkv" />
     <Content Include="videos\TrainLinesCRUD.mkv" />
     <Resource Include="help\img\welcomePage\linesMenuItem.png" />
