@@ -45,7 +45,7 @@ namespace HCI_Project
             StationRepository stationRepository = new StationRepository();
             LineRepository lineRepository = new LineRepository();
             DepartureRepository departureRepository = new DepartureRepository();
-            MainFrame.Content = new TrainLinesCRUD(rf);
+            // MainFrame.Content = new TrainLinesCRUD(rf);
         }
         private void DeactivateOldReservations()
         {

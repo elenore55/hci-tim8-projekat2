@@ -396,6 +396,7 @@
     <Content Include="help\ClientsReservations.html" />
     <Content Include="help\ClientsTickets.html" />
     <Resource Include="help\img\login.png" />
+    <Content Include="help\PurchaseConfirmation.html" />
     <Content Include="help\Login.html" />
     <Content Include="help\NoHelp.html" />
     <Content Include="videos\create_schedule.mkv" />
