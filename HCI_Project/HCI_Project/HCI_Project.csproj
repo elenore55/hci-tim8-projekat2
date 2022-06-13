@@ -119,6 +119,7 @@
     <Compile Include="repository\TicketRepository.cs" />
     <Compile Include="repository\TrainRepository.cs" />
     <Compile Include="repository\WagonRepository.cs" />
+    <Compile Include="utils\AlterationConverter.cs" />
     <Compile Include="utils\BingMapRESTServices.cs" />
     <Compile Include="view\ClientsReservations.xaml.cs">
       <DependentUpon>ClientsReservations.xaml</DependentUpon>

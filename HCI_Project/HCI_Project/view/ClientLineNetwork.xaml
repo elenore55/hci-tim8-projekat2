@@ -6,12 +6,14 @@
       xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
       xmlns:local="clr-namespace:HCI_Project.view"
+      xmlns:local2="clr-namespace:HCI_Project.utils"
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="1300"
       Title="Line Network"
       DataContext="{Binding RelativeSource={RelativeSource Self}}">
 
     <Page.Resources>
+        <local2:AlterationConverter x:Key="AlterationConverter"/>
         <ControlTemplate x:Key="CustomPushpinTemplate" TargetType="m:Pushpin">
             <Rectangle Height="18">
                 <Rectangle.Fill>
@@ -54,7 +56,7 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding Path=(ItemsControl.AlternationIndex), RelativeSource={RelativeSource AncestorType=ListViewItem}}" />
+                        <TextBlock Text="{Binding Path=(ItemsControl.AlternationIndex), RelativeSource={RelativeSource AncestorType=ListViewItem}, Converter={StaticResource AlterationConverter}}" />
                         <TextBlock Text=". "/>
                         <TextBlock Text="{Binding Station.Name}" FontWeight="Bold" Width="100"/>
                         <TextBlock Text="Travel time: "/>
