@@ -399,7 +399,6 @@
     <Content Include="help\PurchaseConfirmation.html" />
     <Content Include="help\Login.html" />
     <Content Include="help\NoHelp.html" />
-    <Content Include="videos\create_schedule.mkv" />
     <Content Include="videos\StationCRUD.mkv" />
     <Content Include="videos\TrainLinesCRUD.mkv" />
     <Resource Include="help\img\welcomePage\linesMenuItem.png" />

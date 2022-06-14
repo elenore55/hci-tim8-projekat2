@@ -152,4 +152,12 @@
       <Y>21.150085751261</Y>
     </Coords>
   </Station>
+  <Station>
+    <Id>20</Id>
+    <Name>Subotica</Name>
+    <Coords>
+      <X>46.090666832301636</X>
+      <Y>19.592291433957062</Y>
+    </Coords>
+  </Station>
 </ArrayOfStation>
