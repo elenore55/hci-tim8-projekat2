@@ -419,9 +419,19 @@
   <ItemGroup />
   <ItemGroup />
   <ItemGroup>
+    <Content Include="help\AddTrain.html" />
+    <Content Include="help\DepartureEditWindow.html" />
+    <Content Include="help\DepartureReport.html" />
+    <Content Include="help\DeparturesEdit.html" />
+    <Content Include="help\DepartureTickets.html" />
     <Content Include="help\Line Network.html" />
     <Content Include="help\ClientsReservations.html" />
     <Content Include="help\ClientsTickets.html" />
+    <Content Include="help\LinesView.html" />
+    <Content Include="help\MonhtlyReport.html" />
+    <Content Include="help\TrainEdit.html" />
+    <Content Include="help\TrainEditWindow.html" />
+    <Content Include="help\TrainsView.html" />
     <Content Include="videos\DepartureReport.mkv" />
     <Content Include="videos\LinesView.mkv" />
     <Content Include="videos\TrainsView.mkv" />

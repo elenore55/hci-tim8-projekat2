@@ -27,6 +27,9 @@ namespace HCI_Project.view.Reports
         public DepartureTickets(RepositoryFactory rf, DepartureDTO selected, DateTime selectedD)
         {
             InitializeComponent();
+#if DEBUG
+            System.Diagnostics.PresentationTraceSources.DataBindingSource.Switch.Level = System.Diagnostics.SourceLevels.Critical;
+#endif
             this.rf = rf;
             this.dep = selected;
             this.selectedDate = selectedD;

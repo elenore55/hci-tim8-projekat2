@@ -7,7 +7,8 @@
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="DepartureTickets">
+      Title="DepartureTickets"
+      WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <Style x:Key="LabelStyle" TargetType="{x:Type Label}">
             <Style.Setters>
