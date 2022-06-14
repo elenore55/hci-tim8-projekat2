@@ -64,7 +64,7 @@ namespace HCI_Project.view
                     DateTimeOfPurchaseStr = $"{t.PurchaseDateTime.ToShortDateString()} {t.PurchaseDateTime.ToShortTimeString()}",
                     DateTimeOfDepartureStr = $"{t.DepartureDate.ToShortDateString()} {departure.StartTime.ToShortTimeString()}",
                     Destination = $"{t.StartStation} - {t.EndStation}",
-                    Price = line.GetPrice(wagon.Class),
+                    Price = line.Price,
                     SeatStr = $"{seat.Row + 1}{Convert.ToChar(65 + seat.Column)}",
                     WagonStr = $"No. {wagon.Ordinal + 1} ({wagon.Class} class)",
                     TrainName = departure.Train.Name

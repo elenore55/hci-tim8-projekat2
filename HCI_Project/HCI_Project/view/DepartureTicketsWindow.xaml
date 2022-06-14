@@ -96,7 +96,21 @@
             </DataGrid.Columns>
             <DataGrid.RowDetailsTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding Details}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10" />
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition  Width="*"/>
+                            <ColumnDefinition  Width="*"/>
+                            <ColumnDefinition  Width="*"/>
+                            <ColumnDefinition  Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" Text="{Binding DepartureDate}" Margin="0,10,0,10"/>
+                        <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding StationNames}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10" />
+                        <TextBlock Grid.Row="1" Grid.Column="2" Text="{Binding DepartureTimes}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10" />
+                    </Grid>
                 </DataTemplate>
             </DataGrid.RowDetailsTemplate>
         </DataGrid>
