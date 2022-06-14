@@ -10,7 +10,9 @@
       Height="600" Width="1300"
       WindowStartupLocation="CenterScreen"
       DataContext="{Binding RelativeSource={RelativeSource Self}}">
-
+    <Window.CommandBindings>
+        <CommandBinding Command="ApplicationCommands.Help" Executed="CommandBinding_Executed"/>
+    </Window.CommandBindings>
     <Window.Resources>
         <ControlTemplate x:Key="CustomPushpinTemplate" TargetType="m:Pushpin">
             <Rectangle Height="18">

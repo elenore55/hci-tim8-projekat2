@@ -85,7 +85,7 @@
             <Button x:Name="btnFilter" Grid.Column="3" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="40,5,30,30" 
                     Background="#3f51b5" Click="btnFilter_Click" FontSize="16" ToolTip="Click to filter tickets" IsDefault="True">Filter</Button>
         </Grid>
-        <Label Grid.Row="1" x:Name="lblNoResults" FontSize="24" HorizontalAlignment="Center" Visibility="Hidden" Margin="40,20,40,10">You have not purchased any tickets yet</Label>
+        <Label Grid.Row="1" x:Name="lblNoResults" FontSize="24" HorizontalAlignment="Center" Visibility="Hidden" Margin="40,20,40,10">No tickets to show</Label>
         <DataGrid Grid.Row="1" Name = "ticketsGrid" AlternatingRowBackground = "#c5cae9" Margin="40,20,40,10" IsReadOnly="True"
             AlternationCount = "2" AutoGenerateColumns = "False" ItemsSource="{Binding Rows, RelativeSource={RelativeSource AncestorType=Page}}"
             RowDetailsVisibilityMode="VisibleWhenSelected" SelectionMode="Single" FontSize="16" Visibility="Hidden">

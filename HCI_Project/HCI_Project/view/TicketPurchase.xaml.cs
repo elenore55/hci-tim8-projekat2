@@ -69,38 +69,48 @@ namespace HCI_Project.view
                 List<Line> lines = rf.LineRepository.FilterLines(from, to);
                 MyRows.Clear();
                 Departures.Clear();
-                foreach (Line line in lines)
+                if (lines.Count == 0)
                 {
-                    int startIndex = 0;
-                    int endIndex = line.Stations.Count - 1;
-                    for (int i = 0; i < line.Stations.Count; i++)
-                    {
-                        if (line.Stations[i].Name == from)
-                        {
-                            startIndex = i;
-                        }
-                        else if (line.Stations[i].Name == to)
-                        {
-                            endIndex = i;
-                            break;
-                        }
-                    }
-                    foreach (Departure dpt in line.Departures)
-                    {
-                        DepartureDTO dto = new DepartureDTO()
-                        {
-                            Id = dpt.Id,
-                            StartIndex = startIndex,
-                            EndIndex = endIndex,
-                            DepartureTime = dpt.StartTime,
-                            Line = line,
-                            Train = dpt.Train
-                        };
-                        MyRows.Add(dto);
-                        Departures.Add(dpt);
-                    }
+                    dataGrid.Visibility = Visibility.Hidden;
+                    lblNoDepartures.Visibility = Visibility.Hidden;
+                    lblNoResults.Visibility = Visibility.Visible;
                 }
-                SetDataGridVisibility();
+                else
+                {
+                    foreach (Line line in lines)
+                    {
+                        int startIndex = 0;
+                        int endIndex = line.Stations.Count - 1;
+                        for (int i = 0; i < line.Stations.Count; i++)
+                        {
+                            if (line.Stations[i].Name == from)
+                            {
+                                startIndex = i;
+                            }
+                            else if (line.Stations[i].Name == to)
+                            {
+                                endIndex = i;
+                                break;
+                            }
+                        }
+
+                        foreach (Departure dpt in line.Departures)
+                        {
+                            DepartureDTO dto = new DepartureDTO()
+                            {
+                                Id = dpt.Id,
+                                StartIndex = startIndex,
+                                EndIndex = endIndex,
+                                DepartureTime = dpt.StartTime,
+                                Line = line,
+                                Train = dpt.Train
+                            };
+                            MyRows.Add(dto);
+                            Departures.Add(dpt);
+                        }
+                    }
+                    SetDataGridVisibility();
+                }
             }
         }
 
@@ -123,11 +133,13 @@ namespace HCI_Project.view
             {
                 dataGrid.Visibility = Visibility.Visible;
                 lblNoResults.Visibility = Visibility.Hidden;
+                lblNoDepartures.Visibility = Visibility.Hidden;
             }
             else
             {
                 dataGrid.Visibility = Visibility.Hidden;
-                lblNoResults.Visibility = Visibility.Visible;
+                lblNoResults.Visibility = Visibility.Hidden;
+                lblNoDepartures.Visibility = Visibility.Visible;
             }
         }
 

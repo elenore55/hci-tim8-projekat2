@@ -1,0 +1,110 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Line CRUD</title>
+    <style>
+      p {
+        font-size: 1.2em;
+        margin-left: 5%;
+      }
+
+      img {
+        border: solid #3b393a 1px;
+        margin-bottom: 4%;
+      }
+
+      h1,
+      h2 {
+        text-align: center;
+        margin-bottom: 4%;
+      }
+
+      .center-div {
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div style="margin: auto; width: 80%; padding: 10px">
+      <h1>Lines CRUD page</h1>
+      <p>On this page you can add, preview, edit and delete lines!</p>
+      <div class="center-div">
+        <img style="width: 80%" src="img/Line/TrainCRUD.jpg" />
+      </div>
+      <p>1 - This is map where route will be displayed!</p>
+      <p>2 - This is button for opening line creation window!</p>
+      <p>
+        3 - This is list of all lines. Here you can see line
+        <em>ID</em>, <em>Start Station</em>, <em>End Stations</em>,
+        <em>Default Price</em>, <em>First Class Percentage</em> and you can
+        click on the station to focuse it on the map.
+      </p>
+      <p>
+        3.1 - If you want to edit line you can click on this
+        <em>Edit</em> button! This
+        <a href="TrainLineCreation.html"><em>Line Edit Window</em></a> will
+        open, with line information loaded!
+      </p>
+      <p>
+        3.2 - If you want to delete line you can click on this
+        <em>Delete</em> button!
+      </p>
+      <h2>Preview of line</h2>
+      <p>When you click on the line, map will display route of the line!</p>
+      <div class="center-div">
+        <img style="width: 80%" src="img/Line/LineSelected.jpg" />
+      </div>
+      <h2>Line Creation</h2>
+      <div class="center-div">
+        <img style="width: 20%" src="img/Line/Add.jpg" />
+      </div>
+      <p>
+        When you click on <em>Add Line</em> button,
+        <a href="TrainLineCreation.html"><em>Line Creation Window</em></a> will
+        open!
+      </p>
+      <p>
+        When line is added it will show up in the list and will be displayed on
+        the map!
+      </p>
+      <div class="center-div">
+        <img style="width: 80%" src="img/Line/LineAdded.jpg" />
+      </div>
+      <h2>Line Edit</h2>
+      <div class="center-div">
+        <img style="width: 10%" src="img/Stations/Edit.jpg" />
+      </div>
+      <p>
+        When you click on the <em>Edit</em> button,
+        <a href="TrainLineCreation.html"><em>Line Edit Window</em></a> will
+        open! When you save changes, list and map updates!
+      </p>
+      <h2>Line Deletion</h2>
+      <div class="center-div">
+        <img style="width: 10%" src="img/Stations/Delete.jpg" />
+      </div>
+      <p>
+        When you click on the <em>Delete</em> button, window like this will
+        open!
+      </p>
+      <div class="center-div">
+        <img style="width: 50%" src="img/line/DeleteModal.jpg" />
+      </div>
+      <p>
+        You can confirm or decline deletion. If you choose <em>Yes</em>, there
+        are two possible outcomes. If station is free, it will be deleted! But
+        if any of future departures of line is reserved or ticket is bought, new
+        window will show.
+      </p>
+      <div class="flex center-div">
+        <img style="width: 50%" src="img/Line/Occupied.jpg" />
+      </div>
+      <p>When line is deleted this will popup!</p>
+      <div class="flex center-div">
+        <img style="width: 50%" src="img/Line/Deleted.jpg" />
+      </div>
+    </div>
+  </body>
+</html>

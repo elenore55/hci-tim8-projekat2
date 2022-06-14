@@ -151,6 +151,7 @@
                     Margin="40,7,40,10" ToolTip="Click to show available departures" FontSize="18" MinHeight="40" IsDefault="True">Show</Button>
         </Grid>
         <Label Grid.Row="2" x:Name="lblNoResults" FontSize="24" HorizontalAlignment="Center" Visibility="Hidden" Margin="40,20,40,10">Selected stations are not connected</Label>
+        <Label Grid.Row="2" x:Name="lblNoDepartures" FontSize="24" HorizontalAlignment="Center" Visibility="Hidden" Margin="40,20,40,10">There are no departures between chosen stations</Label>
         <DataGrid Grid.Row="2" Name = "dataGrid" AlternatingRowBackground = "#c5cae9" Margin="50,20,50,10" IsReadOnly="True"
          AlternationCount = "2" AutoGenerateColumns = "False" ItemsSource="{Binding MyRows, RelativeSource={RelativeSource AncestorType=Page}}"
         RowDetailsVisibilityMode="VisibleWhenSelected" SelectionMode="Single" SelectionChanged="dataGrid_Selected" Visibility="Hidden">

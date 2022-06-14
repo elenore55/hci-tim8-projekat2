@@ -412,27 +412,52 @@
   <ItemGroup>
     <Resource Include="resources\wagons.xml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="view\DepartureHandling\" />
-    <Folder Include="view\Reports\" />
-    <Folder Include="view\TrainHandling\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="train.png" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup />
   <ItemGroup>
-    <Content Include="help\AddTrain.html" />
+    <Content Include="help\Line Network.html" />
     <Content Include="help\ClientsReservations.html" />
     <Content Include="help\ClientsTickets.html" />
     <Content Include="videos\DepartureReport.mkv" />
     <Content Include="videos\LinesView.mkv" />
     <Content Include="videos\TrainsView.mkv" />
     <Resource Include="help\img\login.png" />
+    <Resource Include="help\img\LineNetwork\ChooseLine.jpg" />
+    <Resource Include="help\img\LineNetwork\LineChoosen.jpg" />
+    <Resource Include="help\img\LineNetwork\LineNetworkScreen.jpg" />
+    <Resource Include="help\img\Line\Deleted.jpg" />
+    <Resource Include="help\img\Line\DeleteModal.jpg" />
+    <Resource Include="help\img\Line\EnterPercentage.jpg" />
+    <Resource Include="help\img\Line\EntertPrice.jpg" />
+    <Resource Include="help\img\Line\LineCreated.jpg" />
+    <Resource Include="help\img\Line\LineEdited.jpg" />
+    <Resource Include="help\img\Line\LineSelected.jpg" />
+    <Resource Include="help\img\Line\Occupied.jpg" />
+    <Resource Include="help\img\Line\StopDeleted.jpg" />
+    <Resource Include="help\img\Line\TrainCreationScreen.jpg" />
+    <Resource Include="help\img\Line\TrainCRUD.jpg" />
+    <Resource Include="help\img\Line\TrainEditScreen.jpg" />
+    <Resource Include="help\img\Stations\Cacak1.jpg" />
+    <Resource Include="help\img\Stations\CacakDeleted2.jpg" />
+    <Resource Include="help\img\Stations\DeleteModal.jpg" />
+    <Resource Include="help\img\Stations\Fields fiillout.jpg" />
+    <Resource Include="help\img\Stations\StationCreationScreen.jpg" />
+    <Resource Include="help\img\Stations\StationCRUDScreen.jpg" />
+    <Resource Include="help\img\Stations\StationEdited.jpg" />
+    <Resource Include="help\img\Stations\StationEditScreen.jpg" />
+    <Resource Include="help\img\Stations\StationSelected.jpg" />
+    <Resource Include="help\img\Stations\ZrenjaninAdded.jpg" />
     <Content Include="help\PurchaseConfirmation.html" />
     <Content Include="help\Login.html" />
     <Content Include="help\NoHelp.html" />
+    <Content Include="help\StationCreation.html" />
+    <Content Include="help\StationCRUD.html" />
+    <Content Include="help\TrainLineCreation.html" />
+    <Content Include="help\TrainLinesCRUD.html" />
     <Content Include="videos\create_schedule.mkv" />
     <Content Include="videos\MonhtlyReport.mkv" />
     <Content Include="videos\StationCRUD.mkv" />

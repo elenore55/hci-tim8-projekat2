@@ -33,7 +33,7 @@ namespace HCI_Project
         {
             InitializeComponent();
             rf = new RepositoryFactory();
-            Populate(rf.StationRepository, rf.DepartureRepository, rf.LineRepository, rf.TrainRepository, rf.WagonRepository, rf.SeatRepository);
+            // Populate(rf.StationRepository, rf.DepartureRepository, rf.LineRepository, rf.TrainRepository, rf.WagonRepository, rf.SeatRepository);
             DeactivateOldReservations();
             MainFrame.Content = new Login(rf);
             //DepartureEditWindow d = new DepartureEditWindow(rf, 1);
