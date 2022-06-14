@@ -78,6 +78,11 @@ namespace HCI_Project.view
             addStations();
             UpdateMap();
         }
+
+        private void CommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            HelpProvider.ShowHelp("TrainLineCreation", this);
+        }
         private void addStations()
         {
             foreach (Station s in Stations)

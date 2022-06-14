@@ -66,7 +66,10 @@ namespace HCI_Project.view
                 MyMap.UpdateLayout();
             }
         }
-
+        private void CommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            HelpProvider.ShowHelp("StationCreation", this);
+        }
         private void MyMap_MouseDoubleClick1(object sender, MouseButtonEventArgs e)
         {
             e.Handled = true;
