@@ -468,7 +468,6 @@
     <Content Include="help\StationCRUD.html" />
     <Content Include="help\TrainLineCreation.html" />
     <Content Include="help\TrainLinesCRUD.html" />
-    <Content Include="videos\create_schedule.mkv" />
     <Content Include="videos\MonhtlyReport.mkv" />
     <Content Include="videos\StationCRUD.mkv" />
     <Content Include="videos\TrainLinesCRUD.mkv" />
