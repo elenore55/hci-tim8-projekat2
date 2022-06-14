@@ -2,172 +2,42 @@
 <ArrayOfTicket xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Ticket>
     <Id>1</Id>
-    <PurchaseDateTime>2022-06-04T23:25:40.4810181+02:00</PurchaseDateTime>
-    <DepartureDate>2022-06-10T00:00:00</DepartureDate>
-    <ClientEmail>milica@gmail.com</ClientEmail>
-    <SeatId>19</SeatId>
+    <PurchaseDateTime>2022-06-14T02:24:31.407287+02:00</PurchaseDateTime>
+    <DepartureDate>2022-06-23T00:00:00</DepartureDate>
+    <ClientEmail>pera@gmail.com</ClientEmail>
+    <SeatId>18</SeatId>
     <DepartureId>1</DepartureId>
-    <StartStation>Stanica 1</StartStation>
-    <EndStation>Stanica 3</EndStation>
+    <StartStation>Sombor</StartStation>
+    <EndStation>Lapovo</EndStation>
   </Ticket>
   <Ticket>
     <Id>2</Id>
-    <PurchaseDateTime>2022-06-04T23:29:57.8561664+02:00</PurchaseDateTime>
+    <PurchaseDateTime>2022-06-14T02:24:45.7220645+02:00</PurchaseDateTime>
     <DepartureDate>2022-06-23T00:00:00</DepartureDate>
-    <ClientEmail>milica@gmail.com</ClientEmail>
-    <SeatId>21</SeatId>
-    <DepartureId>2</DepartureId>
-    <StartStation>Stanica 1</StartStation>
-    <EndStation>Stanica 2</EndStation>
+    <ClientEmail>pera@gmail.com</ClientEmail>
+    <SeatId>33</SeatId>
+    <DepartureId>1</DepartureId>
+    <StartStation>Sombor</StartStation>
+    <EndStation>Lapovo</EndStation>
   </Ticket>
   <Ticket>
     <Id>3</Id>
-    <PurchaseDateTime>2022-06-05T00:05:44.3251888+02:00</PurchaseDateTime>
-    <DepartureDate>2022-06-10T00:00:00</DepartureDate>
-    <ClientEmail>milica@gmail.com</ClientEmail>
-    <SeatId>12</SeatId>
-    <DepartureId>1</DepartureId>
-    <StartStation>Stanica 1</StartStation>
-    <EndStation>Stanica 3</EndStation>
-  </Ticket>
-  <Ticket>
-    <Id>4</Id>
-    <PurchaseDateTime>2022-06-05T19:04:02.4685821+02:00</PurchaseDateTime>
-    <DepartureDate>2022-06-23T00:00:00</DepartureDate>
-    <ClientEmail>milica@gmail.com</ClientEmail>
-    <SeatId>39</SeatId>
-    <DepartureId>3</DepartureId>
-    <StartStation>Stanica 1</StartStation>
-    <EndStation>Stanica 2</EndStation>
-  </Ticket>
-  <Ticket>
-    <Id>5</Id>
-    <PurchaseDateTime>2022-06-05T20:02:46.0652635+02:00</PurchaseDateTime>
-    <DepartureDate>2022-06-17T00:00:00</DepartureDate>
-    <ClientEmail>milica@gmail.com</ClientEmail>
-    <SeatId>34</SeatId>
-    <DepartureId>3</DepartureId>
-    <StartStation>Stanica 1</StartStation>
-    <EndStation>Stanica 2</EndStation>
-  </Ticket>
-  <Ticket>
-    <Id>6</Id>
-    <PurchaseDateTime>2022-06-05T20:18:18.6060912+02:00</PurchaseDateTime>
-    <DepartureDate>2022-06-19T00:00:00</DepartureDate>
-    <ClientEmail>milica@gmail.com</ClientEmail>
-    <SeatId>19</SeatId>
-    <DepartureId>2</DepartureId>
-    <StartStation>Stanica 1</StartStation>
-    <EndStation>Stanica 3</EndStation>
-  </Ticket>
-  <Ticket>
-    <Id>7</Id>
-    <PurchaseDateTime>2022-06-07T11:19:15.882654+02:00</PurchaseDateTime>
-    <DepartureDate>2022-06-17T00:00:00</DepartureDate>
-    <ClientEmail>milica@gmail.com</ClientEmail>
-    <SeatId>11</SeatId>
-    <DepartureId>3</DepartureId>
-    <StartStation>Stanica 1</StartStation>
-    <EndStation>Stanica 3</EndStation>
-  </Ticket>
-  <Ticket>
-    <Id>8</Id>
-    <PurchaseDateTime>2022-06-08T08:19:13.3745202+02:00</PurchaseDateTime>
-    <DepartureDate>2022-06-16T00:00:00</DepartureDate>
-    <ClientEmail>milica@gmail.com</ClientEmail>
-    <SeatId>48</SeatId>
-    <DepartureId>3</DepartureId>
-    <StartStation>Stanica 1</StartStation>
-    <EndStation>Stanica 3</EndStation>
-  </Ticket>
-  <Ticket>
-    <Id>9</Id>
-    <PurchaseDateTime>2022-06-08T09:46:54.2261231+02:00</PurchaseDateTime>
-    <DepartureDate>2022-06-24T00:00:00</DepartureDate>
-    <ClientEmail>milica@gmail.com</ClientEmail>
-    <SeatId>5</SeatId>
-    <DepartureId>3</DepartureId>
-    <StartStation>Stanica 1</StartStation>
-    <EndStation>Stanica 2</EndStation>
-  </Ticket>
-  <Ticket>
-    <Id>10</Id>
-    <PurchaseDateTime>2022-06-08T10:16:07.8104294+02:00</PurchaseDateTime>
-    <DepartureDate>2022-06-24T00:00:00</DepartureDate>
-    <ClientEmail>milica@gmail.com</ClientEmail>
-    <SeatId>33</SeatId>
-    <DepartureId>1</DepartureId>
-    <StartStation>Stanica 1</StartStation>
-    <EndStation>Stanica 2</EndStation>
-  </Ticket>
-  <Ticket>
-    <Id>11</Id>
-    <PurchaseDateTime>2022-06-08T10:17:41.4089963+02:00</PurchaseDateTime>
-    <DepartureDate>2022-06-30T00:00:00</DepartureDate>
-    <ClientEmail>milica@gmail.com</ClientEmail>
-    <SeatId>9</SeatId>
-    <DepartureId>3</DepartureId>
-    <StartStation>Stanica 1</StartStation>
-    <EndStation>Stanica 2</EndStation>
-  </Ticket>
-  <Ticket>
-    <Id>12</Id>
-    <PurchaseDateTime>2022-06-08T10:18:56.1543929+02:00</PurchaseDateTime>
-    <DepartureDate>2022-06-17T00:00:00</DepartureDate>
-    <ClientEmail>milica@gmail.com</ClientEmail>
-    <SeatId>14</SeatId>
-    <DepartureId>1</DepartureId>
-    <StartStation>Stanica 1</StartStation>
-    <EndStation>Stanica 3</EndStation>
-  </Ticket>
-  <Ticket>
-    <Id>13</Id>
-    <PurchaseDateTime>2022-06-09T02:09:15.7705793+02:00</PurchaseDateTime>
-    <DepartureDate>2022-06-09T00:00:00</DepartureDate>
-    <ClientEmail>milica@gmail.com</ClientEmail>
-    <SeatId>20</SeatId>
-    <DepartureId>1</DepartureId>
-    <StartStation>Sombor</StartStation>
-    <EndStation>Lapovo</EndStation>
-  </Ticket>
-  <Ticket>
-    <Id>14</Id>
-    <PurchaseDateTime>2022-06-09T02:09:42.7400085+02:00</PurchaseDateTime>
-    <DepartureDate>2022-06-23T00:00:00</DepartureDate>
-    <ClientEmail>milica@gmail.com</ClientEmail>
-    <SeatId>18</SeatId>
-    <DepartureId>2</DepartureId>
-    <StartStation>Sombor</StartStation>
-    <EndStation>Lapovo</EndStation>
-  </Ticket>
-  <Ticket>
-    <Id>15</Id>
-    <PurchaseDateTime>2022-06-13T13:12:23.0458077+02:00</PurchaseDateTime>
-    <DepartureDate>2022-06-23T00:00:00</DepartureDate>
-    <ClientEmail>pera</ClientEmail>
-    <SeatId>7</SeatId>
-    <DepartureId>2</DepartureId>
-    <StartStation>Sombor</StartStation>
-    <EndStation>Lapovo</EndStation>
-  </Ticket>
-  <Ticket>
-    <Id>16</Id>
-    <PurchaseDateTime>2022-06-13T13:42:32.0588924+02:00</PurchaseDateTime>
-    <DepartureDate>2022-06-17T00:00:00</DepartureDate>
-    <ClientEmail>pera</ClientEmail>
-    <SeatId>5</SeatId>
-    <DepartureId>4</DepartureId>
+    <PurchaseDateTime>2022-06-14T02:26:41.4878926+02:00</PurchaseDateTime>
+    <DepartureDate>2022-06-25T00:00:00</DepartureDate>
+    <ClientEmail>pera@gmail.com</ClientEmail>
+    <SeatId>15</SeatId>
+    <DepartureId>6</DepartureId>
     <StartStation>Valjevo</StartStation>
     <EndStation>Požega</EndStation>
   </Ticket>
   <Ticket>
-    <Id>17</Id>
-    <PurchaseDateTime>2022-06-13T13:55:42.9159644+02:00</PurchaseDateTime>
-    <DepartureDate>2022-06-17T00:00:00</DepartureDate>
-    <ClientEmail>pera</ClientEmail>
-    <SeatId>7</SeatId>
-    <DepartureId>1</DepartureId>
-    <StartStation>Sombor</StartStation>
-    <EndStation>Lapovo</EndStation>
+    <Id>4</Id>
+    <PurchaseDateTime>2022-06-14T02:26:47.9151408+02:00</PurchaseDateTime>
+    <DepartureDate>2022-06-25T00:00:00</DepartureDate>
+    <ClientEmail>pera@gmail.com</ClientEmail>
+    <SeatId>16</SeatId>
+    <DepartureId>6</DepartureId>
+    <StartStation>Valjevo</StartStation>
+    <EndStation>Požega</EndStation>
   </Ticket>
 </ArrayOfTicket>
