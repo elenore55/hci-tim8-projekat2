@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:HCI_Project.view;assembly=HCI_Project"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
       mc:Ignorable="d" 
       
       Title="Train edit">
@@ -35,9 +36,19 @@
                 <ColumnDefinition Width="Auto"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Label Grid.Column="1" Content="Number of rows: " Margin="30,13,0,0"></Label>
-            <TextBox x:Name="numOfRows" Grid.Column="2" Width="50" Height="30" BorderThickness="1" BorderBrush="Orange" PreviewTextInput="PreviewTextInput" />
+            <!--<TextBox x:Name="numOfRows" Grid.Column="2" Width="50" Height="30" BorderThickness="1" 
+            BorderBrush="Orange" PreviewTextInput="PreviewTextInput" /> -->
+            <xctk:IntegerUpDown Name="numOfRows"  Grid.Column="2" Width="50" Height="30" Maximum="15" 
+                            FontSize="18" ToolTip="Enter the number of rows" />
+
             <Label Grid.Column="3" Content="Number of seats in each row: " Margin="30,13,0,0"></Label>
-            <TextBox x:Name="numOfSeats" Grid.Column="4" PreviewTextInput="PreviewTextInput" BorderThickness="1" BorderBrush="Orange" Width="50" Height="30"/>
+            <!--<TextBox x:Name="numOfSeats" Grid.Column="4" PreviewTextInput="PreviewTextInput" 
+                     BorderThickness="1" BorderBrush="Orange" Width="50" Height="30"/>-->
+
+            <xctk:IntegerUpDown Name="numOfSeats"  Grid.Column="4" Width="50" Height="30" Maximum="8" 
+                            FontSize="18" ToolTip="Enter the number of rows" />
+
+            
             <Label Grid.Column="5" Content="Wagon class: " Margin="30,13,0,0"></Label>
 
             <ComboBox x:Name = "comboWagonClass" Grid.Column="6" Margin = "0,0,0,0" Width = "80">
