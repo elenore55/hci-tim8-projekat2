@@ -1,0 +1,133 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Station CRUD</title>
+    <style>
+      p {
+        font-size: 1.2em;
+        margin-left: 5%;
+      }
+
+      img {
+        border: solid #3b393a 1px;
+        margin-bottom: 4%;
+      }
+
+      h1,
+      h2 {
+        text-align: center;
+        margin-bottom: 4%;
+      }
+
+      .center-div {
+        text-align: center;
+      }
+      .div1 {
+        width: 50%;
+        float: left;
+      }
+      .div2 {
+        width: 50%;
+        float: right;
+      }
+    </style>
+  </head>
+  <body>
+    <div style="margin: auto; width: 80%; padding: 10px">
+      <h1>Stations CRUD page</h1>
+      <p>On this page you can add, preview, edit and delete stations!</p>
+      <div class="center-div">
+        <img style="width: 80%" src="img/Stations/StationCRUDScreen.jpg" />
+      </div>
+      <p>1 - This is map where you can see all stations marked!</p>
+      <p>2 - This is button for opening station creation window!</p>
+      <p>
+        3 - This is list of all stations. Here you can see station
+        <em>ID</em> and <em>Name</em> and you can click on the station to focuse
+        it on the map.
+      </p>
+      <p>
+        3.1 - If you want to edit station you can click on this
+        <em>Edit</em> button! This
+        <a href="StationCreation.html"><em>Station Edit Window</em></a> will
+        open, with station information loaded!
+      </p>
+      <p>
+        3.2 - If you want to delete station you can click on this
+        <em>Delete</em> button!
+      </p>
+      <h2>Preview of station</h2>
+      <p>
+        When you click on the station (1), map will focuse on the station and
+        marker(2) will become bigger than the others!
+      </p>
+      <div class="center-div">
+        <img style="width: 80%" src="img/Stations/StationSelected.jpg" />
+      </div>
+      <h2>Station Creation</h2>
+      <div class="center-div">
+        <img style="width: 20%" src="img/Stations/Add.jpg" />
+      </div>
+      <p>
+        When you click on <em>Add Station</em> button,
+        <a href="StationCreation.html"><em>Station Creation Window</em></a> will
+        open!
+      </p>
+      <p>
+        When station is added it will show up in the list and will be focused on
+        the map!
+      </p>
+      <div class="center-div">
+        <img style="width: 80%" src="img/Stations/ZrenjaninAdded.jpg" />
+      </div>
+      <h2>Station Edit</h2>
+      <div class="center-div">
+        <img style="width: 10%" src="img/Stations/Edit.jpg" />
+      </div>
+      <p>
+        When you click on the <em>Edit</em> button,
+        <a href="StationCreation.html"><em>Station Edit Window</em></a> will
+        open! When you save changes, list updates!
+      </p>
+      <h2>Station Deletion</h2>
+      <div class="center-div">
+        <img style="width: 10%" src="img/Stations/Delete.jpg" />
+      </div>
+      <p>
+        When you click on the <em>Delete</em> button, window like this will
+        open!
+      </p>
+      <div class="center-div">
+        <img style="width: 50%" src="img/Stations/DeleteModal.jpg" />
+      </div>
+      <p>
+        You can confirm or decline deletion. If you choose <em>Yes</em>, there
+        are two possible outcomes. If station is free, it will be deleted! But
+        if any line conatins this station, you can not delete it!
+      </p>
+      <div class="flex center-div">
+        <img style="width: 50%" src="img/Stations/DeleteCanceled.jpg" />
+      </div>
+      <div class="center-div">
+        <img style="width: 50%" src="img/Stations/DeleteSuccessful.jpg" />
+      </div>
+      <div>
+        <p class="center-div">Before - After</p>
+        <div class="div1">
+          <img
+            style="width: 66%; margin-left: 15%"
+            src="img/Stations/Cacak1.jpg"
+          />
+        </div>
+        <div class="div2">
+          <img
+            style="width: 110%; margin-left: 10%"
+            src="img/Stations/CacakDeleted2.jpg"
+          />
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
