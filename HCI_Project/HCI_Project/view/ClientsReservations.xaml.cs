@@ -127,7 +127,7 @@ namespace HCI_Project.view
 
         public void SavePurchase(object sender, EventArgs e)
         {
-            MessageBox.Show("Ticket successfully purchased!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+            MessageBox.Show("Ticket successfully purchased!", "Ticket purchase", MessageBoxButton.OK, MessageBoxImage.Information);
             ReservationDTO dto = Rows[reservationsGrid.SelectedIndex];
             long id = dto.Id;
             Reservation r = rf.ReservationRepository.GetById(id);

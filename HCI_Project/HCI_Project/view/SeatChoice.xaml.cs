@@ -436,7 +436,7 @@ namespace HCI_Project.view
 
         public void SavePurchase(object sender, EventArgs e)
         {
-            MessageBox.Show("Ticket successfully purchased!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+            MessageBox.Show("Ticket successfully purchased!", "Ticket purchase", MessageBoxButton.OK, MessageBoxImage.Information);
             DisableSelectedSeat();
             selectedSeat.Background = (SolidColorBrush)new BrushConverter().ConvertFrom(TAKEN);
             Departure dpt = rf.DepartureRepository.GetById(departureDTO.Id);
@@ -457,7 +457,7 @@ namespace HCI_Project.view
 
         public void SaveReservation(object sender, EventArgs e)
         {
-            MessageBox.Show("Ticket successfully reserved!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+            MessageBox.Show("Ticket successfully reserved!", "Ticket reservation", MessageBoxButton.OK, MessageBoxImage.Information);
             DisableSelectedSeat();
             selectedSeat.Background = (SolidColorBrush)new BrushConverter().ConvertFrom(RESERVED);
             Departure dpt = rf.DepartureRepository.GetById(departureDTO.Id);

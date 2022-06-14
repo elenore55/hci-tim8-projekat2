@@ -61,7 +61,7 @@ namespace HCI_Project.view
 
             if (from == "" || to == "" || DepartureDate.SelectedDate == null)
             {
-                MessageBox.Show("You did not fill in the required information!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("You did not fill in the required information!", "Departure data", MessageBoxButton.OK, MessageBoxImage.Error);
                 MarkRed();
             }
             else
