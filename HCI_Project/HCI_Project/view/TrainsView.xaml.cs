@@ -81,7 +81,6 @@ namespace HCI_Project.view
 
         public void DeleteTrain(object sender, EventArgs e)
         {
-
             rf.TrainRepository.Delete(selectedId);
             removeFromRow();
 
@@ -110,7 +109,8 @@ namespace HCI_Project.view
             /*Window wnd = Window.GetWindow(this);
             wnd.Content = new TrainEdit(rf, selectedId);*/
             TrainEditWindow tew = new TrainEditWindow(rf, selectedId);
-            tew.WindowState = WindowState.Maximized; 
+            tew.WindowState = WindowState.Maximized;
+            tew.Closing += refreshNumOfWagons;
             tew.ShowDialog();
             
         }
@@ -121,8 +121,65 @@ namespace HCI_Project.view
             wnd.Content = new AddTrain(rf);*/
             AddTrainWindow atw = new AddTrainWindow(rf);
             atw.WindowState = WindowState.Maximized;
-            atw.ShowDialog();
+            atw.Closing += addTrainToTable;
+            atw.Closing += openNewWindow;
+            atw.Show();
+            // ovdje dodati kod za dopisivanje u tabelu 
+            //addTrainToTable();
+            
+        }
 
+        private void addTrainToTable(object sender, EventArgs e)
+        {
+            foreach (Train t in rf.TrainRepository.GetAll())
+            {
+                if (TrainNotInTable(t))
+                {
+                    Rows.Add(new TrainDTO(t.Id, t.Name, t.Wagons.Count));
+                }
+            }
+        }
+
+        private void openNewWindow(object sender, EventArgs e)
+        {
+            Console.WriteLine("Tip sendera je " + sender.GetType());
+            AddTrainWindow previuos = (AddTrainWindow)sender;
+            if (previuos.isSaved)
+            {
+                AddTrainWindow a = new AddTrainWindow(rf);
+                a.Closing += addTrainToTable;
+                a.Closing += openNewWindow;
+                a.WindowState = WindowState.Maximized;
+                a.Show();
+            }
+            
+        }
+
+        private void refreshNumOfWagons(object sender, EventArgs e)
+        {
+            Console.WriteLine("Bila sam u osvjezavanju ");
+            for (int i = 0; i<Rows.Count; i++)
+            {
+                Train t = rf.TrainRepository.GetById(Rows[i].Id);
+                Rows[i].NumOfWagons = t.Wagons.Count;
+                createTrainDTOs();
+            }
+            foreach(TrainDTO t in Rows)
+            {
+                Console.WriteLine("duzina wagona je " + t.NumOfWagons);
+            }
+        }
+
+        private bool TrainNotInTable(Train t)
+        {
+            foreach(TrainDTO t1 in Rows)
+            {
+                if (t1.Id==t.Id)
+                {
+                    return false;
+                }
+            }
+            return true;
         }
 
         private void btnFilter_Click (object sender, RoutedEventArgs e)

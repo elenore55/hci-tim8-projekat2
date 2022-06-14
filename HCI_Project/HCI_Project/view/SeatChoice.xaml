@@ -41,9 +41,11 @@
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
                 <Label FontSize="22" HorizontalAlignment="Center">Choose a wagon</Label>
-                <Grid Grid.Row="1" x:Name="wagonsGrid" Margin="20,30,0,0" HorizontalAlignment="Center" VerticalAlignment="Top">
+                
+                    <Grid Grid.Row="1" x:Name="wagonsGrid" Margin="20,30,0,0" HorizontalAlignment="Center" VerticalAlignment="Top">
 
-                </Grid>
+                    </Grid>
+                
             </Grid>
             <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch" />
             <Grid Grid.Column="2">

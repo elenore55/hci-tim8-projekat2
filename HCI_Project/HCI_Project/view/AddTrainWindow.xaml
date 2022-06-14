@@ -21,7 +21,7 @@
         <TextBox Grid.Row="0" Margin="190,50,0,0" FontSize="18" Width="150" Height="30"
                  BorderThickness="1" x:Name="trainName" ToolTip="Enter new train's name"></TextBox>
         <Label Grid.Row="0" Margin="83,110,0,0" FontSize="18" HorizontalAlignment="Center" Foreground="Red"
-                 BorderThickness="1" Visibility="Hidden" x:Name="error">You must enter the train name</Label>
+                 BorderThickness="1" Visibility="Hidden" x:Name="error">Train name not entered or already taken</Label>
 
         <Grid x:Name="form" Grid.Row="1" Visibility="Hidden">
             <Grid.ColumnDefinitions>
@@ -55,8 +55,10 @@
                 <ColumnDefinition Width="5"/>
                 <ColumnDefinition Width="3*"/>
             </Grid.ColumnDefinitions>
-            <Grid Grid.Column="0" x:Name="wagonsGrid" Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center">
-            </Grid>
+            <ScrollViewer>
+                <Grid Grid.Column="0" x:Name="wagonsGrid" Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                </Grid>
+            </ScrollViewer>
 
             <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch" />
             <Grid Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -67,8 +69,10 @@
                 </Grid.Resources>
                 <Grid x:Name="numerationGrid" Grid.Row="0" Grid.Column="0">
                     <Border x:Name="trainBorder" Grid.Row="1" Grid.Column="1" BorderBrush="#343440" BorderThickness="0" CornerRadius="10">
-                        <Grid x:Name="seatsGrid"  HorizontalAlignment="Center" VerticalAlignment="Center">
-                        </Grid>
+                        <ScrollViewer>
+                            <Grid x:Name="seatsGrid"  HorizontalAlignment="Center" VerticalAlignment="Center">
+                            </Grid>
+                        </ScrollViewer>
                     </Border>
                 </Grid>
             </Grid>

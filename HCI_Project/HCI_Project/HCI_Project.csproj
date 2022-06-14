@@ -426,12 +426,15 @@
     <Content Include="help\AddTrain.html" />
     <Content Include="help\ClientsReservations.html" />
     <Content Include="help\ClientsTickets.html" />
+    <Content Include="videos\DepartureReport.mkv" />
+    <Content Include="videos\LinesView.mkv" />
+    <Content Include="videos\TrainsView.mkv" />
     <Resource Include="help\img\login.png" />
     <Content Include="help\PurchaseConfirmation.html" />
     <Content Include="help\Login.html" />
     <Content Include="help\NoHelp.html" />
     <Content Include="videos\create_schedule.mkv" />
-    <Content Include="videos\MonthlyReport.mp4" />
+    <Content Include="videos\MonhtlyReport.mkv" />
     <Content Include="videos\StationCRUD.mkv" />
     <Content Include="videos\TrainLinesCRUD.mkv" />
     <Resource Include="help\img\welcomePage\linesMenuItem.png" />

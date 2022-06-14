@@ -57,6 +57,7 @@ namespace HCI_Project.view.TrainHandling
             for (int i = 0; i < Train.Wagons.Count; i++)
             {
                 AddWagonButton(Train, i);
+                addDeleteWagon(i);
             }
             AddAddWagon();
         }
@@ -77,6 +78,57 @@ namespace HCI_Project.view.TrainHandling
             Grid.SetRow(addWagon, Train.Wagons.Count);
             wagonsGrid.Children.Add(addWagon);
             addWagon.Click += new RoutedEventHandler(addWagon_Click);
+            
+        }
+
+        private void addDeleteWagon(int i)
+        {
+            Button deleteWagon = new Button()
+            {
+                Content = "Delete",
+                Name = "s" + i,
+                Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#B22222"),
+                Foreground = Brushes.Black,
+                //Margin = new Thickness(0, 0, 0, 0),
+                //MinHeight = 40,
+                ToolTip = "Click here to delete wagon"
+            };
+            Grid.SetColumn(deleteWagon, 1);
+            Grid.SetRow(deleteWagon, i);
+            wagonsGrid.Children.Add(deleteWagon);
+            deleteWagon.Click += new RoutedEventHandler(deleteWagon_Click);  
+        }
+
+        private void deleteWagon_Click(object sender, RoutedEventArgs e)
+        {
+            
+            Button itself = (Button)sender;
+            int idx = Int32.Parse(itself.Name.Substring(1)); // izvukla sam id dugmeta
+            itself.Content = "Deleted";
+            itself.IsEnabled = false;
+
+            List<Button> allButtons= AllButtons(wagonsGrid);
+            Console.WriteLine("Svih buttona ima " + allButtons.Count);
+            foreach (Button b in allButtons)
+            {
+                Console.WriteLine("Name je " + b.Name);
+            }
+            Button selected = allButtons[idx * 2];
+            selected.IsEnabled = false;
+           
+        }
+
+        private List<Button> AllButtons(DependencyObject parent)
+        {
+            var list = new List<Button>();
+            for (int i = 0; i < VisualTreeHelper.GetChildrenCount(parent); i++)
+            {
+                var child = VisualTreeHelper.GetChild(parent, i);
+                if (child is Button)
+                    list.Add(child as Button);
+                list.AddRange(AllButtons(child));
+            }
+            return list;
         }
 
         private void addWagon_Click(object sender, RoutedEventArgs e)
@@ -491,8 +543,33 @@ namespace HCI_Project.view.TrainHandling
 
         private void btnSaveChanges_Click(object sender, RoutedEventArgs e)
         {
+            // treba proci kroz sve buttone, vidjeti koji je disableovan i onda njega izbaciti iz liste wagona
+            List<Button> allButtons = AllButtons(wagonsGrid);
+            List<Button> svakiDrugi = getSvakiDrugi(allButtons);
+            for (int i = svakiDrugi.Count - 1; i >= 0; i--)
+            {
+                if (svakiDrugi[i].IsEnabled == false)
+                {
+                    //na ovom indeksu obrisi iz liste vagona
+                    Train.Wagons.RemoveAt(i);
+                }
+            }
+            rf.LineRepository.SaveAll();
             MessageBox.Show("Your changes are saved!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
             this.Close();
+        }
+
+        private List<Button> getSvakiDrugi(List<Button> allButtons)
+        {
+            List<Button> retVal = new List<Button>();
+            foreach(Button b in allButtons)
+            {
+                if (b.Name.StartsWith("s"))
+                {
+                    retVal.Add(b);
+                }
+            }
+            return retVal;
         }
     }
 }

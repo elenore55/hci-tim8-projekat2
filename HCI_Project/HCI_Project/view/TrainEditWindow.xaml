@@ -50,8 +50,14 @@
                 <ColumnDefinition Width="5"/>
                 <ColumnDefinition Width="3*"/>
             </Grid.ColumnDefinitions>
-            <Grid Grid.Column="0" x:Name="wagonsGrid" Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center">
-            </Grid>
+            <ScrollViewer>
+                <Grid Grid.Column="0" x:Name="wagonsGrid" Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                </Grid>
+            </ScrollViewer>
 
             <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch" />
             <Grid Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center">

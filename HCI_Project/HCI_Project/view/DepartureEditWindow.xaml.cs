@@ -335,6 +335,7 @@ namespace HCI_Project.view.DepartureHandling
             }
             rf.LineRepository.SaveAll();
 
+
         }
 
         private void handleNoDepartures(List<TimePicker> allPickers)

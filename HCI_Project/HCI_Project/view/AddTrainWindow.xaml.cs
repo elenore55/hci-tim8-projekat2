@@ -17,6 +17,7 @@ using WPFCustomMessageBox;
 using MaterialDesignThemes.Wpf;
 using System.Text.RegularExpressions;
 using System.Windows.Controls.Primitives;
+using System.ComponentModel;
 
 namespace HCI_Project.view
 {
@@ -34,6 +35,7 @@ namespace HCI_Project.view
         private Button selectedWagon;
         private string selectedWagonClass = "";
         private readonly RepositoryFactory rf;
+        public bool isSaved = false;
         public Train Train { get; set; }
 
         private bool AddWagonMode = false;
@@ -495,26 +497,48 @@ namespace HCI_Project.view
 
         private void btnSaveTrain_Click(object sender, RoutedEventArgs e)
         {
-            if (trainName.Text != "")
+            if (trainName.Text != "" && !trainNameAlreadyExists(trainName.Text))
             {
-                // dodamo voz
                 Train.Name = trainName.Text;
+                Console.WriteLine("Id novog voza je " + Train.Id);
                 rf.TrainRepository.Add(Train);
                 MessageBox.Show("Train successfully added!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                //this.Close();
+                isSaved = true;
+                Window wnd = Window.GetWindow(this);
+                wnd.Close();
+                
                 // ucitamo ponovo stranicu
                 /*Window wnd = Window.GetWindow(this);
                 wnd.Content = new AddTrain(rf);*/
                 // kad kliknem da sacuvam voz, treba da se otvori novi prozor za dodavanje voza
-                this.Close();
-                AddTrainWindow atw = new AddTrainWindow(rf);
+
+                /*AddTrainWindow atw = new AddTrainWindow(rf);
+                atw.Closing += addTrainToTable;
                 atw.WindowState = WindowState.Maximized;
-                atw.ShowDialog();
+                atw.ShowDialog();*/
             }
             else
             {
                 error.Visibility = Visibility.Visible;
             }
 
+        }
+
+       
+
+        private bool trainNameAlreadyExists(string name)
+        {
+            foreach(Train t in rf.TrainRepository.GetAll())
+            {
+                /*Console.WriteLine("Ime trenutnog je " + t.Name);
+                Console.WriteLine("Ime je " + name);*/
+                if (t.Name.Equals(name))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }
