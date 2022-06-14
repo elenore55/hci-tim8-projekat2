@@ -38,6 +38,11 @@ namespace HCI_Project.view
             DisplayTickets();
         }
 
+        private void CommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            HelpProvider.ShowHelp("DepartureTickets", this);
+        }
+
         private void setTitle()
         {
             // Ovdje dodati labelu sa adekvatnim naslovom 

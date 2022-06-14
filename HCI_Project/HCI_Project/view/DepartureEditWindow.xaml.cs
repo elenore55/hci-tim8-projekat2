@@ -37,6 +37,11 @@ namespace HCI_Project.view.DepartureHandling
             PopulateDepartureGrid();
         }
 
+        private void CommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            HelpProvider.ShowHelp("DepartureEditWindow", this);
+        }
+
         private void PopulateDepartureGrid()
         {
             List<String> times = findDepartureTimes();

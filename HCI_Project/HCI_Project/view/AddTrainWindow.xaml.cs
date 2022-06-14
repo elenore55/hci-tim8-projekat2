@@ -48,6 +48,11 @@ namespace HCI_Project.view
             PopulateWagonsGrid();
         }
 
+        private void CommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            HelpProvider.ShowHelp("AddTrain", this);
+        }
+
         private Train createEmptyTrain()
         {
             Train t = new Train();

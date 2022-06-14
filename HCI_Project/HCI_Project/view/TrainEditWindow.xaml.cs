@@ -37,7 +37,10 @@ namespace HCI_Project.view.TrainHandling
 
         private bool AddWagonMode = false;
 
-
+        private void CommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            HelpProvider.ShowHelp("TrainEdit", this);
+        }
         public TrainEditWindow(RepositoryFactory rf, long selectedId)
         {
             this.rf = rf;
