@@ -155,7 +155,6 @@ namespace HCI_Project.view
             // ako je mod za dodavanje, usmjeriti ga da radi druge stvari
             AddWagonMode = true;
             form.Visibility = Visibility.Visible;
-            Console.WriteLine("Treba da implementiram dodavanje wagona sada");
             clearCanvas();
         }
 
